@@ -9,49 +9,78 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-      max-parallel: 1
+      max-parallel: 2
       matrix:
         year: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
 
-    timeout-minutes: 90
+    timeout-minutes: 360
 
     steps:
       - name: Download one year
         shell: bash
         run: |
+          set -u
           YEAR=${{ matrix.year }}
-          mkdir -p data/B data/K
-          echo "date,kind,status,bytes,url" > manifest.csv
+          WORKERS=3
+
+          mkdir -p data/B data/K manifest_parts
+
+          download_one() {
+            d="$1"
+            KIND="$2"
+            YYMMDD=$(date -d "$d" +%y%m%d)
+            YYYYMM=$(date -d "$d" +%Y%m)
+            LOW=$(echo "$KIND" | tr '[:upper:]' '[:lower:]')
+            URL="https://www1.mbrace.or.jp/od2/${KIND}/${YYYYMM}/${LOW}${YYMMDD}.lzh"
+            OUT="data/${KIND}/${LOW}${YYMMDD}.lzh"
+            TMP="${OUT}.tmp"
+            META="manifest_parts/${YYMMDD}_${KIND}.csv"
+
+            CODE=$(curl -L -sS               --connect-timeout 10               --max-time 45               --retry 2               --retry-delay 1               --retry-connrefused               -o "$TMP"               -w "%{http_code}"               "$URL" || true)
+
+            if [ "$CODE" = "200" ] && [ -s "$TMP" ] && head -c 64 "$TMP" | grep -aEq -- '-lh[0-9a-z]-'; then
+              mv "$TMP" "$OUT"
+              SIZE=$(stat -c%s "$OUT")
+              echo "$d,$KIND,ok,$SIZE,$URL" > "$META"
+            else
+              SIZE=0
+              [ -f "$TMP" ] && SIZE=$(stat -c%s "$TMP" 2>/dev/null || echo 0)
+              rm -f "$TMP"
+              echo "$d,$KIND,http_${CODE}_invalid_lzh,$SIZE,$URL" > "$META"
+            fi
+          }
 
           START="${YEAR}-01-01"
           END="${YEAR}-12-31"
-
+          LAST=$(date -I -d "$END + 1 day")
           d="$START"
-          while [ "$d" != "$(date -I -d "$END + 1 day")" ]; do
-            YYMMDD=$(date -d "$d" +%y%m%d)
-            YYYYMM=$(date -d "$d" +%Y%m)
 
+          while [ "$d" != "$LAST" ]; do
             for KIND in B K; do
-              LOW=$(echo "$KIND" | tr '[:upper:]' '[:lower:]')
-              URL="https://www1.mbrace.or.jp/od2/${KIND}/${YYYYMM}/${LOW}${YYMMDD}.lzh"
-              OUT="data/${KIND}/${LOW}${YYMMDD}.lzh"
+              download_one "$d" "$KIND" &
 
-              CODE=$(curl -L -sS -o "$OUT.tmp" -w "%{http_code}" "$URL" || true)
-
-              if [ "$CODE" = "200" ] && [ -s "$OUT.tmp" ]; then
-                mv "$OUT.tmp" "$OUT"
-                SIZE=$(stat -c%s "$OUT")
-                echo "$d,$KIND,ok,$SIZE,$URL" >> manifest.csv
-              else
-                rm -f "$OUT.tmp"
-                echo "$d,$KIND,http_$CODE,0,$URL" >> manifest.csv
-              fi
-
-              sleep 1.5
+              while [ "$(jobs -rp | wc -l)" -ge "$WORKERS" ]; do
+                wait -n || true
+              done
             done
-
             d=$(date -I -d "$d + 1 day")
           done
+
+          wait || true
+
+          {
+            echo "date,kind,status,bytes,url"
+            cat manifest_parts/*.csv | sort
+          } > manifest.csv
+
+          OK=$(awk -F, 'NR>1 && $3=="ok" {c++} END {print c+0}' manifest.csv)
+          FAIL=$(awk -F, 'NR>1 && $3!="ok" {c++} END {print c+0}' manifest.csv)
+          BYTES=$(awk -F, 'NR>1 && $3=="ok" {s+=$4} END {printf "%.0f", s+0}' manifest.csv)
+
+          echo "### ${YEAR}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- ok: ${OK}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- failed: ${FAIL}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- bytes: ${BYTES}" >> "$GITHUB_STEP_SUMMARY"
 
           tar -czf "boatrace_${YEAR}.tar.gz" data manifest.csv
 
