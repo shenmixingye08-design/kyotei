@@ -1,0 +1,62 @@
+name: BOAT RACE 10y Download
+
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        year: [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+
+    timeout-minutes: 90
+
+    steps:
+      - name: Download one year
+        shell: bash
+        run: |
+          YEAR=${{ matrix.year }}
+          mkdir -p data/B data/K
+          echo "date,kind,status,bytes,url" > manifest.csv
+
+          START="${YEAR}-01-01"
+          END="${YEAR}-12-31"
+
+          d="$START"
+          while [ "$d" != "$(date -I -d "$END + 1 day")" ]; do
+            YYMMDD=$(date -d "$d" +%y%m%d)
+            YYYYMM=$(date -d "$d" +%Y%m)
+
+            for KIND in B K; do
+              LOW=$(echo "$KIND" | tr '[:upper:]' '[:lower:]')
+              URL="https://www1.mbrace.or.jp/od2/${KIND}/${YYYYMM}/${LOW}${YYMMDD}.lzh"
+              OUT="data/${KIND}/${LOW}${YYMMDD}.lzh"
+
+              CODE=$(curl -L -sS -o "$OUT.tmp" -w "%{http_code}" "$URL" || true)
+
+              if [ "$CODE" = "200" ] && [ -s "$OUT.tmp" ]; then
+                mv "$OUT.tmp" "$OUT"
+                SIZE=$(stat -c%s "$OUT")
+                echo "$d,$KIND,ok,$SIZE,$URL" >> manifest.csv
+              else
+                rm -f "$OUT.tmp"
+                echo "$d,$KIND,http_$CODE,0,$URL" >> manifest.csv
+              fi
+
+              sleep 1.5
+            done
+
+            d=$(date -I -d "$d + 1 day")
+          done
+
+          tar -czf "boatrace_${YEAR}.tar.gz" data manifest.csv
+
+      - name: Upload year
+        uses: actions/upload-artifact@v4
+        with:
+          name: boatrace-${{ matrix.year }}
+          path: boatrace_${{ matrix.year }}.tar.gz
+          retention-days: 30
