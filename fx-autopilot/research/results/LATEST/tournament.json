@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-25T15:22:38.254878+00:00",
+  "updated_at": "2026-09-25T18:11:53.106490+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -153,9 +153,9 @@
       "test_mdd": -0.150267,
       "test_halted": "2023-05-29 11:00:00+00:00",
       "stress_pf": 0.706499,
-      "fwd_trades": "103",
-      "fwd_return": -0.084803,
-      "fwd_sharpe": -1.300417,
+      "fwd_trades": "104",
+      "fwd_return": -0.082897,
+      "fwd_sharpe": -1.268268,
       "fwd_mdd": -0.099687,
       "paper_days": 0,
       "paper_return": 0.0,
@@ -274,8 +274,8 @@
       "test_halted": null,
       "stress_pf": 1.087354,
       "fwd_trades": "83",
-      "fwd_return": -0.08871,
-      "fwd_sharpe": -1.273919,
+      "fwd_return": -0.087996,
+      "fwd_sharpe": -1.263567,
       "fwd_mdd": -0.104471,
       "paper_days": 0,
       "paper_return": 0.0,
@@ -443,6 +443,82 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.173698,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_only",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "subperiod_not_positive",
+        "single_regime_dependence",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.391782,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_trend_7p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.524903,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_trend_mh",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.366952,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_trend_xs",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.499494,
       "paper_days": 0,
       "paper_return": 0.0,
       "paper_sharpe": null,
