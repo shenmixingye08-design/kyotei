@@ -41,32 +41,43 @@ def save(pair: str, df: pd.DataFrame) -> None:
     df.to_parquet(path(pair))
 
 
-def ingest(pairs, start: str, now: dt.datetime | None = None, refetch_days: int = 3) -> dict:
-    """既存データの末尾 refetch_days 日を再取得して上書き（当日分の暫定足を確定値で置換）。"""
+def ingest(pairs, start: str, now: dt.datetime | None = None, refetch_days: int = 3, chunk_months: int = 24) -> dict:
+    """増分取得。既存データの末尾 refetch_days 日を再取得して上書き（当日分の暫定足を確定値で置換）。
+
+    初回は chunk_months ごとに保存する（途中で失敗しても取得済み分は cache に残り、次回はその続きから）。
+    """
     from . import dukascopy
 
     now = (now or utcnow()).replace(minute=0, second=0, microsecond=0)
-    report = {}
+    report, errors = {}, {}
     for pair in pairs:
         try:
-            old = load(pair)
-        except FileNotFoundError:
-            old = pd.DataFrame(columns=dukascopy.COLS)
-        if len(old):
-            since = (old.index.max() - pd.Timedelta(days=refetch_days)).date()
-        else:
-            since = dt.date.fromisoformat(start)
-        # 当月より前の開始日は月初に丸める（月次 H1 ファイル単位で取得するため）
-        if since < now.date().replace(day=1):
-            since = since.replace(day=1)
-        new = dukascopy.fetch_range(pair, since, now)
-        cut = pd.Timestamp(since).tz_localize("UTC")
-        merged = pd.concat([old[old.index < cut], new]) if len(old) else new
-        merged = merged[~merged.index.duplicated(keep="last")].sort_index()
-        save(pair, merged)
-        report[pair] = {"rows": int(len(merged)), "new_rows": int(len(new)),
-                        "first": str(merged.index.min()) if len(merged) else None,
-                        "last": str(merged.index.max()) if len(merged) else None}
+            while True:
+                try:
+                    old = load(pair)
+                except FileNotFoundError:
+                    old = pd.DataFrame(columns=dukascopy.COLS)
+                since = (old.index.max() - pd.Timedelta(days=refetch_days)).date() if len(old) else dt.date.fromisoformat(start)
+                if since < now.date().replace(day=1):
+                    since = since.replace(day=1)
+                # 取得範囲を chunk_months に制限（月初境界）
+                y, m = since.year, since.month + chunk_months
+                y, m = y + (m - 1) // 12, (m - 1) % 12 + 1
+                chunk_end = min(now.replace(tzinfo=None), dt.datetime(y, m, 1))
+                new = dukascopy.fetch_range(pair, since, chunk_end)
+                cut = pd.Timestamp(since).tz_localize("UTC")
+                merged = pd.concat([old[old.index < cut], new]) if len(old) else new
+                merged = merged[~merged.index.duplicated(keep="last")].sort_index()
+                save(pair, merged)
+                print(f"  {pair}: {since} → {chunk_end:%Y-%m-%d} +{len(new)} rows (total {len(merged)})", flush=True)
+                if chunk_end >= now.replace(tzinfo=None):
+                    break
+            report[pair] = {"rows": int(len(merged)), "first": str(merged.index.min()), "last": str(merged.index.max())}
+        except Exception as e:  # noqa: BLE001  取得失敗はそのペアを欠損として報告（架空データで埋めない）
+            errors[pair] = repr(e)
+            print(f"  {pair}: FETCH ERROR {e!r}", flush=True)
+    if errors:
+        raise RuntimeError(f"取得失敗: {errors}（取得済み分は保存済み。次回続きから）")
     return report
 
 

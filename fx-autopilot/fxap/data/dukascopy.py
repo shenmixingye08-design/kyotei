@@ -32,7 +32,7 @@ class FetchError(RuntimeError):
     pass
 
 
-def _get(url: str, session: requests.Session, retries: int = 4) -> bytes | None:
+def _get(url: str, session: requests.Session, retries: int = 8) -> bytes | None:
     """200 → bytes / 404 → None（その期間はデータなし）/ それ以外は再試行の後 FetchError。"""
     last = None
     for k in range(retries):
@@ -45,7 +45,7 @@ def _get(url: str, session: requests.Session, retries: int = 4) -> bytes | None:
             last = f"HTTP {r.status_code}"
         except requests.RequestException as e:  # noqa: PERF203
             last = repr(e)
-        time.sleep(1.5 * (2 ** k))
+        time.sleep(min(60.0, 2.0 * (2 ** k)))
     raise FetchError(f"{url}: {last}")
 
 
@@ -160,7 +160,7 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     return df.astype(float)
 
 
-def fetch_range(pair: str, start: dt.date, end_utc: dt.datetime, workers: int = 8,
+def fetch_range(pair: str, start: dt.date, end_utc: dt.datetime, workers: int = 3,
                 session: requests.Session | None = None) -> pd.DataFrame:
     """start から end_utc（その時点で完了している足）までの H1 bid/ask 足。"""
     s = session or requests.Session()

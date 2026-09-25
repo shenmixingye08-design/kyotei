@@ -60,7 +60,7 @@ jobs:
   pipeline:
     needs: tests
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 300
     permissions:
       contents: write
     defaults:
@@ -88,7 +88,12 @@ jobs:
         run: |
           mkdir -p logs
           set -o pipefail
-          python -m fxap.cli ingest 2>&1 | tee logs/ingest.log
+          # 初回は取得量が多いため、接続リセット時は数回まで続きから再試行（取得済み分は保存済み）
+          for i in 1 2 3 4; do
+            python -m fxap.cli ingest 2>&1 | tee -a logs/ingest.log && exit 0
+            echo "ingest attempt $i failed; retrying in 60s"; sleep 60
+          done
+          exit 1
       - name: Save market data
         if: always()
         uses: actions/cache/save@v4
