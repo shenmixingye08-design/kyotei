@@ -158,7 +158,10 @@ def cmd_paper(a):
     s2p = RESULTS / "LATEST" / "stage2.csv"
     s2 = pd.read_csv(s2p) if s2p.exists() else None
     tournament.update(specs, s2, _paper_perf(specs))
-    dashboard.build()
+    try:
+        dashboard.build()
+    except Exception as e:  # noqa: BLE001  表示の失敗で PAPER 状態のコミットを止めない（台帳検証は下で必ず実行）
+        print(f"dashboard build failed (PAPER state is still saved): {e!r}", file=sys.stderr)
     return cmd_verify(a)
 
 

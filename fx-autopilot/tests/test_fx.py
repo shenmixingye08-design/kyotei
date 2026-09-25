@@ -294,6 +294,12 @@ class TestLedgerSweepData(unittest.TestCase):
         p.write_text("\n".join(lines[:2] + lines[3:]) + "\n")      # 負けトレードを 1 行削除
         self.assertFalse(ledger.Ledger(p).verify()[0])
 
+    def test_metrics_short_series(self):
+        from fxap import metrics
+        idx = pd.date_range("2026-09-25 14:00", periods=3, freq="1h", tz="UTC")
+        m = metrics.compute(pd.Series([1e6, 1.0004e6, 1.0003e6], index=idx), pd.DataFrame(), None, 1e6)
+        self.assertIsNone(m["cagr"])
+
     def test_sweep(self):
         r = sweep.compute(equity=1_600_000, realized_ytd=500_000, unrealized=0, hwm=1_600_000)
         self.assertAlmostEqual(r["tax_reserve"], round(500_000 * 0.20315), delta=1)

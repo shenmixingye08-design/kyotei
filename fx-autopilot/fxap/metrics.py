@@ -45,7 +45,14 @@ def compute(equity: pd.Series, trades: pd.DataFrame, exposure: pd.Series | None 
     years = max((eq.index[-1] - eq.index[0]).days / 365.25, 1e-9)
     final = float(eq.iloc[-1])
     net = final / initial - 1
-    cagr = (final / initial) ** (1 / years) - 1 if final > 0 else -1.0
+    # 期間が短すぎる（30 日未満）と年率換算が発散するため CAGR は出さない
+    if years < 30 / 365.25:
+        cagr = None
+    else:
+        try:
+            cagr = (final / initial) ** (1 / years) - 1 if final > 0 else -1.0
+        except OverflowError:
+            cagr = None
     sd = r.std(ddof=1) if len(r) > 2 else 0.0
     sharpe = float(r.mean() / sd * math.sqrt(PY)) if sd > 0 else 0.0
     dn = r[r < 0]
