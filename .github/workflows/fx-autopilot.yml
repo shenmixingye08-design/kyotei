@@ -30,7 +30,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: fx-autopilot-state
+  # ブランチごとに分ける（main の定期 PAPER と、ブランチの研究 run が互いに待機中の run を押し出さないように）
+  group: fx-autopilot-state-${{ github.ref_name }}
   cancel-in-progress: false
 
 env:
