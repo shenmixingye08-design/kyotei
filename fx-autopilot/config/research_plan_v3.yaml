@@ -1,0 +1,62 @@
+# 事前登録: V3 研究計画（評価前にコミット。候補・グリッド・ゲートは結果を見て変更しない。変更は v4 として別登録）
+plan_version: fx_plan_v3
+registered_at: "2026-09-25"
+
+contamination: >
+  設計者は v1 と V2 の 2010〜2026 の結果（v2_trend_carry の composite だけが事前登録ゲートを通り、
+  利益が USDJPY と少数の大きなトレードに集中していたこと）を見たうえで V3 を設計している。
+  よって V3 の Walk-Forward 成績は「汚染あり」。新規ペア（AUDJPY / GBPJPY）は V1/V2 の設計に使っていないが、期間は同じ。
+  V3 の最終判断は LOCK 後の PAPER Forward のみ。V2 の LOCK（v2_trend_carry など）は変更しない。
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY]   # AUDJPY / GBPJPY を追加（独立性を上げる）
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v3_carry_trend_xs:      # クロスセクション: 週次で score = z126 + carry/2% を全ペアで比較し |score| 上位 k を保有（1 ペア依存を下げる）
+    family: trend_carry
+    grid: {top_k: [2, 3, 4], sizing: [risk_stop, vol_target]}
+  v3_carry_trend_mh:      # ペアごと: 複数期間トレンド z = 平均(z63, z126, z252) + carry/2%、閾値と日足 ATR トレーリング
+    family: trend_carry
+    grid: {threshold: [0.5, 1.0], trail: [none, atr3]}
+  v3_carry_trend_7p:      # v2_trend_carry(composite, risk_stop) と同じ規則を 7 ペアに適用（新規ペアでの再現確認・グリッドなし）
+    family: trend_carry
+    grid: {sizing: [risk_stop]}
+  v3_carry_only:          # ベンチマーク: キャリー方向のみ（|金利差| > 0.5%）。トレンドの上乗せ価値を測る
+    family: carry
+    grid: {sizing: [risk_stop, vol_target]}
+
+risk_overrides:
+  max_open_positions: 4
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.05
+  fixed_notional_leverage: 1.0
+
+reference_v1: []            # V3 では v1 の再評価はしない（V2 で実施済み）
+
+gates:                      # V2 と同じ + 集中度（V2 の診断で問題になった点を事前に条件化）
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 5                 # 7 ペア中 5 ペア以上でプラス
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0                  # 上位 5 トレードを除いた損益がプラス（少数トレード依存の排除）
+  max_top1_share: 0.30                  # 最大 1 トレードが総利益の 30% 以下

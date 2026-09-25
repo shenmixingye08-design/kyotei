@@ -6,7 +6,8 @@ import pandas as pd
 
 from ..common import PAIRS
 
-START_PRICE = {"USDJPY": 110.0, "EURUSD": 1.15, "EURJPY": 126.5, "GBPUSD": 1.30, "AUDUSD": 0.75}
+START_PRICE = {"USDJPY": 110.0, "EURUSD": 1.15, "EURJPY": 126.5, "GBPUSD": 1.30, "AUDUSD": 0.75,
+               "AUDJPY": 82.0, "GBPJPY": 143.0}
 
 
 def make(pair: str, n: int = 6000, seed: int = 0, start="2015-01-05", drift=0.0, vol=0.0012,
