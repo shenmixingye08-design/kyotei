@@ -1,19 +1,19 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": null,
+  "last_bar": "2026-09-25 14:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 0,
+  "bars_processed": 2,
   "risk_state": {
     "equity": 1000000.0,
     "hwm": 1000000.0,
-    "day_key": "",
-    "week_key": "",
-    "day_start_equity": 0.0,
-    "week_start_equity": 0.0,
+    "day_key": "2026-09-25",
+    "week_key": "2026-W39",
+    "day_start_equity": 1000000.0,
+    "week_start_equity": 1000000.0,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
@@ -21,8 +21,54 @@
   "broker_state": {
     "cash": 1000000.0,
     "positions": {},
-    "pending": [],
-    "client_ids": []
+    "pending": [
+      {
+        "client_order_id": "5727f7892ad63cb6027fff27",
+        "pair": "EURJPY",
+        "side": -1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": 1.2185722013990419,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "entry",
+        "decided_at": "2026-09-25 13:00:00+00:00",
+        "meta": {
+          "risk_jpy": 4874.288805596168,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 4000,
+              "risk_jpy": 4874.29,
+              "notional_jpy": 716202.0,
+              "lev_after": 0.716,
+              "cap_leverage_units": 27925,
+              "cap_currency_units": 16755
+            }
+          }
+        }
+      }
+    ],
+    "client_ids": [
+      "5727f7892ad63cb6027fff27"
+    ]
   },
-  "mgmt": {}
+  "mgmt": {
+    "USDJPY": {
+      "last_bar": "2026-09-25 13:00:00+00:00"
+    },
+    "EURUSD": {
+      "last_bar": "2026-09-25 13:00:00+00:00"
+    },
+    "EURJPY": {
+      "last_bar": "2026-09-25 13:00:00+00:00"
+    },
+    "GBPUSD": {
+      "last_bar": "2026-09-25 13:00:00+00:00"
+    },
+    "AUDUSD": {
+      "last_bar": "2026-09-25 14:00:00+00:00"
+    }
+  }
 }
