@@ -146,7 +146,10 @@ class PaperBroker(BrokerAdapter):
                  "commission_jpy": pos["commission"], "swap_jpy": pos["swap"], "risk_jpy": pos["risk_jpy"],
                  "r_multiple": net / pos["risk_jpy"] if pos["risk_jpy"] > 0 else None,
                  "equity_at_entry": pos["equity_at_entry"], "ret_on_equity": net / pos["equity_at_entry"],
-                 "bars": pos["bars"], "exit_reason": reason}
+                 "bars": pos["bars"], "exit_reason": reason, "signal_time": pos.get("signal_time", ""),
+                 "sl_initial": pos.get("sl_initial"), "sl_final": pos["sl"], "tp": pos["tp"],
+                 "entry_spread_pips": pos.get("entry_spread_pips"), "exit_spread_pips": (q["ask_o"] - q["bid_o"]) / pip,
+                 "slippage_pips_entry": pos.get("slippage_pips"), "slippage_pips_exit": slip_pips}
         f = Fill(pos["client_order_id"] + ":close", pair, -pos["side"], pos["units"], fill, str(t), "close", reason,
                  realized_pnl_jpy=net, commission_jpy=comm, trade=trade)
         self.fills.append(f)
@@ -189,7 +192,9 @@ class PaperBroker(BrokerAdapter):
                 "max_bars": o["max_bars"] if o["max_bars"] is not None and math.isfinite(o["max_bars"]) else None,
                 "bars": 0, "best_close": q["mid_o"], "cost_spread": abs(raw - q["mid_o"]) * o["units"] * qj,
                 "cost_slip": c.slippage_pips_market * pip * o["units"] * qj, "commission": comm, "swap": 0.0,
-                "equity_at_entry": equity_now, "risk_jpy": o["meta"].get("risk_jpy", 0.0), "notional_jpy": notional}
+                "equity_at_entry": equity_now, "risk_jpy": o["meta"].get("risk_jpy", 0.0), "notional_jpy": notional,
+                "signal_time": o.get("decided_at", ""), "sl_initial": fill - side * o["sl"],
+                "entry_spread_pips": (q["ask_o"] - q["bid_o"]) / pip, "slippage_pips": c.slippage_pips_market}
             out.append(Fill(o["client_order_id"], p, side, o["units"], fill, str(t), "open", "entry",
                             cost_spread_jpy=self.positions[p]["cost_spread"], commission_jpy=comm))
         self.pending = rest

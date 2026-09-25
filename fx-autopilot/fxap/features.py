@@ -69,12 +69,22 @@ def pct_rank(s: pd.Series, n: int) -> pd.Series:
     return s.rolling(n, min_periods=max(20, n // 4)).rank(pct=True)
 
 
-def higher_tf(m: pd.DataFrame, rule: str = "4h") -> pd.DataFrame:
-    """上位足の OHLC と、その足が確定する H1 足の時刻（avail = 窓内の最後の H1 足の開始時刻）。"""
-    g = m.resample(rule, label="left", closed="left")
+def higher_tf(m: pd.DataFrame, rule: str = "4h", offset=None) -> pd.DataFrame:
+    """上位足の OHLC と、その足が確定する H1 足の時刻（avail = 窓内の最後の H1 足の開始時刻）。
+
+    日足は offset="21h"（NY 17:00 ≒ 21:00 UTC 区切り）。
+    """
+    g = m.resample(rule, label="left", closed="left", offset=offset)
     hi = pd.DataFrame({"o": g["o"].first(), "h": g["h"].max(), "l": g["l"].min(), "c": g["c"].last()})
-    hi["avail"] = pd.Series(m.index, index=m.index).resample(rule, label="left", closed="left").max()
+    hi["avail"] = pd.Series(m.index, index=m.index).resample(rule, label="left", closed="left", offset=offset).max()
     return hi.dropna()
+
+
+def daily(m: pd.DataFrame) -> pd.DataFrame:
+    """NY クローズ区切りの日足（週末の断片足は除く: H1 が 6 本未満の日足は捨てる）。"""
+    d = higher_tf(m, "24h", offset="21h")
+    n = m["c"].resample("24h", label="left", closed="left", offset="21h").count().reindex(d.index)
+    return d[n >= 6]
 
 
 def map_to_h1(ind: pd.DataFrame, avail: pd.Series, index: pd.DatetimeIndex) -> pd.DataFrame:
@@ -92,3 +102,26 @@ def map_to_h1(ind: pd.DataFrame, avail: pd.Series, index: pd.DatetimeIndex) -> p
 def resample_causal(m: pd.DataFrame, rule: str, index: pd.DatetimeIndex) -> pd.DataFrame:
     hi = higher_tf(m, rule)
     return map_to_h1(hi[["o", "h", "l", "c"]], hi["avail"], index)
+
+
+def map_complete(ind: pd.DataFrame, avail: pd.Series, length: pd.Timedelta, index: pd.DatetimeIndex):
+    """V2 用: 上位足の窓 [T, T+length) が「確定した」時点以降の H1 足に値を割り当てる。
+
+    確定時点 eff = max(窓内の最後の H1 足, T+length-1h)。データ末尾がまだ eff に達していない窓は使わない。
+    （v1 の map_to_h1 は末尾の窓を常に捨てるため、末尾で窓が確定した場合にリアルタイムと 1 本ずれる。v1 は LOCK 済みのため変更しない）
+    戻り値: (H1 に前方補完した DataFrame, 各窓が確定した H1 足の index（判断足）, その窓のラベル)
+    """
+    last = index.max()
+    a = pd.DatetimeIndex(avail.reindex(ind.index))
+    b = pd.DatetimeIndex(ind.index + length - pd.Timedelta(hours=1))
+    eff = a.where(a > b, b)
+    keep = eff <= last
+    x = ind[np.asarray(keep)].copy()
+    e = eff[np.asarray(keep)]
+    pos = index.searchsorted(e)                 # eff 以降の最初の H1 足
+    dec = index[np.minimum(pos, len(index) - 1)]
+    labels = x.index
+    x.index = dec
+    dup = x.index.duplicated(keep="last")
+    x, labels = x[~dup], labels[~dup]
+    return x.reindex(index, method="ffill"), pd.DatetimeIndex(x.index), pd.DatetimeIndex(labels)

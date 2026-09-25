@@ -200,8 +200,13 @@ def load_locked() -> list[dict]:
 
 # ============================================================ Stage 2
 def spec_signals(spec: dict, data: dict, pairs=None) -> dict:
+    pairs = list(pairs or spec["pairs"])
+    cls = REGISTRY[spec["strategy"]]
+    if getattr(cls, "needs_all_pairs", False):
+        params = spec["pairs"][pairs[0]]
+        return cls(**params).generate_all(data, pairs)
     out = {}
-    for p in (pairs or spec["pairs"]):
+    for p in pairs:
         out[p] = get(spec["strategy"], **spec["pairs"][p]).generate(data[p], p)
     return out
 

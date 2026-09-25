@@ -70,3 +70,9 @@ def rollover_days(t: pd.Timestamp) -> int:
     if t.hour != 21 or t.weekday() > 4:
         return 0
     return 3 if t.weekday() == 2 else 1
+
+
+def carry_lagged(base: str, quote: str, t: pd.Timestamp, lag_days: int = 31) -> float:
+    """シグナル用のキャリー（年率の政策金利差 base - quote）。月内の政策変更を先取りしないよう 1 か月遅らせる。"""
+    tt = t - pd.Timedelta(days=lag_days)
+    return rate(base, tt) - rate(quote, tt)

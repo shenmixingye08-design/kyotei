@@ -32,6 +32,10 @@ class RiskConfig:
     max_bar_staleness_hours: float = 3
     min_units: int = 1000
     lot_step: int = 1000
+    # V2: サイズ決定方式（v1 は risk_stop）。いずれも口座残高に比例（固定ロットではない）
+    sizing: str = "risk_stop"              # risk_stop | vol_target | fixed_notional
+    vol_target_annual: float = 0.05        # vol_target: 建玉 1 本の年率ボラ = 残高 × 5%
+    fixed_notional_leverage: float = 1.0   # fixed_notional: 建玉 = 残高 × 1.0 倍
 
     @classmethod
     def load(cls, overrides: dict | None = None, cfg: dict | None = None) -> "RiskConfig":
@@ -108,7 +112,7 @@ class RiskEngine:
     # ------------------------------------------------------------ 新規注文
     def check_entry(self, st: RiskState, pair: str, side: int, price: float, stop_dist: float,
                     quote_jpy: float, base_jpy: float, spread_obs: float, spread_median: float,
-                    bar_age_hours: float = 0.0, data_ok: bool = True) -> Decision:
+                    bar_age_hours: float = 0.0, data_ok: bool = True, vol: float = float("nan")) -> Decision:
         c = self.cfg
         checks, reasons = {}, []
 
@@ -134,7 +138,14 @@ class RiskEngine:
             return Decision(False, 0.0, reasons, checks)
 
         eq = st.equity
-        units = c.risk_per_trade * eq / (stop_dist * quote_jpy)
+        if c.sizing == "vol_target":
+            if not (math.isfinite(vol) and vol > 0):
+                return Decision(False, 0.0, ["volatility_missing"], checks)
+            units = c.vol_target_annual * eq / vol / base_jpy
+        elif c.sizing == "fixed_notional":
+            units = c.fixed_notional_leverage * eq / base_jpy
+        else:
+            units = c.risk_per_trade * eq / (stop_dist * quote_jpy)
         # レバレッジ上限
         gross = sum(p.notional_jpy for p in st.positions)
         cap_lev = max(0.0, (c.max_leverage * eq - gross) / base_jpy)

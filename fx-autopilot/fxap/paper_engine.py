@@ -68,6 +68,7 @@ class PaperEngine:
         self.rstate = RiskState(**rs) if rs else RiskState(equity=initial_equity, hwm=initial_equity)
         self.broker = broker or PaperBroker(self.cost, initial_equity, self.st.get("broker_state"))
         self.spread_median_window = spread_median_window
+        self.initial_equity = initial_equity
         self.mgmt = self.st.get("mgmt", {})     # pair -> {"last_bar_i_time": ...}
 
     # ------------------------------------------------------------------ 実行
@@ -218,7 +219,7 @@ class PaperEngine:
             qj, bj = conv[PAIRS[p]["quote"]], conv[PAIRS[p]["base"]]
             dec = self.risk.check_entry(self.rstate, p, e, price, float(s["sl_dist"]), qj, bj,
                                         q["spread_obs_pips"], q["spread_med"], bar_age_hours=max(0.0, age),
-                                        data_ok=data_ok)
+                                        data_ok=data_ok, vol=float(s.get("vol", float("nan"))))
             if not dec.approved:
                 summary["rejections"] += 1
                 self.ledger.append("risk_reject", bar=str(t), pair=p, side=e, reasons=dec.reasons)
@@ -270,8 +271,20 @@ class PaperEngine:
             w.writerows(rows)
 
     def _write_trades(self):
+        """trades.csv は台帳（追記専用・ハッシュチェーン）から毎回作り直す派生ファイル（履歴の再計算ではない）。"""
         trades = [r["trade"] for r in self.ledger.records("fill") if r.get("kind") == "close" and r.get("trade")]
-        pd.DataFrame(trades).to_csv(self.dir / "trades.csv", index=False)
+        T = pd.DataFrame(trades)
+        if len(T) and (self.dir / "equity.csv").exists():
+            eq = pd.read_csv(self.dir / "equity.csv")
+            e = pd.Series(eq["equity"].values, index=pd.to_datetime(eq["bar"], utc=True))
+            e = e[~e.index.duplicated(keep="last")].sort_index()
+            dd = e / e.cummax().clip(lower=self.initial_equity) - 1
+            xt = pd.to_datetime(T["exit_time"], utc=True)
+            T["equity_after"] = e.reindex(xt, method="ffill").to_numpy()
+            T["drawdown_after"] = dd.reindex(xt, method="ffill").to_numpy()
+        if len(T):
+            T.insert(0, "strategy_version", self.spec["spec_id"])
+        T.to_csv(self.dir / "trades.csv", index=False)
 
 
 def load_paper(spec_id: str, root=None) -> dict:

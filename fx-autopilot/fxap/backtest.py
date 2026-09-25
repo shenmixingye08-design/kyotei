@@ -20,7 +20,7 @@ from .common import PAIRS
 from .costs import CostProfile, commission_jpy, effective_quotes
 from .risk import OpenPos, RiskConfig, RiskEngine, RiskState
 
-SIG_COLS = ["entry", "exit_long", "exit_short", "sl_dist", "tp_dist", "trail_dist", "max_bars"]
+SIG_COLS = ["entry", "exit_long", "exit_short", "sl_dist", "tp_dist", "trail_dist", "max_bars", "vol"]
 
 
 def to_jpy_table(data: dict, index: pd.DatetimeIndex) -> pd.DataFrame:
@@ -289,7 +289,8 @@ def run(data: dict, signals: dict, trade_pairs=None, cost: CostProfile | None = 
                 if t.weekday() == 6 or (t.weekday() == 0 and age > 40):
                     age = 0.0     # 週明けの最初の足（週末ギャップは異常ではない）
             dec = eng.check_entry(st, p, e, price, sl_d, q2j(p, i), b2j(p, i),
-                                  q["spread_obs_pips"][i], q["spread_med"][i], bar_age_hours=max(0.0, age))
+                                  q["spread_obs_pips"][i], q["spread_med"][i], bar_age_hours=max(0.0, age),
+                                  vol=s["vol"][i])
             if dec.approved:
                 pending_entry[p] = (e, dec.units, sl_d, s["tp_dist"][i], s["trail_dist"][i], s["max_bars"][i],
                                     dec.units * sl_d * q2j(p, i))

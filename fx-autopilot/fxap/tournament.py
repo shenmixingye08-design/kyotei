@@ -20,7 +20,7 @@ from scipy import stats
 from .common import PAPER_DIR, research_plan, utcnow
 
 STATE = PAPER_DIR / "tournament.json"
-ORDER = {"RESEARCH_ONLY": 0, "REJECTED": 1, "BACKTEST_PASS": 2, "LIVE_CANDIDATE": 3}
+ORDER = {"RESEARCH_ONLY": 0, "REJECTED": 1, "BACKTEST_PASS": 2, "CHALLENGER": 2, "LIVE_CANDIDATE": 3}
 
 
 def _get(df: pd.DataFrame, spec_id, period, variant, col):
@@ -107,23 +107,30 @@ def update(specs: list[dict], s2: pd.DataFrame | None, paper: dict) -> dict:
     rows = []
     for sp in specs:
         sid = sp["spec_id"]
-        if s2 is not None and len(s2):
+        if sp.get("plan_version") == "fx_plan_v2":
+            # V2: バックテストは汚染あり → 事前登録ゲート合格で CHALLENGER。判断は LOCK 後 PAPER のみ
+            fb = list(sp.get("v2_gate_fail", []))
+            okb = not fb
+            vb = {"test_sharpe": (sp.get("wf_summary") or {}).get("sharpe")}
+        elif s2 is not None and len(s2):
             okb, fb, vb = gate_b(sp, s2)
         else:
             okb, fb, vb = False, ["stage2_missing"], {}
         pd_ = paper.get(sid, {"daily": pd.Series(dtype=float), "n_trades": 0})
         okp, fp, vp = paper_gate(pd_["daily"], pd_["n_trades"], vb.get("test_sharpe"))
-        if sp.get("research_only"):
+        v2 = sp.get("plan_version") == "fx_plan_v2"
+        if not v2 and sp.get("research_only"):
             status = "RESEARCH_ONLY"
         elif not okb:
             status = "REJECTED"
         elif not okp:
-            status = "BACKTEST_PASS"
+            status = "CHALLENGER" if v2 else "BACKTEST_PASS"
         else:
             status = "LIVE_CANDIDATE"
         rows.append({"spec_id": sid, "status": status, "gate_b_fail": fb, "paper_gate_fail": fp, **vb, **vp})
     champ = prev.get("champion")
-    eligible = [r for r in rows if ORDER[r["status"]] >= ORDER["BACKTEST_PASS"]]
+    # Champion は LOCK 後 PAPER Forward 合格（LIVE_CANDIDATE）のみ。バックテストだけでは昇格しない（2026-09-25 方針）
+    eligible = [r for r in rows if r["status"] == "LIVE_CANDIDATE"]
     event = None
     if champ and champ not in {r["spec_id"] for r in eligible}:
         event = {"at": utcnow().isoformat(), "event": "champion_demoted", "spec_id": champ}
@@ -143,7 +150,8 @@ def update(specs: list[dict], s2: pd.DataFrame | None, paper: dict) -> dict:
                 event = {"at": utcnow().isoformat(), "event": "champion_replaced", "from": champ, "to": r["spec_id"], **b}
                 champ = r["spec_id"]
     state = {"updated_at": utcnow().isoformat(), "champion": champ,
-             "champion_note": None if champ else "ゲート B 合格の候補なし → Champion = CASH（取引しない）",
+             "champion_note": None if champ else "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
+             "challengers": [r["spec_id"] for r in rows if r["status"] == "CHALLENGER"],
              "live_candidates": [r["spec_id"] for r in rows if r["status"] == "LIVE_CANDIDATE"],
              "live_requires_user_approval": True, "specs": rows,
              "history": prev.get("history", []) + ([event] if event else [])}

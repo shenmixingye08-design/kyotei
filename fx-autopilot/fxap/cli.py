@@ -71,6 +71,7 @@ def cmd_research(a):
         print("== LOCK")
         research.lock_specs(s1["candidates"], s1["selection_end"], _fingerprint(frames))
         locked = research.load_locked()
+    locked = [s for s in locked if s.get("plan_version", "fx_plan_v1") == "fx_plan_v1"]   # V2 以降は research-v2
     if a.only:
         locked = [s for s in locked if s["strategy"] in a.only.split(",")]
     print(f"== Stage 2（LOCK 済み {len(locked)} 仕様を TEST / FORWARD で評価）")
@@ -78,13 +79,32 @@ def cmd_research(a):
     print("== ランダム売買ベンチマーク / マイクロストラクチャ")
     rnd = research.random_baseline(frames, _pairs(), seeds=a.seeds)
     micro = research.microstructure(frames)
-    paper = _paper_perf(locked)
-    tour = tournament.update(locked, s2["stage2"], paper)
+    allspecs = research.load_locked()
+    tour = tournament.update(allspecs, s2["stage2"], _paper_perf(allspecs))
     out = RESULTS / utcnow().strftime("%Y%m%d")
     md = report.write(out, quality, s1, locked, s2, rnd, micro, tour)
     _registry_append(s2["stage2"], locked)
     print(md[:3000])
     print(f"done in {time.time() - t0:.0f}s → {out}")
+    return 0
+
+
+def cmd_research_v2(a):
+    from . import dashboard, research_v2, tournament
+    from .data import store
+    from .research import load_locked
+    safety.assert_paper_only()
+    frames = store.load_all(_pairs())
+    data_end = str(max(d.index.max() for d in frames.values()))
+    out = research_v2.run(frames, only=a.only.split(",") if a.only else None)
+    specs = research_v2.lock(out["candidates"], data_end)
+    md = research_v2.write(out, specs, data_end)
+    allspecs = load_locked()
+    s2p = RESULTS / "LATEST" / "stage2.csv"
+    s2 = pd.read_csv(s2p) if s2p.exists() else None
+    tournament.update(allspecs, s2, _paper_perf(allspecs))
+    dashboard.build()
+    print(md[:6000])
     return 0
 
 
@@ -210,6 +230,9 @@ def main(argv=None):
     s.add_argument("--pairs")
     s.set_defaults(fn=cmd_ingest)
     sub.add_parser("quality").set_defaults(fn=cmd_quality)
+    s = sub.add_parser("research-v2")
+    s.add_argument("--only")
+    s.set_defaults(fn=cmd_research_v2)
     s = sub.add_parser("research")
     s.add_argument("--stage1", action="store_true", help="LOCK 済みでも Stage 1 を再計算（LOCK は変更しない）")
     s.add_argument("--only")

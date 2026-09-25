@@ -165,6 +165,14 @@ jobs:
         run: |
           set -o pipefail
           python -m fxap.cli research 2>&1 | tee logs/research.log
+      - name: Research V2 (pre-registered candidates → expanding WF → gates → LOCK → Challenger)
+        if: >-
+          github.event_name == 'push' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
+          (github.event_name == 'schedule' && github.event.schedule == '7 23 * * 5')
+        run: |
+          set -o pipefail
+          python -m fxap.cli research-v2 2>&1 | tee logs/research_v2.log
       - name: PAPER trade → settlement → tournament → dashboard → ledger verify
         run: |
           set -o pipefail
@@ -173,12 +181,12 @@ jobs:
         if: always()
         run: |
           { echo "## FX AUTOPILOT (PAPER ONLY)"; cat DASHBOARD.md 2>/dev/null || true;
-            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit results (derived statistics only; raw market data is not committed)
         run: |
           git config user.name "fx-autopilot-bot"
           git config user.email "fx-autopilot-bot@users.noreply.github.com"
-          git add research/results config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
+          git add research/results research/results_v2 config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"
           for i in 1 2 3 4; do
