@@ -57,10 +57,59 @@ jobs:
       - run: python -m fxap.cli safety
       - run: python -m unittest discover -s tests -v
 
-  pipeline:
+  ingest:
+    # 通貨ペアごとに別ランナーで取得（Dukascopy は 1 IP からの連続取得を絞るため）。ペアごとに cache
     needs: tests
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        pair: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD]
+    defaults:
+      run:
+        working-directory: fx-autopilot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: fx-autopilot/requirements.txt
+      - run: pip install -r requirements.txt
+      - name: Restore pair data
+        id: r2
+        uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/${{ matrix.pair }}.parquet
+          key: fx-h1-v2-${{ matrix.pair }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-${{ matrix.pair }}-
+      - name: Restore legacy cache (first migration only)
+        if: steps.r2.outputs.cache-matched-key == ''
+        uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data
+          key: fx-h1-v1-none
+          restore-keys: fx-h1-v1-
+      - name: Ingest ${{ matrix.pair }} (resumable; retries)
+        run: |
+          set -o pipefail
+          for i in 1 2 3 4 5 6; do
+            python -m fxap.cli ingest --pairs ${{ matrix.pair }} && exit 0
+            echo "attempt $i failed; retry in 90s"; sleep 90
+          done
+          exit 1
+      - name: Save pair data
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: fx-autopilot/data/h1/${{ matrix.pair }}.parquet
+          key: fx-h1-v2-${{ matrix.pair }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+  pipeline:
+    needs: ingest
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
     permissions:
       contents: write
     defaults:
@@ -78,28 +127,36 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Safety gate (PAPER ONLY)
         run: python -m fxap.cli safety
-      - name: Restore market data
-        uses: actions/cache/restore@v4
+      - uses: actions/cache/restore@v4
         with:
-          path: fx-autopilot/data
-          key: fx-h1-v1-${{ github.run_id }}
-          restore-keys: fx-h1-v1-
-      - name: Market data (Dukascopy bid/ask H1, incremental)
+          path: fx-autopilot/data/h1/USDJPY.parquet
+          key: fx-h1-v2-USDJPY-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-USDJPY-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/EURUSD.parquet
+          key: fx-h1-v2-EURUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-EURUSD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/EURJPY.parquet
+          key: fx-h1-v2-EURJPY-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-EURJPY-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/GBPUSD.parquet
+          key: fx-h1-v2-GBPUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-GBPUSD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/AUDUSD.parquet
+          key: fx-h1-v2-AUDUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-AUDUSD-
+      - name: Data quality gate (missing / stale / implausible data stops research and PAPER)
         run: |
           mkdir -p logs
           set -o pipefail
-          # 初回は取得量が多いため、接続リセット時は数回まで続きから再試行（取得済み分は保存済み）
-          for i in 1 2 3 4; do
-            python -m fxap.cli ingest 2>&1 | tee -a logs/ingest.log && exit 0
-            echo "ingest attempt $i failed; retrying in 60s"; sleep 60
-          done
-          exit 1
-      - name: Save market data
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: fx-autopilot/data
-          key: fx-h1-v1-${{ github.run_id }}
+          python -m fxap.cli quality 2>&1 | tee logs/quality.log
       - name: Research (WF → LOCK → TEST/FORWARD → Tournament)
         if: >-
           github.event_name == 'push' ||

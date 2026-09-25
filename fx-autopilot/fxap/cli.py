@@ -25,9 +25,22 @@ def _pairs():
 
 def cmd_ingest(a):
     from .data import store
-    rep = store.ingest(_pairs(), a.start or settings()["data"]["start"])
+    pairs = a.pairs.split(",") if a.pairs else _pairs()
+    rep = store.ingest(pairs, a.start or settings()["data"]["start"])
     print(json.dumps(rep, indent=2))
-    frames = store.load_all(_pairs())
+    if a.pairs:
+        return 0
+    return cmd_quality(a)
+
+
+def cmd_quality(a):
+    """全ペアの品質検査。欠損・古いデータ・異常値があれば exit 1（研究・PAPER を止める）。"""
+    from .data import store
+    try:
+        frames = store.load_all(_pairs())
+    except FileNotFoundError as e:
+        print(f"データ欠損: {e}", file=sys.stderr)
+        return 1
     q = store.write_quality_report(frames, RESULTS / "data_quality.json")
     for r in q:
         print(r)
@@ -194,7 +207,9 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("ingest")
     s.add_argument("--start")
+    s.add_argument("--pairs")
     s.set_defaults(fn=cmd_ingest)
+    sub.add_parser("quality").set_defaults(fn=cmd_quality)
     s = sub.add_parser("research")
     s.add_argument("--stage1", action="store_true", help="LOCK 済みでも Stage 1 を再計算（LOCK は変更しない）")
     s.add_argument("--only")
