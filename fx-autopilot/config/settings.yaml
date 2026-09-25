@@ -1,0 +1,73 @@
+# FX AUTOPILOT 設定（PAPER ONLY）
+# LIVE は本人の明示承認まで禁止。ここを書き換えても LIVE にはならない（fxap/safety.py が多重に拒否する）。
+mode: PAPER                  # PAPER | BACKTEST。LIVE はコード上未実装
+live_trading_enabled: false  # true にしても safety.py が承認ファイル + 環境変数 + 実装を要求し、現状は必ず拒否
+broker: paper_sim            # paper_sim（内部シミュレータ）| oanda_practice | ibkr_paper（いずれも DEMO/PAPER 専用）
+
+account:
+  currency: JPY
+  initial_equity: 1000000    # PAPER 仮想口座 ¥1,000,000（実資金ではない）
+
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD]
+
+data:
+  source: dukascopy          # bid/ask 別の H1 足（ECN 相当のスプレッドを含む）
+  start: "2010-01-01"
+  timeframe: H1
+
+# ---------------------------------------------------------------- Risk Engine（保守的な初期値）
+risk:
+  risk_per_trade: 0.005          # 1トレードの許容損失 = 口座残高の 0.5%（SL 距離から数量を計算。固定ロット禁止）
+  max_leverage: 5.0              # 総建玉 / 口座残高（日本の個人上限 25 倍よりはるかに低い）
+  max_open_positions: 3
+  max_positions_per_pair: 1      # ナンピン・倍プッシュ禁止
+  max_currency_exposure: 3.0     # 通貨別ネット建玉 / 口座残高（相関エクスポージャー）
+  daily_loss_limit: 0.02         # 当日損失 2% で新規停止
+  weekly_loss_limit: 0.04        # 週間損失 4% で新規停止
+  max_drawdown: 0.15             # 高値から 15% 下落で全決済 + Kill Switch（解除は本人のみ）
+  spread_max_mult: 3.0           # 直近中央値の 3 倍超のスプレッドでは新規禁止
+  max_bar_staleness_hours: 3     # 最新足が 3 時間以上古い（週末除く）なら取引禁止
+  min_units: 1000                # 最小取引単位（国内 FX の 1,000 通貨）
+  lot_step: 1000
+
+# ---------------------------------------------------------------- コスト（Mid 判定は禁止）
+costs:
+  default_profile: retail_jp
+  profiles:
+    retail_jp:       # 国内 FX 業者の「原則固定」スプレッドと実測スプレッドの大きい方 + スリッページ
+      fixed_spread_pips: {USDJPY: 0.2, EURUSD: 0.3, EURJPY: 0.5, GBPUSD: 1.0, AUDUSD: 0.8}
+      slippage_pips_market: 0.2
+      slippage_pips_stop: 0.5
+      commission_bp: 0.0
+      commission_min_usd: 0.0
+      swap_markup_annual: 0.01    # 政策金利差からさらに年 1% を不利側に控除
+    ibkr:            # IDEALPRO: 実測スプレッド + 手数料 0.2bp（最低 USD2）
+      fixed_spread_pips: {USDJPY: 0.0, EURUSD: 0.0, EURJPY: 0.0, GBPUSD: 0.0, AUDUSD: 0.0}
+      slippage_pips_market: 0.1
+      slippage_pips_stop: 0.3
+      commission_bp: 0.2
+      commission_min_usd: 2.0
+      swap_markup_annual: 0.015
+    stress_2x:       # retail_jp の 2 倍（スプレッド・スリッページ）
+      fixed_spread_pips: {USDJPY: 0.4, EURUSD: 0.6, EURJPY: 1.0, GBPUSD: 2.0, AUDUSD: 1.6}
+      spread_mult: 2.0
+      slippage_pips_market: 0.4
+      slippage_pips_stop: 1.0
+      commission_bp: 0.0
+      commission_min_usd: 0.0
+      swap_markup_annual: 0.02
+
+# ---------------------------------------------------------------- レバレッジ比較（同一戦略）
+leverage_profiles:
+  none:   {risk_per_trade: 0.005, max_leverage: 1.0}
+  low:    {risk_per_trade: 0.005, max_leverage: 3.0}
+  medium: {risk_per_trade: 0.010, max_leverage: 10.0}
+
+# ---------------------------------------------------------------- Profit Sweep（計算のみ。送金は実行しない）
+sweep:
+  base_capital: 1000000          # FX 口座に残す元本
+  tax_rate: 0.20315              # 先物取引に係る雑所得等（申告分離課税）
+  margin_reserve_ratio: 0.20     # 元本の 20% を証拠金バッファとして追加で残す
+  emergency_reserve: 100000
+  min_sweep_amount: 50000
+  sweep_only_if_drawdown_below: 0.05

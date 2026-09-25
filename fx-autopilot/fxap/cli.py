@@ -1,0 +1,217 @@
+"""FX AUTOPILOT CLI（PAPER ONLY）。
+
+  python -m fxap.cli ingest                 # Dukascopy から H1 bid/ask を取得・増分更新 → 品質検査
+  python -m fxap.cli research [--stage1]    # Stage1(WF) → LOCK → Stage2(TEST/FORWARD) → Tournament → SUMMARY.md
+  python -m fxap.cli paper                  # LOCK 済み仕様を LOCK 後の新しい足で PAPER 運用 → Tournament → Dashboard
+  python -m fxap.cli dashboard | verify | sweep | safety
+  python -m fxap.cli kill-switch status|engage|release --spec <id> --reason ... --by <本人の名前>
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+import time
+
+import pandas as pd
+
+from . import safety
+from .common import PAPER_DIR, RESULTS, settings, sha, utcnow
+
+
+def _pairs():
+    return settings()["pairs"]
+
+
+def cmd_ingest(a):
+    from .data import store
+    rep = store.ingest(_pairs(), a.start or settings()["data"]["start"])
+    print(json.dumps(rep, indent=2))
+    frames = store.load_all(_pairs())
+    q = store.write_quality_report(frames, RESULTS / "data_quality.json")
+    for r in q:
+        print(r)
+    if not all(r.get("ok") for r in q):
+        print("データ品質 NG のペアがあります", file=sys.stderr)
+        return 1
+    return 0
+
+
+def _fingerprint(frames):
+    return {p: {"rows": int(len(d)), "first": str(d.index.min()), "last": str(d.index.max()),
+                "sha_2021": sha(pd.util.hash_pandas_object(d[d.index < pd.Timestamp("2022-01-01", tz="UTC")]).sum().item())}
+            for p, d in frames.items()}
+
+
+def cmd_research(a):
+    from . import report, research, tournament
+    from .data import store
+    safety.assert_paper_only()
+    t0 = time.time()
+    frames = store.load_all(_pairs())
+    quality = [store.quality(d, p) for p, d in frames.items()]
+    locked = research.load_locked()
+    s1 = None
+    if a.stage1 or len(locked) < len(research.CANDIDATE_STRATEGIES):
+        print("== Stage 1（TRAIN+VALIDATION のみ）")
+        s1 = research.stage1(frames, _pairs(), strategies=a.only.split(",") if a.only else None)
+        print("== LOCK")
+        research.lock_specs(s1["candidates"], s1["selection_end"], _fingerprint(frames))
+        locked = research.load_locked()
+    if a.only:
+        locked = [s for s in locked if s["strategy"] in a.only.split(",")]
+    print(f"== Stage 2（LOCK 済み {len(locked)} 仕様を TEST / FORWARD で評価）")
+    s2 = research.stage2(locked, frames)
+    print("== ランダム売買ベンチマーク / マイクロストラクチャ")
+    rnd = research.random_baseline(frames, _pairs(), seeds=a.seeds)
+    micro = research.microstructure(frames)
+    paper = _paper_perf(locked)
+    tour = tournament.update(locked, s2["stage2"], paper)
+    out = RESULTS / utcnow().strftime("%Y%m%d")
+    md = report.write(out, quality, s1, locked, s2, rnd, micro, tour)
+    _registry_append(s2["stage2"], locked)
+    print(md[:3000])
+    print(f"done in {time.time() - t0:.0f}s → {out}")
+    return 0
+
+
+def _registry_append(st: pd.DataFrame, specs):
+    """研究レジストリ（追記のみ）: 仕様ハッシュ × 期間 × 変種の初回評価だけを記録。"""
+    path = RESULTS / "registry.csv"
+    hashes = {s["spec_id"]: s["spec_hash"] for s in specs}
+    st = st.assign(spec_hash=st["spec_id"].map(hashes), evaluated_at=utcnow().isoformat())
+    if path.exists():
+        old = pd.read_csv(path)
+        seen = set(zip(old.spec_hash, old.period, old.variant))
+        st = st[[(h, p, v) not in seen for h, p, v in zip(st.spec_hash, st.period, st.variant)]]
+        if len(st):
+            pd.concat([old, st]).to_csv(path, index=False)
+    else:
+        st.to_csv(path, index=False)
+
+
+def _paper_perf(specs) -> dict:
+    from . import metrics
+    from .paper_engine import load_paper
+    out = {}
+    init = float(settings()["account"]["initial_equity"])
+    for s in specs:
+        p = load_paper(s["spec_id"])
+        eq = p["equity"]
+        if len(eq):
+            eq = pd.concat([pd.Series([init], index=[eq.index[0] - pd.Timedelta(hours=1)]), eq])
+        out[s["spec_id"]] = {"daily": metrics.daily_returns(eq) if len(eq) > 2 else pd.Series(dtype=float),
+                             "n_trades": int(len(p["trades"]))}
+    return out
+
+
+def cmd_paper(a):
+    from . import dashboard, tournament
+    from .data import store
+    from .paper_engine import PaperEngine
+    from .research import load_locked
+    safety.assert_paper_only()
+    frames = store.load_all(_pairs())
+    specs = load_locked()
+    if not specs:
+        print("LOCK 済み仕様がありません（research を先に実行）")
+        return 1
+    init = float(settings()["account"]["initial_equity"])
+    for s in specs:
+        eng = PaperEngine(s, frames, initial_equity=init)
+        r = eng.run()
+        print(json.dumps(r, default=str))
+    s2p = RESULTS / "LATEST" / "stage2.csv"
+    s2 = pd.read_csv(s2p) if s2p.exists() else None
+    tournament.update(specs, s2, _paper_perf(specs))
+    dashboard.build()
+    return cmd_verify(a)
+
+
+def cmd_dashboard(a):
+    from . import dashboard
+    d = dashboard.build()
+    print(f"dashboard: champion={d['champion']} papers={len(d['papers'])}")
+    return 0
+
+
+def cmd_verify(a):
+    from .ledger import Ledger
+    safety.assert_paper_only()
+    bad = 0
+    for p in sorted(PAPER_DIR.glob("*/ledger.jsonl")):
+        ok, msg = Ledger(p).verify()
+        print(f"{p.parent.name}: {msg}")
+        bad += not ok
+    return 1 if bad else 0
+
+
+def cmd_sweep(a):
+    from . import dashboard
+    d = dashboard.build()
+    print(json.dumps(d.get("sweep") or {"note": "Champion 不在または PAPER 未開始のため計算対象なし"}, indent=2, ensure_ascii=False))
+    return 0
+
+
+def cmd_safety(a):
+    safety.assert_paper_only()
+    print("PAPER ONLY safety gate: OK")
+    return 0
+
+
+def cmd_kill(a):
+    path = PAPER_DIR / a.spec / "state.json"
+    st = json.loads(path.read_text())
+    rs = st.setdefault("risk_state", {})
+    from .ledger import Ledger
+    led = Ledger(PAPER_DIR / a.spec / "ledger.jsonl")
+    if a.action == "status":
+        print(json.dumps({"halted": st.get("halted"), "kill_switch": rs.get("kill_switch"), "reason": rs.get("kill_reason")},
+                         ensure_ascii=False))
+        return 0
+    if a.action == "engage":
+        st["halted"] = True
+        rs["kill_switch"], rs["kill_reason"] = True, f"manual: {a.reason}"
+        led.append("kill_switch", reason=f"manual: {a.reason}", by=a.by or "manual")
+    elif a.action == "release":
+        if not a.by or a.by.lower() in ("auto", "system", "ci", "github-actions", "claude"):
+            print("Kill Switch の解除は本人のみ（--by <本人の名前>）", file=sys.stderr)
+            return 2
+        if not sys.stdin.isatty():
+            print("解除は対話端末からのみ可能です", file=sys.stderr)
+            return 2
+        st["halted"] = False
+        rs["kill_switch"], rs["kill_reason"] = False, ""
+        rs["hwm"] = rs.get("equity", rs.get("hwm"))
+        led.append("kill_switch_release", reason=a.reason, by=a.by)
+    path.write_text(json.dumps(st, indent=2, ensure_ascii=False))
+    print("ok")
+    return 0
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(prog="fxap")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    s = sub.add_parser("ingest")
+    s.add_argument("--start")
+    s.set_defaults(fn=cmd_ingest)
+    s = sub.add_parser("research")
+    s.add_argument("--stage1", action="store_true", help="LOCK 済みでも Stage 1 を再計算（LOCK は変更しない）")
+    s.add_argument("--only")
+    s.add_argument("--seeds", type=int, default=10)
+    s.set_defaults(fn=cmd_research)
+    for name, fn in (("paper", cmd_paper), ("dashboard", cmd_dashboard), ("verify", cmd_verify),
+                     ("sweep", cmd_sweep), ("safety", cmd_safety)):
+        sub.add_parser(name).set_defaults(fn=fn)
+    s = sub.add_parser("kill-switch")
+    s.add_argument("action", choices=["status", "engage", "release"])
+    s.add_argument("--spec", required=True)
+    s.add_argument("--reason", default="")
+    s.add_argument("--by")
+    s.set_defaults(fn=cmd_kill)
+    a = ap.parse_args(argv)
+    return a.fn(a)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
