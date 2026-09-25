@@ -1,0 +1,84 @@
+{
+  "spec_id": "v3_carry_only",
+  "strategy": "v3_carry_only",
+  "strategy_version": "v3",
+  "family": "carry",
+  "plan_version": "fx_plan_v3",
+  "pairs": {
+    "USDJPY": {
+      "sizing": "vol_target"
+    },
+    "EURUSD": {
+      "sizing": "vol_target"
+    },
+    "EURJPY": {
+      "sizing": "vol_target"
+    },
+    "GBPUSD": {
+      "sizing": "vol_target"
+    },
+    "AUDUSD": {
+      "sizing": "vol_target"
+    },
+    "AUDJPY": {
+      "sizing": "vol_target"
+    },
+    "GBPJPY": {
+      "sizing": "vol_target"
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY"
+  ],
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 4,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.05,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 15:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "trades",
+    "sharpe",
+    "subperiod_not_positive",
+    "single_regime_dependence",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 28,
+    "net_return": 0.462806,
+    "profit_factor": 5.311267,
+    "sharpe": 0.391782,
+    "max_drawdown": -0.187934,
+    "ret_A": -0.045131383105478484,
+    "ret_B": 0.5319447336822294,
+    "stress_pf": 3.659832,
+    "dsr": 0.5855
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "e8f1171e950a955d66d681e618d3b1d9c74011c8438ca0463c79965f2ea423a9",
+  "spec_hash": "596cd352face90d251be9d0de734b94ecffce65d2c7db63d87ba6a4e40074bc4",
+  "locked_at": "2026-09-25T16:24:57.024334+00:00"
+}
