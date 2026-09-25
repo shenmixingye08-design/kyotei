@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-25T13:18:55.567392+00:00",
+  "updated_at": "2026-09-25T13:42:01.802591+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -274,8 +274,8 @@
       "test_halted": null,
       "stress_pf": 1.087354,
       "fwd_trades": 83,
-      "fwd_return": -0.088507,
-      "fwd_sharpe": -1.270989,
+      "fwd_return": -0.08893,
+      "fwd_sharpe": -1.27706,
       "fwd_mdd": -0.104471,
       "paper_days": 0,
       "paper_return": 0.0,

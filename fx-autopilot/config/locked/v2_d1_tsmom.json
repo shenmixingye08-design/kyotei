@@ -80,5 +80,10 @@
   "research_only": true,
   "code_hash": "22c1ae7cf44acebb90b62f86edf45b06d0dc1076a7b21d7bc693b91a5f2285d2",
   "spec_hash": "d0edd4216f33cbfe899de7f142b6dbe3f18ae6ceb0e9fdad3b5fa3aa014756e9",
-  "locked_at": "2026-09-25T13:17:49.279040+00:00"
+  "locked_at": "2026-09-25T13:17:49.279040+00:00",
+  "relock_refusals": [
+    {
+      "at": "2026-09-25T13:40:56.660687+00:00"
+    }
+  ]
 }
