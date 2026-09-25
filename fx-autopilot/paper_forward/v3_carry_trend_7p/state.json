@@ -1,0 +1,50 @@
+{
+  "spec_id": "v3_carry_trend_7p",
+  "spec_hash": "63611c77fd6769ec750b3e0d5d6c9ed68fab85458706c0f85bc4b3722d7f2eed",
+  "last_bar": "2026-09-25 17:00:00+00:00",
+  "started_at": "2026-09-25T18:24:53.174298+00:00",
+  "start": "2026-09-25 16:24:57.023202+00:00",
+  "halted": false,
+  "consecutive_order_errors": 0,
+  "bars_processed": 1,
+  "risk_state": {
+    "equity": 1000000.0,
+    "hwm": 1000000.0,
+    "day_key": "2026-09-25",
+    "week_key": "2026-W39",
+    "day_start_equity": 1000000.0,
+    "week_start_equity": 1000000.0,
+    "kill_switch": false,
+    "kill_reason": "",
+    "broker_connected": true
+  },
+  "broker_state": {
+    "cash": 1000000.0,
+    "positions": {},
+    "pending": [],
+    "client_ids": []
+  },
+  "mgmt": {
+    "USDJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "EURUSD": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "EURJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "GBPUSD": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "AUDUSD": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "AUDJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "GBPJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    }
+  }
+}

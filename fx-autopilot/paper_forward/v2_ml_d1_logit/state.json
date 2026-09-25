@@ -1,12 +1,12 @@
 {
   "spec_id": "v2_ml_d1_logit",
   "spec_hash": "d3bf47a9d35146fca251599e6efb07ce3c7d2b2c67ffbf7f91f268f352a70676",
-  "last_bar": "2026-09-25 14:00:00+00:00",
+  "last_bar": "2026-09-25 17:00:00+00:00",
   "started_at": "2026-09-25T13:18:53.596187+00:00",
   "start": "2026-09-25 13:17:49.284640+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 1,
+  "bars_processed": 4,
   "risk_state": {
     "equity": 1000000.0,
     "hwm": 1000000.0,
@@ -26,7 +26,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-09-25 14:00:00+00:00"
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "USDJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "EURUSD": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "EURJPY": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
+    },
+    "GBPUSD": {
+      "last_bar": "2026-09-25 17:00:00+00:00"
     }
   }
 }
