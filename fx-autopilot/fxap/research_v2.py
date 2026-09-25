@@ -217,6 +217,18 @@ def run(data: dict, only=None, log=print) -> dict:
         m["n_trials_v2"] = n_trials
         m["final_params"] = max(runs, key=lambda k: (_sharpe(runs[k], 2010, 2026, wf["min_train_trades"]), k))
         m["param_changes"] = len({c["params"] for c in chosen})
+        # 診断（報告のみ・ゲートには使わない。ゲートは事前登録から変更しない）: 少数トレードへの利益集中と直近期間
+        if len(T):
+            pn = T["pnl_jpy"].sort_values(ascending=False)
+            tot = float(pn.sum())
+            m["diag_top1_share"] = float(pn.iloc[0] / tot) if tot > 0 else None
+            m["diag_top5_share"] = float(pn.iloc[:5].sum() / tot) if tot > 0 else None
+            m["diag_pnl_ex_top5"] = float(pn.iloc[5:].sum())
+            rest = pn.iloc[5:]
+            gl = -rest[rest <= 0].sum()
+            m["diag_pf_ex_top5"] = float(rest[rest > 0].sum() / gl) if gl > 0 else None
+            m["diag_swap_share"] = float(T["swap_jpy"].sum() / tot) if tot > 0 else None
+        m["diag_ret_2024_2026"] = float((1 + r[r.index.year >= 2024]).prod() - 1) if len(r) else None
         fails = gate(m, P["gates"]) if name in names else ["reference_v1"]
         cands.append({"candidate": name, "is_v2": name in names, "family": REGISTRY[name].family,
                       **{k: _clean(v) for k, v in m.items()}, "gate_fail": fails})
@@ -329,7 +341,13 @@ def summary_md(out, specs, data_end) -> str:
              "expectancy_jpy": "{:,.0f}", "cost_per_trade_jpy": "{:,.0f}", "cost_ratio": F2,
              "positive_year_ratio": "{:.0%}", "max_single_year_share": "{:.0%}", "ret_A": P, "ret_B": P,
              "stress_pf": F2, "max_regime_share": "{:.0%}", "dsr": F2}),
-         "ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。", ""]
+         "ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。", "",
+         "## 診断（報告のみ・ゲート外）: 少数トレードへの利益集中・スワップ依存・直近", "",
+         _t(C[C.is_v2], ["candidate", "status", "n_trades", "diag_top1_share", "diag_top5_share", "diag_pnl_ex_top5",
+                         "diag_pf_ex_top5", "diag_swap_share", "diag_ret_2024_2026"],
+            {"diag_top1_share": "{:.0%}", "diag_top5_share": "{:.0%}", "diag_pnl_ex_top5": "{:+,.0f}",
+             "diag_pf_ex_top5": F2, "diag_swap_share": "{:.0%}", "diag_ret_2024_2026": P}),
+         "上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。", ""]
     Y = out["yearly"]
     if len(Y):
         L += ["## 年別 Return（WF OOS）", "",
