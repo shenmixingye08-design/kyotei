@@ -1,0 +1,79 @@
+{
+  "spec_id": "v2_trend_carry",
+  "strategy": "v2_trend_carry",
+  "strategy_version": "v2",
+  "family": "trend_carry",
+  "plan_version": "fx_plan_v2",
+  "pairs": {
+    "USDJPY": {
+      "mode": "composite",
+      "sizing": "risk_stop"
+    },
+    "EURUSD": {
+      "mode": "composite",
+      "sizing": "risk_stop"
+    },
+    "EURJPY": {
+      "mode": "composite",
+      "sizing": "risk_stop"
+    },
+    "GBPUSD": {
+      "mode": "composite",
+      "sizing": "risk_stop"
+    },
+    "AUDUSD": {
+      "mode": "composite",
+      "sizing": "risk_stop"
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD"
+  ],
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 4,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.05,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "risk_stop"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 11:00:00+00:00",
+  "v2_status": "CHALLENGER",
+  "v2_gate_fail": [],
+  "wf_summary": {
+    "n_trades": 157,
+    "net_return": 0.197695,
+    "profit_factor": 2.081416,
+    "sharpe": 0.441711,
+    "max_drawdown": -0.078007,
+    "ret_A": 0.09397039222279568,
+    "ret_B": 0.09481516516747157,
+    "stress_pf": 1.786416,
+    "dsr": 0.5359
+  },
+  "contaminated_backtest": true,
+  "research_only": false,
+  "code_hash": "22c1ae7cf44acebb90b62f86edf45b06d0dc1076a7b21d7bc693b91a5f2285d2",
+  "spec_hash": "e239210bb72599da9aa84f24ba92cba1567428062799ef0a9eb2e1fdd705c439",
+  "locked_at": "2026-09-25T13:17:49.281326+00:00",
+  "relock_refusals": [
+    {
+      "at": "2026-09-25T13:40:56.663438+00:00"
+    }
+  ]
+}

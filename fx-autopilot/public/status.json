@@ -1,0 +1,533 @@
+{
+  "generated_at": "2026-09-25T13:42:01.810689+00:00",
+  "mode": "PAPER",
+  "live": false,
+  "champion": null,
+  "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
+  "papers": [
+    {
+      "spec_id": "ml_lgbm_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "ml_logit_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "mr_rsi_bb_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "mr_zscore_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "mtf_pullback_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "regime_switch_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "trend_donchian_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "trend_ema_adx_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "trend_tsmom_v1",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_d1_donchian",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_d1_tsmom",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_h4_ema",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_ml_d1_logit",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_session_breakout",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_trend_carry",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v2_xpair_strength",
+      "started": false,
+      "equity": 1000000.0
+    }
+  ],
+  "status": {
+    "ml_lgbm_v1": {
+      "spec_id": "ml_lgbm_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 1165,
+      "test_pf": 0.939408,
+      "test_sharpe": -0.492809,
+      "test_mdd": -0.150822,
+      "test_halted": "2022-09-06 13:00:00+00:00",
+      "stress_pf": 0.876762,
+      "fwd_trades": 453,
+      "fwd_return": -0.096858,
+      "fwd_sharpe": -0.979115,
+      "fwd_mdd": -0.150052,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "ml_logit_v1": {
+      "spec_id": "ml_logit_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 514,
+      "test_pf": 1.015606,
+      "test_sharpe": 0.110977,
+      "test_mdd": -0.127108,
+      "test_halted": null,
+      "stress_pf": 0.909698,
+      "fwd_trades": 103,
+      "fwd_return": -0.032353,
+      "fwd_sharpe": -0.609531,
+      "fwd_mdd": -0.080473,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "mr_rsi_bb_v1": {
+      "spec_id": "mr_rsi_bb_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 387,
+      "test_pf": 0.841556,
+      "test_sharpe": -0.745043,
+      "test_mdd": -0.153523,
+      "test_halted": "2023-06-27 14:00:00+00:00",
+      "stress_pf": 0.793019,
+      "fwd_trades": 276,
+      "fwd_return": -0.076615,
+      "fwd_sharpe": -0.913678,
+      "fwd_mdd": -0.111733,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "mr_zscore_v1": {
+      "spec_id": "mr_zscore_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 250,
+      "test_pf": 0.830637,
+      "test_sharpe": -0.612615,
+      "test_mdd": -0.154237,
+      "test_halted": "2022-10-26 07:00:00+00:00",
+      "stress_pf": 0.784962,
+      "fwd_trades": 291,
+      "fwd_return": -0.088259,
+      "fwd_sharpe": -0.765434,
+      "fwd_mdd": -0.151177,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "mtf_pullback_v1": {
+      "spec_id": "mtf_pullback_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 134,
+      "test_pf": 0.740853,
+      "test_sharpe": -0.924527,
+      "test_mdd": -0.150267,
+      "test_halted": "2023-05-29 11:00:00+00:00",
+      "stress_pf": 0.706499,
+      "fwd_trades": 103,
+      "fwd_return": -0.084803,
+      "fwd_sharpe": -1.300417,
+      "fwd_mdd": -0.099687,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "regime_switch_v1": {
+      "spec_id": "regime_switch_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 410,
+      "test_pf": 0.94068,
+      "test_sharpe": -0.186434,
+      "test_mdd": -0.15132,
+      "test_halted": "2023-03-29 12:00:00+00:00",
+      "stress_pf": 0.916687,
+      "fwd_trades": 195,
+      "fwd_return": -0.137887,
+      "fwd_sharpe": -1.267483,
+      "fwd_mdd": -0.150667,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "trend_donchian_v1": {
+      "spec_id": "trend_donchian_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_kill_switch",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 112,
+      "test_pf": 1.483656,
+      "test_sharpe": 0.559378,
+      "test_mdd": -0.150853,
+      "test_halted": "2023-02-02 10:00:00+00:00",
+      "stress_pf": 1.407662,
+      "fwd_trades": 52,
+      "fwd_return": -0.136032,
+      "fwd_sharpe": -1.698604,
+      "fwd_mdd": -0.150224,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "trend_ema_adx_v1": {
+      "spec_id": "trend_ema_adx_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 279,
+      "test_pf": 0.914237,
+      "test_sharpe": -0.210582,
+      "test_mdd": -0.152241,
+      "test_halted": "2022-12-19 16:00:00+00:00",
+      "stress_pf": 0.868416,
+      "fwd_trades": 303,
+      "fwd_return": -0.034601,
+      "fwd_sharpe": -0.178766,
+      "fwd_mdd": -0.150124,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "trend_tsmom_v1": {
+      "spec_id": "trend_tsmom_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_trades": 255,
+      "test_pf": 1.154903,
+      "test_sharpe": 0.50818,
+      "test_mdd": -0.07017,
+      "test_halted": null,
+      "stress_pf": 1.087354,
+      "fwd_trades": 83,
+      "fwd_return": -0.08893,
+      "fwd_sharpe": -1.27706,
+      "fwd_mdd": -0.104471,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_d1_donchian": {
+      "spec_id": "v2_d1_donchian",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.258484,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_d1_tsmom": {
+      "spec_id": "v2_d1_tsmom",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.05857,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_h4_ema": {
+      "spec_id": "v2_h4_ema",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.103005,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_ml_d1_logit": {
+      "spec_id": "v2_ml_d1_logit",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "ml_not_better_than_simple"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.646369,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_session_breakout": {
+      "spec_id": "v2_session_breakout",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.236601,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_trend_carry": {
+      "spec_id": "v2_trend_carry",
+      "status": "CHALLENGER",
+      "gate_b_fail": [],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.441711,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v2_xpair_strength": {
+      "spec_id": "v2_xpair_strength",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.173698,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    }
+  },
+  "sweep": null,
+  "live_candidates": []
+}

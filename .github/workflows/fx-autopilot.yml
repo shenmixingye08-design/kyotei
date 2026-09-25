@@ -1,0 +1,202 @@
+name: fx-autopilot
+
+# FX AUTOPILOT（PAPER ONLY）
+#   tests → Market Data 取得（Dukascopy bid/ask H1、cache で増分）→ [研究: WF → LOCK → TEST/FORWARD]
+#   → PAPER Trade（LOCK 済み仕様を LOCK 後の新しい足で）→ Settlement / Performance / Tournament → Dashboard → 台帳検証 → コミット
+# 実資金注文・入出金・資金移動・LIVE API は一切行わない（env で固定 + fxap/safety.py が拒否）。
+# 注意: schedule は既定ブランチ（main）にこのファイルがある場合のみ動く。
+
+on:
+  push:
+    paths:
+      - "fx-autopilot/fxap/**"
+      - "fx-autopilot/config/*.yaml"
+      - "fx-autopilot/tests/**"
+      - ".github/workflows/fx-autopilot.yml"
+  schedule:
+    - cron: "17 */3 * * 1-5"   # 平日 3 時間ごと: PAPER（増分）
+    - cron: "37 21 * * 0"      # 日曜 21:37 UTC（週明け）: PAPER
+    - cron: "7 23 * * 5"       # 金曜 23:07 UTC（週末）: 研究の再評価 + PAPER
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "paper | research（研究 + PAPER）"
+        required: true
+        default: paper
+        type: choice
+        options: [paper, research]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fx-autopilot-state
+  cancel-in-progress: false
+
+env:
+  FX_LIVE_TRADING: "false"
+  LIVE_TRADING_ENABLED: "false"
+  PYTHONUNBUFFERED: "1"
+  TZ: UTC
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: fx-autopilot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: fx-autopilot/requirements.txt
+      - run: pip install -r requirements.txt
+      - run: python -m fxap.cli safety
+      - run: python -m unittest discover -s tests -v
+
+  ingest:
+    # 通貨ペアごとに別ランナーで取得（Dukascopy は 1 IP からの連続取得を絞るため）。ペアごとに cache
+    needs: tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        pair: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD]
+    defaults:
+      run:
+        working-directory: fx-autopilot
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: fx-autopilot/requirements.txt
+      - run: pip install -r requirements.txt
+      - name: Restore pair data
+        id: r2
+        uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/${{ matrix.pair }}.parquet
+          key: fx-h1-v2-${{ matrix.pair }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-${{ matrix.pair }}-
+      - name: Restore legacy cache (first migration only)
+        if: steps.r2.outputs.cache-matched-key == ''
+        uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data
+          key: fx-h1-v1-none
+          restore-keys: fx-h1-v1-
+      - name: Ingest ${{ matrix.pair }} (resumable; retries)
+        run: |
+          set -o pipefail
+          for i in 1 2 3 4 5 6; do
+            python -m fxap.cli ingest --pairs ${{ matrix.pair }} && exit 0
+            echo "attempt $i failed; retry in 90s"; sleep 90
+          done
+          exit 1
+      - name: Save pair data
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: fx-autopilot/data/h1/${{ matrix.pair }}.parquet
+          key: fx-h1-v2-${{ matrix.pair }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+  pipeline:
+    needs: ingest
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: fx-autopilot
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync to latest branch head
+        run: git pull --ff-only origin "${GITHUB_REF_NAME}"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: fx-autopilot/requirements.txt
+      - run: pip install -r requirements.txt
+      - name: Safety gate (PAPER ONLY)
+        run: python -m fxap.cli safety
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/USDJPY.parquet
+          key: fx-h1-v2-USDJPY-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-USDJPY-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/EURUSD.parquet
+          key: fx-h1-v2-EURUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-EURUSD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/EURJPY.parquet
+          key: fx-h1-v2-EURJPY-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-EURJPY-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/GBPUSD.parquet
+          key: fx-h1-v2-GBPUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-GBPUSD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/AUDUSD.parquet
+          key: fx-h1-v2-AUDUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-AUDUSD-
+      - name: Data quality gate (missing / stale / implausible data stops research and PAPER)
+        run: |
+          mkdir -p logs
+          set -o pipefail
+          python -m fxap.cli quality 2>&1 | tee logs/quality.log
+      - name: Research (WF → LOCK → TEST/FORWARD → Tournament)
+        if: >-
+          github.event_name == 'push' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
+          (github.event_name == 'schedule' && github.event.schedule == '7 23 * * 5')
+        run: |
+          set -o pipefail
+          python -m fxap.cli research 2>&1 | tee logs/research.log
+      - name: Research V2 (pre-registered candidates → expanding WF → gates → LOCK → Challenger)
+        if: >-
+          github.event_name == 'push' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
+          (github.event_name == 'schedule' && github.event.schedule == '7 23 * * 5')
+        run: |
+          set -o pipefail
+          python -m fxap.cli research-v2 2>&1 | tee logs/research_v2.log
+      - name: PAPER trade → settlement → tournament → dashboard → ledger verify
+        run: |
+          set -o pipefail
+          python -m fxap.cli paper 2>&1 | tee logs/paper.log
+      - name: Job summary
+        if: always()
+        run: |
+          { echo "## FX AUTOPILOT (PAPER ONLY)"; cat DASHBOARD.md 2>/dev/null || true;
+            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+      - name: Commit results (derived statistics only; raw market data is not committed)
+        run: |
+          git config user.name "fx-autopilot-bot"
+          git config user.email "fx-autopilot-bot@users.noreply.github.com"
+          git add research/results research/results_v2 config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"
+          for i in 1 2 3 4; do
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5)); git pull --rebase origin "${GITHUB_REF_NAME}"
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fx-logs-${{ github.run_id }}
+          path: fx-autopilot/logs
+          retention-days: 30

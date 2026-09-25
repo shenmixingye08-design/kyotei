@@ -3,6 +3,10 @@ name: BOAT RACE 10y Download
 on:
   workflow_dispatch:
   push:
+    # FX AUTOPILOT のみの変更ではボートレースの 10 年分ダウンロードを起動しない
+    paths-ignore:
+      - "fx-autopilot/**"
+      - ".github/workflows/fx-autopilot.yml"
 
 jobs:
   download:

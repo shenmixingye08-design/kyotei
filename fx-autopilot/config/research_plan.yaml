@@ -1,0 +1,47 @@
+# 事前登録: 研究計画・データ分割・採用条件（評価前にコミット。結果を見て変更しない。変更は新バージョンで）
+plan_version: fx_plan_v1
+registered_at: "2026-09-25"
+
+splits:
+  TRAIN:      ["2010-01-01", "2018-12-31"]
+  VALIDATION: ["2019-01-01", "2021-12-31"]
+  TEST:       ["2022-01-01", "2025-06-30"]    # LOCK 後に1回だけ評価
+  FORWARD:    ["2025-07-01", null]            # LOCK 後に1回だけ評価（null = 最新まで）+ LOCK 後の PAPER
+
+walk_forward:            # TRAIN+VALIDATION 内で実施（TEST/FORWARD は使わない）
+  train_years: 4
+  test_years: 1
+  first_test_year: 2014
+  last_test_year: 2021
+  selection_metric: sharpe      # 各窓の train 区間 Sharpe 最大のパラメータを次の1年に適用
+
+# パラメータ選択: TRAIN 期間で最良 → VALIDATION で合格なら LOCK
+final_selection: best_train_sharpe
+
+gates:                   # LIVE 候補の条件（すべて満たす必要。満たしても LIVE は本人承認が必須）
+  wf_min_trades: 150
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.30
+  wf_min_positive_year_ratio: 0.60
+  val_min_profit_factor: 1.05
+  test_min_trades: 40
+  test_min_profit_factor: 1.10
+  test_min_sharpe: 0.30
+  max_drawdown: 0.20
+  max_single_year_profit_share: 0.50   # 1年に利益が集中していないこと
+  stress_min_profit_factor: 1.00       # コスト2倍でも損益分岐以上
+  forward_min_trades: 20
+  forward_min_months: 3
+  forward_must_be_positive: true
+  max_sharpe_divergence: 1.0           # |TEST Sharpe - FORWARD Sharpe| の許容
+  no_kill_switch: true
+
+# 事前登録の相場局面（期間別の確認）
+events:
+  EUR_debt_crisis_2011:  ["2011-07-01", "2011-12-31"]
+  abenomics_2012_2013:   ["2012-11-01", "2013-05-31"]
+  SNB_shock_2015:        ["2015-01-12", "2015-01-31"]
+  brexit_vote_2016:      ["2016-06-15", "2016-07-15"]
+  covid_crash_2020:      ["2020-02-20", "2020-04-30"]
+  usd_jpy_surge_2022:    ["2022-03-01", "2022-10-31"]
+  yen_carry_unwind_2024: ["2024-07-10", "2024-08-15"]

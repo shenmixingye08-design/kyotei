@@ -1,0 +1,84 @@
+{
+  "spec_id": "v2_session_breakout",
+  "strategy": "v2_session_breakout",
+  "strategy_version": "v2",
+  "family": "session",
+  "plan_version": "fx_plan_v2",
+  "pairs": {
+    "USDJPY": {
+      "session": "tokyo_london"
+    },
+    "EURUSD": {
+      "session": "tokyo_london"
+    },
+    "EURJPY": {
+      "session": "tokyo_london"
+    },
+    "GBPUSD": {
+      "session": "tokyo_london"
+    },
+    "AUDUSD": {
+      "session": "tokyo_london"
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD"
+  ],
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 4,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.05,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "risk_stop"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 11:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "max_drawdown",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "single_regime_dependence",
+    "deflated_sharpe"
+  ],
+  "wf_summary": {
+    "n_trades": 2624,
+    "net_return": -0.321575,
+    "profit_factor": 0.948417,
+    "sharpe": -0.236601,
+    "max_drawdown": -0.465799,
+    "ret_A": -0.37869561654719064,
+    "ret_B": 0.0919369297091337,
+    "stress_pf": 0.857274,
+    "dsr": 0.0103
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "22c1ae7cf44acebb90b62f86edf45b06d0dc1076a7b21d7bc693b91a5f2285d2",
+  "spec_hash": "427b10450f14c87dd4350d59745f8a0de2b4b0bd4788d893f1e26b09e95571d9",
+  "locked_at": "2026-09-25T13:17:49.283538+00:00",
+  "relock_refusals": [
+    {
+      "at": "2026-09-25T13:40:56.666084+00:00"
+    }
+  ]
+}

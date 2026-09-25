@@ -1,0 +1,94 @@
+{
+  "spec_id": "v2_xpair_strength",
+  "strategy": "v2_xpair_strength",
+  "strategy_version": "v2",
+  "family": "cross_pair",
+  "plan_version": "fx_plan_v2",
+  "pairs": {
+    "USDJPY": {
+      "lookback": 60,
+      "sizing": "risk_stop",
+      "top_k": 3
+    },
+    "EURUSD": {
+      "lookback": 60,
+      "sizing": "risk_stop",
+      "top_k": 3
+    },
+    "EURJPY": {
+      "lookback": 60,
+      "sizing": "risk_stop",
+      "top_k": 3
+    },
+    "GBPUSD": {
+      "lookback": 60,
+      "sizing": "risk_stop",
+      "top_k": 3
+    },
+    "AUDUSD": {
+      "lookback": 60,
+      "sizing": "risk_stop",
+      "top_k": 3
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD"
+  ],
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 4,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.05,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "risk_stop"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 11:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "single_year_dependence",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "single_regime_dependence",
+    "deflated_sharpe"
+  ],
+  "wf_summary": {
+    "n_trades": 330,
+    "net_return": -0.039001,
+    "profit_factor": 0.878898,
+    "sharpe": -0.173698,
+    "max_drawdown": -0.090851,
+    "ret_A": 0.007980481932630568,
+    "ret_B": -0.0466093312379956,
+    "stress_pf": 0.788589,
+    "dsr": 0.0174
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "22c1ae7cf44acebb90b62f86edf45b06d0dc1076a7b21d7bc693b91a5f2285d2",
+  "spec_hash": "c6eeaa6cc6e67848c3807425c1b8de31f85551c486d35ddcb808a7cfef7e9c1c",
+  "locked_at": "2026-09-25T13:17:49.282427+00:00",
+  "relock_refusals": [
+    {
+      "at": "2026-09-25T13:40:56.664742+00:00"
+    }
+  ]
+}

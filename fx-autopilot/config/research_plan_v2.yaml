@@ -1,0 +1,97 @@
+# 事前登録: V2 研究計画（評価前にコミット。結果を見て候補・グリッド・時間帯・ゲートを変更しない。変更は v3 として別登録）
+plan_version: fx_plan_v2
+registered_at: "2026-09-25"
+supersedes: null            # v1（config/research_plan.yaml と config/locked/*_v1.json）は変更せず保存
+
+# ---------------------------------------------------------------- 検証汚染の申告
+contamination: >
+  設計者は v1 の 2010〜2026 の結果（Stage1 WF 2014〜2021、TEST 2022〜2025-06、FORWARD 2025-07〜）を既に見ている。
+  V2 の候補選び（中期トレンド・キャリー・通貨強弱を優先したこと）はその知見の影響を受けている。
+  したがって V2 の Walk-Forward 成績は、どの年も「完全な未知データ」ではない（"汚染あり WF OOS" と表記する）。
+  V2 の最終判断は、LOCK 後に新しく到着する足での PAPER Forward のみで行う。
+
+# ---------------------------------------------------------------- 評価単位と手続き
+unit: portfolio                 # 5 ペア同時（同一パラメータを全ペアに適用 → ペアごとの最適化はしない）
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD]
+cost_profile: retail_jp         # 実測と原則固定の大きい方 + スリッページ + スワップ（政策金利差, 1 か月ラグ）+ 1 本遅延
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding             # 2010-01 から Y-1 年末までで選択 → Y 年に適用（パラメータ選択込みの OOS）
+  first_test_year: 2014
+  last_test_year: 2026          # 2026 は 9 月までの部分年
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all     # LOCK するパラメータ = 同じ規則を LOCK 時点までの全データに適用して選んだもの
+
+# ---------------------------------------------------------------- 候補（グリッドは全て事前固定）
+candidates:
+  v2_d1_donchian:        # 1. 日足 Donchian（ATR 3 倍 SL、n/2 反対チャネルで決済）
+    family: trend_mid
+    grid: {n: [20, 55, 100], regime: [none, trend_only, no_high_vol], sizing: [risk_stop, vol_target, fixed_notional]}
+  v2_d1_tsmom:           # 1. 日足 時系列モメンタム（週 1 回・火曜 NY クローズで判断、ボラ正規化 z の符号）
+    family: trend_mid
+    grid: {lookback: [63, 126, 252], sizing: [risk_stop, vol_target, fixed_notional]}
+  v2_h4_ema:             # 1. 4H EMA トレンド + ADX(4H) フィルタ、ATR(4H) SL / トレーリング
+    family: trend_mid
+    grid: {fast_slow: ["20_100", "50_200"], adx_min: [0, 20], regime: [none, trend_only, no_high_vol]}
+  v2_trend_carry:        # 2. Trend × Carry（政策金利差を 1 か月ラグで使用）
+    family: trend_carry
+    grid: {mode: [agree, carry_trend_filter, composite], sizing: [risk_stop, vol_target]}
+  v2_xpair_strength:     # 4. 通貨強弱（USD/EUR/JPY/GBP/AUD）→ 強弱差の大きいペア上位 k を週次で保有
+    family: cross_pair
+    grid: {lookback: [20, 60, 120], top_k: [2, 3], sizing: [risk_stop, vol_target, fixed_notional]}
+  v2_session_breakout:   # 3. 4H トレンド方向への H1 24 本ブレイクアウト。エントリー時間帯のみ変える
+    family: session
+    grid: {session: [all, tokyo, london, ny, tokyo_london, london_ny]}
+  v2_ml_d1_logit:        # ML: 日足特徴量 + キャリー + 通貨強弱 → 5 日後の方向（毎年再学習）。単純戦略に勝たなければ REJECT
+    family: ml
+    grid: {th: [0.55, 0.60]}
+
+# 時間帯（UTC、エントリー可能な H1 足の開始時刻 [start, end)）。夏冬時間の差は無視（1 時間程度ずれる）
+sessions:
+  all: [0, 24]
+  tokyo: [0, 8]
+  london: [7, 16]
+  ny: [12, 21]
+  tokyo_london: [6, 9]
+  london_ny: [12, 16]
+
+# レジーム（4H 足・完成した足のみ使用）
+regimes:
+  trend_only: "ADX(4H) >= 20"
+  no_high_vol: "ATR(4H)/価格 の過去 1 年順位 < 0.90"
+
+# サイズ決定（固定ロットは禁止。いずれも口座残高に比例）
+sizing:
+  risk_stop: "1 トレードの損失 = 残高 × 0.5%（SL 距離から数量）"
+  vol_target: "建玉の年率ボラ = 残高 × 5%（日次実現ボラ 60 日から数量）"
+  fixed_notional: "建玉 = 残高 × 1.0 倍（ボラに関係なく同じ想定元本。比較用）"
+
+risk_overrides:          # V2 共通（v1 の保守的設定 + 通貨別の重複をより厳しく）
+  max_open_positions: 4
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.05
+  fixed_notional_leverage: 1.0
+
+# 比較対象: v1 の 9 戦略も同じ V2 手続き（ポートフォリオ・拡張窓 WF 2014〜2026）で再評価して並べる（v1 の LOCK は変更しない）
+reference_v1: [trend_ema_adx, trend_donchian, trend_tsmom, mr_rsi_bb, mr_zscore, regime_switch, mtf_pullback, ml_logit, ml_lgbm]
+
+# ---------------------------------------------------------------- Challenger 登録条件（すべて満たす）
+gates:
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40        # 利益の 40% 超が 1 年に集中 → 単年依存
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00        # コスト 2 倍でも損益分岐以上（未満なら脆弱）
+  min_positive_pairs: 3                 # 5 ペア中 3 ペア以上で損益プラス
+  max_regime_profit_share: 0.70         # 利益の 70% 超が 1 つのレジーム → 単一環境依存
+  deflated_sharpe_min: 0.50             # V2 全試行数で補正した DSR
+  ml_must_beat_best_simple: true        # ML は同じ手続きの最良の単純戦略の WF Sharpe を上回ること
+# Champion 昇格: Challenger かつ LOCK 後 PAPER Forward が research_plan.yaml の forward 条件（3 か月・20 取引・プラス・乖離）を満たす場合のみ。
+# 自動で LIVE にはしない。
