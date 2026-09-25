@@ -1,0 +1,88 @@
+{
+  "spec_id": "v4_carry_trend_daily_fast",
+  "strategy": "v4_carry_trend_daily_fast",
+  "strategy_version": "v4",
+  "family": "trend_carry",
+  "plan_version": "fx_plan_v4",
+  "pairs": {
+    "USDJPY": {
+      "threshold": 1.0
+    },
+    "EURUSD": {
+      "threshold": 1.0
+    },
+    "EURJPY": {
+      "threshold": 1.0
+    },
+    "GBPUSD": {
+      "threshold": 1.0
+    },
+    "AUDUSD": {
+      "threshold": 1.0
+    },
+    "AUDJPY": {
+      "threshold": 1.0
+    },
+    "GBPJPY": {
+      "threshold": 1.0
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY"
+  ],
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 4,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.05,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "risk_stop"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 19:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "single_regime_dependence",
+    "deflated_sharpe",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 501,
+    "net_return": -0.0329,
+    "profit_factor": 0.952573,
+    "sharpe": -0.083373,
+    "max_drawdown": -0.098146,
+    "ret_A": -0.05973386456079255,
+    "ret_B": 0.02853860799993302,
+    "stress_pf": 0.791124,
+    "dsr": 0.1531
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "8200f04e21650b53a921f9ea40ad7b9f58c0d7319709c031310ed39e057545e2",
+  "spec_hash": "e06c9e4506e96a2b870650308c2d7d1611c7c2297527d43f770b17ca14505970",
+  "locked_at": "2026-09-25T20:26:43.693046+00:00"
+}
