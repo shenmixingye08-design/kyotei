@@ -183,7 +183,7 @@ jobs:
         run: |
           set -o pipefail
           python -m fxap.cli research-v2 2>&1 | tee logs/research_v2.log
-      - name: Research V3
+      - name: Research V3 / V4
         if: >-
           github.event_name == 'push' ||
           (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
@@ -191,6 +191,7 @@ jobs:
         run: |
           set -o pipefail
           python -m fxap.cli research-v2 --plan v3 2>&1 | tee logs/research_v3.log
+          python -m fxap.cli research-v2 --plan v4 2>&1 | tee logs/research_v4.log
       - name: PAPER trade → settlement → tournament → dashboard → ledger verify
         # PAPER Forward は main でのみ進める（ブランチで状態を進めると main の Forward 記録と分岐するため）
         if: github.ref_name == 'main'
@@ -201,15 +202,15 @@ jobs:
         if: always()
         run: |
           { echo "## FX AUTOPILOT (PAPER ONLY)"; cat DASHBOARD.md 2>/dev/null || true;
-            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; tail -n 40 logs/research_v3.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; tail -n 40 logs/research_v3.log 2>/dev/null || true; tail -n 40 logs/research_v4.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit results (derived statistics only; raw market data is not committed)
         run: |
           git config user.name "fx-autopilot-bot"
           git config user.email "fx-autopilot-bot@users.noreply.github.com"
           if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            git add research/results research/results_v2 research/results_v3 config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
+            git add research/results research/results_v2 research/results_v3 research/results_v4 config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
           else
-            git add research/results_v3 config/locked 2>/dev/null || true   # ブランチ: 新しい研究結果と LOCK だけ
+            git add research/results_v3 research/results_v4 config/locked 2>/dev/null || true   # ブランチ: 新しい研究結果と LOCK だけ
           fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"
