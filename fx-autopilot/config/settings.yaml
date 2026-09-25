@@ -8,7 +8,7 @@ account:
   currency: JPY
   initial_equity: 1000000    # PAPER 仮想口座 ¥1,000,000（実資金ではない）
 
-pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD]
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY]   # AUDJPY / GBPJPY は V3 で追加
 
 data:
   source: dukascopy          # bid/ask 別の H1 足（ECN 相当のスプレッドを含む）
@@ -35,21 +35,21 @@ costs:
   default_profile: retail_jp
   profiles:
     retail_jp:       # 国内 FX 業者の「原則固定」スプレッドと実測スプレッドの大きい方 + スリッページ
-      fixed_spread_pips: {USDJPY: 0.2, EURUSD: 0.3, EURJPY: 0.5, GBPUSD: 1.0, AUDUSD: 0.8}
+      fixed_spread_pips: {USDJPY: 0.2, EURUSD: 0.3, EURJPY: 0.5, GBPUSD: 1.0, AUDUSD: 0.8, AUDJPY: 0.6, GBPJPY: 1.0}
       slippage_pips_market: 0.2
       slippage_pips_stop: 0.5
       commission_bp: 0.0
       commission_min_usd: 0.0
       swap_markup_annual: 0.01    # 政策金利差からさらに年 1% を不利側に控除
     ibkr:            # IDEALPRO: 実測スプレッド + 手数料 0.2bp（最低 USD2）
-      fixed_spread_pips: {USDJPY: 0.0, EURUSD: 0.0, EURJPY: 0.0, GBPUSD: 0.0, AUDUSD: 0.0}
+      fixed_spread_pips: {USDJPY: 0.0, EURUSD: 0.0, EURJPY: 0.0, GBPUSD: 0.0, AUDUSD: 0.0, AUDJPY: 0.0, GBPJPY: 0.0}
       slippage_pips_market: 0.1
       slippage_pips_stop: 0.3
       commission_bp: 0.2
       commission_min_usd: 2.0
       swap_markup_annual: 0.015
     stress_2x:       # retail_jp の 2 倍（スプレッド・スリッページ）
-      fixed_spread_pips: {USDJPY: 0.4, EURUSD: 0.6, EURJPY: 1.0, GBPUSD: 2.0, AUDUSD: 1.6}
+      fixed_spread_pips: {USDJPY: 0.4, EURUSD: 0.6, EURJPY: 1.0, GBPUSD: 2.0, AUDUSD: 1.6, AUDJPY: 1.2, GBPJPY: 2.0}
       spread_mult: 2.0
       slippage_pips_market: 0.4
       slippage_pips_stop: 1.0

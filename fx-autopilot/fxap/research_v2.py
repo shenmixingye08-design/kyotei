@@ -26,11 +26,22 @@ from .risk import RiskConfig
 from .strategies import REGISTRY
 
 RESULTS_V2 = OUT / "research" / "results_v2"
+VERSION = {"v": "v2"}      # research-v2 --plan v3 で切り替え（事前登録ファイル・結果ディレクトリ・LOCK の plan_version）
+
+
+def use(version: str):
+    VERSION["v"] = version
+    global RESULTS_V2
+    RESULTS_V2 = OUT / "research" / f"results_{version}"
 
 
 @lru_cache(maxsize=None)
+def _plan(version: str) -> dict:
+    return yaml.safe_load((CONFIG / f"research_plan_{version}.yaml").read_text(encoding="utf-8"))
+
+
 def plan() -> dict:
-    return yaml.safe_load((CONFIG / "research_plan_v2.yaml").read_text(encoding="utf-8"))
+    return _plan(VERSION["v"])
 
 
 def _clean(v):
@@ -152,6 +163,10 @@ def gate(c: dict, g: dict) -> list[str]:
         f.append("single_regime_dependence")
     if (c.get("dsr") or 0) < g["deflated_sharpe_min"]:
         f.append("deflated_sharpe")
+    if "min_pnl_ex_top5" in g and not ((c.get("diag_pnl_ex_top5") or -1) > g["min_pnl_ex_top5"]):
+        f.append("top5_trade_dependence")
+    if "max_top1_share" in g and (c.get("diag_top1_share") if c.get("diag_top1_share") is not None else 1) > g["max_top1_share"]:
+        f.append("top1_trade_dependence")
     return f
 
 
@@ -273,7 +288,7 @@ def lock(C: pd.DataFrame, data_end: str, log=print) -> list[dict]:
     for _, r in C[C.is_v2].iterrows():
         params = json.loads(r["final_params"])
         spec = {
-            "spec_id": r["candidate"], "strategy": r["candidate"], "strategy_version": "v2",
+            "spec_id": r["candidate"], "strategy": r["candidate"], "strategy_version": VERSION["v"],
             "family": r["family"], "plan_version": P["plan_version"],
             "pairs": {p: params for p in P["pairs"]}, "trade_pairs": list(P["pairs"]),
             "risk": risk_for(params, r["candidate"], research=False), "cost_profile": P["cost_profile"],
@@ -311,7 +326,7 @@ def write(out: dict, specs: list, data_end: str) -> str:
             v2["gate_fail"] = v2["gate_fail"].map(lambda x: ";".join(x))
         v2.to_csv(d / f"{k}.csv", index=False)
     md = summary_md(out, specs, data_end)
-    (d / "SUMMARY_V2.md").write_text(md, encoding="utf-8")
+    (d / f"SUMMARY_{VERSION['v'].upper()}.md").write_text(md, encoding="utf-8")
     import shutil
     latest = RESULTS_V2 / "LATEST"
     if latest.exists():
@@ -325,10 +340,9 @@ def summary_md(out, specs, data_end) -> str:
     P, F2, D = "{:+.1%}", "{:.2f}", "{:.1%}"
     C = out["candidates"].copy()
     C["gate_fail"] = C["gate_fail"].map(lambda x: ", ".join(x))
-    L = [f"# FX AUTOPILOT V2 研究結果（{utcnow():%Y-%m-%d %H:%M} UTC、データ〜{data_end}）", "",
-         "**PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v2.yaml`", "",
-         "> **検証汚染の申告**: 設計者は v1 の 2010〜2026 の結果を既に見ている。下の Walk-Forward OOS は"
-         "パラメータ選択込みの時系列外成績だが、どの年も完全な未知データではない。最終判断は LOCK 後の PAPER Forward のみ。", "",
+    L = [f"# FX AUTOPILOT {VERSION['v'].upper()} 研究結果（{utcnow():%Y-%m-%d %H:%M} UTC、データ〜{data_end}）", "",
+         f"**PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_{VERSION['v']}.yaml`", "",
+         "> **検証汚染の申告**: " + " ".join(str(plan().get("contamination", "")).split()), "",
          "コスト: bid/ask 実効スプレッド（実測と原則固定の大きい方）+ スリッページ + 手数料 + スワップ（政策金利差, 1か月ラグ）+ 1本の執行遅延。",
          "単位: 5 ペアのポートフォリオ（同一パラメータ）。WF: 拡張窓（2010〜Y-1 で選択 → Y 年）、2014〜2026（2026 は部分年）。", "",
          "## 候補一覧（WF OOS 連結・コスト込み）", "",
@@ -368,7 +382,8 @@ def summary_md(out, specs, data_end) -> str:
               _t(R, ["candidate", "dimension", "state", "trades", "pnl_jpy", "win_rate", "profit_factor"],
                  {"pnl_jpy": "{:+,.0f}", "win_rate": "{:.0%}", "profit_factor": F2})]
     G = out["grid"]
-    for dim, cands in (("session", ["v2_session_breakout"]), ("sizing", ["v2_d1_donchian", "v2_d1_tsmom", "v2_xpair_strength", "v2_trend_carry"]),
+    for dim, cands in (("session", ["v2_session_breakout"]), ("sizing", ["v2_d1_donchian", "v2_d1_tsmom", "v2_xpair_strength", "v2_trend_carry",
+                                  "v3_carry_trend_xs", "v3_carry_only"]),
                        ("regime", ["v2_d1_donchian", "v2_h4_ema"])):
         g = G[G.candidate.isin(cands)].copy()
         if not len(g):

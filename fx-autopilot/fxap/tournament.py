@@ -107,7 +107,7 @@ def update(specs: list[dict], s2: pd.DataFrame | None, paper: dict) -> dict:
     rows = []
     for sp in specs:
         sid = sp["spec_id"]
-        if sp.get("plan_version") == "fx_plan_v2":
+        if sp.get("plan_version", "fx_plan_v1") != "fx_plan_v1":
             # V2: バックテストは汚染あり → 事前登録ゲート合格で CHALLENGER。判断は LOCK 後 PAPER のみ
             fb = list(sp.get("v2_gate_fail", []))
             okb = not fb
@@ -118,7 +118,7 @@ def update(specs: list[dict], s2: pd.DataFrame | None, paper: dict) -> dict:
             okb, fb, vb = False, ["stage2_missing"], {}
         pd_ = paper.get(sid, {"daily": pd.Series(dtype=float), "n_trades": 0})
         okp, fp, vp = paper_gate(pd_["daily"], pd_["n_trades"], vb.get("test_sharpe"))
-        v2 = sp.get("plan_version") == "fx_plan_v2"
+        v2 = sp.get("plan_version", "fx_plan_v1") != "fx_plan_v1"
         if not v2 and sp.get("research_only"):
             status = "RESEARCH_ONLY"
         elif not okb:

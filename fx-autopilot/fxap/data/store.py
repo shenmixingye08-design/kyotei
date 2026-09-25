@@ -16,7 +16,7 @@ from ..common import DATA_DIR, PAIRS, utcnow
 H1_DIR = DATA_DIR / "h1"
 # 2010 年以降の実績レンジを十分に含む範囲（外れたら復号・桁の誤りとみなし研究を止める）
 PLAUSIBLE = {"USDJPY": (70, 180), "EURUSD": (0.9, 1.7), "EURJPY": (90, 200), "GBPUSD": (1.0, 2.0),
-             "AUDUSD": (0.5, 1.2)}
+             "AUDUSD": (0.5, 1.2), "AUDJPY": (55, 115), "GBPJPY": (115, 220)}
 
 
 def path(pair: str):

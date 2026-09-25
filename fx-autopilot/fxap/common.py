@@ -26,6 +26,8 @@ PAIRS = {
     "EURJPY": {"base": "EUR", "quote": "JPY", "pip": 0.01, "point": 1e-3},
     "GBPUSD": {"base": "GBP", "quote": "USD", "pip": 0.0001, "point": 1e-5},
     "AUDUSD": {"base": "AUD", "quote": "USD", "pip": 0.0001, "point": 1e-5},
+    "AUDJPY": {"base": "AUD", "quote": "JPY", "pip": 0.01, "point": 1e-3},     # V3 で追加
+    "GBPJPY": {"base": "GBP", "quote": "JPY", "pip": 0.01, "point": 1e-3},     # V3 で追加
 }
 PERIODS_PER_YEAR_DAILY = 260   # FX の営業日数（月〜金）
 

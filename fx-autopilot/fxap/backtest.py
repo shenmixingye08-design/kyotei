@@ -31,10 +31,15 @@ def to_jpy_table(data: dict, index: pd.DatetimeIndex) -> pd.DataFrame:
     if "USDJPY" in mids:
         out["USD"] = mids["USDJPY"]
     for ccy in ("EUR", "GBP", "AUD"):
-        if f"{ccy}JPY" in mids:
-            out[ccy] = mids[f"{ccy}JPY"]
-        elif f"{ccy}USD" in mids and "USD" in out:
-            out[ccy] = mids[f"{ccy}USD"] * out["USD"]
+        # EUR は EURJPY、GBP/AUD は XUSD×USDJPY を優先（AUDJPY/GBPJPY 追加前の v1/v2 と同じ換算経路を保つ）
+        order = [f"{ccy}JPY", f"{ccy}USD"] if ccy == "EUR" else [f"{ccy}USD", f"{ccy}JPY"]
+        for pr in order:
+            if pr in mids and pr.endswith("JPY"):
+                out[ccy] = mids[pr]
+                break
+            if pr in mids and pr.endswith("USD") and "USD" in out:
+                out[ccy] = mids[pr] * out["USD"]
+                break
     return out
 
 

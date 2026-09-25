@@ -47,6 +47,33 @@ class TestV2(unittest.TestCase):
                         x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
                         self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
 
+    def test_v3_no_lookahead(self):
+        pairs7 = PAIRS + ["AUDJPY", "GBPJPY"]
+        data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
+        for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only"):
+            params = REGISTRY[name].param_grid()[-1]
+            s = {"strategy": name, "pairs": {p: params for p in pairs7}}
+            for cut in (17000, 17009):
+                part = {p: d.iloc[:cut] for p, d in data7.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data7)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                for p in pairs7:
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c}")
+
+    def test_jpy_conversion_route_unchanged(self):
+        """AUDJPY/GBPJPY を追加しても GBP/AUD の円換算は XUSD×USDJPY のまま（既存 LOCK の会計を変えない）。"""
+        pairs7 = PAIRS + ["AUDJPY", "GBPJPY"]
+        data7 = synthetic.make_all(pairs=pairs7, n=500, seed=7)
+        idx = data7["USDJPY"].index
+        t5 = backtest.to_jpy_table({p: data7[p] for p in PAIRS}, idx)
+        t7 = backtest.to_jpy_table(data7, idx)
+        for c in ("USD", "EUR", "GBP", "AUD"):
+            self.assertTrue(np.allclose(t5[c], t7[c], equal_nan=True), c)
+
     def test_sizing_modes(self):
         eng_v = RiskEngine(RiskConfig.load({"sizing": "vol_target", "vol_target_annual": 0.05}))
         eng_f = RiskEngine(RiskConfig.load({"sizing": "fixed_notional", "fixed_notional_leverage": 1.0}))
