@@ -1,0 +1,89 @@
+{
+  "spec_id": "regime_switch_v1",
+  "strategy": "regime_switch",
+  "strategy_version": "v1",
+  "family": "C_regime",
+  "pairs": {
+    "USDJPY": {
+      "adx_trend": 25,
+      "brk": 48
+    },
+    "EURUSD": {
+      "adx_trend": 25,
+      "brk": 48
+    },
+    "EURJPY": {
+      "adx_trend": 25,
+      "brk": 24
+    },
+    "GBPUSD": {
+      "adx_trend": 30,
+      "brk": 48
+    },
+    "AUDUSD": {
+      "adx_trend": 30,
+      "brk": 24
+    }
+  },
+  "gate_A_pairs": [],
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD"
+  ],
+  "research_only": true,
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 3,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 3.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000
+  },
+  "cost_profile": "retail_jp",
+  "plan_version": "fx_plan_v1",
+  "selection_data_end": "2021-12-31",
+  "data_fingerprint": {
+    "USDJPY": {
+      "rows": 104369,
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-09-25 10:00:00+00:00",
+      "sha_2021": "971ac97e555e58a750a1336f1489db93cf4f52dff4499e6ceb6c5517ae0fbdbd"
+    },
+    "EURUSD": {
+      "rows": 104372,
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-09-25 10:00:00+00:00",
+      "sha_2021": "3a41e9d7c0e825b6bcccf9ee5fb00de253d7a3a63e13c2e73fe4e436fa024a0c"
+    },
+    "EURJPY": {
+      "rows": 104369,
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-09-25 10:00:00+00:00",
+      "sha_2021": "59bf910c7913dfd19dba8c716e9457064a2deaf8966bb5d904f665d8021f6f9f"
+    },
+    "GBPUSD": {
+      "rows": 104362,
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-09-25 11:00:00+00:00",
+      "sha_2021": "027ac3af90d7ce183a84ae3c48f2858fa240e8d654344dcbeb50f49fef146a6f"
+    },
+    "AUDUSD": {
+      "rows": 104329,
+      "first": "2010-01-01 00:00:00+00:00",
+      "last": "2026-09-25 10:00:00+00:00",
+      "sha_2021": "909c88575ca79f90c7be1788c616c5254087654edbfb08993aa9c9d98c503dc0"
+    }
+  },
+  "code_hash": "c2a323bb4e87a795fecff229ff5c4448fba45417ac39d0da846a225c366538c3",
+  "spec_hash": "acd1486f9282074212882f00f1a7fe7a0a9b84f761970c30da8cf03868f2dac2",
+  "locked_at": "2026-09-25T12:17:20.628812+00:00"
+}

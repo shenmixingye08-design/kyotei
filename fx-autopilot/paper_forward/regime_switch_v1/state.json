@@ -1,0 +1,28 @@
+{
+  "spec_id": "regime_switch_v1",
+  "spec_hash": "acd1486f9282074212882f00f1a7fe7a0a9b84f761970c30da8cf03868f2dac2",
+  "last_bar": null,
+  "started_at": "2026-09-25T12:21:54.593686+00:00",
+  "start": "2026-09-25 12:17:20.628812+00:00",
+  "halted": false,
+  "consecutive_order_errors": 0,
+  "bars_processed": 0,
+  "risk_state": {
+    "equity": 1000000.0,
+    "hwm": 1000000.0,
+    "day_key": "",
+    "week_key": "",
+    "day_start_equity": 0.0,
+    "week_start_equity": 0.0,
+    "kill_switch": false,
+    "kill_reason": "",
+    "broker_connected": true
+  },
+  "broker_state": {
+    "cash": 1000000.0,
+    "positions": {},
+    "pending": [],
+    "client_ids": []
+  },
+  "mgmt": {}
+}

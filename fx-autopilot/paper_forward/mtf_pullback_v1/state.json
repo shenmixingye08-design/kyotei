@@ -1,0 +1,28 @@
+{
+  "spec_id": "mtf_pullback_v1",
+  "spec_hash": "14a8d8273c9e77caa2977a65edc4b3559924142d6347458495d7b709fb5c6f3d",
+  "last_bar": null,
+  "started_at": "2026-09-25T12:21:53.931622+00:00",
+  "start": "2026-09-25 12:17:20.630871+00:00",
+  "halted": false,
+  "consecutive_order_errors": 0,
+  "bars_processed": 0,
+  "risk_state": {
+    "equity": 1000000.0,
+    "hwm": 1000000.0,
+    "day_key": "",
+    "week_key": "",
+    "day_start_equity": 0.0,
+    "week_start_equity": 0.0,
+    "kill_switch": false,
+    "kill_reason": "",
+    "broker_connected": true
+  },
+  "broker_state": {
+    "cash": 1000000.0,
+    "positions": {},
+    "pending": [],
+    "client_ids": []
+  },
+  "mgmt": {}
+}
