@@ -303,11 +303,16 @@ def lock(C: pd.DataFrame, data_end: str, log=print) -> list[dict]:
         spec["spec_hash"] = sha(body)
         path = LOCK_DIR / f"{spec['spec_id']}.json"
         if path.exists():
+            # LOCK ファイルは作成後に一切書き換えない。再計算で中身（パラメータ・Risk・コスト）が変わった場合だけ別ログに記録
             old = json.loads(path.read_text())
-            if old["spec_hash"] != spec["spec_hash"]:
-                old.setdefault("relock_refusals", []).append({"at": utcnow().isoformat()})
-                path.write_text(json.dumps(old, indent=2, ensure_ascii=False))
-                log(f"  LOCK 済み {spec['spec_id']} は変更しない（改善は v3 として別登録）")
+            keys = ("pairs", "trade_pairs", "risk", "cost_profile", "strategy")
+            if any(old.get(k) != spec.get(k) for k in keys):
+                RESULTS_V2.mkdir(parents=True, exist_ok=True)
+                with (RESULTS_V2 / "relock_refusals.jsonl").open("a", encoding="utf-8") as f:
+                    f.write(json.dumps({"at": utcnow().isoformat(), "spec_id": spec["spec_id"],
+                                        "diff_keys": [k for k in keys if old.get(k) != spec.get(k)],
+                                        "new_params": next(iter(spec["pairs"].values()))}, ensure_ascii=False) + "\n")
+                log(f"  LOCK 済み {spec['spec_id']} は変更しない（再計算の結果が異なる。改善は次バージョンで）")
             specs.append(old)
             continue
         spec["locked_at"] = utcnow().isoformat()
