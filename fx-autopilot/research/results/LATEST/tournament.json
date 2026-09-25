@@ -1,7 +1,8 @@
 {
-  "updated_at": "2026-09-25T12:20:52.710930+00:00",
+  "updated_at": "2026-09-25T13:07:24.060659+00:00",
   "champion": null,
-  "champion_note": "ゲート B 合格の候補なし → Champion = CASH（取引しない）",
+  "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
+  "challengers": [],
   "live_candidates": [],
   "live_requires_user_approval": true,
   "specs": [

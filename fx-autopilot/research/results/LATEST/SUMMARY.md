@@ -1,4 +1,4 @@
-# FX AUTOPILOT 研究結果（2026-09-25 12:20 UTC）
+# FX AUTOPILOT 研究結果（2026-09-25 13:07 UTC）
 
 **PAPER / BACKTEST のみ。利益を保証するものではありません。LIVE は本人の明示承認まで開始しません。**
 
@@ -8,11 +8,11 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 
 | pair | rows | first | last | spread_pips_median | spread_pips_p95 | weekday_gaps_gt_3h | crossed_quotes | abs_ret_gt_2pct |
 |---|---|---|---|---|---|---|---|---|
-| USDJPY | 104369 | 2010-01-01 00:00:00+00:00 | 2026-09-25 10:00:00+00:00 | 0.5 | 1.8 | 15 | 0 | 10 |
-| EURUSD | 104372 | 2010-01-01 00:00:00+00:00 | 2026-09-25 10:00:00+00:00 | 0.4 | 1.4 | 15 | 0 | 1 |
-| EURJPY | 104369 | 2010-01-01 00:00:00+00:00 | 2026-09-25 10:00:00+00:00 | 0.9 | 3.3 | 15 | 0 | 12 |
+| USDJPY | 104370 | 2010-01-01 00:00:00+00:00 | 2026-09-25 11:00:00+00:00 | 0.5 | 1.8 | 15 | 0 | 10 |
+| EURUSD | 104373 | 2010-01-01 00:00:00+00:00 | 2026-09-25 11:00:00+00:00 | 0.4 | 1.4 | 15 | 0 | 1 |
+| EURJPY | 104370 | 2010-01-01 00:00:00+00:00 | 2026-09-25 11:00:00+00:00 | 0.9 | 3.3 | 15 | 0 | 12 |
 | GBPUSD | 104362 | 2010-01-01 00:00:00+00:00 | 2026-09-25 11:00:00+00:00 | 1.0 | 3.2 | 16 | 0 | 5 |
-| AUDUSD | 104329 | 2010-01-01 00:00:00+00:00 | 2026-09-25 10:00:00+00:00 | 1.0 | 2.4 | 16 | 20 | 7 |
+| AUDUSD | 104330 | 2010-01-01 00:00:00+00:00 | 2026-09-25 11:00:00+00:00 | 1.0 | 2.4 | 16 | 20 | 7 |
 
 ## データ分割（事前登録 `config/research_plan.yaml`）
 
@@ -21,60 +21,6 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 - Walk-Forward: 学習 4 年 → 検証 1 年を 2014〜2021 で繰り返し
 - コスト（既定 retail_jp）: 実効スプレッド = max(実測, 国内業者の原則固定) + スリッページ （成行 0.2 pip / 逆指値 0.5 pip）+ スワップ（政策金利差 − 年1%）+ 1 本の執行遅延
 - Risk: 1 トレード 0.5%、最大レバレッジ 5.0 倍、日次 2% / 週次 4% 損失で新規停止、DD 15% で全決済 + Kill Switch
-
-## Stage 1: Walk-Forward（TRAIN+VALIDATION 内・パラメータ選択込みの未知年成績）
-
-試行数（戦略 × パラメータ × ペア）: **190**（Deflated Sharpe の補正に使用）
-
-| strategy | pair | wf_trades | wf_net_return | wf_sharpe | wf_profit_factor | wf_max_drawdown | wf_positive_year_ratio | wf_dsr | val_sharpe | val_profit_factor | gate_A | gate_A_fail |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ml_lgbm | AUDUSD | 3881 | -59.9% | -1.19 | 0.90 | -60.9% | 25% | 0.00 | -3.03 | 0.73 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| ml_lgbm | EURJPY | 2188 | -11.0% | -0.18 | 0.97 | -22.2% | 25% | 0.00 | 0.36 | 1.07 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown |
-| ml_lgbm | EURUSD | 3634 | -63.6% | -1.43 | 0.86 | -65.1% | 0% | 0.00 | -2.50 | 0.78 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| ml_lgbm | GBPUSD | 1948 | -28.9% | -0.62 | 0.91 | -32.3% | 25% | 0.00 | -0.87 | 0.85 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| ml_lgbm | USDJPY | 2204 | -0.8% | 0.02 | 1.00 | -21.1% | 50% | 0.00 | -0.44 | 0.93 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| ml_logit | AUDUSD | 1332 | +1.5% | 0.06 | 1.00 | -19.9% | 38% | 0.00 | -0.40 | 0.87 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| ml_logit | EURJPY | 516 | +0.5% | 0.03 | 1.00 | -9.4% | 75% | 0.00 | 1.20 | 3.67 | False | wf_profit_factor;wf_sharpe |
-| ml_logit | EURUSD | 638 | -12.6% | -0.43 | 0.89 | -17.2% | 25% | 0.00 | 0.21 | 1.14 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share |
-| ml_logit | GBPUSD | 352 | -18.4% | -1.00 | 0.72 | -19.1% | 25% | 0.00 | -0.90 | 0.44 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| ml_logit | USDJPY | 742 | -1.6% | -0.03 | 0.98 | -12.1% | 62% | 0.00 | 0.87 | 3.45 | False | wf_profit_factor;wf_sharpe;wf_single_year_share |
-| mr_rsi_bb | AUDUSD | 278 | -13.8% | -0.61 | 0.80 | -15.8% | 25% | 0.00 | -1.25 | 0.69 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mr_rsi_bb | EURJPY | 287 | -13.7% | -0.60 | 0.80 | -17.4% | 25% | 0.00 | -0.56 | 0.81 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mr_rsi_bb | EURUSD | 296 | -10.8% | -0.47 | 0.83 | -13.7% | 38% | 0.00 | -0.70 | 0.80 | False | wf_profit_factor;wf_sharpe;wf_positive_years;val_profit_factor |
-| mr_rsi_bb | GBPUSD | 392 | -16.9% | -0.68 | 0.80 | -22.8% | 0% | 0.00 | -0.11 | 0.96 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| mr_rsi_bb | USDJPY | 255 | -16.9% | -0.82 | 0.73 | -18.9% | 25% | 0.00 | 0.04 | 1.01 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mr_zscore | AUDUSD | 466 | -22.2% | -0.81 | 0.80 | -23.1% | 0% | 0.00 | -1.15 | 0.72 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| mr_zscore | EURJPY | 441 | -1.9% | -0.04 | 0.99 | -9.1% | 38% | 0.00 | 0.31 | 1.08 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share |
-| mr_zscore | EURUSD | 518 | -9.4% | -0.26 | 0.94 | -19.7% | 50% | 0.00 | -0.52 | 0.85 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mr_zscore | GBPUSD | 646 | -29.3% | -1.00 | 0.78 | -30.9% | 12% | 0.00 | -0.23 | 0.93 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| mr_zscore | USDJPY | 363 | -10.8% | -0.35 | 0.90 | -14.9% | 25% | 0.00 | -0.10 | 0.97 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mtf_pullback | AUDUSD | 219 | -8.1% | -0.33 | 0.88 | -14.5% | 25% | 0.00 | -1.42 | 0.60 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mtf_pullback | EURJPY | 194 | -12.6% | -0.59 | 0.77 | -14.3% | 38% | 0.00 | -0.07 | 0.97 | False | wf_profit_factor;wf_sharpe;wf_positive_years;val_profit_factor |
-| mtf_pullback | EURUSD | 136 | -11.5% | -0.67 | 0.71 | -12.7% | 38% | 0.00 | -0.07 | 0.96 | False | wf_trades;wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| mtf_pullback | GBPUSD | 189 | -20.0% | -1.06 | 0.64 | -20.8% | 0% | 0.00 | -1.32 | 0.48 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| mtf_pullback | USDJPY | 122 | -4.2% | -0.22 | 0.90 | -8.7% | 50% | 0.00 | -1.28 | 0.42 | False | wf_trades;wf_profit_factor;wf_sharpe;wf_positive_years;val_profit_factor |
-| regime_switch | AUDUSD | 574 | -22.7% | -0.54 | 0.85 | -27.3% | 25% | 0.00 | -1.14 | 0.71 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| regime_switch | EURJPY | 592 | -26.2% | -0.66 | 0.83 | -29.6% | 12% | 0.00 | -1.01 | 0.76 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| regime_switch | EURUSD | 534 | -18.6% | -0.44 | 0.87 | -29.2% | 38% | 0.00 | -0.98 | 0.72 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_max_drawdown;val_profit_factor |
-| regime_switch | GBPUSD | 574 | -22.4% | -0.55 | 0.83 | -30.0% | 38% | 0.00 | -0.93 | 0.71 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| regime_switch | USDJPY | 602 | -33.0% | -0.83 | 0.79 | -34.2% | 12% | 0.00 | -1.24 | 0.68 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| trend_donchian | AUDUSD | 308 | -20.1% | -0.52 | 0.72 | -20.6% | 12% | 0.00 | -0.74 | 0.58 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| trend_donchian | EURJPY | 392 | +7.1% | 0.20 | 1.07 | -10.3% | 50% | 0.00 | -0.63 | 0.71 | False | wf_profit_factor;wf_sharpe;wf_positive_years;val_profit_factor |
-| trend_donchian | EURUSD | 371 | -7.5% | -0.13 | 0.90 | -18.1% | 25% | 0.00 | -0.33 | 0.80 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| trend_donchian | GBPUSD | 515 | -22.5% | -0.54 | 0.81 | -28.0% | 25% | 0.00 | -0.72 | 0.66 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;wf_max_drawdown;val_profit_factor |
-| trend_donchian | USDJPY | 462 | +28.3% | 0.44 | 1.19 | -8.1% | 62% | 0.03 | -1.08 | 0.40 | False | val_profit_factor |
-| trend_ema_adx | AUDUSD | 402 | -14.4% | -0.35 | 0.84 | -18.9% | 25% | 0.00 | 0.34 | 1.11 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share |
-| trend_ema_adx | EURJPY | 472 | -1.0% | 0.01 | 0.99 | -16.9% | 50% | 0.00 | 0.31 | 1.06 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share |
-| trend_ema_adx | EURUSD | 452 | +14.5% | 0.34 | 1.13 | -10.5% | 50% | 0.01 | 0.60 | 1.26 | False | wf_positive_years |
-| trend_ema_adx | GBPUSD | 369 | -10.8% | -0.29 | 0.87 | -15.9% | 38% | 0.00 | -0.72 | 0.74 | False | wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| trend_ema_adx | USDJPY | 507 | +2.8% | 0.09 | 1.02 | -13.5% | 62% | 0.00 | -0.06 | 0.97 | False | wf_profit_factor;wf_sharpe;val_profit_factor |
-| trend_tsmom | AUDUSD | 132 | +3.1% | 0.16 | 1.09 | -5.6% | 62% | 0.00 | -0.47 | 0.66 | False | wf_trades;wf_profit_factor;wf_sharpe;val_profit_factor |
-| trend_tsmom | EURJPY | 104 | -5.5% | -0.28 | 0.79 | -11.5% | 38% | 0.00 | -0.47 | 0.71 | False | wf_trades;wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| trend_tsmom | EURUSD | 155 | -1.0% | -0.03 | 0.99 | -10.4% | 62% | 0.00 | -0.02 | 0.98 | False | wf_profit_factor;wf_sharpe;val_profit_factor |
-| trend_tsmom | GBPUSD | 118 | -10.7% | -0.60 | 0.72 | -11.2% | 12% | 0.00 | -0.77 | 0.56 | False | wf_trades;wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-| trend_tsmom | USDJPY | 113 | -7.6% | -0.38 | 0.75 | -11.8% | 25% | 0.00 | -0.46 | 0.67 | False | wf_trades;wf_profit_factor;wf_sharpe;wf_positive_years;wf_single_year_share;val_profit_factor |
-
-ゲート A 合格: **0 / 45**
 
 ## LOCK した仕様
 
@@ -157,7 +103,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | ml_lgbm_v1 | AUDUSD | TEST | 185 | -13.4% | 0.67 | -1.56 | -15.0% | — |
 | ml_lgbm_v1 | EURJPY | FORWARD | 283 | -13.5% | 0.75 | -1.85 | -15.1% | — |
 | ml_lgbm_v1 | EURJPY | TEST | 439 | -8.8% | 0.90 | -0.50 | -15.1% | — |
-| ml_lgbm_v1 | EURUSD | FORWARD | 676 | -6.2% | 0.95 | -0.46 | -13.6% | 1.59 |
+| ml_lgbm_v1 | EURUSD | FORWARD | 676 | -6.4% | 0.95 | -0.48 | -13.6% | 1.63 |
 | ml_lgbm_v1 | EURUSD | TEST | 1110 | +2.3% | 1.01 | 0.15 | -15.1% | 0.73 |
 | ml_lgbm_v1 | GBPUSD | FORWARD | 192 | +1.2% | 1.03 | 0.21 | -7.1% | 0.76 |
 | ml_lgbm_v1 | GBPUSD | TEST | 529 | -14.5% | 0.85 | -0.86 | -15.0% | — |
@@ -187,7 +133,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | mr_zscore_v1 | AUDUSD | TEST | 207 | +6.6% | 1.12 | 0.46 | -5.5% | 0.40 |
 | mr_zscore_v1 | EURJPY | FORWARD | 65 | +0.6% | 1.03 | 0.14 | -4.7% | 0.50 |
 | mr_zscore_v1 | EURJPY | TEST | 202 | +8.9% | 1.17 | 0.56 | -7.3% | 0.21 |
-| mr_zscore_v1 | EURUSD | FORWARD | 62 | -5.1% | 0.72 | -1.08 | -7.8% | — |
+| mr_zscore_v1 | EURUSD | FORWARD | 62 | -5.1% | 0.72 | -1.07 | -7.8% | — |
 | mr_zscore_v1 | EURUSD | TEST | 209 | +13.1% | 1.24 | 0.76 | -6.7% | 0.15 |
 | mr_zscore_v1 | GBPUSD | FORWARD | 69 | -2.5% | 0.87 | -0.47 | -6.1% | — |
 | mr_zscore_v1 | GBPUSD | TEST | 206 | -0.6% | 0.99 | -0.02 | -5.5% | 0.97 |
@@ -203,25 +149,25 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | mtf_pullback_v1 | GBPUSD | TEST | 44 | -4.1% | 0.67 | -0.68 | -5.8% | — |
 | mtf_pullback_v1 | USDJPY | FORWARD | 13 | +0.5% | 1.14 | 0.18 | -2.6% | 0.18 |
 | mtf_pullback_v1 | USDJPY | TEST | 42 | +3.6% | 1.34 | 0.49 | -3.8% | 0.14 |
-| regime_switch_v1 | AUDUSD | FORWARD | 89 | +0.7% | 1.03 | 0.14 | -8.1% | 0.73 |
+| regime_switch_v1 | AUDUSD | FORWARD | 89 | +0.7% | 1.03 | 0.13 | -8.1% | 0.74 |
 | regime_switch_v1 | AUDUSD | TEST | 256 | -8.5% | 0.88 | -0.46 | -14.9% | — |
 | regime_switch_v1 | EURJPY | FORWARD | 97 | -7.3% | 0.75 | -0.90 | -11.4% | — |
 | regime_switch_v1 | EURJPY | TEST | 273 | -10.8% | 0.85 | -0.54 | -12.5% | — |
-| regime_switch_v1 | EURUSD | FORWARD | 93 | -2.8% | 0.88 | -0.39 | -6.1% | — |
+| regime_switch_v1 | EURUSD | FORWARD | 93 | -2.9% | 0.88 | -0.40 | -6.1% | — |
 | regime_switch_v1 | EURUSD | TEST | 258 | +3.7% | 1.05 | 0.21 | -9.4% | 0.44 |
 | regime_switch_v1 | GBPUSD | FORWARD | 73 | -4.0% | 0.83 | -0.48 | -10.1% | — |
 | regime_switch_v1 | GBPUSD | TEST | 212 | -5.1% | 0.91 | -0.29 | -7.1% | 7.65 |
 | regime_switch_v1 | USDJPY | FORWARD | 89 | -13.6% | 0.48 | -2.08 | -15.3% | — |
 | regime_switch_v1 | USDJPY | TEST | 273 | -3.6% | 0.96 | -0.12 | -13.0% | 272.55 |
-| trend_donchian_v1 | AUDUSD | FORWARD | 49 | -11.9% | 0.36 | -1.72 | -12.6% | — |
+| trend_donchian_v1 | AUDUSD | FORWARD | 49 | -12.0% | 0.36 | -1.72 | -12.6% | — |
 | trend_donchian_v1 | AUDUSD | TEST | 75 | -14.6% | 0.43 | -0.96 | -15.1% | — |
-| trend_donchian_v1 | EURJPY | FORWARD | 49 | -1.4% | 0.88 | -0.20 | -8.1% | — |
+| trend_donchian_v1 | EURJPY | FORWARD | 49 | -1.5% | 0.87 | -0.21 | -8.1% | — |
 | trend_donchian_v1 | EURJPY | TEST | 137 | +0.3% | 1.01 | 0.04 | -10.0% | 0.64 |
-| trend_donchian_v1 | EURUSD | FORWARD | 40 | -7.9% | 0.44 | -1.10 | -11.3% | — |
+| trend_donchian_v1 | EURUSD | FORWARD | 40 | -8.0% | 0.44 | -1.11 | -11.3% | — |
 | trend_donchian_v1 | EURUSD | TEST | 80 | -10.4% | 0.63 | -0.57 | -15.0% | — |
 | trend_donchian_v1 | GBPUSD | FORWARD | 29 | -2.7% | 0.60 | -0.59 | -5.5% | — |
 | trend_donchian_v1 | GBPUSD | TEST | 80 | -1.0% | 0.95 | -0.06 | -8.9% | 0.77 |
-| trend_donchian_v1 | USDJPY | FORWARD | 33 | -1.1% | 0.90 | -0.13 | -6.3% | — |
+| trend_donchian_v1 | USDJPY | FORWARD | 33 | -1.2% | 0.89 | -0.15 | -6.3% | — |
 | trend_donchian_v1 | USDJPY | TEST | 101 | +13.4% | 1.34 | 0.48 | -11.9% | 0.10 |
 | trend_ema_adx_v1 | AUDUSD | FORWARD | 81 | +5.6% | 1.28 | 0.71 | -4.2% | 0.32 |
 | trend_ema_adx_v1 | AUDUSD | TEST | 146 | -10.1% | 0.72 | -0.70 | -15.0% | — |
@@ -237,7 +183,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | trend_tsmom_v1 | AUDUSD | TEST | 47 | +1.8% | 1.17 | 0.24 | -3.4% | 0.18 |
 | trend_tsmom_v1 | EURJPY | FORWARD | 21 | -3.2% | 0.44 | -1.13 | -4.4% | — |
 | trend_tsmom_v1 | EURJPY | TEST | 59 | -2.9% | 0.82 | -0.29 | -4.7% | — |
-| trend_tsmom_v1 | EURUSD | FORWARD | 25 | -1.5% | 0.77 | -0.49 | -2.6% | — |
+| trend_tsmom_v1 | EURUSD | FORWARD | 25 | -1.5% | 0.77 | -0.51 | -2.6% | — |
 | trend_tsmom_v1 | EURUSD | TEST | 71 | +4.8% | 1.26 | 0.45 | -4.8% | 0.06 |
 | trend_tsmom_v1 | GBPUSD | FORWARD | 16 | +1.2% | 1.40 | 0.40 | -1.5% | 0.09 |
 | trend_tsmom_v1 | GBPUSD | TEST | 46 | +0.2% | 1.02 | 0.09 | -5.0% | 0.31 |
@@ -257,7 +203,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | mr_rsi_bb_v1 | none | 0.005 | 1.003965 | 763 | -14.6% | -3.3% | -0.85 | -15.0% | 0.89 | 2025-10-23 06:00:00+00:00 |
 | mr_rsi_bb_v1 | low | 0.005 | 2.996777 | 381 | -13.8% | -3.1% | -0.65 | -15.1% | 1.48 | 2023-06-27 12:00:00+00:00 |
 | mr_rsi_bb_v1 | medium | 0.01 | 6.755715 | 76 | -13.4% | -3.0% | -0.89 | -15.2% | 2.75 | 2022-04-25 14:00:00+00:00 |
-| mr_zscore_v1 | none | 0.005 | 1.005718 | 882 | -2.7% | -0.6% | -0.07 | -12.6% | 0.85 | — |
+| mr_zscore_v1 | none | 0.005 | 1.005718 | 882 | -2.6% | -0.6% | -0.07 | -12.6% | 0.85 | — |
 | mr_zscore_v1 | low | 0.005 | 2.987962 | 244 | -11.3% | -2.5% | -0.54 | -15.2% | 1.41 | 2022-10-21 10:00:00+00:00 |
 | mr_zscore_v1 | medium | 0.01 | 8.107955 | 93 | -6.6% | -1.4% | -0.30 | -15.2% | 2.62 | 2022-04-27 14:00:00+00:00 |
 | mtf_pullback_v1 | none | 0.005 | 1.007518 | 374 | -7.1% | -1.6% | -0.44 | -12.4% | 0.91 | — |
@@ -272,7 +218,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | trend_ema_adx_v1 | none | 0.005 | 1.034141 | 329 | -8.1% | -1.8% | -0.41 | -15.1% | 0.82 | 2023-09-22 08:00:00+00:00 |
 | trend_ema_adx_v1 | low | 0.005 | 3.024721 | 277 | -5.3% | -1.2% | -0.17 | -15.1% | 1.57 | 2022-12-19 11:00:00+00:00 |
 | trend_ema_adx_v1 | medium | 0.01 | 8.111146 | 183 | -6.2% | -1.3% | -0.12 | -15.1% | 2.89 | 2022-09-19 01:00:00+00:00 |
-| trend_tsmom_v1 | none | 0.005 | 1.011968 | 294 | -3.8% | -0.8% | -0.16 | -10.1% | 0.68 | — |
+| trend_tsmom_v1 | none | 0.005 | 1.011968 | 294 | -3.8% | -0.8% | -0.17 | -10.1% | 0.68 | — |
 | trend_tsmom_v1 | low | 0.005 | 2.971962 | 337 | -0.6% | -0.1% | 0.03 | -13.5% | 1.04 | — |
 | trend_tsmom_v1 | medium | 0.01 | 5.424095 | 260 | +12.6% | +2.6% | 0.30 | -15.0% | 1.94 | 2025-08-07 04:00:00+00:00 |
 
@@ -296,7 +242,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | 2023.0 | -13.4% | +5.9% | -9.4% | +18.6% | -14.5% | -6.4% | -12.4% | -8.9% | +10.5% |
 | 2024.0 | -28.1% | -8.2% | -0.8% | +10.2% | +2.9% | -2.8% | -4.8% | -11.3% | +0.6% |
 | 2025.0 | -11.9% | -2.2% | -10.2% | +8.7% | +1.1% | -22.5% | -21.6% | -5.2% | -2.8% |
-| 2026.0 | -14.7% | -2.5% | -2.7% | -14.2% | -8.1% | -5.3% | +0.0% | +1.2% | -8.4% |
+| 2026.0 | -14.8% | -2.5% | -2.7% | -14.1% | -8.1% | -5.3% | -0.1% | +1.2% | -8.4% |
 
 ## 相場局面別（エントリー時点の状態・全期間）
 
@@ -305,12 +251,12 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | ml_lgbm_v1 | regime4h | HIGH_VOL | 1410 | -171,254 | 49% | 0.87 |
 | ml_lgbm_v1 | regime4h | NEUTRAL | 3545 | -286,479 | 48% | 0.90 |
 | ml_lgbm_v1 | regime4h | RANGE | 5775 | -176,355 | 48% | 0.96 |
-| ml_lgbm_v1 | regime4h | TREND | 7712 | -302,453 | 49% | 0.95 |
-| ml_lgbm_v1 | month_dir | DOWN | 4073 | -405,190 | 47% | 0.89 |
-| ml_lgbm_v1 | month_dir | FLAT | 10471 | -369,838 | 49% | 0.96 |
+| ml_lgbm_v1 | regime4h | TREND | 7712 | -302,528 | 49% | 0.95 |
+| ml_lgbm_v1 | month_dir | DOWN | 4046 | -403,606 | 47% | 0.89 |
+| ml_lgbm_v1 | month_dir | FLAT | 10498 | -371,497 | 49% | 0.96 |
 | ml_lgbm_v1 | month_dir | UP | 3898 | -161,514 | 49% | 0.95 |
 | ml_lgbm_v1 | month_vol | HIGH_VOL | 6293 | -113,704 | 50% | 0.98 |
-| ml_lgbm_v1 | month_vol | LOW_VOL | 12149 | -822,837 | 48% | 0.92 |
+| ml_lgbm_v1 | month_vol | LOW_VOL | 12149 | -822,912 | 48% | 0.92 |
 | ml_logit_v1 | regime4h | HIGH_VOL | 507 | +69,395 | 54% | 1.08 |
 | ml_logit_v1 | regime4h | NEUTRAL | 223 | -50,036 | 48% | 0.89 |
 | ml_logit_v1 | regime4h | RANGE | 236 | +60,759 | 52% | 1.15 |
@@ -325,20 +271,20 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | mr_rsi_bb_v1 | regime4h | RANGE | 1725 | -253,761 | 47% | 0.89 |
 | mr_rsi_bb_v1 | regime4h | TREND | 1311 | -326,770 | 47% | 0.82 |
 | mr_rsi_bb_v1 | regime4h | UNKNOWN | 2 | -9,873 | 0% | 0.00 |
-| mr_rsi_bb_v1 | month_dir | DOWN | 862 | -321,667 | 46% | 0.73 |
-| mr_rsi_bb_v1 | month_dir | FLAT | 2201 | -122,155 | 49% | 0.95 |
+| mr_rsi_bb_v1 | month_dir | DOWN | 858 | -317,582 | 46% | 0.74 |
+| mr_rsi_bb_v1 | month_dir | FLAT | 2205 | -126,239 | 49% | 0.95 |
 | mr_rsi_bb_v1 | month_dir | UP | 971 | -235,059 | 45% | 0.83 |
 | mr_rsi_bb_v1 | month_vol | HIGH_VOL | 1284 | -296,890 | 46% | 0.82 |
 | mr_rsi_bb_v1 | month_vol | LOW_VOL | 2750 | -381,991 | 48% | 0.89 |
 | mr_zscore_v1 | regime4h | HIGH_VOL | 419 | -12,765 | 44% | 0.97 |
 | mr_zscore_v1 | regime4h | NEUTRAL | 889 | -212,056 | 43% | 0.83 |
 | mr_zscore_v1 | regime4h | RANGE | 1045 | -221,761 | 42% | 0.85 |
-| mr_zscore_v1 | regime4h | TREND | 2208 | -178,752 | 42% | 0.94 |
-| mr_zscore_v1 | month_dir | DOWN | 1153 | -616,232 | 36% | 0.68 |
-| mr_zscore_v1 | month_dir | FLAT | 2409 | +386,366 | 48% | 1.14 |
+| mr_zscore_v1 | regime4h | TREND | 2208 | -178,451 | 42% | 0.94 |
+| mr_zscore_v1 | month_dir | DOWN | 1147 | -611,660 | 36% | 0.68 |
+| mr_zscore_v1 | month_dir | FLAT | 2415 | +382,096 | 48% | 1.13 |
 | mr_zscore_v1 | month_dir | UP | 999 | -395,469 | 37% | 0.75 |
 | mr_zscore_v1 | month_vol | HIGH_VOL | 1457 | -192,756 | 41% | 0.90 |
-| mr_zscore_v1 | month_vol | LOW_VOL | 3104 | -432,579 | 43% | 0.90 |
+| mr_zscore_v1 | month_vol | LOW_VOL | 3104 | -432,278 | 43% | 0.90 |
 | mtf_pullback_v1 | regime4h | HIGH_VOL | 5 | +22,682 | 80% | 5.72 |
 | mtf_pullback_v1 | regime4h | NEUTRAL | 308 | -92,742 | 38% | 0.89 |
 | mtf_pullback_v1 | regime4h | RANGE | 461 | -119,345 | 39% | 0.90 |
@@ -351,27 +297,27 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | regime_switch_v1 | regime4h | HIGH_VOL | 34 | -13,795 | 47% | 0.43 |
 | regime_switch_v1 | regime4h | NEUTRAL | 152 | -96,920 | 30% | 0.59 |
 | regime_switch_v1 | regime4h | RANGE | 3393 | -583,259 | 36% | 0.88 |
-| regime_switch_v1 | regime4h | TREND | 1830 | -111,184 | 33% | 0.96 |
-| regime_switch_v1 | month_dir | DOWN | 1069 | -82,573 | 36% | 0.95 |
-| regime_switch_v1 | month_dir | FLAT | 3095 | -699,094 | 34% | 0.84 |
+| regime_switch_v1 | regime4h | TREND | 1830 | -111,261 | 33% | 0.96 |
+| regime_switch_v1 | month_dir | DOWN | 1065 | -79,104 | 36% | 0.95 |
+| regime_switch_v1 | month_dir | FLAT | 3099 | -702,640 | 34% | 0.83 |
 | regime_switch_v1 | month_dir | UP | 1245 | -23,490 | 35% | 0.99 |
 | regime_switch_v1 | month_vol | HIGH_VOL | 1571 | -88,492 | 37% | 0.96 |
-| regime_switch_v1 | month_vol | LOW_VOL | 3838 | -716,665 | 34% | 0.87 |
+| regime_switch_v1 | month_vol | LOW_VOL | 3838 | -716,742 | 34% | 0.87 |
 | trend_donchian_v1 | regime4h | HIGH_VOL | 110 | +5,709 | 27% | 1.02 |
 | trend_donchian_v1 | regime4h | NEUTRAL | 476 | +157,822 | 30% | 1.13 |
-| trend_donchian_v1 | regime4h | RANGE | 741 | -427,370 | 26% | 0.79 |
-| trend_donchian_v1 | regime4h | TREND | 653 | -208,779 | 24% | 0.89 |
-| trend_donchian_v1 | month_dir | DOWN | 384 | +540,623 | 36% | 1.60 |
-| trend_donchian_v1 | month_dir | FLAT | 1186 | -2,106,568 | 19% | 0.41 |
+| trend_donchian_v1 | regime4h | RANGE | 741 | -427,786 | 26% | 0.79 |
+| trend_donchian_v1 | regime4h | TREND | 653 | -209,176 | 24% | 0.89 |
+| trend_donchian_v1 | month_dir | DOWN | 382 | +543,463 | 36% | 1.60 |
+| trend_donchian_v1 | month_dir | FLAT | 1188 | -2,110,221 | 19% | 0.41 |
 | trend_donchian_v1 | month_dir | UP | 410 | +1,093,327 | 40% | 2.19 |
 | trend_donchian_v1 | month_vol | HIGH_VOL | 573 | +83,884 | 28% | 1.05 |
-| trend_donchian_v1 | month_vol | LOW_VOL | 1407 | -556,502 | 26% | 0.86 |
+| trend_donchian_v1 | month_vol | LOW_VOL | 1407 | -557,315 | 26% | 0.86 |
 | trend_ema_adx_v1 | regime4h | HIGH_VOL | 313 | -204,964 | 27% | 0.69 |
 | trend_ema_adx_v1 | regime4h | NEUTRAL | 1140 | -11,026 | 32% | 1.00 |
 | trend_ema_adx_v1 | regime4h | RANGE | 2435 | +18,892 | 31% | 1.00 |
 | trend_ema_adx_v1 | regime4h | TREND | 886 | -137,781 | 31% | 0.93 |
-| trend_ema_adx_v1 | month_dir | DOWN | 878 | +634,843 | 35% | 1.35 |
-| trend_ema_adx_v1 | month_dir | FLAT | 2940 | -1,095,752 | 30% | 0.83 |
+| trend_ema_adx_v1 | month_dir | DOWN | 876 | +637,326 | 35% | 1.35 |
+| trend_ema_adx_v1 | month_dir | FLAT | 2942 | -1,098,236 | 30% | 0.83 |
 | trend_ema_adx_v1 | month_dir | UP | 956 | +126,031 | 32% | 1.06 |
 | trend_ema_adx_v1 | month_vol | HIGH_VOL | 1510 | -395,268 | 30% | 0.88 |
 | trend_ema_adx_v1 | month_vol | LOW_VOL | 3264 | +60,389 | 32% | 1.01 |
@@ -379,8 +325,8 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 | trend_tsmom_v1 | regime4h | NEUTRAL | 196 | -62,151 | 37% | 0.90 |
 | trend_tsmom_v1 | regime4h | RANGE | 237 | +152,852 | 38% | 1.21 |
 | trend_tsmom_v1 | regime4h | TREND | 617 | +99,405 | 38% | 1.05 |
-| trend_tsmom_v1 | month_dir | DOWN | 260 | +601,804 | 50% | 2.01 |
-| trend_tsmom_v1 | month_dir | FLAT | 591 | -1,151,684 | 27% | 0.48 |
+| trend_tsmom_v1 | month_dir | DOWN | 259 | +602,104 | 50% | 2.01 |
+| trend_tsmom_v1 | month_dir | FLAT | 592 | -1,151,984 | 27% | 0.48 |
 | trend_tsmom_v1 | month_dir | UP | 276 | +707,487 | 48% | 2.00 |
 | trend_tsmom_v1 | month_vol | HIGH_VOL | 357 | +107,718 | 37% | 1.10 |
 | trend_tsmom_v1 | month_vol | LOW_VOL | 770 | +49,889 | 38% | 1.02 |
@@ -479,7 +425,7 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 
 ## Strategy Tournament
 
-Champion: **CASH（取引しない）** — ゲート B 合格の候補なし → Champion = CASH（取引しない）
+Champion: **CASH（取引しない）** — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 LIVE 候補: **なし**（LIVE 開始には本人の明示承認が必須）
 
 | spec_id | status | gate_b_fail | paper_gate_fail |
