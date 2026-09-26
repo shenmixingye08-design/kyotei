@@ -52,7 +52,7 @@ class TestV2(unittest.TestCase):
         data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
         for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only",
                      "v4_carry_trend_daily", "v4_carry_trend_daily_fast", "v4_carry_trend_h4",
-                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p"):
+                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi"):
             params = REGISTRY[name].param_grid()[-1]
             s = {"strategy": name, "pairs": {p: params for p in pairs7}}
             for cut in (17000, 17009):
