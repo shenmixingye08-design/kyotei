@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T01:52:53.608530+00:00",
+  "generated_at": "2026-09-26T04:20:32.345748+00:00",
   "mode": "PAPER",
   "live": false,
   "champion": null,
@@ -825,6 +825,31 @@
         "AUDJPY",
         "GBPJPY"
       ]
+    },
+    {
+      "spec_id": "v4_carry_trend_daily",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v4_carry_trend_daily_fast",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v4_carry_trend_h4",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v5_carry_trend_daily_10p",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v5_carry_trend_weekly_10p",
+      "started": false,
+      "equity": 1000000.0
     }
   ],
   "status": {
@@ -1339,6 +1364,121 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.499494,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v4_carry_trend_daily": {
+      "spec_id": "v4_carry_trend_daily",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "single_regime_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.505282,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v4_carry_trend_daily_fast": {
+      "spec_id": "v4_carry_trend_daily_fast",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.083373,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v4_carry_trend_h4": {
+      "spec_id": "v4_carry_trend_h4",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.045796,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v5_carry_trend_daily_10p": {
+      "spec_id": "v5_carry_trend_daily_10p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.191054,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v5_carry_trend_weekly_10p": {
+      "spec_id": "v5_carry_trend_weekly_10p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.051877,
       "paper_days": 0,
       "paper_return": 0.0,
       "paper_sharpe": null,

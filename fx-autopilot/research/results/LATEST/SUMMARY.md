@@ -1,4 +1,4 @@
-# FX AUTOPILOT 研究結果（2026-09-26 01:42 UTC）
+# FX AUTOPILOT 研究結果（2026-09-26 04:08 UTC）
 
 **PAPER / BACKTEST のみ。利益を保証するものではありません。LIVE は本人の明示承認まで開始しません。**
 
@@ -8,13 +8,11 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 
 | pair | rows | first | last | spread_pips_median | spread_pips_p95 | weekday_gaps_gt_3h | crossed_quotes | abs_ret_gt_2pct |
 |---|---|---|---|---|---|---|---|---|
-| USDJPY | 104379 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.5 | 1.8 | 15 | 0 | 10 |
-| EURUSD | 104382 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.4 | 1.4 | 15 | 0 | 1 |
-| EURJPY | 104379 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.9 | 3.3 | 15 | 0 | 12 |
-| GBPUSD | 104371 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 1.0 | 3.2 | 16 | 0 | 5 |
 | AUDUSD | 104339 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 1.0 | 2.4 | 16 | 20 | 7 |
-| AUDJPY | 104374 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 1.0 | 3.5 | 15 | 0 | 20 |
-| GBPJPY | 104373 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 1.9 | 6.3 | 16 | 0 | 16 |
+| EURJPY | 104379 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.9 | 3.3 | 15 | 0 | 12 |
+| EURUSD | 104382 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.4 | 1.4 | 15 | 0 | 1 |
+| GBPUSD | 104371 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 1.0 | 3.2 | 16 | 0 | 5 |
+| USDJPY | 104379 | 2010-01-01 00:00:00+00:00 | 2026-09-25 20:00:00+00:00 | 0.5 | 1.8 | 15 | 0 | 10 |
 
 ## データ分割（事前登録 `config/research_plan.yaml`）
 
@@ -406,11 +404,9 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 
 | pair | sharpe_mean | sharpe_p95 | net_return_mean | trades | cost_ratio |
 |---|---|---|---|---|---|
-| AUDJPY | -0.69 | -0.29 | -25.9% | 680 | 4.10 |
 | AUDUSD | -0.58 | -0.07 | -22.4% | 700 | 4.76 |
 | EURJPY | -0.47 | -0.02 | -18.1% | 680 | 1.93 |
 | EURUSD | -0.30 | 0.01 | -12.1% | 695 | 10.71 |
-| GBPJPY | -0.55 | -0.12 | -20.9% | 676 | 2.26 |
 | GBPUSD | -0.38 | 0.02 | -14.7% | 692 | 4.72 |
 | USDJPY | -0.47 | -0.08 | -18.4% | 682 | 6.01 |
 
@@ -419,11 +415,9 @@ Dukascopy 公開ヒストリカル（bid / ask 別 H1 足。Mid ではなく bid
 
 | pair | spread_min_hour | spread_min | spread_max_hour | spread_max | best_spread_to_range | worst_spread_to_range |
 |---|---|---|---|---|---|---|
-| AUDJPY | 0.0 | 0.70 | 21.0 | 8.00 | 0.032 | 0.607 |
 | AUDUSD | 2.0 | 0.90 | 21.0 | 3.10 | 0.062 | 0.416 |
 | EURJPY | 14.0 | 0.80 | 21.0 | 8.05 | 0.029 | 0.503 |
 | EURUSD | 10.0 | 0.30 | 21.0 | 2.20 | 0.016 | 0.333 |
-| GBPJPY | 14.0 | 1.60 | 21.0 | 12.85 | 0.042 | 0.561 |
 | GBPUSD | 10.0 | 0.60 | 21.0 | 6.60 | 0.030 | 0.606 |
 | USDJPY | 15.0 | 0.40 | 21.0 | 4.90 | 0.016 | 0.400 |
 
@@ -456,4 +450,9 @@ LIVE 候補: **なし**（LIVE 開始には本人の明示承認が必須）
 | v3_carry_trend_7p | REJECTED | top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v3_carry_trend_mh | REJECTED | sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v3_carry_trend_xs | REJECTED | top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v4_carry_trend_daily | REJECTED | single_regime_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v4_carry_trend_daily_fast | REJECTED | profit_factor, sharpe, positive_years, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v4_carry_trend_h4 | REJECTED | profit_factor, sharpe, positive_years, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v5_carry_trend_daily_10p | REJECTED | sharpe, positive_years, subperiod_not_positive, few_positive_pairs, single_regime_dependence, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v5_carry_trend_weekly_10p | REJECTED | sharpe, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 

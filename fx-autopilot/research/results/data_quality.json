@@ -124,5 +124,61 @@
     "price_max": 219.595,
     "problems": [],
     "ok": true
+  },
+  {
+    "pair": "NZDUSD",
+    "rows": 104352,
+    "first": "2010-01-01 00:00:00+00:00",
+    "last": "2026-09-25 20:00:00+00:00",
+    "duplicates": 0,
+    "crossed_quotes": 0,
+    "spread_pips_median": 1.2,
+    "spread_pips_p95": 3.4,
+    "spread_pips_max": 69.2,
+    "abs_ret_gt_2pct": 4,
+    "weekday_gaps_gt_3h": 16,
+    "largest_gap_h": 73.0,
+    "price_min": 0.54987,
+    "price_max": 0.88314,
+    "problems": [],
+    "ok": true
+  },
+  {
+    "pair": "USDCAD",
+    "rows": 104370,
+    "first": "2010-01-01 00:00:00+00:00",
+    "last": "2026-09-25 20:00:00+00:00",
+    "duplicates": 0,
+    "crossed_quotes": 0,
+    "spread_pips_median": 1.2,
+    "spread_pips_p95": 3.0,
+    "spread_pips_max": 33.8,
+    "abs_ret_gt_2pct": 0,
+    "weekday_gaps_gt_3h": 16,
+    "largest_gap_h": 73.0,
+    "price_min": 0.94157,
+    "price_max": 1.47819,
+    "problems": [],
+    "ok": true
+  },
+  {
+    "pair": "USDCHF",
+    "rows": 104373,
+    "first": "2010-01-01 00:00:00+00:00",
+    "last": "2026-09-25 20:00:00+00:00",
+    "duplicates": 0,
+    "crossed_quotes": 0,
+    "spread_pips_median": 1.1,
+    "spread_pips_p95": 3.6,
+    "spread_pips_max": 53.9,
+    "abs_ret_gt_2pct": 6,
+    "weekday_gaps_gt_3h": 15,
+    "largest_gap_h": 73.0,
+    "price_min": 0.71621,
+    "price_max": 1.1706,
+    "problems": [
+      "price_out_of_range[0.7,1.1]"
+    ],
+    "ok": false
   }
 ]
