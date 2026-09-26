@@ -1,0 +1,58 @@
+# 事前登録: V5 研究計画（評価前にコミット。候補・ゲートは結果を見て変更しない。変更は v6 として別登録）
+plan_version: fx_plan_v5
+registered_at: "2026-09-26"
+purpose: >
+  既存のトレンド×キャリー規則（週次 = v2/v3、日次 = v4）を、パラメータを一切変えずに 10 ペアへ適用する。
+  追加した NZDUSD / USDCAD / USDCHF は V1〜V4 の設計に使っていない（通貨として NZD / CAD / CHF は初登場）。
+  ペア別成績で、新規 3 ペアでも同じ規則が機能するかを見る（パラメータ探索なし = 選択による過剰適合がない）。
+contamination: >
+  期間（2010〜2026）は V1〜V4 と同じで、設計者は既存 7 ペアの結果を見ている。新規 3 ペアの成績だけが
+  「設計に使っていないデータ」だが、同じ期間の同じ相場環境を共有している点に注意。最終判断は LOCK 後の PAPER Forward のみ。
+  NZD / CAD / CHF の政策金利は変更月ベースの近似表（fxap/swap.py）。
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY, NZDUSD, USDCAD, USDCHF]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v5_carry_trend_weekly_10p:
+    family: trend_carry
+    grid: {sizing: [risk_stop]}
+  v5_carry_trend_daily_10p:
+    family: trend_carry
+    grid: {threshold: [0.5]}
+
+risk_overrides:
+  max_open_positions: 4
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.05
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                      # V3/V4 と同じ。ペア数が 10 になるので「プラスのペア数」だけ 7/10 に比例換算
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 7
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30

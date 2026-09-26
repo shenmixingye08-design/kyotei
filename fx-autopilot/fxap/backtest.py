@@ -40,6 +40,14 @@ def to_jpy_table(data: dict, index: pd.DatetimeIndex) -> pd.DataFrame:
             if pr in mids and pr.endswith("USD") and "USD" in out:
                 out[ccy] = mids[pr] * out["USD"]
                 break
+    # V5 で追加した通貨（NZD / CAD / CHF）。既存通貨の換算経路には影響しない
+    if "USD" in out:
+        if "NZDUSD" in mids:
+            out["NZD"] = mids["NZDUSD"] * out["USD"]
+        if "USDCAD" in mids:
+            out["CAD"] = out["USD"] / mids["USDCAD"]
+        if "USDCHF" in mids:
+            out["CHF"] = out["USD"] / mids["USDCHF"]
     return out
 
 

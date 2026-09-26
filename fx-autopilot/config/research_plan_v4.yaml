@@ -1,0 +1,61 @@
+# 事前登録: V4 研究計画（評価前にコミット。候補・グリッド・ゲートは結果を見て変更しない。変更は v5 として別登録）
+plan_version: fx_plan_v4
+registered_at: "2026-09-25"
+purpose: >
+  本人の方針（2026-09-25）: 資金の主軸は IBKR 長期運用。FX は研究・PAPER のみ継続し、取引回数を増やしたい。
+  V2/V3 で唯一残った「トレンド×キャリー」を、週 1 回判断 → 日次 / 4 時間ごとの判断に高頻度化した場合に
+  コスト控除後も優位性が残るかを検証する（取引回数が増えるほど PAPER の判定材料も早くたまる）。
+
+contamination: >
+  設計者は v1〜V3 の 2010〜2026 の結果（週次のトレンド×キャリーだけが残り、1 時間足の高頻度戦略はコスト負け）を見たうえで
+  V4 を設計している。V4 の Walk-Forward 成績は「汚染あり」。最終判断は LOCK 後の PAPER Forward のみ。V1〜V3 の LOCK は変更しない。
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v4_carry_trend_daily:   # 毎日の NY クローズで判断（score = z126 + carry/2%、|score| > 閾値）
+    family: trend_carry
+    grid: {threshold: [0.5, 1.0]}
+  v4_carry_trend_daily_fast:   # 毎日判断・速いトレンド（z = 平均(z20, z63)）+ carry/2%
+    family: trend_carry
+    grid: {threshold: [0.5, 1.0]}
+  v4_carry_trend_h4:      # 4 時間足ごとに判断（z = 4H 足 126 本 ≒ 21 営業日のボラ正規化リターン）+ carry/2%
+    family: trend_carry
+    grid: {threshold: [0.5, 1.0]}
+
+risk_overrides:
+  max_open_positions: 4
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.05
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                      # V3 と同じ（取引回数が増える分、最低取引数は同じでも満たしやすい）
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 5
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30

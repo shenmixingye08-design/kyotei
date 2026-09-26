@@ -16,7 +16,8 @@ from ..common import DATA_DIR, PAIRS, utcnow
 H1_DIR = DATA_DIR / "h1"
 # 2010 年以降の実績レンジを十分に含む範囲（外れたら復号・桁の誤りとみなし研究を止める）
 PLAUSIBLE = {"USDJPY": (70, 180), "EURUSD": (0.9, 1.7), "EURJPY": (90, 200), "GBPUSD": (1.0, 2.0),
-             "AUDUSD": (0.5, 1.2), "AUDJPY": (55, 115), "GBPJPY": (115, 220)}
+             "AUDUSD": (0.5, 1.2), "AUDJPY": (55, 115), "GBPJPY": (115, 220),
+             "NZDUSD": (0.45, 0.95), "USDCAD": (0.9, 1.5), "USDCHF": (0.7, 1.1)}
 
 
 def path(pair: str):
@@ -32,8 +33,17 @@ def load(pair: str) -> pd.DataFrame:
     return df.sort_index()
 
 
-def load_all(pairs) -> dict[str, pd.DataFrame]:
-    return {p: load(p) for p in pairs}
+def load_all(pairs, required=None) -> dict[str, pd.DataFrame]:
+    """required を省略すると全ペア必須。required を渡すと、それ以外の欠損ペアは警告して読み飛ばす。"""
+    out = {}
+    for p in pairs:
+        try:
+            out[p] = load(p)
+        except FileNotFoundError:
+            if required is None or p in required:
+                raise
+            print(f"warning: {p} のデータが無いため読み飛ばします（このペアを使う仕様はありません）")
+    return out
 
 
 def save(pair: str, df: pd.DataFrame) -> None:

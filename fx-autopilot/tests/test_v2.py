@@ -48,9 +48,11 @@ class TestV2(unittest.TestCase):
                         self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
 
     def test_v3_no_lookahead(self):
-        pairs7 = PAIRS + ["AUDJPY", "GBPJPY"]
+        pairs7 = PAIRS + ["AUDJPY", "GBPJPY", "NZDUSD", "USDCAD", "USDCHF"]
         data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
-        for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only"):
+        for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only",
+                     "v4_carry_trend_daily", "v4_carry_trend_daily_fast", "v4_carry_trend_h4",
+                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p"):
             params = REGISTRY[name].param_grid()[-1]
             s = {"strategy": name, "pairs": {p: params for p in pairs7}}
             for cut in (17000, 17009):
@@ -66,13 +68,16 @@ class TestV2(unittest.TestCase):
 
     def test_jpy_conversion_route_unchanged(self):
         """AUDJPY/GBPJPY を追加しても GBP/AUD の円換算は XUSD×USDJPY のまま（既存 LOCK の会計を変えない）。"""
-        pairs7 = PAIRS + ["AUDJPY", "GBPJPY"]
-        data7 = synthetic.make_all(pairs=pairs7, n=500, seed=7)
-        idx = data7["USDJPY"].index
-        t5 = backtest.to_jpy_table({p: data7[p] for p in PAIRS}, idx)
-        t7 = backtest.to_jpy_table(data7, idx)
+        pairs10 = PAIRS + ["AUDJPY", "GBPJPY", "NZDUSD", "USDCAD", "USDCHF"]
+        data10 = synthetic.make_all(pairs=pairs10, n=500, seed=7)
+        idx = data10["USDJPY"].index
+        t5 = backtest.to_jpy_table({p: data10[p] for p in PAIRS}, idx)
+        t10 = backtest.to_jpy_table(data10, idx)
         for c in ("USD", "EUR", "GBP", "AUD"):
-            self.assertTrue(np.allclose(t5[c], t7[c], equal_nan=True), c)
+            self.assertTrue(np.allclose(t5[c], t10[c], equal_nan=True), c)
+        usd = (data10["USDJPY"]["bid_c"] + data10["USDJPY"]["ask_c"]) / 2
+        cad = (data10["USDCAD"]["bid_c"] + data10["USDCAD"]["ask_c"]) / 2
+        self.assertTrue(np.allclose(t10["CAD"], (usd / cad).reindex(idx)))
 
     def test_sizing_modes(self):
         eng_v = RiskEngine(RiskConfig.load({"sizing": "vol_target", "vol_target_annual": 0.05}))
