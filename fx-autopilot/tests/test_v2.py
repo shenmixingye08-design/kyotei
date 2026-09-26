@@ -166,3 +166,20 @@ class TestDataQuality(unittest.TestCase):
         ref.to_frame("value").to_csv(fred.FRED_DIR / "DEXJPUS.csv")
         out = fred.crosscheck({"USDJPY": d})
         self.assertAlmostEqual(out.iloc[0]["median_abs_diff_pct"], 0.1, delta=0.01)
+
+
+class TestDbnomicsParse(unittest.TestCase):
+    def test_parse(self):
+        from fxap.data import fred
+
+        class R:
+            status_code = 200
+            def json(self):
+                return {"series": {"docs": [{"period": ["2020-01", "2020-02", "2020-03"], "value": [1.5, "NA", 0.3]}]}}
+
+        class S:
+            def get(self, *a, **k):
+                return R()
+        s = fred.fetch_dbnomics("IR3TIB01USM156N", S())
+        self.assertEqual(len(s), 2)
+        self.assertAlmostEqual(float(s.iloc[-1]), 0.3)

@@ -24,6 +24,11 @@ FRED_URLS = (FRED_CSV,
              "https://fred.stlouisfed.org/series/{sid}/downloaddata/{sid}.csv")
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 "
       "fx-autopilot-research")
+# FRED に届かない場合の代替: DBnomics の OECD MEI ミラー（同じ OECD 3 か月物金利 IR3TIB01）
+DBNOMICS = "https://api.db.nomics.world/v22/series/OECD/MEI/{cc}.IR3TIB01.ST.M?observations=1&format=json"
+DBN_CC = {"IR3TIB01USM156N": "USA", "IR3TIB01EZM156N": "EA19", "IR3TIB01JPM156N": "JPN", "IR3TIB01GBM156N": "GBR",
+          "IR3TIB01AUM156N": "AUS", "IR3TIB01NZM156N": "NZL", "IR3TIB01CAM156N": "CAN", "IR3TIB01CHM156N": "CHE"}
+BUDGET_SEC = 360      # ingest 全体の時間上限（届かないサイトで CI を止めない）
 FRESH_DAYS = 3        # これより新しいローカル CSV（Actions cache）は再取得しない
 FRED_DIR = DATA_DIR / "fred"
 SHORT_RATES = {"USD": "IR3TIB01USM156N", "EUR": "IR3TIB01EZM156N", "JPY": "IR3TIB01JPM156N",
@@ -57,7 +62,7 @@ def _curl(url: str, timeout: int) -> str | None:
     return r.stdout if r.returncode == 0 else None
 
 
-def fetch(sid: str, session=None, retries: int = 2, timeout=(10, 60)) -> pd.Series:
+def fetch(sid: str, session=None, retries: int = 1, timeout=(8, 25)) -> pd.Series:
     """複数 URL × (requests, curl) を順に試す。どれも駄目なら RuntimeError（値は作らない）。"""
     s = session or requests.Session()
     errs = []
@@ -78,8 +83,29 @@ def fetch(sid: str, session=None, retries: int = 2, timeout=(10, 60)) -> pd.Seri
                 errs.append(f"{url}: curl failed")
             except (subprocess.SubprocessError, OSError) as e:
                 errs.append(f"{url}: curl {type(e).__name__}")
-        time.sleep(3 * (2 ** k))
+        if k + 1 < retries:
+            time.sleep(3 * (2 ** k))
     raise RuntimeError(f"FRED {sid}: " + " | ".join(errs[-4:]))
+
+
+def fetch_dbnomics(sid: str, session=None, timeout=(8, 25)) -> pd.Series:
+    """DBnomics（OECD MEI ミラー）から同じ系列を取る。FRED と同じ % 単位・月次。"""
+    cc = DBN_CC.get(sid)
+    if cc is None:
+        raise RuntimeError(f"DBnomics: {sid} は対象外")
+    s = session or requests.Session()
+    r = s.get(DBNOMICS.format(cc=cc), timeout=timeout, headers={"User-Agent": UA})
+    if r.status_code != 200:
+        raise RuntimeError(f"DBnomics {cc}: HTTP {r.status_code}")
+    docs = r.json().get("series", {}).get("docs", [])
+    if not docs:
+        raise RuntimeError(f"DBnomics {cc}: no series")
+    d = docs[0]
+    v = pd.to_numeric(pd.Series(d["value"]), errors="coerce").to_numpy(dtype=float)
+    ser = pd.Series(v, index=pd.to_datetime(pd.Series(d["period"]).astype(str)), name=sid).dropna()
+    if not len(ser):
+        raise RuntimeError(f"DBnomics {cc}: empty")
+    return ser
 
 
 def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
@@ -88,18 +114,27 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     rep = {}
     ids = list(SHORT_RATES.values()) + [v[0] for v in H10.values()]
     fails = 0
+    t0 = time.time()
     with requests.Session() as ses:
         for sid in ids:
             p = FRED_DIR / f"{sid}.csv"
             if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400:
                 rep[sid] = {"cached": True, "rows": int(len(load(sid)))}
-            elif fails >= max_consecutive_fail:
+            elif fails >= max_consecutive_fail or time.time() - t0 > BUDGET_SEC:
                 rep[sid] = {"skipped": "FRED unreachable this run", **({"stale_cache": True} if p.exists() else {})}
             else:
                 try:
-                    ser = fetch(sid, ses)
+                    try:
+                        ser, src = fetch(sid, ses), "fred"
+                    except RuntimeError as e1:
+                        if sid not in DBN_CC:
+                            raise
+                        try:
+                            ser, src = fetch_dbnomics(sid, ses), "dbnomics_oecd_mei"
+                        except Exception as e2:  # noqa: BLE001
+                            raise RuntimeError(f"{e1} || {e2!r}") from e2
                     ser.to_frame("value").to_csv(p)
-                    rep[sid] = {"rows": int(len(ser)), "first": str(ser.index.min())[:10], "last": str(ser.index.max())[:10]}
+                    rep[sid] = {"source": src, "rows": int(len(ser)), "first": str(ser.index.min())[:10], "last": str(ser.index.max())[:10]}
                     fails = 0
                 except Exception as e:  # noqa: BLE001
                     fails += 1
