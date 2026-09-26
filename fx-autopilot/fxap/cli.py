@@ -33,6 +33,44 @@ def cmd_ingest(a):
     return cmd_quality(a)
 
 
+def cmd_ingest_fred(a):
+    from .data import fred
+    rep = fred.ingest()
+    ok = sum(1 for v in rep.values() if "error" not in v)
+    print(f"FRED: {ok}/{len(rep)} series")
+    return 0 if ok else 1
+
+
+def cmd_data_check(a):
+    """Dukascopy 価格と米連銀 H.10 正午レートの突き合わせ（データ品質の外部検証）。"""
+    from .data import fred, store
+    frames = store.load_all(_pairs(), required=set())
+    df = fred.crosscheck(frames)
+    RESULTS.mkdir(parents=True, exist_ok=True)
+    df.to_csv(RESULTS / "data_crosscheck.csv", index=False)
+    print(df.to_string(index=False) if len(df) else "H.10 データなし")
+    # 政策金利近似表（記憶ベース）と FRED 市場金利の差（2010 年以降・月次）
+    from . import swap as swapm
+    rows = []
+    try:
+        mk = fred.load_short_rates()
+    except FileNotFoundError:
+        mk = {}
+    for ccy, ser in mk.items():
+        ser = ser[ser.index >= "2010-01-01"]
+        if not len(ser):
+            continue
+        pol = pd.Series([swapm.policy_rate(ccy, t) for t in ser.index], index=ser.index)
+        dif = (pol - ser) * 100
+        rows.append({"ccy": ccy, "months": int(len(ser)), "market_last": str(ser.index.max())[:7],
+                     "mean_diff_pp": round(float(dif.mean()), 3), "mean_abs_diff_pp": round(float(dif.abs().mean()), 3),
+                     "max_abs_diff_pp": round(float(dif.abs().max()), 3)})
+    rc = pd.DataFrame(rows)
+    rc.to_csv(RESULTS / "rates_check.csv", index=False)
+    print(rc.to_string(index=False) if len(rc) else "FRED 金利データなし")
+    return 0
+
+
 def cmd_quality(a):
     """全ペアの品質検査。欠損・古いデータ・異常値があれば exit 1（研究・PAPER を止める）。"""
     from .data import store
@@ -106,7 +144,18 @@ def cmd_research_v2(a):
     from .research import load_locked
     safety.assert_paper_only()
     research_v2.use(a.plan)
-    frames = store.load_all(research_v2.plan()["pairs"] + ["USDJPY"])
+    P = research_v2.plan()
+    need = set(P["pairs"]) | {"USDJPY"} | {p for c in P["candidates"].values() for p in (c or {}).get("pairs", [])}
+    if P.get("swap_source", "policy") != "policy":
+        from . import swap as swapm
+        try:
+            swapm.use_source(P["swap_source"])
+        except FileNotFoundError as e:
+            print(f"{a.plan}: 金利データ欠損（{e}）のため今回は研究を実行しない（LOCK もしない）", file=sys.stderr)
+            return 0
+        finally:
+            swapm.use_source("policy")
+    frames = store.load_all(sorted(need))
     data_end = str(max(d.index.max() for d in frames.values()))
     out = research_v2.run(frames, only=a.only.split(",") if a.only else None)
     specs = research_v2.lock(out["candidates"], data_end)
@@ -180,6 +229,13 @@ def cmd_paper(a):
             print(f"{s['spec_id']}: データ欠損 {sorted(need - set(frames))} のため今回は処理しない（新規注文なし）", file=sys.stderr)
             failed.append(s["spec_id"])
             continue
+        from . import swap as swapm
+        try:
+            swapm.use_source(s.get("swap_source", "policy"))
+        except FileNotFoundError as e:
+            print(f"{s['spec_id']}: 金利データ欠損 {e} のため今回は処理しない", file=sys.stderr)
+            failed.append(s["spec_id"])
+            continue
         try:
             eng = PaperEngine(s, frames, initial_equity=init)
             r = eng.run()
@@ -187,6 +243,8 @@ def cmd_paper(a):
         except Exception as e:  # noqa: BLE001  1 つの仕様の失敗で他の仕様の PAPER を止めない
             print(f"{s['spec_id']}: PAPER エラー {e!r}", file=sys.stderr)
             failed.append(s["spec_id"])
+        finally:
+            swapm.use_source("policy")
     s2p = RESULTS / "LATEST" / "stage2.csv"
     s2 = pd.read_csv(s2p) if s2p.exists() else None
     tournament.update(specs, s2, _paper_perf(specs))
@@ -269,6 +327,8 @@ def main(argv=None):
     s.add_argument("--pairs")
     s.set_defaults(fn=cmd_ingest)
     sub.add_parser("quality").set_defaults(fn=cmd_quality)
+    sub.add_parser("ingest-fred").set_defaults(fn=cmd_ingest_fred)
+    sub.add_parser("data-check").set_defaults(fn=cmd_data_check)
     s = sub.add_parser("research-v2")
     s.add_argument("--only")
     s.add_argument("--plan", default="v2", help="v2 | v3（config/research_plan_<plan>.yaml）")

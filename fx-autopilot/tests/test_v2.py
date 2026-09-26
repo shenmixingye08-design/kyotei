@@ -125,3 +125,44 @@ class TestV2(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestDataQuality(unittest.TestCase):
+    def test_fred_csv_formats(self):
+        from fxap.data import fred
+        a = fred.parse_csv("observation_date,IR3TIB01USM156N\n2024-01-01,5.3\n2024-02-01,.\n2024-03-01,5.2\n")
+        b = fred.parse_csv("DATE,DEXJPUS\n2024-01-02,141.5\n2024-01-03,143.0\n")
+        self.assertEqual(len(a), 2)
+        self.assertAlmostEqual(a.iloc[-1], 5.2)
+        self.assertEqual(len(b), 2)
+
+    def test_swap_source_switch_and_lag(self):
+        from fxap import swap as swapm
+        t = pd.Timestamp("2024-06-15", tz="UTC")
+        pol = swapm.rate("USD", t)
+        idx = pd.date_range("2023-01-01", "2024-12-01", freq="MS")
+        swapm.MARKET.clear()
+        swapm.MARKET.update({"USD": pd.Series(0.07, index=idx), "JPY": pd.Series(0.001, index=idx)})
+        try:
+            swapm.use_source("market")
+            self.assertAlmostEqual(swapm.rate("USD", t), 0.07)        # 市場金利（1 か月前の値）
+            self.assertAlmostEqual(swapm.rate("EUR", t), swapm.policy_rate("EUR", t))   # 系列なし → 表
+            # 系列が終わった後は表の変化分で延長
+            late = pd.Timestamp("2026-03-15", tz="UTC")
+            exp = 0.07 + swapm.policy_rate("USD", pd.Timestamp("2026-02-01")) - swapm.policy_rate("USD", pd.Timestamp("2024-12-01"))
+            self.assertAlmostEqual(swapm.rate("USD", late), exp)
+        finally:
+            swapm.MARKET.clear()
+            swapm.use_source("policy")
+        self.assertAlmostEqual(swapm.rate("USD", t), pol)           # 既定（policy）に戻る・キャッシュ汚染なし
+
+    def test_crosscheck(self):
+        from fxap.data import fred
+        d = synthetic.make("USDJPY", n=2000, seed=1)
+        mid = (d["bid_c"] + d["ask_c"]) / 2
+        noon = mid[mid.index.hour == 16]
+        ref = pd.Series(noon.to_numpy() * 1.001, index=noon.index.tz_convert(None).normalize())
+        fred.FRED_DIR.mkdir(parents=True, exist_ok=True)
+        ref.to_frame("value").to_csv(fred.FRED_DIR / "DEXJPUS.csv")
+        out = fred.crosscheck({"USDJPY": d})
+        self.assertAlmostEqual(out.iloc[0]["median_abs_diff_pct"], 0.1, delta=0.01)

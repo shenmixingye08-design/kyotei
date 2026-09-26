@@ -172,7 +172,9 @@ def gate(c: dict, g: dict) -> list[str]:
 
 def run(data: dict, only=None, log=print) -> dict:
     P = plan()
-    pairs = P["pairs"]
+    from . import swap as swapm
+    swapm.use_source(P.get("swap_source", "policy"))
+    pairs_default = P["pairs"]
     wf = P["walk_forward"]
     cost = CostProfile.load(P["cost_profile"])
     stress = CostProfile.load(P["stress_profile"])
@@ -180,10 +182,14 @@ def run(data: dict, only=None, log=print) -> dict:
     refs = [n for n in P["reference_v1"] if not only or n in only]
     all_runs, full_rows, cands = {}, [], []
     t_all = time.time()
+    def cand_pairs(name):
+        return list((P["candidates"].get(name) or {}).get("pairs") or pairs_default)
+
     for name in names + refs:
         cls = REGISTRY[name]
         grid = cls.param_grid()
         runs = {}
+        pairs = cand_pairs(name)
         for params in grid:
             t0 = time.time()
             k = json.dumps(params, sort_keys=True)
@@ -203,6 +209,7 @@ def run(data: dict, only=None, log=print) -> dict:
     yearly, pairsT, regimes, chosen_all = [], [], [], []
     for name in names + refs:
         runs = all_runs[name]
+        pairs = cand_pairs(name)
         r, T, chosen = walk_forward(runs, wf)
         m = oos_summary(r, T)
         yt = yearly_table(r, T)
@@ -287,10 +294,12 @@ def lock(C: pd.DataFrame, data_end: str, log=print) -> list[dict]:
     specs = []
     for _, r in C[C.is_v2].iterrows():
         params = json.loads(r["final_params"])
+        cp = list((P["candidates"].get(r["candidate"]) or {}).get("pairs") or P["pairs"])
         spec = {
             "spec_id": r["candidate"], "strategy": r["candidate"], "strategy_version": VERSION["v"],
             "family": r["family"], "plan_version": P["plan_version"],
-            "pairs": {p: params for p in P["pairs"]}, "trade_pairs": list(P["pairs"]),
+            "pairs": {p: params for p in cp}, "trade_pairs": cp,
+            **({"swap_source": P["swap_source"]} if P.get("swap_source", "policy") != "policy" else {}),
             "risk": risk_for(params, r["candidate"], research=False), "cost_profile": P["cost_profile"],
             "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)", "selection_data_end": data_end,
             "v2_status": r["status"], "v2_gate_fail": list(r["gate_fail"]),
@@ -305,7 +314,7 @@ def lock(C: pd.DataFrame, data_end: str, log=print) -> list[dict]:
         if path.exists():
             # LOCK ファイルは作成後に一切書き換えない。再計算で中身（パラメータ・Risk・コスト）が変わった場合だけ別ログに記録
             old = json.loads(path.read_text())
-            keys = ("pairs", "trade_pairs", "risk", "cost_profile", "strategy")
+            keys = ("pairs", "trade_pairs", "risk", "cost_profile", "strategy", "swap_source")
             if any(old.get(k) != spec.get(k) for k in keys):
                 RESULTS_V2.mkdir(parents=True, exist_ok=True)
                 with (RESULTS_V2 / "relock_refusals.jsonl").open("a", encoding="utf-8") as f:
@@ -330,7 +339,20 @@ def write(out: dict, specs: list, data_end: str) -> str:
         if "gate_fail" in v2:
             v2["gate_fail"] = v2["gate_fail"].map(lambda x: ";".join(x))
         v2.to_csv(d / f"{k}.csv", index=False)
+    xc = RESULTS_V2.parent / "results" / "data_crosscheck.csv"
+    if xc.exists():
+        import shutil as _sh
+        _sh.copy(xc, d / "data_crosscheck.csv")
     md = summary_md(out, specs, data_end)
+    rc = RESULTS_V2.parent / "results" / "rates_check.csv"
+    if rc.exists():
+        import shutil as _sh
+        _sh.copy(rc, d / "rates_check.csv")
+        md += "\n## データ品質: 政策金利近似表（旧）と FRED 市場金利（3 か月物）の差（2010〜、%ポイント）\n\n```\n" + \
+              pd.read_csv(rc).to_string(index=False) + "\n```\n"
+    if xc.exists():
+        md += "\n## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）\n\n" + \
+              pd.read_csv(xc).to_string(index=False) + "\n"
     (d / f"SUMMARY_{VERSION['v'].upper()}.md").write_text(md, encoding="utf-8")
     import shutil
     latest = RESULTS_V2 / "LATEST"

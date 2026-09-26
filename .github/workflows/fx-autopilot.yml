@@ -180,6 +180,25 @@ jobs:
           path: fx-autopilot/data/h1/USDCHF.parquet
           key: fx-h1-v2-USDCHF-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: fx-h1-v2-USDCHF-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/fred
+          key: fx-fred-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-fred-
+      - name: FRED short rates + H.10 FX (market-rate swaps / price cross-check)
+        continue-on-error: true
+        timeout-minutes: 15      # 失敗しても policy 金利の仕様は動く（market 金利の仕様だけ今回は処理しない）
+        run: |
+          mkdir -p logs
+          python -m fxap.cli ingest-fred 2>&1 | tee logs/fred.log
+          python -m fxap.cli data-check 2>&1 | tee logs/data_check.log
+      - name: Save FRED cache (only when something was fetched)
+        if: hashFiles('fx-autopilot/data/fred/*.csv') != ''
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: fx-autopilot/data/fred
+          key: fx-fred-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Data quality gate (missing / stale / implausible data stops research and PAPER)
         run: |
           mkdir -p logs
