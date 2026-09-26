@@ -1,0 +1,5 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v13_ratemom,True,"{""threshold"": 0.5}",211,-0.118749,-0.081493,0.895595,-0.207321,1.356726,85,0.048236,0.115748,1.089239,-0.194949,0.052328,66,-0.109139,-0.394519,0.731439,-0.200923,
+v13_ratemom,True,"{""threshold"": 1.0}",184,-0.147184,-0.116966,0.851684,-0.277913,,91,-0.062455,-0.085472,0.870284,-0.259172,,50,-0.084472,-0.287508,0.737664,-0.117394,
+v13_carry_ratemom,True,"{""threshold"": 0.5}",184,0.014357,0.045903,1.014833,-0.261303,,92,-0.153272,-0.27222,0.771278,-0.261303,,50,0.089824,0.2888,1.338126,-0.116161,0.160526
+v13_carry_ratemom,True,"{""threshold"": 1.0}",118,0.034776,0.066772,1.062196,-0.22215,,64,-0.072567,-0.15095,0.801282,-0.222019,,33,0.026915,0.156123,1.242487,-0.094033,

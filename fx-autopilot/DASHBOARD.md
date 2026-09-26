@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-09-26T10:06 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-09-26T10:35 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
@@ -21,6 +21,8 @@
 | v10_carry_vix | REJECTED | 未開始 | | | | | | | | | | |
 | v11_intraday_region | REJECTED | 未開始 | | | | | | | | | | |
 | v12_carry_timed | REJECTED | 未開始 | | | | | | | | | | |
+| v13_carry_ratemom | REJECTED | 未開始 | | | | | | | | | | |
+| v13_ratemom | REJECTED | 未開始 | | | | | | | | | | |
 | v2_d1_donchian | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_d1_tsmom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_h4_ema | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
@@ -63,6 +65,8 @@
 | v10_carry_vix | REJECTED | — | — | — | — | — | — | — | — | — |
 | v11_intraday_region | REJECTED | — | — | — | — | — | — | — | — | — |
 | v12_carry_timed | REJECTED | — | — | — | — | — | — | — | — | — |
+| v13_carry_ratemom | REJECTED | — | — | — | — | — | — | — | — | — |
+| v13_ratemom | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_d1_donchian | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_d1_tsmom | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_h4_ema | REJECTED | — | — | — | — | — | — | — | — | — |
