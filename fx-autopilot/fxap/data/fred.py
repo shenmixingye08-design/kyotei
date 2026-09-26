@@ -7,6 +7,8 @@
 from __future__ import annotations
 
 import io
+import shutil
+import subprocess
 import time
 
 import pandas as pd
@@ -15,6 +17,14 @@ import requests
 from ..common import DATA_DIR
 
 FRED_CSV = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}"
+# 同じ系列の別経路（fredgraph が GitHub Actions から read timeout になることがあるため順に試す）
+FRED_URLS = (FRED_CSV,
+             "https://fred.stlouisfed.org/graph/fredgraph.csv?id={sid}&cosd=2008-01-01",
+             "https://alfred.stlouisfed.org/graph/alfredgraph.csv?id={sid}",
+             "https://fred.stlouisfed.org/series/{sid}/downloaddata/{sid}.csv")
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 "
+      "fx-autopilot-research")
+FRESH_DAYS = 3        # これより新しいローカル CSV（Actions cache）は再取得しない
 FRED_DIR = DATA_DIR / "fred"
 SHORT_RATES = {"USD": "IR3TIB01USM156N", "EUR": "IR3TIB01EZM156N", "JPY": "IR3TIB01JPM156N",
                "GBP": "IR3TIB01GBM156N", "AUD": "IR3TIB01AUM156N", "NZD": "IR3TIB01NZM156N",
@@ -34,33 +44,66 @@ def parse_csv(text: str) -> pd.Series:
     return s
 
 
-def fetch(sid: str, session=None, retries: int = 4) -> pd.Series:
+def _looks_csv(text: str) -> bool:
+    head = text.lstrip()[:200].lower()
+    return bool(head) and "<html" not in head and "," in head
+
+
+def _curl(url: str, timeout: int) -> str | None:
+    if not shutil.which("curl"):
+        return None
+    r = subprocess.run(["curl", "-sSfL", "--compressed", "-m", str(timeout), "-A", UA, url],
+                       capture_output=True, text=True, timeout=timeout + 10)
+    return r.stdout if r.returncode == 0 else None
+
+
+def fetch(sid: str, session=None, retries: int = 2, timeout=(10, 60)) -> pd.Series:
+    """複数 URL × (requests, curl) を順に試す。どれも駄目なら RuntimeError（値は作らない）。"""
     s = session or requests.Session()
-    last = None
+    errs = []
     for k in range(retries):
-        try:
-            r = s.get(FRED_CSV.format(sid=sid), timeout=30, headers={"User-Agent": "fx-autopilot research"})
-            if r.status_code == 200 and r.text.strip():
-                return parse_csv(r.text)
-            last = f"HTTP {r.status_code}"
-        except requests.RequestException as e:  # noqa: PERF203
-            last = repr(e)
-        time.sleep(2 * (2 ** k))
-    raise RuntimeError(f"FRED {sid}: {last}")
+        for tpl in FRED_URLS:
+            url = tpl.format(sid=sid)
+            try:
+                r = s.get(url, timeout=timeout, headers={"User-Agent": UA, "Accept": "text/csv,*/*"})
+                if r.status_code == 200 and _looks_csv(r.text):
+                    return parse_csv(r.text)
+                errs.append(f"{url}: HTTP {r.status_code}")
+            except requests.RequestException as e:  # noqa: PERF203
+                errs.append(f"{url}: {type(e).__name__}")
+            try:
+                t = _curl(url, timeout[1])
+                if t and _looks_csv(t):
+                    return parse_csv(t)
+                errs.append(f"{url}: curl failed")
+            except (subprocess.SubprocessError, OSError) as e:
+                errs.append(f"{url}: curl {type(e).__name__}")
+        time.sleep(3 * (2 ** k))
+    raise RuntimeError(f"FRED {sid}: " + " | ".join(errs[-4:]))
 
 
-def ingest(log=print) -> dict:
+def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
+    """取得済みで新しい CSV（Actions cache 由来）は再利用。連続で全経路失敗したら残りは打ち切る（時間を浪費しない）。"""
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
     ids = list(SHORT_RATES.values()) + [v[0] for v in H10.values()]
+    fails = 0
     with requests.Session() as ses:
         for sid in ids:
-            try:
-                ser = fetch(sid, ses)
-                ser.to_frame("value").to_csv(FRED_DIR / f"{sid}.csv")
-                rep[sid] = {"rows": int(len(ser)), "first": str(ser.index.min())[:10], "last": str(ser.index.max())[:10]}
-            except Exception as e:  # noqa: BLE001
-                rep[sid] = {"error": repr(e)}
+            p = FRED_DIR / f"{sid}.csv"
+            if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400:
+                rep[sid] = {"cached": True, "rows": int(len(load(sid)))}
+            elif fails >= max_consecutive_fail:
+                rep[sid] = {"skipped": "FRED unreachable this run", **({"stale_cache": True} if p.exists() else {})}
+            else:
+                try:
+                    ser = fetch(sid, ses)
+                    ser.to_frame("value").to_csv(p)
+                    rep[sid] = {"rows": int(len(ser)), "first": str(ser.index.min())[:10], "last": str(ser.index.max())[:10]}
+                    fails = 0
+                except Exception as e:  # noqa: BLE001
+                    fails += 1
+                    rep[sid] = {"error": str(e)[:400], **({"stale_cache": True} if p.exists() else {})}
             log(f"  FRED {sid}: {rep[sid]}")
     return rep
 

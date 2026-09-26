@@ -146,6 +146,15 @@ def cmd_research_v2(a):
     research_v2.use(a.plan)
     P = research_v2.plan()
     need = set(P["pairs"]) | {"USDJPY"} | {p for c in P["candidates"].values() for p in (c or {}).get("pairs", [])}
+    if P.get("swap_source", "policy") != "policy":
+        from . import swap as swapm
+        try:
+            swapm.use_source(P["swap_source"])
+        except FileNotFoundError as e:
+            print(f"{a.plan}: 金利データ欠損（{e}）のため今回は研究を実行しない（LOCK もしない）", file=sys.stderr)
+            return 0
+        finally:
+            swapm.use_source("policy")
     frames = store.load_all(sorted(need))
     data_end = str(max(d.index.max() for d in frames.values()))
     out = research_v2.run(frames, only=a.only.split(",") if a.only else None)
