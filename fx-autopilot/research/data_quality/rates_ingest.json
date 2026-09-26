@@ -1,6 +1,6 @@
 {
- "at": "2026-09-26 10:12:58.932543+00:00",
- "ok": 24,
+ "at": "2026-09-26 11:37:07.744727+00:00",
+ "ok": 40,
  "series": {
   "IR3TIB01USM156N": {
    "cached": true,
@@ -113,6 +113,102 @@
    "rows": 844,
    "first": "1955-01-01",
    "last": "2025-04-01"
+  },
+  "IRLTLT01USM156N": {
+   "source": "fred",
+   "rows": 881,
+   "first": "1953-04-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01EZM156N": {
+   "source": "fred",
+   "rows": 673,
+   "first": "1970-01-01",
+   "last": "2026-01-01"
+  },
+  "IRLTLT01JPM156N": {
+   "source": "fred",
+   "rows": 452,
+   "first": "1989-01-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01GBM156N": {
+   "source": "fred",
+   "rows": 800,
+   "first": "1960-01-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01AUM156N": {
+   "source": "fred",
+   "rows": 686,
+   "first": "1969-07-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01NZM156N": {
+   "source": "fred",
+   "rows": 679,
+   "first": "1970-01-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01CAM156N": {
+   "source": "fred",
+   "rows": 860,
+   "first": "1955-01-01",
+   "last": "2026-08-01"
+  },
+  "IRLTLT01CHM156N": {
+   "source": "fred",
+   "rows": 860,
+   "first": "1955-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_USD": {
+   "source": "SPASTT01USM661N",
+   "rows": 836,
+   "first": "1957-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_EUR": {
+   "source": "SPASTT01EZM661N",
+   "rows": 470,
+   "first": "1986-12-01",
+   "last": "2026-01-01"
+  },
+  "EQ_JPY": {
+   "source": "SPASTT01JPM661N",
+   "rows": 812,
+   "first": "1959-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_GBP": {
+   "source": "SPASTT01GBM661N",
+   "rows": 825,
+   "first": "1957-12-01",
+   "last": "2026-08-01"
+  },
+  "EQ_AUD": {
+   "source": "SPASTT01AUM661N",
+   "rows": 824,
+   "first": "1958-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_NZD": {
+   "source": "SPASTT01NZM661N",
+   "rows": 716,
+   "first": "1967-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_CAD": {
+   "source": "SPASTT01CAM661N",
+   "rows": 848,
+   "first": "1956-01-01",
+   "last": "2026-08-01"
+  },
+  "EQ_CHF": {
+   "source": "SPASTT01CHM661N",
+   "rows": 860,
+   "first": "1955-01-01",
+   "last": "2026-08-01"
   }
  }
 }

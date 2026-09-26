@@ -1,4 +1,4 @@
-# FX AUTOPILOT V4 研究結果（2026-09-26 10:30 UTC、データ〜2026-09-25 20:00:00+00:00）
+# FX AUTOPILOT V4 研究結果（2026-09-26 11:54 UTC、データ〜2026-09-25 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v4.yaml`
 
