@@ -1,0 +1,5 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v16_equity_rebal,True,"{""threshold"": 0.5}",383,-0.413646,-0.364319,0.730174,-0.490083,,185,-0.270844,-0.44059,0.664006,-0.348111,,95,-0.148524,-0.492178,0.674886,-0.235388,
+v16_equity_rebal,True,"{""threshold"": 1.0}",326,-0.293803,-0.239705,0.783005,-0.403901,,149,-0.118047,-0.160377,0.842819,-0.239983,,87,-0.157063,-0.699076,0.565245,-0.215869,
+v16_equity_rebal_carry,True,"{""threshold"": 0.5}",297,-0.261002,-0.190291,0.805145,-0.426148,,152,-0.213251,-0.350411,0.697036,-0.343229,,71,-0.102865,-0.336755,0.698779,-0.187412,
+v16_equity_rebal_carry,True,"{""threshold"": 1.0}",197,-0.144592,-0.141359,0.840186,-0.32815,,90,-0.233268,-0.669183,0.502286,-0.271423,,48,-0.016497,-0.03719,0.978086,-0.104442,

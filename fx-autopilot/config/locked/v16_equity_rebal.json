@@ -1,0 +1,103 @@
+{
+  "spec_id": "v16_equity_rebal",
+  "strategy": "v16_equity_rebal",
+  "strategy_version": "v16",
+  "family": "equity_rebalancing",
+  "plan_version": "fx_plan_v16",
+  "pairs": {
+    "USDJPY": {
+      "threshold": 1.0
+    },
+    "EURUSD": {
+      "threshold": 1.0
+    },
+    "EURJPY": {
+      "threshold": 1.0
+    },
+    "GBPUSD": {
+      "threshold": 1.0
+    },
+    "AUDUSD": {
+      "threshold": 1.0
+    },
+    "AUDJPY": {
+      "threshold": 1.0
+    },
+    "GBPJPY": {
+      "threshold": 1.0
+    },
+    "NZDUSD": {
+      "threshold": 1.0
+    },
+    "USDCAD": {
+      "threshold": 1.0
+    },
+    "USDCHF": {
+      "threshold": 1.0
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "swap_source": "market",
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 6,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.03,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 20:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "single_year_dependence",
+    "max_drawdown",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "single_regime_dependence",
+    "deflated_sharpe",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 236,
+    "net_return": -0.258671,
+    "profit_factor": 0.752919,
+    "sharpe": -0.299149,
+    "max_drawdown": -0.325507,
+    "ret_A": -0.12255344035926063,
+    "ret_B": -0.1551291853836897,
+    "stress_pf": 0.641827,
+    "dsr": 0.0174
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "2215340e9a09890cfe74f88c054ee0bf721e336ca80d27c417213517edf7e82d",
+  "spec_hash": "4b771139dc342635fdf18e996efcee25ac4de2b7d639e32bddb388c4b7c783e1",
+  "locked_at": "2026-09-26T10:33:13.560498+00:00"
+}
