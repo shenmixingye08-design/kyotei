@@ -52,7 +52,7 @@ class TestV2(unittest.TestCase):
         data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
         for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only",
                      "v4_carry_trend_daily", "v4_carry_trend_daily_fast", "v4_carry_trend_h4",
-                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p"):
+                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi", "v11_intraday_region"):
             params = REGISTRY[name].param_grid()[-1]
             s = {"strategy": name, "pairs": {p: params for p in pairs7}}
             for cut in (17000, 17009):
@@ -216,7 +216,7 @@ class TestV7(unittest.TestCase):
     def test_v7_no_lookahead(self):
         from fxap.strategies import v7
         data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=8)
-        for name in ("v7_ccv_monthly", "v7_cm_monthly", "v7_carry_monthly"):
+        for name in ("v7_ccv_monthly", "v7_cm_monthly", "v7_carry_monthly", "v12_carry_timed"):
             params = REGISTRY[name].param_grid()[0]
             s = {"strategy": name, "pairs": {p: params for p in self.PAIRS10}}
             for cut in (17000, 18011):
@@ -288,3 +288,103 @@ class TestV7(unittest.TestCase):
         self.assertEqual(len(pt), len(btt))
         self.assertGreater(len(btt), 0)
         self.assertAlmostEqual(pt["pnl_jpy"].sum(), btt["pnl_jpy"].sum(), delta=1.0)
+
+
+class TestV8(unittest.TestCase):
+    PAIRS7 = ["EURUSD", "USDJPY", "GBPUSD", "AUDUSD", "NZDUSD", "USDCAD", "USDCHF"]
+
+    def test_v8_no_lookahead_and_basket(self):
+        data = synthetic.make_all(pairs=self.PAIRS7, n=20000, seed=12)
+        for name in ("v8_dollar_carry", "v8_dollar_carry_trend"):
+            params = REGISTRY[name].param_grid()[0]
+            s = {"strategy": name, "pairs": {p: params for p in self.PAIRS7}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                for p in self.PAIRS7:
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
+        # carry 規則: 同じ判断日に、XXXUSD と USDXXX は逆向き（= すべて同じドルの向き）
+        a = research.spec_signals({"strategy": "v8_dollar_carry",
+                                   "pairs": {p: {"rule": "carry"} for p in self.PAIRS7}}, data)
+        e1, e2 = a["EURUSD"]["entry"], a["USDJPY"]["entry"]
+        both = (e1 != 0) & (e2 != 0)
+        self.assertTrue(both.any())
+        self.assertTrue((e1[both] == -e2[both]).all())
+
+    def test_prior_trials_counts_history(self):
+        from fxap import research_v2
+        self.assertGreaterEqual(research_v2.prior_trials("v8"), 5 * 39)
+
+
+class TestV10(unittest.TestCase):
+    PAIRS10 = TestV7.PAIRS10
+
+    def setUp(self):
+        from fxap.data import fred
+        from fxap.strategies import v10
+        fred.FRED_DIR.mkdir(parents=True, exist_ok=True)
+        rng = np.random.default_rng(21)
+        days = pd.bdate_range("2008-01-01", "2026-09-30")
+        v = 18 * np.exp(np.cumsum(rng.normal(0, 0.05, len(days))) * 0.2)
+        pd.DataFrame({"value": v}, index=days).to_csv(fred.FRED_DIR / "VIXCLS.csv")
+        v10._cache.clear()
+
+    def test_v10_no_lookahead(self):
+        data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=13)
+        for params in REGISTRY["v10_carry_vix"].param_grid():
+            s = {"strategy": "v10_carry_vix", "pairs": {p: params for p in self.PAIRS10}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                n = 0
+                for p in self.PAIRS10:
+                    n += int((a[p]["entry"] != 0).sum())
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{params}.{p}.{c} cut={cut}")
+                self.assertGreater(n, 0)
+
+    def test_vix_same_day_not_used(self):
+        """判断日当日以降の VIX を書き換えても、その日のシグナルは変わらない。"""
+        from fxap.data import fred
+        from fxap.strategies import v10
+        data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=14)
+        s = {"strategy": "v10_carry_vix", "pairs": {p: {"calm": "below_median"} for p in self.PAIRS10}}
+        v2._cache.clear()
+        a = research.spec_signals(s, data)["USDJPY"]
+        t = data["USDJPY"].index[18000]
+        cut = (t - pd.Timedelta(hours=30)).tz_convert(None).normalize()
+        vv = fred.load("VIXCLS")
+        vv[vv.index >= cut] = 1000.0
+        vv.to_frame("value").to_csv(fred.FRED_DIR / "VIXCLS.csv")
+        v10._cache.clear()
+        v2._cache.clear()
+        b = research.spec_signals(s, data)["USDJPY"]
+        early = a.index < cut.tz_localize("UTC")
+        self.assertTrue(np.array_equal(a.loc[early, "entry"].to_numpy(), b.loc[early, "entry"].to_numpy()))
+
+
+class TestV11(unittest.TestCase):
+    def test_windows(self):
+        """USDJPY: アジア時間（0–6 UTC）は買い（JPY 安）、米州時間（16–20）は売り。同地域ペアは取引なし。"""
+        pairs10 = TestV7.PAIRS10
+        data = synthetic.make_all(pairs=pairs10, n=3000, seed=15)
+        sig = research.spec_signals({"strategy": "v11_intraday_region",
+                                     "pairs": {p: {"windows": "asia0_6_eu7_12_us16_20"} for p in pairs10}}, data)
+        u = sig["USDJPY"]
+        hrs = u.index.hour
+        self.assertTrue((u["entry"][hrs == 23] >= 0).all() and (u["entry"][hrs == 23] == 1).any())
+        self.assertTrue((u["entry"][hrs == 15] == -1).any())
+        self.assertTrue(u["exit_long"][hrs == 5].all())
+        self.assertEqual(int((sig["AUDJPY"]["entry"] != 0).sum()), 0)
+        self.assertEqual(int((sig["USDCAD"]["entry"] != 0).sum()), 0)
+        e = sig["EURUSD"]
+        self.assertTrue((e["entry"][e.index.hour == 6] == -1).any())   # 欧州時間は EUR 売り

@@ -1,0 +1,27 @@
+candidate,year,params,train_sharpe
+v8_dollar_carry,2014,"{""rule"": ""carry""}",-1000000000.0
+v8_dollar_carry,2015,"{""rule"": ""carry""}",-0.218
+v8_dollar_carry,2016,"{""rule"": ""carry""}",-0.394
+v8_dollar_carry,2017,"{""rule"": ""carry""}",-0.114
+v8_dollar_carry,2018,"{""rule"": ""carry""}",-0.294
+v8_dollar_carry,2019,"{""rule"": ""carry""}",-0.119
+v8_dollar_carry,2020,"{""rule"": ""carry""}",-0.119
+v8_dollar_carry,2021,"{""rule"": ""carry""}",-0.215
+v8_dollar_carry,2022,"{""rule"": ""carry""}",-0.132
+v8_dollar_carry,2023,"{""rule"": ""carry""}",0.016
+v8_dollar_carry,2024,"{""rule"": ""carry""}",0.012
+v8_dollar_carry,2025,"{""rule"": ""carry""}",0.128
+v8_dollar_carry,2026,"{""rule"": ""carry""}",0.041
+v8_dollar_carry_trend,2014,"{""rule"": ""carry_and_trend""}",-0.22
+v8_dollar_carry_trend,2015,"{""rule"": ""carry_and_trend""}",-0.369
+v8_dollar_carry_trend,2016,"{""rule"": ""carry_and_trend""}",-0.337
+v8_dollar_carry_trend,2017,"{""rule"": ""carry_and_trend""}",-0.059
+v8_dollar_carry_trend,2018,"{""rule"": ""carry_and_trend""}",-0.181
+v8_dollar_carry_trend,2019,"{""rule"": ""carry_and_trend""}",-0.122
+v8_dollar_carry_trend,2020,"{""rule"": ""carry_and_trend""}",-0.145
+v8_dollar_carry_trend,2021,"{""rule"": ""carry_and_trend""}",-0.208
+v8_dollar_carry_trend,2022,"{""rule"": ""carry_and_trend""}",-0.182
+v8_dollar_carry_trend,2023,"{""rule"": ""carry_and_trend""}",0.025
+v8_dollar_carry_trend,2024,"{""rule"": ""carry_and_trend""}",-0.011
+v8_dollar_carry_trend,2025,"{""rule"": ""carry_and_trend""}",0.017
+v8_dollar_carry_trend,2026,"{""rule"": ""carry_and_trend""}",-0.102

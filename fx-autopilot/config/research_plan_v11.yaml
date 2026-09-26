@@ -1,0 +1,59 @@
+# 事前登録: V11（時間帯の季節性）。評価前にコミット。結果を見て変更しない。research_program.yaml の 4 本目
+plan_version: fx_plan_v11
+registered_at: "2026-09-26"
+purpose: >
+  Breedon & Ranaldo (2013, JMCB)「Intraday Patterns in FX Returns and Order Flow」: 通貨は自国の営業時間中に下がり、
+  外国の営業時間中に上がる傾向がある（自国の輸入企業・投資家のドル買いなど、実需フローの時間の偏り）。
+  ペア BASE/QUOTE で、BASE 地域の時間帯は売り、QUOTE 地域の時間帯は買い、時間帯の終わりに決済する。
+  地域の時間帯（UTC、夏時間は無視・固定）: アジア 00:00–06:00（JPY AUD NZD）/ 欧州 07:00–12:00（EUR GBP CHF）/ 米州 16:00–20:00（USD CAD）。
+  同じ地域どうしのペア（AUDJPY, USDCAD）は対象外。1 日に多数の小さな取引になるため、これまでの「少数トレード依存」とは逆の性質。
+contamination: >
+  期間・コスト・ゲートは既出。時間帯の区切りは論文の考え方に沿って登録時に固定（グリッド 1 通り）。
+  コスト（個人口座の原則固定スプレッドと実測の大きい方 + スリッページ）が効果を上回る可能性が高いことは登録時点で予想している。
+  DSR は V1 からの累積試行数で補正。最終判断は LOCK 後の PAPER Forward。
+swap_source: market
+dsr_trials: cumulative
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY, NZDUSD, USDCAD, USDCHF]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v11_intraday_region:
+    family: intraday_seasonality
+    grid: {windows: [asia0_6_eu7_12_us16_20]}
+
+risk_overrides:
+  max_open_positions: 6
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.03
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                      # 10 ペア（実際の対象 8 ペア）。V5/V7/V9/V10 と同一。緩めない
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 7
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30

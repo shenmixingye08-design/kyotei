@@ -1,0 +1,87 @@
+{
+  "spec_id": "v8_dollar_carry",
+  "strategy": "v8_dollar_carry",
+  "strategy_version": "v8",
+  "family": "dollar_carry",
+  "plan_version": "fx_plan_v8",
+  "pairs": {
+    "EURUSD": {
+      "rule": "carry"
+    },
+    "USDJPY": {
+      "rule": "carry"
+    },
+    "GBPUSD": {
+      "rule": "carry"
+    },
+    "AUDUSD": {
+      "rule": "carry"
+    },
+    "NZDUSD": {
+      "rule": "carry"
+    },
+    "USDCAD": {
+      "rule": "carry"
+    },
+    "USDCHF": {
+      "rule": "carry"
+    }
+  },
+  "trade_pairs": [
+    "EURUSD",
+    "USDJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "swap_source": "market",
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 7,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.015,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 20:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "trades",
+    "sharpe",
+    "positive_years",
+    "subperiod_not_positive",
+    "few_positive_pairs",
+    "deflated_sharpe",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 44,
+    "net_return": -0.01495,
+    "profit_factor": 1.748841,
+    "sharpe": 0.017552,
+    "max_drawdown": -0.173093,
+    "ret_A": -0.11165669955177138,
+    "ret_B": 0.10886147795290158,
+    "stress_pf": 1.055904,
+    "dsr": 0.09
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "fe868a167157253d9f3f6616af72bb1c3c4e7b9d33365176b1439e700a9428aa",
+  "spec_hash": "6118da3a2a7bba9396edfd8f00e8bf62b3040dbbd5753bb9f596d68fca64ee46",
+  "locked_at": "2026-09-26T07:33:23.420524+00:00"
+}

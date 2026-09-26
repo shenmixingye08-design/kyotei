@@ -260,7 +260,7 @@ jobs:
             git add research config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
           else
             latest=$(tail -n 1 logs/plans.txt 2>/dev/null)
-            git add "research/results_${latest}" research/data_quality config/locked 2>/dev/null || true   # ブランチ: 開発中の最新プランの結果と LOCK だけ
+            git add "research/results_${latest}" config/locked 2>/dev/null || true   # ブランチ: 開発中の最新プランの結果と LOCK だけ
           fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"

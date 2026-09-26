@@ -170,6 +170,13 @@ def cmd_research_v2(a):
             print(f"{a.plan}: 市場金利が揃っていない（欠損: {missing}）ため今回は研究を実行しない（LOCK もしない）",
                   file=sys.stderr)
             return 0
+    for sid in P.get("requires_fred", []):
+        from .data import fred
+        try:
+            fred.load(sid)
+        except FileNotFoundError as e:
+            print(f"{a.plan}: FRED {sid} が無い（{e}）ため今回は研究を実行しない（LOCK もしない）", file=sys.stderr)
+            return 0
     if P.get("requires_value_data"):
         from .strategies import v7 as v7s
         try:

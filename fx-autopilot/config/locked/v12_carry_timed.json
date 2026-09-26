@@ -1,0 +1,98 @@
+{
+  "spec_id": "v12_carry_timed",
+  "strategy": "v12_carry_timed",
+  "strategy_version": "v12",
+  "family": "carry_timing",
+  "plan_version": "fx_plan_v12",
+  "pairs": {
+    "USDJPY": {
+      "lookback": 126
+    },
+    "EURUSD": {
+      "lookback": 126
+    },
+    "EURJPY": {
+      "lookback": 126
+    },
+    "GBPUSD": {
+      "lookback": 126
+    },
+    "AUDUSD": {
+      "lookback": 126
+    },
+    "AUDJPY": {
+      "lookback": 126
+    },
+    "GBPJPY": {
+      "lookback": 126
+    },
+    "NZDUSD": {
+      "lookback": 126
+    },
+    "USDCAD": {
+      "lookback": 126
+    },
+    "USDCHF": {
+      "lookback": 126
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "swap_source": "market",
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 6,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.03,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 20:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "trades",
+    "sharpe",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 96,
+    "net_return": 0.061696,
+    "profit_factor": 1.161154,
+    "sharpe": 0.122585,
+    "max_drawdown": -0.142893,
+    "ret_A": -0.018424967086703714,
+    "ret_B": 0.08162444757164411,
+    "stress_pf": 0.897397,
+    "dsr": 0.5771
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "6da44e193c28c6cf1020cc8d68c1cd8f775a01cc6dadc7d598b8d6d8fee08108",
+  "spec_hash": "f16f02e79d3e0bc8ea07d9f5283721e46ddf6704e6f6092b5b61050840cc8ad0",
+  "locked_at": "2026-09-26T09:28:47.843558+00:00"
+}

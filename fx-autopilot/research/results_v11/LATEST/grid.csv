@@ -1,0 +1,2 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v11_intraday_region,True,"{""windows"": ""asia0_6_eu7_12_us16_20""}",41627,-0.754392,-1.478061,0.872,-0.759448,8.221961,24710,-0.500716,-1.385584,0.903471,-0.512844,3.183061,1531,-0.063579,-0.724366,0.875371,-0.073517,2.135661
