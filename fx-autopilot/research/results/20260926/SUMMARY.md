@@ -1,4 +1,4 @@
-# FX AUTOPILOT 研究結果（2026-09-26 04:08 UTC）
+# FX AUTOPILOT 研究結果（2026-09-26 05:22 UTC）
 
 **PAPER / BACKTEST のみ。利益を保証するものではありません。LIVE は本人の明示承認まで開始しません。**
 

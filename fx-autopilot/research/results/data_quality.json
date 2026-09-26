@@ -176,9 +176,7 @@
     "largest_gap_h": 73.0,
     "price_min": 0.71621,
     "price_max": 1.1706,
-    "problems": [
-      "price_out_of_range[0.7,1.1]"
-    ],
-    "ok": false
+    "problems": [],
+    "ok": true
   }
 ]
