@@ -37,6 +37,10 @@ FRED_DIR = DATA_DIR / "fred"
 SHORT_RATES = {"USD": "IR3TIB01USM156N", "EUR": "IR3TIB01EZM156N", "JPY": "IR3TIB01JPM156N",
                "GBP": "IR3TIB01GBM156N", "AUD": "IR3TIB01AUM156N", "NZD": "IR3TIB01NZM156N",
                "CAD": "IR3TIB01CAM156N", "CHF": "IR3TIB01CHM156N"}
+# 長期金利（V14: イールドカーブの傾き）: OECD 10 年国債利回り（月次、%）
+LONG_RATES = {"USD": "IRLTLT01USM156N", "EUR": "IRLTLT01EZM156N", "JPY": "IRLTLT01JPM156N",
+              "GBP": "IRLTLT01GBM156N", "AUD": "IRLTLT01AUM156N", "NZD": "IRLTLT01NZM156N",
+              "CAD": "IRLTLT01CAM156N", "CHF": "IRLTLT01CHM156N"}
 # H.10: 値の向き（"base_per_quote"= 1 base あたり quote、つまりペア表記どおり / "inverse"= 逆数でペアになる）
 H10 = {"USDJPY": ("DEXJPUS", False), "EURUSD": ("DEXUSEU", False), "GBPUSD": ("DEXUSUK", False),
        "AUDUSD": ("DEXUSAL", False), "NZDUSD": ("DEXUSNZ", False), "USDCAD": ("DEXCAUS", False),
@@ -173,7 +177,7 @@ def _obs_fresh(sid: str) -> bool:
         last = load(sid).index.max()
     except Exception:  # noqa: BLE001
         return False
-    lim = 120 if sid in SHORT_RATES.values() else (200 if sid.startswith("CPI_") else 21)
+    lim = 120 if (sid in SHORT_RATES.values() or sid in LONG_RATES.values()) else (200 if sid.startswith("CPI_") else 21)
     return (pd.Timestamp.now() - pd.Timestamp(last).tz_localize(None)).days <= lim
 
 
@@ -182,7 +186,8 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     連続で全経路失敗するか時間上限を超えたら残りを打ち切る（届かないサイトで CI を止めない）。"""
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
-    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()] + list(RISK), [f"CPI_{c}" for c in CPI]]
+    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()] + list(RISK), [f"CPI_{c}" for c in CPI],
+              list(LONG_RATES.values())]
     with requests.Session() as ses:
         for ids in groups:
             fails, t0 = 0, time.time()
@@ -223,6 +228,19 @@ def load(sid: str) -> pd.Series:
         raise FileNotFoundError(f"{p} がありません（python -m fxap.cli ingest-fred）")
     df = pd.read_csv(p, index_col=0, parse_dates=True)
     return df["value"].astype(float)
+
+
+def load_monthly_rates(ids: dict) -> dict:
+    """ccy -> 月初 index の小数金利（無い通貨は含めない）。"""
+    out = {}
+    for ccy, sid in ids.items():
+        try:
+            s = load(sid) / 100.0
+        except FileNotFoundError:
+            continue
+        s.index = pd.DatetimeIndex(s.index).to_period("M").to_timestamp()
+        out[ccy] = s[~s.index.duplicated(keep="last")].sort_index()
+    return out
 
 
 def load_short_rates() -> dict:

@@ -389,3 +389,44 @@ class TestV11(unittest.TestCase):
         self.assertEqual(int((sig["USDCAD"]["entry"] != 0).sum()), 0)
         e = sig["EURUSD"]
         self.assertTrue((e["entry"][e.index.hour == 6] == -1).any())   # 欧州時間は EUR 売り
+
+
+class TestV14(unittest.TestCase):
+    def setUp(self):
+        from fxap.data import fred
+        from fxap.strategies import v14
+        fred.FRED_DIR.mkdir(parents=True, exist_ok=True)
+        rng = np.random.default_rng(31)
+        idx = pd.date_range("2005-01-01", "2026-08-01", freq="MS")
+        for ids in (fred.LONG_RATES, fred.SHORT_RATES):
+            for c, sid in ids.items():
+                v = 2 + np.cumsum(rng.normal(0, 0.1, len(idx)))
+                pd.DataFrame({"value": v}, index=idx).to_csv(fred.FRED_DIR / f"{sid}.csv")
+        v14._cache.clear()
+
+    def test_v14_no_lookahead(self):
+        pairs10 = TestV7.PAIRS10
+        data = synthetic.make_all(pairs=pairs10, n=20000, seed=16)
+        for name in ("v14_term", "v14_term_ratemom"):
+            params = REGISTRY[name].param_grid()[0]
+            s = {"strategy": name, "pairs": {p: params for p in pairs10}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                n = 0
+                for p in pairs10:
+                    n += int((a[p]["entry"] != 0).sum())
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
+                self.assertGreater(n, 0, name)
+
+    def test_term_uses_lagged_month(self):
+        from fxap.data import fred
+        from fxap.strategies import v14
+        t = pd.Timestamp("2020-06-15")
+        s = fred.load_monthly_rates(fred.LONG_RATES)["USD"]
+        self.assertAlmostEqual(v14._at(s, t), float(s.loc["2020-05-01"]))
