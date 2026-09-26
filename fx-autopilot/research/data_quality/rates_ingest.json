@@ -1,6 +1,6 @@
 {
- "at": "2026-09-26 07:46:34.171075+00:00",
- "ok": 23,
+ "at": "2026-09-26 08:25:41.603928+00:00",
+ "ok": 24,
  "series": {
   "IR3TIB01USM156N": {
    "cached": true,
@@ -65,6 +65,12 @@
   "DEXSZUS": {
    "cached": true,
    "rows": 13971
+  },
+  "VIXCLS": {
+   "source": "fred",
+   "rows": 9279,
+   "first": "1990-01-02",
+   "last": "2026-09-22"
   },
   "CPI_USD": {
    "cached": true,
