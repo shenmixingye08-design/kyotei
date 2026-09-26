@@ -1,0 +1,28 @@
+{
+  "spec_id": "v12_carry_timed",
+  "spec_hash": "f16f02e79d3e0bc8ea07d9f5283721e46ddf6704e6f6092b5b61050840cc8ad0",
+  "last_bar": null,
+  "started_at": "2026-09-26T10:06:38.308486+00:00",
+  "start": "2026-09-26 09:28:47.843558+00:00",
+  "halted": false,
+  "consecutive_order_errors": 0,
+  "bars_processed": 0,
+  "risk_state": {
+    "equity": 1000000.0,
+    "hwm": 1000000.0,
+    "day_key": "",
+    "week_key": "",
+    "day_start_equity": 0.0,
+    "week_start_equity": 0.0,
+    "kill_switch": false,
+    "kill_reason": "",
+    "broker_connected": true
+  },
+  "broker_state": {
+    "cash": 1000000.0,
+    "positions": {},
+    "pending": [],
+    "client_ids": []
+  },
+  "mgmt": {}
+}

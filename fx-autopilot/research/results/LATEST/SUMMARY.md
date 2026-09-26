@@ -1,4 +1,4 @@
-# FX AUTOPILOT 研究結果（2026-09-26 07:16 UTC）
+# FX AUTOPILOT 研究結果（2026-09-26 10:16 UTC）
 
 **PAPER / BACKTEST のみ。利益を保証するものではありません。LIVE は本人の明示承認まで開始しません。**
 
@@ -439,6 +439,9 @@ LIVE 候補: **なし**（LIVE 開始には本人の明示承認が必須）
 | trend_donchian_v1 | RESEARCH_ONLY | gate_A_failed_all_pairs, test_kill_switch, forward_not_positive, test_forward_divergence | paper_months<3, paper_trades, paper_not_positive |
 | trend_ema_adx_v1 | RESEARCH_ONLY | gate_A_failed_all_pairs, test_profit_factor, test_sharpe, test_kill_switch, stress_2x_cost, forward_not_positive | paper_months<3, paper_trades, paper_not_positive |
 | trend_tsmom_v1 | RESEARCH_ONLY | gate_A_failed_all_pairs, forward_not_positive, test_forward_divergence | paper_months<3, paper_trades, paper_not_positive |
+| v10_carry_vix | REJECTED | profit_factor, sharpe, positive_years, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v11_intraday_region | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v12_carry_timed | REJECTED | trades, sharpe, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v2_d1_donchian | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe | paper_months<3, paper_trades, paper_not_positive |
 | v2_d1_tsmom | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, single_regime_dependence, deflated_sharpe | paper_months<3, paper_trades, paper_not_positive |
 | v2_h4_ema | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe | paper_months<3, paper_trades, paper_not_positive |
@@ -461,4 +464,7 @@ LIVE 候補: **なし**（LIVE 開始には本人の明示承認が必須）
 | v7_carry_monthly | REJECTED | trades, sharpe, positive_years, subperiod_not_positive, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v7_ccv_monthly | REJECTED | profit_factor, sharpe, positive_years, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v7_cm_monthly | REJECTED | sharpe, subperiod_not_positive, few_positive_pairs, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v8_dollar_carry | REJECTED | trades, sharpe, positive_years, subperiod_not_positive, few_positive_pairs, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v8_dollar_carry_trend | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v9_tsmom_multi | REJECTED | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 

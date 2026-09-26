@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-09-26T07:32 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-09-26T10:35 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
@@ -18,6 +18,11 @@
 | trend_donchian_v1 | RESEARCH_ONLY | 999,992 | -8 | -8 | -8 | -8 | 0.0% | 1 | 0.72 | 0 | — | — |
 | trend_ema_adx_v1 | RESEARCH_ONLY | 999,006 | -994 | -994 | -994 | -994 | 0.1% | 1 | 1.10 | 0 | — | — |
 | trend_tsmom_v1 | RESEARCH_ONLY | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v10_carry_vix | REJECTED | 未開始 | | | | | | | | | | |
+| v11_intraday_region | REJECTED | 未開始 | | | | | | | | | | |
+| v12_carry_timed | REJECTED | 未開始 | | | | | | | | | | |
+| v13_carry_ratemom | REJECTED | 未開始 | | | | | | | | | | |
+| v13_ratemom | REJECTED | 未開始 | | | | | | | | | | |
 | v2_d1_donchian | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_d1_tsmom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_h4_ema | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
@@ -40,6 +45,9 @@
 | v7_carry_monthly | REJECTED | 未開始 | | | | | | | | | | |
 | v7_ccv_monthly | REJECTED | 未開始 | | | | | | | | | | |
 | v7_cm_monthly | REJECTED | 未開始 | | | | | | | | | | |
+| v8_dollar_carry | REJECTED | 未開始 | | | | | | | | | | |
+| v8_dollar_carry_trend | REJECTED | 未開始 | | | | | | | | | | |
+| v9_tsmom_multi | REJECTED | 未開始 | | | | | | | | | | |
 
 ## バックテスト（LOCK 後に 1 回だけ評価。コスト込み・retail_jp）
 
@@ -54,6 +62,11 @@
 | trend_donchian_v1 | RESEARCH_ONLY | 112 | +16.8% | 1.48 | 0.56 | -15.1% | -13.6% | 0.16 | -1.70 | 1.41 |
 | trend_ema_adx_v1 | RESEARCH_ONLY | 279 | -5.9% | 0.91 | -0.21 | -15.2% | -3.5% | 0.95 | -0.18 | 0.87 |
 | trend_tsmom_v1 | RESEARCH_ONLY | 255 | +10.3% | 1.15 | 0.51 | -7.0% | -8.9% | 0.59 | -1.27 | 1.09 |
+| v10_carry_vix | REJECTED | — | — | — | — | — | — | — | — | — |
+| v11_intraday_region | REJECTED | — | — | — | — | — | — | — | — | — |
+| v12_carry_timed | REJECTED | — | — | — | — | — | — | — | — | — |
+| v13_carry_ratemom | REJECTED | — | — | — | — | — | — | — | — | — |
+| v13_ratemom | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_d1_donchian | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_d1_tsmom | REJECTED | — | — | — | — | — | — | — | — | — |
 | v2_h4_ema | REJECTED | — | — | — | — | — | — | — | — | — |
@@ -76,5 +89,8 @@
 | v7_carry_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
 | v7_ccv_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
 | v7_cm_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
+| v8_dollar_carry | REJECTED | — | — | — | — | — | — | — | — | — |
+| v8_dollar_carry_trend | REJECTED | — | — | — | — | — | — | — | — | — |
+| v9_tsmom_multi | REJECTED | — | — | — | — | — | — | — | — | — |
 
 詳細: `research/results/LATEST/SUMMARY.md` ／ 台帳: `paper_forward/<spec>/ledger.jsonl`（ハッシュチェーン）
