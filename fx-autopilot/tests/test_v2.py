@@ -430,3 +430,49 @@ class TestV14(unittest.TestCase):
         t = pd.Timestamp("2020-06-15")
         s = fred.load_monthly_rates(fred.LONG_RATES)["USD"]
         self.assertAlmostEqual(v14._at(s, t), float(s.loc["2020-05-01"]))
+
+
+class TestV16(unittest.TestCase):
+    def setUp(self):
+        from fxap.data import fred
+        from fxap.strategies import v16
+        fred.FRED_DIR.mkdir(parents=True, exist_ok=True)
+        rng = np.random.default_rng(41)
+        idx = pd.date_range("2005-01-01", "2026-08-01", freq="MS")
+        for c in fred.EQUITY:
+            v = 100 * np.exp(np.cumsum(rng.normal(0.005, 0.04, len(idx))))
+            pd.DataFrame({"value": v}, index=idx).to_csv(fred.FRED_DIR / f"EQ_{c}.csv")
+        v16._cache.clear()
+
+    def test_v16_no_lookahead(self):
+        pairs10 = TestV7.PAIRS10
+        data = synthetic.make_all(pairs=pairs10, n=20000, seed=17)
+        for name in ("v16_equity_rebal", "v16_equity_rebal_carry"):
+            params = REGISTRY[name].param_grid()[0]
+            s = {"strategy": name, "pairs": {p: params for p in pairs10}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                n = 0
+                for p in pairs10:
+                    n += int((a[p]["entry"] != 0).sum())
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
+                self.assertGreater(n, 0, name)
+
+    def test_equity_lagged(self):
+        """判断月 m では m-1 月までの株価しか使わない（m 月の値を変えても不変）。"""
+        from fxap.data import fred
+        from fxap.strategies import v16
+        idx = pd.DatetimeIndex([pd.Timestamp("2020-06-10", tz="UTC")])
+        a = v16.equity_momentum(idx)
+        s = fred.load("EQ_USD")
+        s[s.index >= "2020-06-01"] *= 3
+        s.to_frame("value").to_csv(fred.FRED_DIR / "EQ_USD.csv")
+        v16._cache.clear()
+        b = v16.equity_momentum(idx)
+        self.assertTrue(np.allclose(a.to_numpy(), b.to_numpy(), equal_nan=True))

@@ -57,6 +57,16 @@ CPI = {"USD": ["CPIAUCSL", "CPALTT01USM661N"],
        "CAD": ["CPALTT01CAM661N", "CANCPIALLMINMEI"],
        "CHF": ["CPALTT01CHM661N", "CHECPIALLMINMEI"]}
 CPI_MAX_AGE_DAYS = 270
+# 株価指数（V16: 株式ポートフォリオのリバランス・フロー）。OECD 月次株価指数（2015=100）。
+# ユーロ圏の集計系列が無い場合はドイツで代用する（候補の 2 番目以降）。保存名は EQ_{ccy}.csv
+EQUITY = {"USD": ["SPASTT01USM661N"],
+          "EUR": ["SPASTT01EZM661N", "SPASTT01DEM661N"],
+          "JPY": ["SPASTT01JPM661N"],
+          "GBP": ["SPASTT01GBM661N"],
+          "AUD": ["SPASTT01AUM661N"],
+          "NZD": ["SPASTT01NZM661N"],
+          "CAD": ["SPASTT01CAM661N"],
+          "CHF": ["SPASTT01CHM661N"]}
 # リスク指標（V10: キャリーの暴落リスク・フィルター）。VIXCLS = CBOE VIX 日次終値
 RISK = {"VIXCLS": "CBOE VIX"}      # 最終観測がこれより古い系列は「最新まで続いていない」とみなして次の候補へ
 
@@ -109,10 +119,10 @@ def fetch(sid: str, session=None, retries: int = 1, timeout=(8, 25)) -> pd.Serie
     raise RuntimeError(f"FRED {sid}: " + " | ".join(errs[-4:]))
 
 
-def fetch_cpi(ccy: str, session=None):
+def fetch_cpi(ccy: str, session=None, table=None):
     """候補系列を順に試し、最終観測が CPI_MAX_AGE_DAYS 以内の最初の系列を返す（(series, sid)）。"""
     errs, stale = [], None
-    for sid in CPI[ccy]:
+    for sid in (table or CPI)[ccy]:
         try:
             ser = fetch(sid, session)
         except RuntimeError as e:
@@ -177,7 +187,7 @@ def _obs_fresh(sid: str) -> bool:
         last = load(sid).index.max()
     except Exception:  # noqa: BLE001
         return False
-    lim = 120 if (sid in SHORT_RATES.values() or sid in LONG_RATES.values()) else (200 if sid.startswith("CPI_") else 21)
+    lim = 120 if (sid in SHORT_RATES.values() or sid in LONG_RATES.values()) else (200 if sid.startswith(("CPI_", "EQ_")) else 21)
     return (pd.Timestamp.now() - pd.Timestamp(last).tz_localize(None)).days <= lim
 
 
@@ -187,7 +197,7 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
     groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()] + list(RISK), [f"CPI_{c}" for c in CPI],
-              list(LONG_RATES.values())]
+              list(LONG_RATES.values()), [f"EQ_{c}" for c in EQUITY]]
     with requests.Session() as ses:
         for ids in groups:
             fails, t0 = 0, time.time()
@@ -202,6 +212,8 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
                         try:
                             if sid.startswith("CPI_"):
                                 ser, src = fetch_cpi(sid[4:], ses)
+                            elif sid.startswith("EQ_"):
+                                ser, src = fetch_cpi(sid[3:], ses, table=EQUITY)
                             else:
                                 ser, src = fetch(sid, ses), "fred"
                         except RuntimeError as e1:
@@ -238,6 +250,20 @@ def load_monthly_rates(ids: dict) -> dict:
             s = load(sid) / 100.0
         except FileNotFoundError:
             continue
+        s.index = pd.DatetimeIndex(s.index).to_period("M").to_timestamp()
+        out[ccy] = s[~s.index.duplicated(keep="last")].sort_index()
+    return out
+
+
+def load_equity() -> dict:
+    """ccy -> 月次株価指数（月初 index）。無い通貨は含めない。"""
+    out = {}
+    for ccy in EQUITY:
+        try:
+            s = load(f"EQ_{ccy}")
+        except FileNotFoundError:
+            continue
+        s = s[s > 0]
         s.index = pd.DatetimeIndex(s.index).to_period("M").to_timestamp()
         out[ccy] = s[~s.index.duplicated(keep="last")].sort_index()
     return out
