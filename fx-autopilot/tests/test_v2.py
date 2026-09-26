@@ -216,7 +216,8 @@ class TestV7(unittest.TestCase):
     def test_v7_no_lookahead(self):
         from fxap.strategies import v7
         data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=8)
-        for name in ("v7_ccv_monthly", "v7_cm_monthly", "v7_carry_monthly", "v12_carry_timed"):
+        for name in ("v7_ccv_monthly", "v7_cm_monthly", "v7_carry_monthly", "v12_carry_timed", "v13_ratemom",
+                     "v13_carry_ratemom"):
             params = REGISTRY[name].param_grid()[0]
             s = {"strategy": name, "pairs": {p: params for p in self.PAIRS10}}
             for cut in (17000, 18011):
