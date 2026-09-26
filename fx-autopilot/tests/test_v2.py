@@ -407,7 +407,7 @@ class TestV14(unittest.TestCase):
     def test_v14_no_lookahead(self):
         pairs10 = TestV7.PAIRS10
         data = synthetic.make_all(pairs=pairs10, n=20000, seed=16)
-        for name in ("v14_term", "v14_term_ratemom"):
+        for name in ("v14_term", "v14_term_ratemom", "v15_rates_composite"):
             params = REGISTRY[name].param_grid()[0]
             s = {"strategy": name, "pairs": {p: params for p in pairs10}}
             for cut in (17000, 18011):
