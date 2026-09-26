@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T07:32:38.327029+00:00",
+  "generated_at": "2026-09-26T10:06:57.115158+00:00",
   "mode": "PAPER",
   "live": false,
   "champion": null,
@@ -467,6 +467,21 @@
       ]
     },
     {
+      "spec_id": "v10_carry_vix",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v11_intraday_region",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v12_carry_timed",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
       "spec_id": "v2_d1_donchian",
       "started": true,
       "last_bar": "2026-09-25 20:00:00+00:00",
@@ -880,6 +895,21 @@
       "spec_id": "v7_cm_monthly",
       "started": false,
       "equity": 1000000.0
+    },
+    {
+      "spec_id": "v8_dollar_carry",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v8_dollar_carry_trend",
+      "started": false,
+      "equity": 1000000.0
+    },
+    {
+      "spec_id": "v9_tsmom_multi",
+      "started": false,
+      "equity": 1000000.0
     }
   ],
   "status": {
@@ -1152,6 +1182,84 @@
       "fwd_return": -0.088716,
       "fwd_sharpe": -1.274008,
       "fwd_mdd": -0.104471,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v10_carry_vix": {
+      "spec_id": "v10_carry_vix",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.171799,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v11_intraday_region": {
+      "spec_id": "v11_intraday_region",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -1.167387,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v12_carry_timed": {
+      "spec_id": "v12_carry_timed",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.122585,
       "paper_days": 0,
       "paper_return": 0.0,
       "paper_sharpe": null,
@@ -1636,6 +1744,85 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.223979,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v8_dollar_carry": {
+      "spec_id": "v8_dollar_carry",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "few_positive_pairs",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.017552,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v8_dollar_carry_trend": {
+      "spec_id": "v8_dollar_carry_trend",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.136052,
+      "paper_days": 0,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    "v9_tsmom_multi": {
+      "spec_id": "v9_tsmom_multi",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.162284,
       "paper_days": 0,
       "paper_return": 0.0,
       "paper_sharpe": null,
