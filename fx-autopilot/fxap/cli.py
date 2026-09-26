@@ -156,13 +156,20 @@ def cmd_research_v2(a):
     need = set(P["pairs"]) | {"USDJPY"} | {p for c in P["candidates"].values() for p in (c or {}).get("pairs", [])}
     if P.get("swap_source", "policy") != "policy":
         from . import swap as swapm
+        from .common import PAIRS
+        ccys = {c for p in need for c in (PAIRS[p]["base"], PAIRS[p]["quote"])}
         try:
             swapm.use_source(P["swap_source"])
+            missing = sorted(ccys - set(swapm.MARKET))
         except FileNotFoundError as e:
-            print(f"{a.plan}: 金利データ欠損（{e}）のため今回は研究を実行しない（LOCK もしない）", file=sys.stderr)
-            return 0
+            missing = [str(e)]
         finally:
             swapm.use_source("policy")
+        if missing:
+            # 一部通貨だけ市場金利・残りは近似表、という混在は事前登録の意図と違うので研究しない
+            print(f"{a.plan}: 市場金利が揃っていない（欠損: {missing}）ため今回は研究を実行しない（LOCK もしない）",
+                  file=sys.stderr)
+            return 0
     frames = store.load_all(sorted(need))
     data_end = str(max(d.index.max() for d in frames.values()))
     out = research_v2.run(frames, only=a.only.split(",") if a.only else None)
@@ -240,7 +247,13 @@ def cmd_paper(a):
         from . import swap as swapm
         try:
             swapm.use_source(s.get("swap_source", "policy"))
+            if s.get("swap_source", "policy") == "market":
+                from .common import PAIRS
+                miss = sorted({c for p in need for c in (PAIRS[p]["base"], PAIRS[p]["quote"])} - set(swapm.MARKET))
+                if miss:
+                    raise FileNotFoundError(f"市場金利なし: {miss}")
         except FileNotFoundError as e:
+            swapm.use_source("policy")
             print(f"{s['spec_id']}: 金利データ欠損 {e} のため今回は処理しない", file=sys.stderr)
             failed.append(s["spec_id"])
             continue

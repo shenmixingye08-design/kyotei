@@ -190,7 +190,7 @@ jobs:
         timeout-minutes: 15      # 失敗しても policy 金利の仕様は動く（market 金利の仕様だけ今回は処理しない）
         run: |
           mkdir -p logs
-          for u in "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXJPUS" "https://api.db.nomics.world/v22/providers" \
+          for u in "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXJPUS" "https://fred.stlouisfed.org/graph/fredgraph.csv?id=IR3TIB01USM156N" "https://api.db.nomics.world/v22/providers" \
                    "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.STES" "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1"; do
             curl -s -o /dev/null -m 20 -w "probe %{http_code} %{time_total}s $u\n" "$u" || echo "probe FAIL $u"
           done 2>&1 | tee logs/source_probe.log
@@ -226,6 +226,7 @@ jobs:
           set -o pipefail
           python -m fxap.cli research-v2 2>&1 | tee logs/research_v2.log
       - name: Research V3+ (main = all plans / branch = newest plan only)
+        continue-on-error: ${{ github.ref_name == 'main' }}   # main では研究の失敗で PAPER Forward を止めない
         if: >-
           github.event_name == 'push' ||
           (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
@@ -235,9 +236,11 @@ jobs:
           plans=$(ls config/research_plan_v*.yaml | sed -E 's/.*_(v[0-9]+)\.yaml/\1/' | sort -V | awk '$1 != "v2"')
           if [ "${GITHUB_REF_NAME}" != "main" ]; then plans=$(echo "$plans" | tail -n 1); fi
           echo "$plans" > logs/plans.txt
-          for v in $plans; do
-            python -m fxap.cli research-v2 --plan "$v" 2>&1 | tee "logs/research_${v}.log"
+          rc=0
+          for v in $plans; do   # 1 つのプランの失敗で残りのプランを止めない（失敗はステップの結果に残す）
+            python -m fxap.cli research-v2 --plan "$v" 2>&1 | tee "logs/research_${v}.log" || { echo "::warning::research $v failed"; rc=1; }
           done
+          exit $rc
       - name: PAPER trade → settlement → tournament → dashboard → ledger verify
         # PAPER Forward は main でのみ進める（ブランチで状態を進めると main の Forward 記録と分岐するため）
         if: github.ref_name == 'main'
