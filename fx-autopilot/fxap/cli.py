@@ -36,17 +36,25 @@ def cmd_ingest(a):
 def cmd_quality(a):
     """全ペアの品質検査。欠損・古いデータ・異常値があれば exit 1（研究・PAPER を止める）。"""
     from .data import store
+    from .research import load_locked
+    # 全体を止めるのは円換算に必須の USDJPY だけ。他のペアの欠損・品質 NG は、そのペアを使う仕様だけが取引しない（cmd_paper）
     try:
-        frames = store.load_all(_pairs())
+        frames = store.load_all(_pairs(), required={"USDJPY"})
     except FileNotFoundError as e:
         print(f"データ欠損: {e}", file=sys.stderr)
         return 1
     q = store.write_quality_report(frames, RESULTS / "data_quality.json")
     for r in q:
         print(r)
-    if not all(r.get("ok") for r in q):
-        print("データ品質 NG のペアがあります", file=sys.stderr)
+    missing = sorted(set(_pairs()) - set(frames))
+    bad = [r["pair"] for r in q if not r.get("ok")] + missing
+    used = _required_pairs(load_locked())
+    if "USDJPY" in bad:
+        print("データ品質 NG: USDJPY（円換算に必須）", file=sys.stderr)
         return 1
+    if bad:
+        print(f"warning: データ欠損/品質 NG {bad}。LOCK 済み仕様で影響: {sorted(set(bad) & used)}（該当仕様は今回取引しない）",
+              file=sys.stderr)
     return 0
 
 
@@ -61,13 +69,16 @@ def cmd_research(a):
     from .data import store
     safety.assert_paper_only()
     t0 = time.time()
-    frames = store.load_all(_pairs())
+    # v1 は LOCK 時の 5 ペアだけで評価する（後から追加したペアで v1 の結果・ランダム比較が変わらないように）
+    v1 = [s for s in research.load_locked() if s.get("plan_version", "fx_plan_v1") == "fx_plan_v1"]
+    v1_pairs = sorted({p for s in v1 for p in s["pairs"]}) or ["USDJPY", "EURUSD", "EURJPY", "GBPUSD", "AUDUSD"]
+    frames = store.load_all(v1_pairs)
     quality = [store.quality(d, p) for p, d in frames.items()]
     locked = research.load_locked()
     s1 = None
     if a.stage1 or len(locked) < len(research.CANDIDATE_STRATEGIES):
         print("== Stage 1（TRAIN+VALIDATION のみ）")
-        s1 = research.stage1(frames, _pairs(), strategies=a.only.split(",") if a.only else None)
+        s1 = research.stage1(frames, v1_pairs, strategies=a.only.split(",") if a.only else None)
         print("== LOCK")
         research.lock_specs(s1["candidates"], s1["selection_end"], _fingerprint(frames))
         locked = research.load_locked()
@@ -77,7 +88,7 @@ def cmd_research(a):
     print(f"== Stage 2（LOCK 済み {len(locked)} 仕様を TEST / FORWARD で評価）")
     s2 = research.stage2(locked, frames)
     print("== ランダム売買ベンチマーク / マイクロストラクチャ")
-    rnd = research.random_baseline(frames, _pairs(), seeds=a.seeds)
+    rnd = research.random_baseline(frames, v1_pairs, seeds=a.seeds)
     micro = research.microstructure(frames)
     allspecs = research.load_locked()
     tour = tournament.update(allspecs, s2["stage2"], _paper_perf(allspecs))
@@ -94,9 +105,9 @@ def cmd_research_v2(a):
     from .data import store
     from .research import load_locked
     safety.assert_paper_only()
-    frames = store.load_all(_pairs())
-    data_end = str(max(d.index.max() for d in frames.values()))
     research_v2.use(a.plan)
+    frames = store.load_all(research_v2.plan()["pairs"] + ["USDJPY"])
+    data_end = str(max(d.index.max() for d in frames.values()))
     out = research_v2.run(frames, only=a.only.split(",") if a.only else None)
     specs = research_v2.lock(out["candidates"], data_end)
     md = research_v2.write(out, specs, data_end)
@@ -139,22 +150,43 @@ def _paper_perf(specs) -> dict:
     return out
 
 
+def _required_pairs(specs) -> set:
+    req = {"USDJPY"}          # 円換算に必須
+    for s in specs:
+        req |= set(s.get("trade_pairs") or s["pairs"])
+    return req
+
+
 def cmd_paper(a):
     from . import dashboard, tournament
     from .data import store
     from .paper_engine import PaperEngine
     from .research import load_locked
     safety.assert_paper_only()
-    frames = store.load_all(_pairs())
     specs = load_locked()
+    frames = store.load_all(_pairs(), required={"USDJPY"})
+    bad = [p for p, d in frames.items() if not store.quality(d, p).get("ok")]
+    for p in bad:
+        print(f"warning: {p} はデータ品質 NG のため、このペアを使う仕様は今回処理しない", file=sys.stderr)
+        frames.pop(p)
     if not specs:
         print("LOCK 済み仕様がありません（research を先に実行）")
         return 1
     init = float(settings()["account"]["initial_equity"])
+    failed = []
     for s in specs:
-        eng = PaperEngine(s, frames, initial_equity=init)
-        r = eng.run()
-        print(json.dumps(r, default=str))
+        need = set(s.get("trade_pairs") or s["pairs"])
+        if not need <= set(frames):
+            print(f"{s['spec_id']}: データ欠損 {sorted(need - set(frames))} のため今回は処理しない（新規注文なし）", file=sys.stderr)
+            failed.append(s["spec_id"])
+            continue
+        try:
+            eng = PaperEngine(s, frames, initial_equity=init)
+            r = eng.run()
+            print(json.dumps(r, default=str))
+        except Exception as e:  # noqa: BLE001  1 つの仕様の失敗で他の仕様の PAPER を止めない
+            print(f"{s['spec_id']}: PAPER エラー {e!r}", file=sys.stderr)
+            failed.append(s["spec_id"])
     s2p = RESULTS / "LATEST" / "stage2.csv"
     s2 = pd.read_csv(s2p) if s2p.exists() else None
     tournament.update(specs, s2, _paper_perf(specs))
@@ -162,7 +194,10 @@ def cmd_paper(a):
         dashboard.build()
     except Exception as e:  # noqa: BLE001  表示の失敗で PAPER 状態のコミットを止めない（台帳検証は下で必ず実行）
         print(f"dashboard build failed (PAPER state is still saved): {e!r}", file=sys.stderr)
-    return cmd_verify(a)
+    rc = cmd_verify(a)
+    if failed:
+        print(f"PAPER を処理できなかった仕様: {failed}", file=sys.stderr)
+    return rc
 
 
 def cmd_dashboard(a):

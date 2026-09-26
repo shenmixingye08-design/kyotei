@@ -66,7 +66,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        pair: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY]
+        pair: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY, NZDUSD, USDCAD, USDCHF]
     defaults:
       run:
         working-directory: fx-autopilot
@@ -109,6 +109,8 @@ jobs:
 
   pipeline:
     needs: ingest
+    # 一部のペアの取得失敗で全体を止めない（LOCK 済み仕様が使うペアの欠損・品質 NG は quality ゲートが止める）
+    if: ${{ !cancelled() && needs.ingest.result != 'skipped' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     permissions:
@@ -163,6 +165,21 @@ jobs:
           path: fx-autopilot/data/h1/GBPJPY.parquet
           key: fx-h1-v2-GBPJPY-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: fx-h1-v2-GBPJPY-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/NZDUSD.parquet
+          key: fx-h1-v2-NZDUSD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-NZDUSD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/USDCAD.parquet
+          key: fx-h1-v2-USDCAD-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-USDCAD-
+      - uses: actions/cache/restore@v4
+        with:
+          path: fx-autopilot/data/h1/USDCHF.parquet
+          key: fx-h1-v2-USDCHF-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fx-h1-v2-USDCHF-
       - name: Data quality gate (missing / stale / implausible data stops research and PAPER)
         run: |
           mkdir -p logs
@@ -184,15 +201,19 @@ jobs:
         run: |
           set -o pipefail
           python -m fxap.cli research-v2 2>&1 | tee logs/research_v2.log
-      - name: Research V3 / V4
+      - name: Research V3+ (main = all plans / branch = newest plan only)
         if: >-
           github.event_name == 'push' ||
           (github.event_name == 'workflow_dispatch' && inputs.mode == 'research') ||
           (github.event_name == 'schedule' && github.event.schedule == '7 23 * * 5')
         run: |
           set -o pipefail
-          python -m fxap.cli research-v2 --plan v3 2>&1 | tee logs/research_v3.log
-          python -m fxap.cli research-v2 --plan v4 2>&1 | tee logs/research_v4.log
+          plans=$(ls config/research_plan_v*.yaml | sed -E 's/.*_(v[0-9]+)\.yaml/\1/' | sort -V | awk '$1 != "v2"')
+          if [ "${GITHUB_REF_NAME}" != "main" ]; then plans=$(echo "$plans" | tail -n 1); fi
+          echo "$plans" > logs/plans.txt
+          for v in $plans; do
+            python -m fxap.cli research-v2 --plan "$v" 2>&1 | tee "logs/research_${v}.log"
+          done
       - name: PAPER trade → settlement → tournament → dashboard → ledger verify
         # PAPER Forward は main でのみ進める（ブランチで状態を進めると main の Forward 記録と分岐するため）
         if: github.ref_name == 'main'
@@ -203,15 +224,16 @@ jobs:
         if: always()
         run: |
           { echo "## FX AUTOPILOT (PAPER ONLY)"; cat DASHBOARD.md 2>/dev/null || true;
-            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; tail -n 40 logs/research_v3.log 2>/dev/null || true; tail -n 40 logs/research_v4.log 2>/dev/null || true; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+            echo; echo '```'; tail -n 40 logs/research.log 2>/dev/null || true; tail -n 40 logs/research_v2.log 2>/dev/null || true; for f in logs/research_v*.log; do tail -n 30 "$f" 2>/dev/null || true; done; tail -n 20 logs/paper.log 2>/dev/null || true; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
       - name: Commit results (derived statistics only; raw market data is not committed)
         run: |
           git config user.name "fx-autopilot-bot"
           git config user.email "fx-autopilot-bot@users.noreply.github.com"
           if [ "${GITHUB_REF_NAME}" = "main" ]; then
-            git add research/results research/results_v2 research/results_v3 research/results_v4 config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
+            git add research config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
           else
-            git add research/results_v3 research/results_v4 config/locked 2>/dev/null || true   # ブランチ: 新しい研究結果と LOCK だけ
+            latest=$(tail -n 1 logs/plans.txt 2>/dev/null)
+            git add "research/results_${latest}" config/locked 2>/dev/null || true   # ブランチ: 開発中の最新プランの結果と LOCK だけ
           fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"
