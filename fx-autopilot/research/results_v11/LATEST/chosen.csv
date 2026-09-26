@@ -1,0 +1,14 @@
+candidate,year,params,train_sharpe
+v11_intraday_region,2014,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-2.244
+v11_intraday_region,2015,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.964
+v11_intraday_region,2016,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.74
+v11_intraday_region,2017,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.585
+v11_intraday_region,2018,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.477
+v11_intraday_region,2019,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.495
+v11_intraday_region,2020,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.654
+v11_intraday_region,2021,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.727
+v11_intraday_region,2022,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.694
+v11_intraday_region,2023,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.626
+v11_intraday_region,2024,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.564
+v11_intraday_region,2025,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.514
+v11_intraday_region,2026,"{""windows"": ""asia0_6_eu7_12_us16_20""}",-1.476
