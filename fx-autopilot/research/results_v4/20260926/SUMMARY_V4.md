@@ -1,4 +1,4 @@
-# FX AUTOPILOT V4 研究結果（2026-09-26 05:35 UTC、データ〜2026-09-25 20:00:00+00:00）
+# FX AUTOPILOT V4 研究結果（2026-09-26 07:00 UTC、データ〜2026-09-25 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v4.yaml`
 
@@ -130,3 +130,28 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | v4_carry_trend_h4 | REJECTED | {"threshold": 1.0} | risk_stop | 2026-09-25T20:26 | 21f421b1286c |
 
 CHALLENGER でも自動で Champion にはならない。Champion 昇格は LOCK 後 PAPER Forward（3 か月・20 取引・プラス・乖離）合格が必須。
+
+## データ品質: 政策金利近似表（旧）と FRED 市場金利（3 か月物）の差（2010〜、%ポイント）
+
+```
+ccy  months market_last  mean_diff_pp  mean_abs_diff_pp  max_abs_diff_pp
+USD     199     2026-08        -0.117             0.143            1.225
+EUR     193     2026-01        -0.190             0.223            1.176
+JPY     199     2026-07        -0.168             0.169            0.958
+GBP     193     2026-01        -0.116             0.154            1.140
+AUD     200     2026-08        -0.167             0.197            0.910
+NZD     200     2026-08        -0.173             0.181            0.680
+CAD     200     2026-08         0.052             0.084            0.422
+CHF     200     2026-08         0.034             0.066            0.353
+```
+
+## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
+
+  pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
+USDJPY  4181               0.0219            0.2995             1.156               9             1 2013-06-06
+EURUSD  4181               0.0253            0.3181             0.884               9             0 2011-10-07
+GBPUSD  4181               0.0257            0.3184             1.817              11             1 2020-03-18
+AUDUSD  4181               0.0303            0.3768             1.172              20             3 2020-03-12
+NZDUSD  4181               0.0361            0.4023             1.450              23             2 2011-08-05
+USDCAD  4181               0.0248            0.2948             0.895               9             0 2020-03-12
+USDCHF  4181               0.0276            0.3103             1.041               8             1 2011-10-07

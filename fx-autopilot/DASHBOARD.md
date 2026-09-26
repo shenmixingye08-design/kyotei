@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-09-26T05:37 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-09-26T07:02 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
@@ -34,6 +34,12 @@
 | v4_carry_trend_h4 | REJECTED | 未開始 | | | | | | | | | | |
 | v5_carry_trend_daily_10p | REJECTED | 未開始 | | | | | | | | | | |
 | v5_carry_trend_weekly_10p | REJECTED | 未開始 | | | | | | | | | | |
+| v6_carry_trend_daily_mkt_7p | REJECTED | 未開始 | | | | | | | | | | |
+| v6_carry_trend_mkt_7p | REJECTED | 未開始 | | | | | | | | | | |
+| v6_trend_carry_mkt_5p | REJECTED | 未開始 | | | | | | | | | | |
+| v7_carry_monthly | REJECTED | 未開始 | | | | | | | | | | |
+| v7_ccv_monthly | REJECTED | 未開始 | | | | | | | | | | |
+| v7_cm_monthly | REJECTED | 未開始 | | | | | | | | | | |
 
 ## バックテスト（LOCK 後に 1 回だけ評価。コスト込み・retail_jp）
 
@@ -64,5 +70,11 @@
 | v4_carry_trend_h4 | REJECTED | — | — | — | — | — | — | — | — | — |
 | v5_carry_trend_daily_10p | REJECTED | — | — | — | — | — | — | — | — | — |
 | v5_carry_trend_weekly_10p | REJECTED | — | — | — | — | — | — | — | — | — |
+| v6_carry_trend_daily_mkt_7p | REJECTED | — | — | — | — | — | — | — | — | — |
+| v6_carry_trend_mkt_7p | REJECTED | — | — | — | — | — | — | — | — | — |
+| v6_trend_carry_mkt_5p | REJECTED | — | — | — | — | — | — | — | — | — |
+| v7_carry_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
+| v7_ccv_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
+| v7_cm_monthly | REJECTED | — | — | — | — | — | — | — | — | — |
 
 詳細: `research/results/LATEST/SUMMARY.md` ／ 台帳: `paper_forward/<spec>/ledger.jsonl`（ハッシュチェーン）

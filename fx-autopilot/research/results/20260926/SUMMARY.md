@@ -1,4 +1,4 @@
-# FX AUTOPILOT 研究結果（2026-09-26 05:22 UTC）
+# FX AUTOPILOT 研究結果（2026-09-26 06:52 UTC）
 
 **PAPER / BACKTEST のみ。利益を保証するものではありません。LIVE は本人の明示承認まで開始しません。**
 
@@ -455,4 +455,7 @@ LIVE 候補: **なし**（LIVE 開始には本人の明示承認が必須）
 | v4_carry_trend_h4 | REJECTED | profit_factor, sharpe, positive_years, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v5_carry_trend_daily_10p | REJECTED | sharpe, positive_years, subperiod_not_positive, few_positive_pairs, single_regime_dependence, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 | v5_carry_trend_weekly_10p | REJECTED | sharpe, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v6_carry_trend_daily_mkt_7p | REJECTED | single_regime_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v6_carry_trend_mkt_7p | REJECTED | top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
+| v6_trend_carry_mkt_5p | REJECTED | sharpe, few_positive_pairs, top5_trade_dependence, top1_trade_dependence | paper_months<3, paper_trades, paper_not_positive |
 

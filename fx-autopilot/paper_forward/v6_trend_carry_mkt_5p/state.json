@@ -1,0 +1,28 @@
+{
+  "spec_id": "v6_trend_carry_mkt_5p",
+  "spec_hash": "ec40f732934558d251c825a7619f422207e2b3e62e8db6db523fed8fb012229f",
+  "last_bar": null,
+  "started_at": "2026-09-26T07:02:32.099578+00:00",
+  "start": "2026-09-26 06:02:34.617061+00:00",
+  "halted": false,
+  "consecutive_order_errors": 0,
+  "bars_processed": 0,
+  "risk_state": {
+    "equity": 1000000.0,
+    "hwm": 1000000.0,
+    "day_key": "",
+    "week_key": "",
+    "day_start_equity": 0.0,
+    "week_start_equity": 0.0,
+    "kill_switch": false,
+    "kill_reason": "",
+    "broker_connected": true
+  },
+  "broker_state": {
+    "cash": 1000000.0,
+    "positions": {},
+    "pending": [],
+    "client_ids": []
+  },
+  "mgmt": {}
+}
