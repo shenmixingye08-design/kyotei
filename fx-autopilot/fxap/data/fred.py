@@ -52,7 +52,9 @@ CPI = {"USD": ["CPIAUCSL", "CPALTT01USM661N"],
        "NZD": ["CPALTT01NZQ661N", "NZLCPIALLQINMEI"],
        "CAD": ["CPALTT01CAM661N", "CANCPIALLMINMEI"],
        "CHF": ["CPALTT01CHM661N", "CHECPIALLMINMEI"]}
-CPI_MAX_AGE_DAYS = 270      # 最終観測がこれより古い系列は「最新まで続いていない」とみなして次の候補へ
+CPI_MAX_AGE_DAYS = 270
+# リスク指標（V10: キャリーの暴落リスク・フィルター）。VIXCLS = CBOE VIX 日次終値
+RISK = {"VIXCLS": "CBOE VIX"}      # 最終観測がこれより古い系列は「最新まで続いていない」とみなして次の候補へ
 
 
 def parse_csv(text: str) -> pd.Series:
@@ -180,7 +182,7 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     連続で全経路失敗するか時間上限を超えたら残りを打ち切る（届かないサイトで CI を止めない）。"""
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
-    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()], [f"CPI_{c}" for c in CPI]]
+    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()] + list(RISK), [f"CPI_{c}" for c in CPI]]
     with requests.Session() as ses:
         for ids in groups:
             fails, t0 = 0, time.time()
