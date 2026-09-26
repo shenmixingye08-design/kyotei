@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-09-26T07:02 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-09-26T07:32 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
