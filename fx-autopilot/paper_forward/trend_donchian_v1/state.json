@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-09-25 18:00:00+00:00",
+  "last_bar": "2026-09-25 20:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 6,
+  "bars_processed": 8,
   "risk_state": {
-    "equity": 1000204.0,
+    "equity": 999992.0,
     "hwm": 1000311.9999999999,
     "day_key": "2026-09-25",
     "week_key": "2026-W39",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 4,
+        "bars": 6,
         "best_close": 179.09550000000002,
         "cost_spread": 14.000000000010004,
         "cost_slip": 8.0,
@@ -53,19 +53,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-09-25 18:00:00+00:00"
+      "last_bar": "2026-09-25 20:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-09-25 18:00:00+00:00"
+      "last_bar": "2026-09-25 20:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-09-25 18:00:00+00:00"
+      "last_bar": "2026-09-25 20:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-09-25 18:00:00+00:00"
+      "last_bar": "2026-09-25 20:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-09-25 18:00:00+00:00"
+      "last_bar": "2026-09-25 20:00:00+00:00"
     }
   }
 }
