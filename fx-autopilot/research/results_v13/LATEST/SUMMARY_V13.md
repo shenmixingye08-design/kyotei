@@ -1,4 +1,4 @@
-# FX AUTOPILOT V13 研究結果（2026-09-26 10:34 UTC、データ〜2026-09-25 20:00:00+00:00）
+# FX AUTOPILOT V13 研究結果（2026-09-26 09:49 UTC、データ〜2026-09-25 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v13.yaml`
 
@@ -113,8 +113,8 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | spec_id | status | params | sizing | locked_at | spec_hash |
 |---|---|---|---|---|---|
-| v13_ratemom | REJECTED | {"threshold": 0.5} | vol_target | 2026-09-26T10:34 | 46b7a171be92 |
-| v13_carry_ratemom | REJECTED | {"threshold": 1.0} | vol_target | 2026-09-26T10:34 | 820965d2eb31 |
+| v13_ratemom | REJECTED | {"threshold": 0.5} | vol_target | 2026-09-26T09:49 | 46b7a171be92 |
+| v13_carry_ratemom | REJECTED | {"threshold": 1.0} | vol_target | 2026-09-26T09:49 | 820965d2eb31 |
 
 CHALLENGER でも自動で Champion にはならない。Champion 昇格は LOCK 後 PAPER Forward（3 か月・20 取引・プラス・乖離）合格が必須。
 

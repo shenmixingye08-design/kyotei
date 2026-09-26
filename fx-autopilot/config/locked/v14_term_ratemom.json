@@ -1,39 +1,39 @@
 {
-  "spec_id": "v13_ratemom",
-  "strategy": "v13_ratemom",
-  "strategy_version": "v13",
-  "family": "rate_momentum",
-  "plan_version": "fx_plan_v13",
+  "spec_id": "v14_term_ratemom",
+  "strategy": "v14_term_ratemom",
+  "strategy_version": "v14",
+  "family": "yield_curve",
+  "plan_version": "fx_plan_v14",
   "pairs": {
     "USDJPY": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "EURUSD": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "EURJPY": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "GBPUSD": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "AUDUSD": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "AUDJPY": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "GBPJPY": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "NZDUSD": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "USDCAD": {
-      "threshold": 0.5
+      "threshold": 1.0
     },
     "USDCHF": {
-      "threshold": 0.5
+      "threshold": 1.0
     }
   },
   "trade_pairs": [
@@ -85,19 +85,19 @@
     "top1_trade_dependence"
   ],
   "wf_summary": {
-    "n_trades": 151,
-    "net_return": -0.159563,
-    "profit_factor": 0.859501,
-    "sharpe": -0.177125,
-    "max_drawdown": -0.260382,
-    "ret_A": -0.06084599345043196,
-    "ret_B": -0.10511299530168372,
-    "stress_pf": 0.747553,
-    "dsr": 0.0555
+    "n_trades": 118,
+    "net_return": -0.194464,
+    "profit_factor": 0.814362,
+    "sharpe": -0.265515,
+    "max_drawdown": -0.303229,
+    "ret_A": -0.2378326302294036,
+    "ret_B": 0.056901330205549217,
+    "stress_pf": 0.681147,
+    "dsr": 0.0272
   },
   "contaminated_backtest": true,
   "research_only": true,
-  "code_hash": "e9bb4a8a15019fe1ba381c77a840ef34e4ee85b7ca3b76f96fb3153ff4a773e2",
-  "spec_hash": "46b7a171be924106d9ec8db834e6a95f87ff1246a98644a22c85c407e0ace1b3",
-  "locked_at": "2026-09-26T09:49:39.872053+00:00"
+  "code_hash": "2215340e9a09890cfe74f88c054ee0bf721e336ca80d27c417213517edf7e82d",
+  "spec_hash": "daf5b3d93c012a4a049f00a356d4a598b969918fdf4979a4ac684d3d5e28dd9b",
+  "locked_at": "2026-09-26T10:16:32.285994+00:00"
 }

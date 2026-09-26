@@ -1,9 +1,9 @@
 {
-  "spec_id": "v13_ratemom",
-  "strategy": "v13_ratemom",
-  "strategy_version": "v13",
-  "family": "rate_momentum",
-  "plan_version": "fx_plan_v13",
+  "spec_id": "v14_term",
+  "strategy": "v14_term",
+  "strategy_version": "v14",
+  "family": "yield_curve",
+  "plan_version": "fx_plan_v14",
   "pairs": {
     "USDJPY": {
       "threshold": 0.5
@@ -85,19 +85,19 @@
     "top1_trade_dependence"
   ],
   "wf_summary": {
-    "n_trades": 151,
-    "net_return": -0.159563,
-    "profit_factor": 0.859501,
-    "sharpe": -0.177125,
-    "max_drawdown": -0.260382,
-    "ret_A": -0.06084599345043196,
-    "ret_B": -0.10511299530168372,
-    "stress_pf": 0.747553,
-    "dsr": 0.0555
+    "n_trades": 102,
+    "net_return": -0.280197,
+    "profit_factor": 0.667592,
+    "sharpe": -0.268266,
+    "max_drawdown": -0.406406,
+    "ret_A": -0.3246970150775982,
+    "ret_B": 0.06589621960792602,
+    "stress_pf": 0.416815,
+    "dsr": 0.0296
   },
   "contaminated_backtest": true,
   "research_only": true,
-  "code_hash": "e9bb4a8a15019fe1ba381c77a840ef34e4ee85b7ca3b76f96fb3153ff4a773e2",
-  "spec_hash": "46b7a171be924106d9ec8db834e6a95f87ff1246a98644a22c85c407e0ace1b3",
-  "locked_at": "2026-09-26T09:49:39.872053+00:00"
+  "code_hash": "2215340e9a09890cfe74f88c054ee0bf721e336ca80d27c417213517edf7e82d",
+  "spec_hash": "3edf4710facf5d0fafbcdc7572dd298c37bbea5e39920f3344fa851cd8f395af",
+  "locked_at": "2026-09-26T10:16:32.284260+00:00"
 }

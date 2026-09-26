@@ -238,6 +238,8 @@ jobs:
           echo "$plans" > logs/plans.txt
           rc=0
           for v in $plans; do   # 1 つのプランの失敗で残りのプランを止めない（失敗はステップの結果に残す）
+            # main では、ブランチでまだ初回評価（LOCK）が済んでいないプランは走らせない（同じ LOCK を main とブランチで二重に作らない）
+            if [ "${GITHUB_REF_NAME}" = "main" ] && [ ! -d "research/results_${v}/LATEST" ]; then echo "skip $v (not yet evaluated on branch)"; continue; fi
             python -m fxap.cli research-v2 --plan "$v" 2>&1 | tee "logs/research_${v}.log" || { echo "::warning::research $v failed"; rc=1; }
           done
           exit $rc
