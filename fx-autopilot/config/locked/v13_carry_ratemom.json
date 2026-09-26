@@ -1,0 +1,101 @@
+{
+  "spec_id": "v13_carry_ratemom",
+  "strategy": "v13_carry_ratemom",
+  "strategy_version": "v13",
+  "family": "rate_momentum",
+  "plan_version": "fx_plan_v13",
+  "pairs": {
+    "USDJPY": {
+      "threshold": 1.0
+    },
+    "EURUSD": {
+      "threshold": 1.0
+    },
+    "EURJPY": {
+      "threshold": 1.0
+    },
+    "GBPUSD": {
+      "threshold": 1.0
+    },
+    "AUDUSD": {
+      "threshold": 1.0
+    },
+    "AUDJPY": {
+      "threshold": 1.0
+    },
+    "GBPJPY": {
+      "threshold": 1.0
+    },
+    "NZDUSD": {
+      "threshold": 1.0
+    },
+    "USDCAD": {
+      "threshold": 1.0
+    },
+    "USDCHF": {
+      "threshold": 1.0
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "swap_source": "market",
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 6,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.03,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 20:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "max_drawdown",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "single_regime_dependence",
+    "deflated_sharpe",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 104,
+    "net_return": -0.132143,
+    "profit_factor": 0.814395,
+    "sharpe": -0.172087,
+    "max_drawdown": -0.288062,
+    "ret_A": -0.15736409325808964,
+    "ret_B": 0.029930925883762782,
+    "stress_pf": 0.691368,
+    "dsr": 0.057
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "e9bb4a8a15019fe1ba381c77a840ef34e4ee85b7ca3b76f96fb3153ff4a773e2",
+  "spec_hash": "820965d2eb31b9cd502a38c059ce7fd1c6f957241397e6b789d9cbde1b733de5",
+  "locked_at": "2026-09-26T09:49:39.873605+00:00"
+}
