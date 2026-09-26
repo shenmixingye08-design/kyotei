@@ -1,0 +1,61 @@
+# 事前登録: V8（ドル・キャリー）。評価前にコミット。結果を見て変更しない（変更は v9）。research_program.yaml の 1 本目
+plan_version: fx_plan_v8
+registered_at: "2026-09-26"
+purpose: >
+  Lustig, Roussanov & Verdelhan (2014, JFE)「Countercyclical Currency Risk Premia」のドル・キャリー:
+  先進国の平均短期金利が米国より高ければ外貨バスケットを買い（ドル売り）、低ければドルを買う。
+  個別ペアの大相場ではなく「ドル全体」への 1 つの賭けを 7 ペアに分散して持つ。月 1 回判断、逆ボラ（vol_target）サイズ。
+  比較としてドルの 6 か月トレンドと向きが一致するときだけ持つ版も登録する。
+contamination: >
+  期間・コスト・ゲートは既出。設計者は V2〜V7 の結果（2022 年の円安・ドル高で利益が集中）を知っている。
+  ドル・キャリーは 2022 年にドル買い（米金利 > 外国平均）になる規則なので、同じ相場への依存が出る可能性がある。
+  規則は論文どおりで調整パラメータはない（グリッド 1 通り × 2 候補）。最終判断は LOCK 後の PAPER Forward。
+swap_source: market
+dsr_trials: cumulative
+
+unit: portfolio
+pairs: [EURUSD, USDJPY, GBPUSD, AUDUSD, NZDUSD, USDCAD, USDCHF]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v8_dollar_carry:
+    family: dollar_carry
+    grid: {rule: [carry]}
+  v8_dollar_carry_trend:
+    family: dollar_carry
+    grid: {rule: [carry_and_trend]}
+
+risk_overrides:             # 7 本同時（相関が高いので 1 本 1.5% ボラ、ドル・エクスポージャは残高の 2 倍まで）
+  max_open_positions: 7
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.015
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                      # V3/V4 と同一（7 ペア: プラスのペア数 5）
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 5
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30

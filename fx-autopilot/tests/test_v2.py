@@ -288,3 +288,34 @@ class TestV7(unittest.TestCase):
         self.assertEqual(len(pt), len(btt))
         self.assertGreater(len(btt), 0)
         self.assertAlmostEqual(pt["pnl_jpy"].sum(), btt["pnl_jpy"].sum(), delta=1.0)
+
+
+class TestV8(unittest.TestCase):
+    PAIRS7 = ["EURUSD", "USDJPY", "GBPUSD", "AUDUSD", "NZDUSD", "USDCAD", "USDCHF"]
+
+    def test_v8_no_lookahead_and_basket(self):
+        data = synthetic.make_all(pairs=self.PAIRS7, n=20000, seed=12)
+        for name in ("v8_dollar_carry", "v8_dollar_carry_trend"):
+            params = REGISTRY[name].param_grid()[0]
+            s = {"strategy": name, "pairs": {p: params for p in self.PAIRS7}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                for p in self.PAIRS7:
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
+        # carry 規則: 同じ判断日に、XXXUSD と USDXXX は逆向き（= すべて同じドルの向き）
+        a = research.spec_signals({"strategy": "v8_dollar_carry",
+                                   "pairs": {p: {"rule": "carry"} for p in self.PAIRS7}}, data)
+        e1, e2 = a["EURUSD"]["entry"], a["USDJPY"]["entry"]
+        both = (e1 != 0) & (e2 != 0)
+        self.assertTrue(both.any())
+        self.assertTrue((e1[both] == -e2[both]).all())
+
+    def test_prior_trials_counts_history(self):
+        from fxap import research_v2
+        self.assertGreaterEqual(research_v2.prior_trials("v8"), 5 * 39)

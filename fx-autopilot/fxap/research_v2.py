@@ -170,6 +170,19 @@ def gate(c: dict, g: dict) -> list[str]:
     return f
 
 
+def prior_trials(version: str) -> int:
+    """このバージョンより前に試したパラメータ組の数。V1 = v1 戦略のグリッド × 5 ペア（ペアごとに選んだため）、
+    V2 以降 = results_vN/LATEST/grid.csv の行数。"""
+    from .strategies import REGISTRY
+    n = 5 * sum(len(c.param_grid()) for c in REGISTRY.values() if c.version == "v1")
+    k = int(version.lstrip("v"))
+    for i in range(2, k):
+        g = RESULTS_V2.parent / f"results_v{i}" / "LATEST" / "grid.csv"
+        if g.exists():
+            n += len(pd.read_csv(g))
+    return n
+
+
 def run(data: dict, only=None, log=print) -> dict:
     P = plan()
     from . import swap as swapm
@@ -206,6 +219,10 @@ def run(data: dict, only=None, log=print) -> dict:
         all_runs[name] = runs
     trial_sr = [r["full_sharpe"] for r in full_rows if r["is_v2"] and r["full_sharpe"] is not None]
     n_trials = sum(1 for r in full_rows if r["is_v2"])
+    if P.get("dsr_trials") == "cumulative":      # V8〜: これまでの全バージョンの試行数も数える（多重検定の補正を厳しく）
+        n_prior = prior_trials(VERSION["v"])
+        log(f"  DSR: cumulative trials = {n_prior} (V1〜前バージョン) + {n_trials} (今回)")
+        n_trials += n_prior
     yearly, pairsT, regimes, chosen_all = [], [], [], []
     for name in names + refs:
         runs = all_runs[name]
