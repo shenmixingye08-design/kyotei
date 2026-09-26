@@ -52,7 +52,7 @@ class TestV2(unittest.TestCase):
         data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
         for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only",
                      "v4_carry_trend_daily", "v4_carry_trend_daily_fast", "v4_carry_trend_h4",
-                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi"):
+                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi", "v11_intraday_region"):
             params = REGISTRY[name].param_grid()[-1]
             s = {"strategy": name, "pairs": {p: params for p in pairs7}}
             for cut in (17000, 17009):
@@ -370,3 +370,21 @@ class TestV10(unittest.TestCase):
         b = research.spec_signals(s, data)["USDJPY"]
         early = a.index < cut.tz_localize("UTC")
         self.assertTrue(np.array_equal(a.loc[early, "entry"].to_numpy(), b.loc[early, "entry"].to_numpy()))
+
+
+class TestV11(unittest.TestCase):
+    def test_windows(self):
+        """USDJPY: アジア時間（0–6 UTC）は買い（JPY 安）、米州時間（16–20）は売り。同地域ペアは取引なし。"""
+        pairs10 = TestV7.PAIRS10
+        data = synthetic.make_all(pairs=pairs10, n=3000, seed=15)
+        sig = research.spec_signals({"strategy": "v11_intraday_region",
+                                     "pairs": {p: {"windows": "asia0_6_eu7_12_us16_20"} for p in pairs10}}, data)
+        u = sig["USDJPY"]
+        hrs = u.index.hour
+        self.assertTrue((u["entry"][hrs == 23] >= 0).all() and (u["entry"][hrs == 23] == 1).any())
+        self.assertTrue((u["entry"][hrs == 15] == -1).any())
+        self.assertTrue(u["exit_long"][hrs == 5].all())
+        self.assertEqual(int((sig["AUDJPY"]["entry"] != 0).sum()), 0)
+        self.assertEqual(int((sig["USDCAD"]["entry"] != 0).sum()), 0)
+        e = sig["EURUSD"]
+        self.assertTrue((e["entry"][e.index.hour == 6] == -1).any())   # 欧州時間は EUR 売り
