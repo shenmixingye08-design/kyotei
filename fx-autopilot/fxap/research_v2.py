@@ -344,13 +344,16 @@ def write(out: dict, specs: list, data_end: str) -> str:
         import shutil as _sh
         _sh.copy(xc, d / "data_crosscheck.csv")
     md = summary_md(out, specs, data_end)
+
+    def _nonempty(p):
+        return p.exists() and p.stat().st_size > 1 and len(pd.read_csv(p)) > 0
     rc = RESULTS_V2.parent / "results" / "rates_check.csv"
-    if rc.exists():
+    if _nonempty(rc):
         import shutil as _sh
         _sh.copy(rc, d / "rates_check.csv")
         md += "\n## データ品質: 政策金利近似表（旧）と FRED 市場金利（3 か月物）の差（2010〜、%ポイント）\n\n```\n" + \
               pd.read_csv(rc).to_string(index=False) + "\n```\n"
-    if xc.exists():
+    if _nonempty(xc):
         md += "\n## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）\n\n" + \
               pd.read_csv(xc).to_string(index=False) + "\n"
     (d / f"SUMMARY_{VERSION['v'].upper()}.md").write_text(md, encoding="utf-8")

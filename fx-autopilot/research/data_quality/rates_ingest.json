@@ -1,0 +1,72 @@
+{
+ "at": "2026-09-26 06:21:12.643088+00:00",
+ "ok": 15,
+ "series": {
+  "IR3TIB01USM156N": {
+   "cached": true,
+   "rows": 746
+  },
+  "IR3TIB01EZM156N": {
+   "source": "fred",
+   "rows": 385,
+   "first": "1994-01-01",
+   "last": "2026-01-01"
+  },
+  "IR3TIB01JPM156N": {
+   "source": "fred",
+   "rows": 292,
+   "first": "2002-04-01",
+   "last": "2026-07-01"
+  },
+  "IR3TIB01GBM156N": {
+   "source": "fred",
+   "rows": 829,
+   "first": "1957-01-01",
+   "last": "2026-01-01"
+  },
+  "IR3TIB01AUM156N": {
+   "cached": true,
+   "rows": 704
+  },
+  "IR3TIB01NZM156N": {
+   "cached": true,
+   "rows": 633
+  },
+  "IR3TIB01CAM156N": {
+   "cached": true,
+   "rows": 848
+  },
+  "IR3TIB01CHM156N": {
+   "cached": true,
+   "rows": 326
+  },
+  "DEXJPUS": {
+   "cached": true,
+   "rows": 13965
+  },
+  "DEXUSEU": {
+   "cached": true,
+   "rows": 6950
+  },
+  "DEXUSUK": {
+   "cached": true,
+   "rows": 13971
+  },
+  "DEXUSAL": {
+   "cached": true,
+   "rows": 13964
+  },
+  "DEXUSNZ": {
+   "cached": true,
+   "rows": 13955
+  },
+  "DEXCAUS": {
+   "cached": true,
+   "rows": 13977
+  },
+  "DEXSZUS": {
+   "cached": true,
+   "rows": 13971
+  }
+ }
+}

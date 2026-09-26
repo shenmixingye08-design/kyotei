@@ -25,7 +25,9 @@ FRED_URLS = (FRED_CSV,
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 "
       "fx-autopilot-research")
 # FRED に届かない場合の代替: DBnomics の OECD MEI ミラー（同じ OECD 3 か月物金利 IR3TIB01）
-DBNOMICS = "https://api.db.nomics.world/v22/series/OECD/MEI/{cc}.IR3TIB01.ST.M?observations=1&format=json"
+DBNOMICS = "https://api.db.nomics.world/v22/series/OECD/MEI/{cc}.{sub}.ST.M?observations=1&format=json"
+# 3 か月物の代替系列（国によって IR3TIB が無い: 米国は CD 3M、豪 NZ は銀行手形 3M など）
+DBN_SUBJECTS = ("IR3TIB01", "IR3TBB01", "IR3TCD01")
 DBN_CC = {"IR3TIB01USM156N": "USA", "IR3TIB01EZM156N": "EA19", "IR3TIB01JPM156N": "JPN", "IR3TIB01GBM156N": "GBR",
           "IR3TIB01AUM156N": "AUS", "IR3TIB01NZM156N": "NZL", "IR3TIB01CAM156N": "CAN", "IR3TIB01CHM156N": "CHE"}
 BUDGET_SEC = 360      # ingest 全体の時間上限（届かないサイトで CI を止めない）
@@ -54,10 +56,10 @@ def _looks_csv(text: str) -> bool:
     return bool(head) and "<html" not in head and "," in head
 
 
-def _curl(url: str, timeout: int) -> str | None:
+def _curl(url: str, timeout: int, ua: str | None = UA) -> str | None:
     if not shutil.which("curl"):
         return None
-    r = subprocess.run(["curl", "-sSfL", "--compressed", "-m", str(timeout), "-A", UA, url],
+    r = subprocess.run(["curl", "-sSfL", "--compressed", "-m", str(timeout)] + (["-A", ua] if ua else []) + [url],
                        capture_output=True, text=True, timeout=timeout + 10)
     return r.stdout if r.returncode == 0 else None
 
@@ -69,20 +71,20 @@ def fetch(sid: str, session=None, retries: int = 1, timeout=(8, 25)) -> pd.Serie
     for k in range(retries):
         for tpl in FRED_URLS:
             url = tpl.format(sid=sid)
+            try:   # 既定 UA の curl（Actions の疎通確認で 200 が返った経路）を最初に試す
+                t = _curl(url, timeout[1], ua=None)
+                if t and _looks_csv(t):
+                    return parse_csv(t)
+                errs.append(f"{url}: curl(default UA) failed")
+            except (subprocess.SubprocessError, OSError) as e:
+                errs.append(f"{url}: curl {type(e).__name__}")
             try:
-                r = s.get(url, timeout=timeout, headers={"User-Agent": UA, "Accept": "text/csv,*/*"})
+                r = s.get(url, timeout=timeout, headers={"Accept": "text/csv,*/*"})
                 if r.status_code == 200 and _looks_csv(r.text):
                     return parse_csv(r.text)
                 errs.append(f"{url}: HTTP {r.status_code}")
             except requests.RequestException as e:  # noqa: PERF203
                 errs.append(f"{url}: {type(e).__name__}")
-            try:
-                t = _curl(url, timeout[1])
-                if t and _looks_csv(t):
-                    return parse_csv(t)
-                errs.append(f"{url}: curl failed")
-            except (subprocess.SubprocessError, OSError) as e:
-                errs.append(f"{url}: curl {type(e).__name__}")
         if k + 1 < retries:
             time.sleep(3 * (2 ** k))
     raise RuntimeError(f"FRED {sid}: " + " | ".join(errs[-4:]))
@@ -94,12 +96,17 @@ def fetch_dbnomics(sid: str, session=None, timeout=(8, 25)) -> pd.Series:
     if cc is None:
         raise RuntimeError(f"DBnomics: {sid} は対象外")
     s = session or requests.Session()
-    r = s.get(DBNOMICS.format(cc=cc), timeout=timeout, headers={"User-Agent": UA})
-    if r.status_code != 200:
-        raise RuntimeError(f"DBnomics {cc}: HTTP {r.status_code}")
-    docs = r.json().get("series", {}).get("docs", [])
+    errs = []
+    docs = []
+    for sub in DBN_SUBJECTS:
+        r = s.get(DBNOMICS.format(cc=cc, sub=sub), timeout=timeout, headers={"User-Agent": UA})
+        if r.status_code == 200:
+            docs = r.json().get("series", {}).get("docs", [])
+            if docs:
+                break
+        errs.append(f"{cc}.{sub}: HTTP {r.status_code}")
     if not docs:
-        raise RuntimeError(f"DBnomics {cc}: no series")
+        raise RuntimeError("DBnomics " + ", ".join(errs))
     d = docs[0]
     v = pd.to_numeric(pd.Series(d["value"]), errors="coerce").to_numpy(dtype=float)
     ser = pd.Series(v, index=pd.to_datetime(pd.Series(d["period"]).astype(str)), name=sid).dropna()
@@ -108,38 +115,51 @@ def fetch_dbnomics(sid: str, session=None, timeout=(8, 25)) -> pd.Series:
     return ser
 
 
+def _obs_fresh(sid: str) -> bool:
+    """キャッシュの最終観測日が新しいか（月次 120 日 / 日次 21 日以内）。古い代替ソース（DBnomics の
+    終了済み MEI 等）で取った CSV を、FRED が取れるようになった後も使い続けないため。"""
+    try:
+        last = load(sid).index.max()
+    except Exception:  # noqa: BLE001
+        return False
+    lim = 120 if sid in SHORT_RATES.values() else 21
+    return (pd.Timestamp.now() - pd.Timestamp(last).tz_localize(None)).days <= lim
+
+
 def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
-    """取得済みで新しい CSV（Actions cache 由来）は再利用。連続で全経路失敗したら残りは打ち切る（時間を浪費しない）。"""
+    """取得済みで新しい CSV（Actions cache 由来）は再利用。グループ（短期金利 / H.10）ごとに、
+    連続で全経路失敗するか時間上限を超えたら残りを打ち切る（届かないサイトで CI を止めない）。"""
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
-    ids = list(SHORT_RATES.values()) + [v[0] for v in H10.values()]
-    fails = 0
-    t0 = time.time()
+    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()]]
     with requests.Session() as ses:
-        for sid in ids:
-            p = FRED_DIR / f"{sid}.csv"
-            if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400:
-                rep[sid] = {"cached": True, "rows": int(len(load(sid)))}
-            elif fails >= max_consecutive_fail or time.time() - t0 > BUDGET_SEC:
-                rep[sid] = {"skipped": "FRED unreachable this run", **({"stale_cache": True} if p.exists() else {})}
-            else:
-                try:
+        for ids in groups:
+            fails, t0 = 0, time.time()
+            for sid in ids:
+                p = FRED_DIR / f"{sid}.csv"
+                if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400 and _obs_fresh(sid):
+                    rep[sid] = {"cached": True, "rows": int(len(load(sid)))}
+                elif fails >= max_consecutive_fail or time.time() - t0 > BUDGET_SEC / 2:
+                    rep[sid] = {"skipped": "source unreachable this run", **({"stale_cache": True} if p.exists() else {})}
+                else:
                     try:
-                        ser, src = fetch(sid, ses), "fred"
-                    except RuntimeError as e1:
-                        if sid not in DBN_CC:
-                            raise
                         try:
-                            ser, src = fetch_dbnomics(sid, ses), "dbnomics_oecd_mei"
-                        except Exception as e2:  # noqa: BLE001
-                            raise RuntimeError(f"{e1} || {e2!r}") from e2
-                    ser.to_frame("value").to_csv(p)
-                    rep[sid] = {"source": src, "rows": int(len(ser)), "first": str(ser.index.min())[:10], "last": str(ser.index.max())[:10]}
-                    fails = 0
-                except Exception as e:  # noqa: BLE001
-                    fails += 1
-                    rep[sid] = {"error": str(e)[:400], **({"stale_cache": True} if p.exists() else {})}
-            log(f"  FRED {sid}: {rep[sid]}")
+                            ser, src = fetch(sid, ses), "fred"
+                        except RuntimeError as e1:
+                            if sid not in DBN_CC:
+                                raise
+                            try:
+                                ser, src = fetch_dbnomics(sid, ses), "dbnomics_oecd_mei"
+                            except Exception as e2:  # noqa: BLE001
+                                raise RuntimeError(f"{e1} || {e2!r}") from e2
+                        ser.to_frame("value").to_csv(p)
+                        rep[sid] = {"source": src, "rows": int(len(ser)), "first": str(ser.index.min())[:10],
+                                    "last": str(ser.index.max())[:10]}
+                        fails = 0
+                    except Exception as e:  # noqa: BLE001
+                        fails += 1
+                        rep[sid] = {"error": str(e)[:600], **({"stale_cache": True} if p.exists() else {})}
+                log(f"  FRED {sid}: {rep[sid]}")
     return rep
 
 
