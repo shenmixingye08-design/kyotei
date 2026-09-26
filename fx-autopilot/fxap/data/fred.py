@@ -115,6 +115,17 @@ def fetch_dbnomics(sid: str, session=None, timeout=(8, 25)) -> pd.Series:
     return ser
 
 
+def _obs_fresh(sid: str) -> bool:
+    """キャッシュの最終観測日が新しいか（月次 120 日 / 日次 21 日以内）。古い代替ソース（DBnomics の
+    終了済み MEI 等）で取った CSV を、FRED が取れるようになった後も使い続けないため。"""
+    try:
+        last = load(sid).index.max()
+    except Exception:  # noqa: BLE001
+        return False
+    lim = 120 if sid in SHORT_RATES.values() else 21
+    return (pd.Timestamp.now() - pd.Timestamp(last).tz_localize(None)).days <= lim
+
+
 def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     """取得済みで新しい CSV（Actions cache 由来）は再利用。グループ（短期金利 / H.10）ごとに、
     連続で全経路失敗するか時間上限を超えたら残りを打ち切る（届かないサイトで CI を止めない）。"""
@@ -126,7 +137,7 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
             fails, t0 = 0, time.time()
             for sid in ids:
                 p = FRED_DIR / f"{sid}.csv"
-                if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400:
+                if p.exists() and (time.time() - p.stat().st_mtime) < FRESH_DAYS * 86400 and _obs_fresh(sid):
                     rep[sid] = {"cached": True, "rows": int(len(load(sid)))}
                 elif fails >= max_consecutive_fail or time.time() - t0 > BUDGET_SEC / 2:
                     rep[sid] = {"skipped": "source unreachable this run", **({"stale_cache": True} if p.exists() else {})}
