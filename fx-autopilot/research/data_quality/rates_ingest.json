@@ -1,0 +1,90 @@
+{
+ "at": "2026-09-26 06:02:14.463381+00:00",
+ "ok": 15,
+ "series": {
+  "IR3TIB01USM156N": {
+   "source": "fred",
+   "rows": 746,
+   "first": "1964-06-01",
+   "last": "2026-08-01"
+  },
+  "IR3TIB01EZM156N": {
+   "cached": true,
+   "rows": 361
+  },
+  "IR3TIB01JPM156N": {
+   "cached": true,
+   "rows": 261
+  },
+  "IR3TIB01GBM156N": {
+   "cached": true,
+   "rows": 457
+  },
+  "IR3TIB01AUM156N": {
+   "source": "fred",
+   "rows": 704,
+   "first": "1968-01-01",
+   "last": "2026-08-01"
+  },
+  "IR3TIB01NZM156N": {
+   "source": "fred",
+   "rows": 633,
+   "first": "1973-12-01",
+   "last": "2026-08-01"
+  },
+  "IR3TIB01CAM156N": {
+   "source": "fred",
+   "rows": 848,
+   "first": "1956-01-01",
+   "last": "2026-08-01"
+  },
+  "IR3TIB01CHM156N": {
+   "source": "fred",
+   "rows": 326,
+   "first": "1999-07-01",
+   "last": "2026-08-01"
+  },
+  "DEXJPUS": {
+   "source": "fred",
+   "rows": 13965,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXUSEU": {
+   "source": "fred",
+   "rows": 6950,
+   "first": "1999-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXUSUK": {
+   "source": "fred",
+   "rows": 13971,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXUSAL": {
+   "source": "fred",
+   "rows": 13964,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXUSNZ": {
+   "source": "fred",
+   "rows": 13955,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXCAUS": {
+   "source": "fred",
+   "rows": 13977,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  },
+  "DEXSZUS": {
+   "source": "fred",
+   "rows": 13971,
+   "first": "1971-01-04",
+   "last": "2026-09-18"
+  }
+ }
+}

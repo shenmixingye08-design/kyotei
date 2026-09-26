@@ -1,0 +1,4 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v6_trend_carry_mkt_5p,True,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",220,0.20979,0.361193,1.701636,-0.08838,0.033073,102,0.075107,0.337203,2.907783,-0.054016,0.013335,55,0.101845,0.478215,0.763646,-0.08838,
+v6_carry_trend_mkt_7p,True,"{""sizing"": ""risk_stop""}",201,0.26518,0.405207,1.954003,-0.092427,0.028658,105,0.065897,0.282481,2.689665,-0.056697,0.016544,36,0.150105,0.625747,1.501829,-0.092427,0.131631
+v6_carry_trend_daily_mkt_7p,True,"{""threshold"": 0.5}",311,0.291514,0.434072,1.974694,-0.0874,0.044314,184,0.053856,0.235472,2.20563,-0.059026,0.033238,40,0.217543,0.84101,3.780698,-0.0874,0.032555

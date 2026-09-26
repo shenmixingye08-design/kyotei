@@ -1,0 +1,5 @@
+probe 200 0.431045s https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXJPUS
+probe 200 0.228772s https://fred.stlouisfed.org/graph/fredgraph.csv?id=IR3TIB01USM156N
+probe 200 3.443952s https://api.db.nomics.world/v22/providers
+probe 200 0.377400s https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.STES
+probe 200 0.875660s https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1
