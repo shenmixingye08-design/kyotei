@@ -1,0 +1,3 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v8_dollar_carry,True,"{""rule"": ""carry""}",62,0.023657,0.053048,1.117422,-0.205336,0.10566,39,-0.107897,-0.263233,1.811858,-0.174749,0.011116,5,0.118836,0.319391,1.095662,-0.123707,
+v8_dollar_carry_trend,True,"{""rule"": ""carry_and_trend""}",163,-0.10185,-0.133785,0.692212,-0.216865,,69,-0.050194,-0.165105,1.222447,-0.129753,0.128991,53,-0.024739,-0.0962,0.269189,-0.216865,
