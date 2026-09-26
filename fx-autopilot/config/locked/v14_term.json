@@ -1,0 +1,103 @@
+{
+  "spec_id": "v14_term",
+  "strategy": "v14_term",
+  "strategy_version": "v14",
+  "family": "yield_curve",
+  "plan_version": "fx_plan_v14",
+  "pairs": {
+    "USDJPY": {
+      "threshold": 0.5
+    },
+    "EURUSD": {
+      "threshold": 0.5
+    },
+    "EURJPY": {
+      "threshold": 0.5
+    },
+    "GBPUSD": {
+      "threshold": 0.5
+    },
+    "AUDUSD": {
+      "threshold": 0.5
+    },
+    "AUDJPY": {
+      "threshold": 0.5
+    },
+    "GBPJPY": {
+      "threshold": 0.5
+    },
+    "NZDUSD": {
+      "threshold": 0.5
+    },
+    "USDCAD": {
+      "threshold": 0.5
+    },
+    "USDCHF": {
+      "threshold": 0.5
+    }
+  },
+  "trade_pairs": [
+    "USDJPY",
+    "EURUSD",
+    "EURJPY",
+    "GBPUSD",
+    "AUDUSD",
+    "AUDJPY",
+    "GBPJPY",
+    "NZDUSD",
+    "USDCAD",
+    "USDCHF"
+  ],
+  "swap_source": "market",
+  "risk": {
+    "risk_per_trade": 0.005,
+    "max_leverage": 5.0,
+    "max_open_positions": 6,
+    "max_positions_per_pair": 1,
+    "max_currency_exposure": 2.0,
+    "daily_loss_limit": 0.02,
+    "weekly_loss_limit": 0.04,
+    "max_drawdown": 0.15,
+    "spread_max_mult": 3.0,
+    "max_bar_staleness_hours": 3,
+    "min_units": 1000,
+    "lot_step": 1000,
+    "vol_target_annual": 0.03,
+    "fixed_notional_leverage": 1.0,
+    "sizing": "vol_target"
+  },
+  "cost_profile": "retail_jp",
+  "selection": "expanding_all (2010〜LOCK 時点、Sharpe 最大)",
+  "selection_data_end": "2026-09-25 20:00:00+00:00",
+  "v2_status": "REJECTED",
+  "v2_gate_fail": [
+    "profit_factor",
+    "sharpe",
+    "positive_years",
+    "single_year_dependence",
+    "max_drawdown",
+    "subperiod_not_positive",
+    "fragile_to_cost_2x",
+    "few_positive_pairs",
+    "single_regime_dependence",
+    "deflated_sharpe",
+    "top5_trade_dependence",
+    "top1_trade_dependence"
+  ],
+  "wf_summary": {
+    "n_trades": 102,
+    "net_return": -0.280197,
+    "profit_factor": 0.667592,
+    "sharpe": -0.268266,
+    "max_drawdown": -0.406406,
+    "ret_A": -0.3246970150775982,
+    "ret_B": 0.06589621960792602,
+    "stress_pf": 0.416815,
+    "dsr": 0.0296
+  },
+  "contaminated_backtest": true,
+  "research_only": true,
+  "code_hash": "2215340e9a09890cfe74f88c054ee0bf721e336ca80d27c417213517edf7e82d",
+  "spec_hash": "3edf4710facf5d0fafbcdc7572dd298c37bbea5e39920f3344fa851cd8f395af",
+  "locked_at": "2026-09-26T10:16:32.284260+00:00"
+}
