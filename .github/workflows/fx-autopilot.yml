@@ -190,6 +190,11 @@ jobs:
         timeout-minutes: 15      # 失敗しても policy 金利の仕様は動く（market 金利の仕様だけ今回は処理しない）
         run: |
           mkdir -p logs
+          for u in "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXJPUS" "https://api.db.nomics.world/v22/providers" \
+                   "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.STES" "https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?lastNObservations=1"; do
+            curl -s -o /dev/null -m 20 -w "probe %{http_code} %{time_total}s $u\n" "$u" || echo "probe FAIL $u"
+          done 2>&1 | tee logs/source_probe.log
+          mkdir -p research/data_quality && cp logs/source_probe.log research/data_quality/source_probe.txt
           python -m fxap.cli ingest-fred 2>&1 | tee logs/fred.log
           python -m fxap.cli data-check 2>&1 | tee logs/data_check.log
       - name: Save FRED cache (only when something was fetched)
@@ -252,7 +257,7 @@ jobs:
             git add research config/locked paper_forward public DASHBOARD.md 2>/dev/null || true
           else
             latest=$(tail -n 1 logs/plans.txt 2>/dev/null)
-            git add "research/results_${latest}" config/locked 2>/dev/null || true   # ブランチ: 開発中の最新プランの結果と LOCK だけ
+            git add "research/results_${latest}" research/data_quality config/locked 2>/dev/null || true   # ブランチ: 開発中の最新プランの結果と LOCK だけ
           fi
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "fx-autopilot: ${{ github.event_name }} run ${{ github.run_id }} (PAPER ONLY)"

@@ -36,7 +36,11 @@ def cmd_ingest(a):
 def cmd_ingest_fred(a):
     from .data import fred
     rep = fred.ingest()
-    ok = sum(1 for v in rep.values() if "error" not in v)
+    ok = sum(1 for v in rep.values() if "error" not in v and "skipped" not in v)
+    dq = RESULTS.parent / "data_quality"
+    dq.mkdir(parents=True, exist_ok=True)
+    (dq / "rates_ingest.json").write_text(json.dumps({"at": str(utcnow()), "ok": ok, "series": rep},
+                                                     ensure_ascii=False, indent=1, default=str))
     print(f"FRED: {ok}/{len(rep)} series")
     return 0 if ok else 1
 
@@ -48,6 +52,9 @@ def cmd_data_check(a):
     df = fred.crosscheck(frames)
     RESULTS.mkdir(parents=True, exist_ok=True)
     df.to_csv(RESULTS / "data_crosscheck.csv", index=False)
+    dq = RESULTS.parent / "data_quality"
+    dq.mkdir(parents=True, exist_ok=True)
+    df.to_csv(dq / "data_crosscheck.csv", index=False)
     print(df.to_string(index=False) if len(df) else "H.10 データなし")
     # 政策金利近似表（記憶ベース）と FRED 市場金利の差（2010 年以降・月次）
     from . import swap as swapm
@@ -67,6 +74,7 @@ def cmd_data_check(a):
                      "max_abs_diff_pp": round(float(dif.abs().max()), 3)})
     rc = pd.DataFrame(rows)
     rc.to_csv(RESULTS / "rates_check.csv", index=False)
+    rc.to_csv(dq / "rates_check.csv", index=False)
     print(rc.to_string(index=False) if len(rc) else "FRED 金利データなし")
     return 0
 
