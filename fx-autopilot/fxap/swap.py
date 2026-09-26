@@ -62,19 +62,58 @@ POLICY = {
 
 _cache: dict = {}
 
+# ---------------------------------------------------------------- 金利ソース
+# "policy": 上の近似表（v1〜v5 の LOCK はすべてこれ。既定値）
+# "market": FRED の OECD 3 か月物短期金利（月次、fxap/data/fred.py）。公表遅れを考慮して 1 か月前の値を使う。
+#           系列が途中で終わっている場合は、最後の値 + その後の政策金利表の変化分で延長する。
+SOURCE = {"mode": "policy"}
+MARKET: dict = {}                 # ccy -> pd.Series（月初 index, 小数）
+MARKET_LAG_MONTHS = 1
+
+
+def use_source(mode: str) -> None:
+    """金利ソースを切り替える（キャッシュも消す）。market で必要なデータが無ければ FileNotFoundError。"""
+    if mode not in ("policy", "market"):
+        raise ValueError(mode)
+    if mode == "market" and not MARKET:
+        from .data import fred
+        MARKET.update(fred.load_short_rates())
+    SOURCE["mode"] = mode
+    _cache.clear()
+
+
+def policy_rate(ccy: str, t: pd.Timestamp) -> float:
+    ym = f"{t.year:04d}-{t.month:02d}"
+    v = POLICY[ccy][0][1]
+    for m, r in POLICY[ccy]:
+        if m <= ym:
+            v = r
+        else:
+            break
+    return v / 100.0
+
+
+def market_rate(ccy: str, t: pd.Timestamp) -> float:
+    s = MARKET.get(ccy)
+    if s is None or not len(s):
+        return policy_rate(ccy, t)
+    ref = pd.Timestamp(year=t.year, month=t.month, day=1) - pd.DateOffset(months=MARKET_LAG_MONTHS)
+    ref = ref.tz_localize(s.index.tz) if s.index.tz is not None and ref.tzinfo is None else ref
+    past = s[s.index <= ref]
+    if not len(past):
+        return float(s.iloc[0])
+    last_t = past.index[-1]
+    v = float(past.iloc[-1])
+    if last_t < ref:   # 系列が途中で終わっている → 政策金利表の変化分で延長
+        v += policy_rate(ccy, ref) - policy_rate(ccy, last_t)
+    return v
+
 
 def rate(ccy: str, t: pd.Timestamp) -> float:
-    """t 時点の政策金利（年率、小数）。"""
-    key = (ccy, t.year, t.month)
+    """t 時点の金利（年率、小数）。ソースは SOURCE['mode']。"""
+    key = (SOURCE["mode"], ccy, t.year, t.month)
     if key not in _cache:
-        ym = f"{t.year:04d}-{t.month:02d}"
-        v = POLICY[ccy][0][1]
-        for m, r in POLICY[ccy]:
-            if m <= ym:
-                v = r
-            else:
-                break
-        _cache[key] = v / 100.0
+        _cache[key] = market_rate(ccy, t) if SOURCE["mode"] == "market" else policy_rate(ccy, t)
     return _cache[key]
 
 
