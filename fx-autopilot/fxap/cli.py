@@ -170,6 +170,14 @@ def cmd_research_v2(a):
             print(f"{a.plan}: 市場金利が揃っていない（欠損: {missing}）ため今回は研究を実行しない（LOCK もしない）",
                   file=sys.stderr)
             return 0
+    if P.get("requires_value_data"):
+        from .strategies import v7 as v7s
+        try:
+            v7s.value_inputs()
+        except FileNotFoundError as e:
+            print(f"{a.plan}: バリュー用データ（H.10 / CPI）が揃っていない（{e}）ため今回は研究を実行しない（LOCK もしない）",
+                  file=sys.stderr)
+            return 0
     frames = store.load_all(sorted(need))
     data_end = str(max(d.index.max() for d in frames.values()))
     out = research_v2.run(frames, only=a.only.split(",") if a.only else None)

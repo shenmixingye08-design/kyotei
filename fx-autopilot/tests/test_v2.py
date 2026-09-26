@@ -183,3 +183,108 @@ class TestDbnomicsParse(unittest.TestCase):
         s = fred.fetch_dbnomics("IR3TIB01USM156N", S())
         self.assertEqual(len(s), 2)
         self.assertAlmostEqual(float(s.iloc[-1]), 0.3)
+
+
+def _write_value_data(root: Path, drop_cpi=None):
+    """V7 テスト用の合成 H.10（日次）と CPI（月次 / 豪 NZ は四半期）。"""
+    from fxap.data import fred
+    fred.FRED_DIR.mkdir(parents=True, exist_ok=True)
+    rng = np.random.default_rng(11)
+    days = pd.bdate_range("1998-01-01", "2026-09-30")
+    for sid in ("DEXUSEU", "DEXJPUS", "DEXUSUK", "DEXUSAL", "DEXUSNZ", "DEXCAUS", "DEXSZUS"):
+        v = np.exp(np.cumsum(rng.normal(0, 0.005, len(days))))
+        pd.DataFrame({"value": v}, index=days).to_csv(fred.FRED_DIR / f"{sid}.csv")
+    for ccy in fred.CPI:
+        p = fred.FRED_DIR / f"CPI_{ccy}.csv"
+        if ccy == drop_cpi:
+            p.unlink(missing_ok=True)
+            continue
+        freq = "QS" if ccy in ("AUD", "NZD") else "MS"
+        idx = pd.date_range("1995-01-01", "2026-06-01", freq=freq)
+        v = 100 * np.exp(np.cumsum(rng.normal(0.002, 0.002, len(idx))))
+        pd.DataFrame({"value": v}, index=idx).to_csv(p)
+
+
+class TestV7(unittest.TestCase):
+    PAIRS10 = ["USDJPY", "EURUSD", "EURJPY", "GBPUSD", "AUDUSD", "AUDJPY", "GBPJPY", "NZDUSD", "USDCAD", "USDCHF"]
+
+    def setUp(self):
+        from fxap.strategies import v7
+        _write_value_data(TMP)
+        v7._cache.clear()
+
+    def test_v7_no_lookahead(self):
+        from fxap.strategies import v7
+        data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=8)
+        for name in ("v7_ccv_monthly", "v7_cm_monthly", "v7_carry_monthly"):
+            params = REGISTRY[name].param_grid()[0]
+            s = {"strategy": name, "pairs": {p: params for p in self.PAIRS10}}
+            for cut in (17000, 18011):
+                part = {p: d.iloc[:cut] for p, d in data.items()}
+                v2._cache.clear()
+                a = research.spec_signals(s, data)
+                v2._cache.clear()
+                b = research.spec_signals(s, part)
+                n_entry = 0
+                for p in self.PAIRS10:
+                    n_entry += int((a[p]["entry"] != 0).sum())
+                    for c in ("entry", "exit_long", "exit_short", "sl_dist", "vol"):
+                        x, y = a[p][c].iloc[:cut].to_numpy(dtype=float), b[p][c].to_numpy(dtype=float)
+                        self.assertTrue(np.allclose(x, y, equal_nan=True), f"{name}.{p}.{c} cut={cut}")
+                self.assertGreater(n_entry, 0, name)
+        # 月 1 回しか判断しない
+        e = research.spec_signals({"strategy": "v7_ccv_monthly",
+                                   "pairs": {p: {"threshold": 0.5} for p in self.PAIRS10}}, data)["EURUSD"]
+        dec = e.index[(e["entry"] != 0) | e["exit_long"] | e["exit_short"]]
+        self.assertLessEqual(pd.Series(dec.to_period("M")).value_counts().max(), 1)
+        self.assertIsNotNone(v7)
+
+    def test_value_uses_only_lagged_data(self):
+        """バリューは H.10 の 2 か月前の月末値と、公表遅れを入れた CPI しか使わない（未来の値を変えても不変）。"""
+        from fxap.data import fred
+        from fxap.strategies import v7
+        base = v7.value_monthly().copy()
+        M = pd.Timestamp("2020-06-01")
+        # 2020-05 以降の H.10 と 2020-05 以降の CPI を書き換える → 2020-06 の value は変わらないはず
+        for sid in ("DEXUSEU", "DEXJPUS"):
+            s = fred.load(sid)
+            s[s.index >= "2020-05-01"] *= 1.5
+            s.to_frame("value").to_csv(fred.FRED_DIR / f"{sid}.csv")
+        s = fred.load("CPI_USD")
+        s[s.index >= "2020-05-01"] *= 1.5
+        s.to_frame("value").to_csv(fred.FRED_DIR / "CPI_USD.csv")
+        v7._cache.clear()
+        new = v7.value_monthly()
+        self.assertTrue(np.allclose(base.loc[M].to_numpy(dtype=float), new.loc[M].to_numpy(dtype=float), equal_nan=True))
+        self.assertFalse(np.allclose(base.loc["2020-09-01"].to_numpy(dtype=float),
+                                     new.loc["2020-09-01"].to_numpy(dtype=float), equal_nan=True))
+
+    def test_missing_cpi_blocks(self):
+        from fxap.strategies import v7
+        _write_value_data(TMP, drop_cpi="CHF")
+        v7._cache.clear()
+        with self.assertRaises(FileNotFoundError):
+            v7.value_inputs()
+
+    def test_paper_parity_v7(self):
+        data = synthetic.make_all(pairs=self.PAIRS10, n=20000, seed=9)
+        name = "v7_ccv_monthly"
+        params = {"threshold": 0.5}
+        s = {"spec_id": "t_v7", "strategy": name, "pairs": {p: params for p in self.PAIRS10}, "spec_hash": "h",
+             "locked_at": str(data["USDJPY"].index[14000]),
+             "risk": {**RiskConfig.load().__dict__, "max_open_positions": 6, "vol_target_annual": 0.03,
+                      **REGISTRY[name](**params).risk_overrides()}}
+        rc = RiskConfig.load(s["risk"])
+        v2._cache.clear()
+        sig = research.spec_signals(s, data)
+        bt = backtest.run(data, sig, self.PAIRS10, risk_cfg=rc, start=s["locked_at"])
+        root = Path(tempfile.mkdtemp())
+        PaperEngine(s, data, root=root, risk_cfg=rc, now="2100-01-01", check_safety=False).run(
+            until=data["USDJPY"].index[17000])
+        PaperEngine(s, data, root=root, risk_cfg=rc, now="2100-01-01", check_safety=False).run()
+        f = root / s["spec_id"] / "trades.csv"
+        pt = pd.read_csv(f) if f.exists() and f.stat().st_size > 1 else pd.DataFrame()
+        btt = bt.trades[bt.trades.exit_reason != "end"] if len(bt.trades) else bt.trades
+        self.assertEqual(len(pt), len(btt))
+        self.assertGreater(len(btt), 0)
+        self.assertAlmostEqual(pt["pnl_jpy"].sum(), btt["pnl_jpy"].sum(), delta=1.0)

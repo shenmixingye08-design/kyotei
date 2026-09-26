@@ -1,0 +1,65 @@
+# 事前登録: V7（通貨ファクターの横断ポートフォリオ）。評価前にコミット。結果を見て変更しない（変更は v8）
+plan_version: fx_plan_v7
+registered_at: "2026-09-26"
+purpose: >
+  本人の依頼（2026-09-26）: 「強くなる方法」をネットで調べた結果に基づく新しい枠組み。
+  これまでの候補（トレンド×キャリー）は、ペアごとに売買を判断し、少数の大相場（2022 年の円安など）に利益が集中して不合格になってきた。
+  文献（Menkhoff/Sarno/Schmeling/Schrimpf、Asness/Moskowitz/Pedersen、Moreira/Muir）で繰り返し確認されている
+  「キャリー・モメンタム・バリューの 3 ファクターを 8 通貨で毎月ランキングして分散保有」＋「逆ボラ（vol_target）サイズ」を、
+  個人口座で取引できる 10 ペアで表現し、同じコスト・同じ WF・同じゲートで検証する。
+contamination: >
+  期間（2010〜2026）・コスト・ゲートは既出。設計者は V2〜V6 の結果（トレンド×キャリーは少数トレード依存・2022 年の円安が大きい）を
+  知った上でこの枠組みを選んでいる。ファクターの定義は文献の標準形をそのまま使い、閾値以外のパラメータは持たない（グリッドは閾値 2 通りのみ）。
+  文献の数値の多くはコスト抜き・1970〜2000 年代・新興国通貨を含むため、ここで同じ効果が出る保証はない。最終判断は LOCK 後の PAPER Forward。
+swap_source: market
+requires_value_data: true      # H.10（7 系列）と CPI（8 通貨）が揃わなければ研究しない（LOCK もしない）
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY, NZDUSD, USDCAD, USDCHF]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v7_ccv_monthly:        # 本命: キャリー + モメンタム + バリュー
+    family: fx_factors
+    grid: {threshold: [0.5, 1.0]}
+  v7_cm_monthly:         # 比較: バリューなし
+    family: fx_factors
+    grid: {threshold: [0.5, 1.0]}
+  v7_carry_monthly:      # ベンチマーク: キャリーのみ
+    family: fx_factors
+    grid: {threshold: [0.5, 1.0]}
+
+risk_overrides:            # 分散保有のため同時建玉を 6 まで。1 本あたりのボラ目標は 3%（6 本で既存の 4 本 × 5% と同程度のリスク）
+  max_open_positions: 6
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.03
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                      # V5（10 ペア）と同一。緩めない
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 7
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30

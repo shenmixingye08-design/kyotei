@@ -1,7 +1,8 @@
 """FRED（セントルイス連銀）の公開 CSV（API キー不要）。
 
 1. 短期金利: OECD 月次 3 か月物インターバンク金利 IR3TIB01{国}M156N（%）→ スワップ / キャリーの近似に使う
-2. 為替の検証用: 米連銀 H.10 正午レート（日次）→ Dukascopy 価格のクロスチェック
+2. 為替の検証用: 米連銀 H.10 正午レート（日次）→ Dukascopy 価格のクロスチェック / V7 のバリュー（長期の実質為替）
+3. 消費者物価（V7 のバリュー = 5 年の実質為替変化）: 通貨ごとに候補系列を順に試し、最新まで続いている最初のものを使う
 取得できない場合に値を作って埋めることはしない（欠損として扱う）。
 """
 from __future__ import annotations
@@ -40,6 +41,18 @@ SHORT_RATES = {"USD": "IR3TIB01USM156N", "EUR": "IR3TIB01EZM156N", "JPY": "IR3TI
 H10 = {"USDJPY": ("DEXJPUS", False), "EURUSD": ("DEXUSEU", False), "GBPUSD": ("DEXUSUK", False),
        "AUDUSD": ("DEXUSAL", False), "NZDUSD": ("DEXUSNZ", False), "USDCAD": ("DEXCAUS", False),
        "USDCHF": ("DEXSZUS", False)}
+
+
+# CPI: 通貨 -> 候補 FRED 系列（上から順に試す）。保存名は CPI_{ccy}.csv（どの系列かは rates_ingest.json に記録）
+CPI = {"USD": ["CPIAUCSL", "CPALTT01USM661N"],
+       "EUR": ["CP0000EZ19M086NEST", "CPALTT01EZM661N", "CP0000EA20M086NEST"],
+       "JPY": ["CPALTT01JPM661N", "JPNCPIALLMINMEI"],
+       "GBP": ["CPALTT01GBM661N", "GBRCPIALLMINMEI"],
+       "AUD": ["CPALTT01AUQ661N", "AUSCPIALLQINMEI"],
+       "NZD": ["CPALTT01NZQ661N", "NZLCPIALLQINMEI"],
+       "CAD": ["CPALTT01CAM661N", "CANCPIALLMINMEI"],
+       "CHF": ["CPALTT01CHM661N", "CHECPIALLMINMEI"]}
+CPI_MAX_AGE_DAYS = 270      # 最終観測がこれより古い系列は「最新まで続いていない」とみなして次の候補へ
 
 
 def parse_csv(text: str) -> pd.Series:
@@ -90,6 +103,42 @@ def fetch(sid: str, session=None, retries: int = 1, timeout=(8, 25)) -> pd.Serie
     raise RuntimeError(f"FRED {sid}: " + " | ".join(errs[-4:]))
 
 
+def fetch_cpi(ccy: str, session=None):
+    """候補系列を順に試し、最終観測が CPI_MAX_AGE_DAYS 以内の最初の系列を返す（(series, sid)）。"""
+    errs, stale = [], None
+    for sid in CPI[ccy]:
+        try:
+            ser = fetch(sid, session)
+        except RuntimeError as e:
+            errs.append(str(e)[:120])
+            continue
+        age = (pd.Timestamp.now() - ser.index.max()).days
+        if age <= CPI_MAX_AGE_DAYS:
+            return ser, sid
+        errs.append(f"{sid}: last {ser.index.max():%Y-%m} (stale)")
+        stale = stale or (ser, sid + "(stale)")
+    if stale is not None:          # 全候補が古い場合は古い系列を使う（V7 側で観測日の古さを判定する）
+        return stale
+    raise RuntimeError(f"CPI {ccy}: " + " | ".join(errs))
+
+
+def load_cpi() -> dict:
+    """ccy -> 月次 CPI（月初 index、四半期系列は月へ前方埋め）と公表遅れ（月）。無い通貨は含めない。"""
+    out = {}
+    for ccy in CPI:
+        try:
+            s = load(f"CPI_{ccy}")
+        except FileNotFoundError:
+            continue
+        s = s[s > 0]
+        s.index = pd.DatetimeIndex(s.index).to_period("M").to_timestamp()
+        s = s[~s.index.duplicated(keep="last")].sort_index()
+        quarterly = len(s) > 3 and pd.Series(s.index).diff().dt.days.median() > 60
+        m = s.resample("MS").ffill()
+        out[ccy] = {"cpi": m, "lag_months": 5 if quarterly else 2, "last_obs": s.index.max()}
+    return out
+
+
 def fetch_dbnomics(sid: str, session=None, timeout=(8, 25)) -> pd.Series:
     """DBnomics（OECD MEI ミラー）から同じ系列を取る。FRED と同じ % 単位・月次。"""
     cc = DBN_CC.get(sid)
@@ -122,7 +171,7 @@ def _obs_fresh(sid: str) -> bool:
         last = load(sid).index.max()
     except Exception:  # noqa: BLE001
         return False
-    lim = 120 if sid in SHORT_RATES.values() else 21
+    lim = 120 if sid in SHORT_RATES.values() else (200 if sid.startswith("CPI_") else 21)
     return (pd.Timestamp.now() - pd.Timestamp(last).tz_localize(None)).days <= lim
 
 
@@ -131,7 +180,7 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
     連続で全経路失敗するか時間上限を超えたら残りを打ち切る（届かないサイトで CI を止めない）。"""
     FRED_DIR.mkdir(parents=True, exist_ok=True)
     rep = {}
-    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()]]
+    groups = [list(SHORT_RATES.values()), [v[0] for v in H10.values()], [f"CPI_{c}" for c in CPI]]
     with requests.Session() as ses:
         for ids in groups:
             fails, t0 = 0, time.time()
@@ -144,7 +193,10 @@ def ingest(log=print, max_consecutive_fail: int = 2) -> dict:
                 else:
                     try:
                         try:
-                            ser, src = fetch(sid, ses), "fred"
+                            if sid.startswith("CPI_"):
+                                ser, src = fetch_cpi(sid[4:], ses)
+                            else:
+                                ser, src = fetch(sid, ses), "fred"
                         except RuntimeError as e1:
                             if sid not in DBN_CC:
                                 raise
