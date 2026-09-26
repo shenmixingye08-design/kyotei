@@ -1,0 +1,61 @@
+# 事前登録: V14（イールドカーブの傾き）。評価前にコミット。研究プログラム フェーズ 2 の 2 本目
+plan_version: fx_plan_v14
+registered_at: "2026-09-26"
+purpose: >
+  Ang & Chen (2010)「Yield Curve Predictors of Foreign Exchange Returns」: 長短金利差（10 年 - 3 か月）は将来の為替リターンを
+  強く負に予測し、キャリーとの相関が低く、歪み（急落リスク）も小さいと報告されている。
+  8 通貨の長短金利差（FRED/OECD 月次、公表ラグ込み）を横断ランキングし、カーブが平らな通貨を買い・急な通貨を売る。
+  比較: 金利モメンタム（V13）と組み合わせた版（論文は両方の予測力を報告）。枠組みは V7/V13 と同じ（10 ペア・月次・逆ボラ）。
+contamination: >
+  期間・コスト・ゲートは既出。設計者は V1〜V13 の結果を知っている。符号（傾きが負に予測）は論文から登録時に固定、
+  パラメータは閾値 2 通りのみ。DSR は V1 からの累積試行数で補正。最終判断は LOCK 後の PAPER Forward。
+swap_source: market
+dsr_trials: cumulative
+requires_fred: [IRLTLT01USM156N, IRLTLT01EZM156N, IRLTLT01JPM156N, IRLTLT01GBM156N, IRLTLT01AUM156N, IRLTLT01NZM156N, IRLTLT01CAM156N, IRLTLT01CHM156N]
+
+unit: portfolio
+pairs: [USDJPY, EURUSD, EURJPY, GBPUSD, AUDUSD, AUDJPY, GBPJPY, NZDUSD, USDCAD, USDCHF]
+cost_profile: retail_jp
+stress_profile: stress_2x
+walk_forward:
+  scheme: expanding
+  first_test_year: 2014
+  last_test_year: 2026
+  min_train_trades: 20
+  selection_metric: sharpe
+  subperiods:
+    A_2014_2021: [2014, 2021]
+    B_2022_2026: [2022, 2026]
+final_params: expanding_all
+
+candidates:
+  v14_term:
+    family: yield_curve
+    grid: {threshold: [0.5, 1.0]}
+  v14_term_ratemom:
+    family: yield_curve
+    grid: {threshold: [0.5, 1.0]}
+
+risk_overrides:              # V7 と同一
+  max_open_positions: 6
+  max_currency_exposure: 2.0
+  vol_target_annual: 0.03
+  fixed_notional_leverage: 1.0
+
+reference_v1: []
+
+gates:                       # V5/V7/V9〜V11 と同一。緩めない
+  wf_min_trades: 100
+  wf_min_profit_factor: 1.10
+  wf_min_sharpe: 0.40
+  wf_min_positive_year_ratio: 0.60
+  wf_max_single_year_share: 0.40
+  wf_max_drawdown: 0.25
+  both_subperiods_positive: true
+  stress_min_profit_factor: 1.00
+  min_positive_pairs: 7
+  max_regime_profit_share: 0.70
+  deflated_sharpe_min: 0.50
+  ml_must_beat_best_simple: true
+  min_pnl_ex_top5: 0.0
+  max_top1_share: 0.30
