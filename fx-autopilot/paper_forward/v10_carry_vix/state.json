@@ -1,12 +1,12 @@
 {
   "spec_id": "v10_carry_vix",
   "spec_hash": "41e3a2922b9108c5ab89fbdb32652a42c55b448380b69d391181891358e9e8ac",
-  "last_bar": "2026-09-28 13:00:00+00:00",
+  "last_bar": "2026-09-28 20:00:00+00:00",
   "started_at": "2026-09-26T10:06:36.465473+00:00",
   "start": "2026-09-26 08:26:05.741694+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 17,
+  "bars_processed": 24,
   "risk_state": {
     "equity": 1000000.0,
     "hwm": 1000000.0,
@@ -21,39 +21,125 @@
   "broker_state": {
     "cash": 1000000.0,
     "positions": {},
-    "pending": [],
-    "client_ids": []
+    "pending": [
+      {
+        "client_order_id": "be1fe15d41f7ba8c7f21135c",
+        "pair": "NZDUSD",
+        "side": -1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": 0.018091352171671904,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "entry",
+        "decided_at": "2026-09-28 20:00:00+00:00",
+        "meta": {
+          "risk_jpy": 11389.410759676046,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 4000,
+              "risk_jpy": 11389.41,
+              "notional_jpy": 356756.54,
+              "lev_after": 0.357,
+              "cap_leverage_units": 56061,
+              "cap_currency_units": 22424
+            }
+          }
+        }
+      },
+      {
+        "client_order_id": "e61393d6e7c1f286d6c07da4",
+        "pair": "USDCAD",
+        "side": 1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": 0.021914493826657337,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "entry",
+        "decided_at": "2026-09-28 20:00:00+00:00",
+        "meta": {
+          "risk_jpy": 9733.298708629085,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 4000,
+              "risk_jpy": 9733.3,
+              "notional_jpy": 629550.0,
+              "lev_after": 0.986,
+              "cap_leverage_units": 29502,
+              "cap_currency_units": 10441
+            }
+          }
+        }
+      },
+      {
+        "client_order_id": "1a71660e6c3627bfb858b5d8",
+        "pair": "USDCHF",
+        "side": 1,
+        "units": 2000.0,
+        "kind": "MARKET",
+        "sl": 0.02000395269131381,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "entry",
+        "decided_at": "2026-09-28 20:00:00+00:00",
+        "meta": {
+          "risk_jpy": 7567.974770479617,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 2000,
+              "risk_jpy": 7567.97,
+              "notional_jpy": 314775.0,
+              "lev_after": 1.301,
+              "cap_leverage_units": 25502,
+              "cap_currency_units": 6441
+            }
+          }
+        }
+      }
+    ],
+    "client_ids": [
+      "1a71660e6c3627bfb858b5d8",
+      "be1fe15d41f7ba8c7f21135c",
+      "e61393d6e7c1f286d6c07da4"
+    ]
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "NZDUSD": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "USDCAD": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     },
     "USDCHF": {
-      "last_bar": "2026-09-28 13:00:00+00:00"
+      "last_bar": "2026-09-28 20:00:00+00:00"
     }
   }
 }

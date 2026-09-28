@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T14:14:13.930233+00:00",
+  "updated_at": "2026-09-28T21:24:01.190203+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -34,9 +34,9 @@
       "fwd_sharpe": -0.979115,
       "fwd_mdd": -0.150052,
       "paper_days": 2,
-      "paper_return": 0.006267406129387698,
+      "paper_return": 0.0014449463423140685,
       "paper_sharpe": null,
-      "paper_trades": 5
+      "paper_trades": 7
     },
     {
       "spec_id": "ml_logit_v1",
@@ -189,7 +189,7 @@
       "fwd_sharpe": -1.267483,
       "fwd_mdd": -0.150667,
       "paper_days": 2,
-      "paper_return": -0.002871271362299921,
+      "paper_return": -0.001417072613792092,
       "paper_sharpe": null,
       "paper_trades": 1
     },
@@ -217,7 +217,7 @@
       "fwd_sharpe": -1.698604,
       "fwd_mdd": -0.150224,
       "paper_days": 2,
-      "paper_return": 0.002428019424155492,
+      "paper_return": 0.0008160065280524709,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -276,7 +276,7 @@
       "fwd_sharpe": -1.274008,
       "fwd_mdd": -0.104471,
       "paper_days": 2,
-      "paper_return": -0.0001577900000000465,
+      "paper_return": -0.0027495100000000106,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -330,9 +330,9 @@
       ],
       "test_sharpe": -1.167387,
       "paper_days": 1,
-      "paper_return": 0.0011991099999999477,
+      "paper_return": 0.0007570900000000158,
       "paper_sharpe": null,
-      "paper_trades": 8
+      "paper_trades": 13
     },
     {
       "spec_id": "v12_carry_timed",
@@ -645,7 +645,7 @@
       ],
       "test_sharpe": -0.236601,
       "paper_days": 2,
-      "paper_return": -0.0023940000000000072,
+      "paper_return": -0.007048999999999972,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -831,9 +831,9 @@
       ],
       "test_sharpe": -0.045796,
       "paper_days": 1,
-      "paper_return": -0.00029093000000002256,
+      "paper_return": -0.0005359799999999915,
       "paper_sharpe": null,
-      "paper_trades": 0
+      "paper_trades": 1
     },
     {
       "spec_id": "v5_carry_trend_daily_10p",
