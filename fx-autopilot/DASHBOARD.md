@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-09-26T23:23 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-09-28T00:17 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
@@ -9,24 +9,24 @@
 
 | 戦略 | 状態 | 残高 | 今日 | 7D | 30D | 累計 | DD | 建玉 | Lev | 取引 | 勝率 | PF |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| ml_lgbm_v1 | RESEARCH_ONLY | 1,002,459 | +2,459 | +2,459 | +2,459 | +2,459 | 0.0% | 2 | 2.97 | 0 | — | — |
+| ml_lgbm_v1 | RESEARCH_ONLY | 1,002,772 | +313 | +2,772 | +2,772 | +2,772 | 0.2% | 1 | 1.79 | 2 | 100% | — |
 | ml_logit_v1 | RESEARCH_ONLY | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | mr_rsi_bb_v1 | RESEARCH_ONLY | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | mr_zscore_v1 | RESEARCH_ONLY | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
-| mtf_pullback_v1 | RESEARCH_ONLY | 998,109 | -1,891 | -1,891 | -1,891 | -1,891 | 0.2% | 1 | 2.71 | 0 | — | — |
-| regime_switch_v1 | RESEARCH_ONLY | 998,488 | -1,512 | -1,512 | -1,512 | -1,512 | 0.2% | 2 | 2.56 | 0 | — | — |
-| trend_donchian_v1 | RESEARCH_ONLY | 999,992 | -8 | -8 | -8 | -8 | 0.0% | 1 | 0.72 | 0 | — | — |
-| trend_ema_adx_v1 | RESEARCH_ONLY | 999,006 | -994 | -994 | -994 | -994 | 0.1% | 1 | 1.10 | 0 | — | — |
+| mtf_pullback_v1 | RESEARCH_ONLY | 1,003,223 | +5,114 | +3,223 | +3,223 | +3,223 | 0.0% | 1 | 2.70 | 0 | — | — |
+| regime_switch_v1 | RESEARCH_ONLY | 997,678 | -810 | -2,322 | -2,322 | -2,322 | 0.2% | 2 | 2.56 | 0 | — | — |
+| trend_donchian_v1 | RESEARCH_ONLY | 1,000,184 | +192 | +184 | +184 | +184 | 0.0% | 1 | 0.72 | 0 | — | — |
+| trend_ema_adx_v1 | RESEARCH_ONLY | 997,872 | -1,134 | -2,128 | -2,128 | -2,128 | 0.2% | 1 | 1.10 | 0 | — | — |
 | trend_tsmom_v1 | RESEARCH_ONLY | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
-| v10_carry_vix | REJECTED | 未開始 | | | | | | | | | | |
-| v11_intraday_region | REJECTED | 未開始 | | | | | | | | | | |
-| v12_carry_timed | REJECTED | 未開始 | | | | | | | | | | |
-| v13_carry_ratemom | REJECTED | 未開始 | | | | | | | | | | |
-| v13_ratemom | REJECTED | 未開始 | | | | | | | | | | |
-| v14_term | REJECTED | 未開始 | | | | | | | | | | |
-| v14_term_ratemom | REJECTED | 未開始 | | | | | | | | | | |
-| v16_equity_rebal | REJECTED | 未開始 | | | | | | | | | | |
-| v16_equity_rebal_carry | REJECTED | 未開始 | | | | | | | | | | |
+| v10_carry_vix | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v11_intraday_region | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v12_carry_timed | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v13_carry_ratemom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v13_ratemom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v14_term | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v14_term_ratemom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v16_equity_rebal | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v16_equity_rebal_carry | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_d1_donchian | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_d1_tsmom | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v2_h4_ema | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
@@ -38,20 +38,20 @@
 | v3_carry_trend_7p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v3_carry_trend_mh | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 | v3_carry_trend_xs | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
-| v4_carry_trend_daily | REJECTED | 未開始 | | | | | | | | | | |
-| v4_carry_trend_daily_fast | REJECTED | 未開始 | | | | | | | | | | |
-| v4_carry_trend_h4 | REJECTED | 未開始 | | | | | | | | | | |
-| v5_carry_trend_daily_10p | REJECTED | 未開始 | | | | | | | | | | |
-| v5_carry_trend_weekly_10p | REJECTED | 未開始 | | | | | | | | | | |
-| v6_carry_trend_daily_mkt_7p | REJECTED | 未開始 | | | | | | | | | | |
-| v6_carry_trend_mkt_7p | REJECTED | 未開始 | | | | | | | | | | |
-| v6_trend_carry_mkt_5p | REJECTED | 未開始 | | | | | | | | | | |
-| v7_carry_monthly | REJECTED | 未開始 | | | | | | | | | | |
-| v7_ccv_monthly | REJECTED | 未開始 | | | | | | | | | | |
-| v7_cm_monthly | REJECTED | 未開始 | | | | | | | | | | |
-| v8_dollar_carry | REJECTED | 未開始 | | | | | | | | | | |
-| v8_dollar_carry_trend | REJECTED | 未開始 | | | | | | | | | | |
-| v9_tsmom_multi | REJECTED | 未開始 | | | | | | | | | | |
+| v4_carry_trend_daily | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v4_carry_trend_daily_fast | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v4_carry_trend_h4 | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v5_carry_trend_daily_10p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v5_carry_trend_weekly_10p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v6_carry_trend_daily_mkt_7p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v6_carry_trend_mkt_7p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v6_trend_carry_mkt_5p | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v7_carry_monthly | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v7_ccv_monthly | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v7_cm_monthly | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v8_dollar_carry | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v8_dollar_carry_trend | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
+| v9_tsmom_multi | REJECTED | 1,000,000 | +0 | +0 | +0 | +0 | 0.0% | 0 | 0.00 | 0 | — | — |
 
 ## バックテスト（LOCK 後に 1 回だけ評価。コスト込み・retail_jp）
 

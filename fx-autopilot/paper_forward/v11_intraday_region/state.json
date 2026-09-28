@@ -1,19 +1,19 @@
 {
   "spec_id": "v11_intraday_region",
   "spec_hash": "7b2cf2c1c2e0a5788bebd5f02e5b6a5695cc4a03f6f682ab1e400a072b8e2467",
-  "last_bar": null,
+  "last_bar": "2026-09-27 23:00:00+00:00",
   "started_at": "2026-09-26T10:06:37.774297+00:00",
   "start": "2026-09-26 08:51:14.579398+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 0,
+  "bars_processed": 3,
   "risk_state": {
     "equity": 1000000.0,
     "hwm": 1000000.0,
-    "day_key": "",
-    "week_key": "",
-    "day_start_equity": 0.0,
-    "week_start_equity": 0.0,
+    "day_key": "2026-09-27",
+    "week_key": "2026-W39",
+    "day_start_equity": 1000000.0,
+    "week_start_equity": 1000000.0,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
@@ -21,8 +21,125 @@
   "broker_state": {
     "cash": 1000000.0,
     "positions": {},
-    "pending": [],
-    "client_ids": []
+    "pending": [
+      {
+        "client_order_id": "5692cf31ab4c12c7fe27f03b",
+        "pair": "USDJPY",
+        "side": 1,
+        "units": 1000.0,
+        "kind": "MARKET",
+        "sl": 5.129396309515183,
+        "tp": null,
+        "trail": null,
+        "max_bars": 8.0,
+        "reason": "entry",
+        "decided_at": "2026-09-27 23:00:00+00:00",
+        "meta": {
+          "risk_jpy": 5129.396309515183,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 1000,
+              "risk_jpy": 5129.4,
+              "notional_jpy": 157430.5,
+              "lev_after": 0.157,
+              "cap_leverage_units": 31760,
+              "cap_currency_units": 12704
+            }
+          }
+        }
+      },
+      {
+        "client_order_id": "a553551bff3a539fbe5de894",
+        "pair": "EURJPY",
+        "side": 1,
+        "units": 2000.0,
+        "kind": "MARKET",
+        "sl": 4.768412713755054,
+        "tp": null,
+        "trail": null,
+        "max_bars": 8.0,
+        "reason": "entry",
+        "decided_at": "2026-09-27 23:00:00+00:00",
+        "meta": {
+          "risk_jpy": 9536.825427510108,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 2000,
+              "risk_jpy": 9536.83,
+              "notional_jpy": 358255.0,
+              "lev_after": 0.516,
+              "cap_leverage_units": 27034,
+              "cap_currency_units": 11165
+            }
+          }
+        }
+      },
+      {
+        "client_order_id": "7661b2441a6a27a8df0ba880",
+        "pair": "NZDUSD",
+        "side": -1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": 0.018234054917549376,
+        "tp": null,
+        "trail": null,
+        "max_bars": 8.0,
+        "reason": "entry",
+        "decided_at": "2026-09-27 23:00:00+00:00",
+        "meta": {
+          "risk_jpy": 11482.385530789028,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 4000,
+              "risk_jpy": 11482.39,
+              "notional_jpy": 355808.67,
+              "lev_after": 0.871,
+              "cap_leverage_units": 50413,
+              "cap_currency_units": 20714
+            }
+          }
+        }
+      }
+    ],
+    "client_ids": [
+      "5692cf31ab4c12c7fe27f03b",
+      "7661b2441a6a27a8df0ba880",
+      "a553551bff3a539fbe5de894"
+    ]
   },
-  "mgmt": {}
+  "mgmt": {
+    "USDJPY": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    },
+    "EURUSD": {
+      "last_bar": "2026-09-27 22:00:00+00:00"
+    },
+    "EURJPY": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    },
+    "GBPUSD": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    },
+    "AUDUSD": {
+      "last_bar": "2026-09-27 22:00:00+00:00"
+    },
+    "AUDJPY": {
+      "last_bar": "2026-09-27 22:00:00+00:00"
+    },
+    "GBPJPY": {
+      "last_bar": "2026-09-27 22:00:00+00:00"
+    },
+    "NZDUSD": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    },
+    "USDCAD": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    },
+    "USDCHF": {
+      "last_bar": "2026-09-27 23:00:00+00:00"
+    }
+  }
 }
