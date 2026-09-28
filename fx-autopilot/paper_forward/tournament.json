@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-28T05:42:28.972249+00:00",
+  "updated_at": "2026-09-28T14:14:13.930233+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -34,9 +34,9 @@
       "fwd_sharpe": -0.979115,
       "fwd_mdd": -0.150052,
       "paper_days": 2,
-      "paper_return": 0.010023468582073258,
+      "paper_return": 0.006267406129387698,
       "paper_sharpe": null,
-      "paper_trades": 3
+      "paper_trades": 5
     },
     {
       "spec_id": "ml_logit_v1",
@@ -143,7 +143,8 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_not_positive"
       ],
       "test_trades": 134,
       "test_pf": 0.740853,
@@ -156,9 +157,9 @@
       "fwd_sharpe": -1.304755,
       "fwd_mdd": -0.099947,
       "paper_days": 2,
-      "paper_return": 0.0020486137647399705,
+      "paper_return": -0.003135088200980851,
       "paper_sharpe": null,
-      "paper_trades": 0
+      "paper_trades": 1
     },
     {
       "spec_id": "regime_switch_v1",
@@ -174,7 +175,8 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_not_positive"
       ],
       "test_trades": 410,
       "test_pf": 0.94068,
@@ -187,9 +189,9 @@
       "fwd_sharpe": -1.267483,
       "fwd_mdd": -0.150667,
       "paper_days": 2,
-      "paper_return": 0.001778689378340026,
+      "paper_return": -0.002871271362299921,
       "paper_sharpe": null,
-      "paper_trades": 0
+      "paper_trades": 1
     },
     {
       "spec_id": "trend_donchian_v1",
@@ -202,8 +204,7 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades",
-        "paper_not_positive"
+        "paper_trades"
       ],
       "test_trades": 112,
       "test_pf": 1.483656,
@@ -216,7 +217,7 @@
       "fwd_sharpe": -1.698604,
       "fwd_mdd": -0.150224,
       "paper_days": 2,
-      "paper_return": -0.0018400147201177441,
+      "paper_return": 0.002428019424155492,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -275,7 +276,7 @@
       "fwd_sharpe": -1.274008,
       "fwd_mdd": -0.104471,
       "paper_days": 2,
-      "paper_return": 0.0,
+      "paper_return": -0.0001577900000000465,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -325,14 +326,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades",
-        "paper_not_positive"
+        "paper_trades"
       ],
       "test_sharpe": -1.167387,
       "paper_days": 1,
-      "paper_return": -0.0001837399999999878,
+      "paper_return": 0.0011991099999999477,
       "paper_sharpe": null,
-      "paper_trades": 0
+      "paper_trades": 8
     },
     {
       "spec_id": "v12_carry_timed",
@@ -645,7 +645,7 @@
       ],
       "test_sharpe": -0.236601,
       "paper_days": 2,
-      "paper_return": 0.0,
+      "paper_return": -0.0023940000000000072,
       "paper_sharpe": null,
       "paper_trades": 0
     },
@@ -831,7 +831,7 @@
       ],
       "test_sharpe": -0.045796,
       "paper_days": 1,
-      "paper_return": -0.0003210500000000449,
+      "paper_return": -0.00029093000000002256,
       "paper_sharpe": null,
       "paper_trades": 0
     },
