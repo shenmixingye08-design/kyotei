@@ -1,15 +1,15 @@
 {
   "spec_id": "v6_carry_trend_daily_mkt_7p",
   "spec_hash": "3945f68170cf17426a334b6837ec0c0c93500ce9b9a8dd877d6fca8c1cf1c5b6",
-  "last_bar": "2026-09-29 17:00:00+00:00",
+  "last_bar": "2026-09-29 21:00:00+00:00",
   "started_at": "2026-09-26T07:02:30.955329+00:00",
   "start": "2026-09-26 06:02:34.619097+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 45,
+  "bars_processed": 49,
   "risk_state": {
-    "equity": 1000000.0,
-    "hwm": 1000000.0,
+    "equity": 1000005.3583378491,
+    "hwm": 1000005.3583378491,
     "day_key": "2026-09-29",
     "week_key": "2026-W40",
     "day_start_equity": 1000000.0,
@@ -19,32 +19,59 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 1000000.0,
-    "positions": {},
+    "cash": 999999.0667978491,
+    "positions": {
+      "AUDUSD": {
+        "client_order_id": "08673ce49ddba67276c227e4",
+        "side": 1,
+        "units": 1000.0,
+        "entry_time": "2026-09-29 21:00:00+00:00",
+        "entry_price": 0.69867,
+        "sl": 0.6808969621423604,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "bars": 1,
+        "best_close": 0.6990100000000001,
+        "cost_spread": 15.728849999998268,
+        "cost_slip": 3.14577,
+        "commission": 0.0,
+        "swap": -0.9332021509027391,
+        "equity_at_entry": 1000000.0,
+        "risk_jpy": 2795.4944650713537,
+        "notional_jpy": 109877.02744500003,
+        "signal_time": "2026-09-29 20:00:00+00:00",
+        "sl_initial": 0.6808969621423604,
+        "entry_spread_pips": 1.9999999999997797,
+        "slippage_pips": 0.2
+      }
+    },
     "pending": [],
-    "client_ids": []
+    "client_ids": [
+      "08673ce49ddba67276c227e4"
+    ]
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-09-29 17:00:00+00:00"
+      "last_bar": "2026-09-29 21:00:00+00:00"
     }
   }
 }
