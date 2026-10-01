@@ -1,14 +1,14 @@
 {
   "spec_id": "v2_session_breakout",
   "spec_hash": "427b10450f14c87dd4350d59745f8a0de2b4b0bd4788d893f1e26b09e95571d9",
-  "last_bar": "2026-09-30 19:00:00+00:00",
+  "last_bar": "2026-09-30 23:00:00+00:00",
   "started_at": "2026-09-25T13:18:54.382633+00:00",
   "start": "2026-09-25 13:17:49.283538+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 78,
+  "bars_processed": 82,
   "risk_state": {
-    "equity": 994549.8648862822,
+    "equity": 992844.3448520356,
     "hwm": 1001134.0799276627,
     "day_key": "2026-09-30",
     "week_key": "2026-W40",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 993149.8648862821,
+    "cash": 992893.3448520355,
     "positions": {
       "EURJPY": {
         "client_order_id": "da124ffe3126e9ce53b6bc32",
@@ -31,12 +31,12 @@
         "tp": null,
         "trail": 1.3820720497401786,
         "max_bars": 72.0,
-        "bars": 59,
+        "bars": 63,
         "best_close": 177.6615,
         "cost_spread": 38.499999999885404,
         "cost_slip": 14.0,
         "commission": 0.0,
-        "swap": -171.33482876712333,
+        "swap": -427.8548630136987,
         "equity_at_entry": 1000000.0,
         "risk_jpy": 4837.252174090625,
         "notional_jpy": 1249374.0,
@@ -55,19 +55,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-09-30 19:00:00+00:00"
+      "last_bar": "2026-09-30 23:00:00+00:00"
     },
     "USDJPY": {
-      "last_bar": "2026-09-30 19:00:00+00:00"
+      "last_bar": "2026-09-30 23:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-09-30 19:00:00+00:00"
+      "last_bar": "2026-09-30 23:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-09-30 19:00:00+00:00"
+      "last_bar": "2026-09-30 23:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-09-30 19:00:00+00:00"
+      "last_bar": "2026-09-30 23:00:00+00:00"
     }
   }
 }
