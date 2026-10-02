@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-10-02 17:00:00+00:00",
+  "last_bar": "2026-10-02 20:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 125,
+  "bars_processed": 128,
   "risk_state": {
-    "equity": 1007064.4180862074,
+    "equity": 1005337.5481362074,
     "hwm": 1019270.8265775598,
     "day_key": "2026-10-02",
     "week_key": "2026-W40",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 83,
+        "bars": 86,
         "best_close": 0.691015,
         "cost_spread": 62.94140000006295,
         "cost_slip": 31.4707,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 33,
+        "bars": 36,
         "best_close": 1.12188,
         "cost_spread": 42.765569999963645,
         "cost_slip": 28.51038000000001,
@@ -79,7 +79,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 32,
+        "bars": 35,
         "best_close": 1.3184,
         "cost_spread": 7.917800000016709,
         "cost_slip": 3.16712,
@@ -106,19 +106,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-02 16:00:00+00:00"
+      "last_bar": "2026-10-02 20:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-02 16:00:00+00:00"
+      "last_bar": "2026-10-02 20:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-02 16:00:00+00:00"
+      "last_bar": "2026-10-02 20:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-02 17:00:00+00:00"
+      "last_bar": "2026-10-02 20:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-02 16:00:00+00:00"
+      "last_bar": "2026-10-02 20:00:00+00:00"
     }
   }
 }
