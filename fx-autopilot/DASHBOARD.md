@@ -1,6 +1,6 @@
 # FX AUTOPILOT ダッシュボード（PAPER ONLY）
 
-更新: 2026-10-02T22:23 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
+更新: 2026-10-03T02:07 UTC ／ モード: **PAPER** ／ LIVE: **無効**（本人の明示承認まで開始しない）
 
 **Champion:** CASH（取引しない） — LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）
 **LIVE 候補:** なし
@@ -57,15 +57,15 @@
 
 | 戦略 | 状態 | TEST 取引 | TEST 収益 | TEST PF | TEST Sharpe | TEST MaxDD | FWD 収益 | FWD PF | FWD Sharpe | 2倍コスト PF |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| ml_lgbm_v1 | RESEARCH_ONLY | 1,165 | -12.5% | 0.94 | -0.49 | -15.1% | -9.7% | 0.87 | -0.98 | 0.88 |
+| ml_lgbm_v1 | RESEARCH_ONLY | 1,165 | -12.5% | 0.94 | -0.49 | -15.1% | -9.7% | 0.87 | -0.97 | 0.88 |
 | ml_logit_v1 | RESEARCH_ONLY | 514 | +1.5% | 1.02 | 0.11 | -12.7% | -3.2% | 0.83 | -0.61 | 0.91 |
-| mr_rsi_bb_v1 | RESEARCH_ONLY | 387 | -13.9% | 0.84 | -0.75 | -15.4% | -7.7% | 0.86 | -0.91 | 0.79 |
-| mr_zscore_v1 | RESEARCH_ONLY | 250 | -11.3% | 0.83 | -0.61 | -15.4% | -8.8% | 0.88 | -0.77 | 0.78 |
-| mtf_pullback_v1 | RESEARCH_ONLY | 134 | -10.7% | 0.74 | -0.92 | -15.0% | -8.5% | 0.72 | -1.30 | 0.71 |
-| regime_switch_v1 | RESEARCH_ONLY | 410 | -6.5% | 0.94 | -0.19 | -15.1% | -13.8% | 0.72 | -1.27 | 0.92 |
-| trend_donchian_v1 | RESEARCH_ONLY | 112 | +16.8% | 1.48 | 0.56 | -15.1% | -13.6% | 0.16 | -1.70 | 1.41 |
+| mr_rsi_bb_v1 | RESEARCH_ONLY | 387 | -13.9% | 0.84 | -0.75 | -15.4% | -7.7% | 0.87 | -0.91 | 0.79 |
+| mr_zscore_v1 | RESEARCH_ONLY | 250 | -11.3% | 0.83 | -0.61 | -15.4% | -8.8% | 0.88 | -0.76 | 0.78 |
+| mtf_pullback_v1 | RESEARCH_ONLY | 134 | -10.7% | 0.74 | -0.92 | -15.0% | -8.2% | 0.73 | -1.24 | 0.71 |
+| regime_switch_v1 | RESEARCH_ONLY | 410 | -6.5% | 0.94 | -0.19 | -15.1% | -13.8% | 0.72 | -1.26 | 0.92 |
+| trend_donchian_v1 | RESEARCH_ONLY | 112 | +16.8% | 1.48 | 0.56 | -15.1% | -13.6% | 0.16 | -1.69 | 1.41 |
 | trend_ema_adx_v1 | RESEARCH_ONLY | 279 | -5.9% | 0.91 | -0.21 | -15.2% | -3.5% | 0.95 | -0.18 | 0.87 |
-| trend_tsmom_v1 | RESEARCH_ONLY | 255 | +10.3% | 1.15 | 0.51 | -7.0% | -8.9% | 0.59 | -1.27 | 1.09 |
+| trend_tsmom_v1 | RESEARCH_ONLY | 255 | +10.3% | 1.15 | 0.51 | -7.0% | -8.3% | 0.62 | -1.16 | 1.09 |
 | v10_carry_vix | REJECTED | — | — | — | — | — | — | — | — | — |
 | v11_intraday_region | REJECTED | — | — | — | — | — | — | — | — | — |
 | v12_carry_timed | REJECTED | — | — | — | — | — | — | — | — | — |

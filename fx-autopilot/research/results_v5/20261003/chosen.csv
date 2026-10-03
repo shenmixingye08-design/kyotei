@@ -1,0 +1,27 @@
+candidate,year,params,train_sharpe
+v5_carry_trend_weekly_10p,2014,"{""sizing"": ""risk_stop""}",0.168
+v5_carry_trend_weekly_10p,2015,"{""sizing"": ""risk_stop""}",0.242
+v5_carry_trend_weekly_10p,2016,"{""sizing"": ""risk_stop""}",0.05
+v5_carry_trend_weekly_10p,2017,"{""sizing"": ""risk_stop""}",0.005
+v5_carry_trend_weekly_10p,2018,"{""sizing"": ""risk_stop""}",-0.096
+v5_carry_trend_weekly_10p,2019,"{""sizing"": ""risk_stop""}",-0.12
+v5_carry_trend_weekly_10p,2020,"{""sizing"": ""risk_stop""}",-0.088
+v5_carry_trend_weekly_10p,2021,"{""sizing"": ""risk_stop""}",-0.067
+v5_carry_trend_weekly_10p,2022,"{""sizing"": ""risk_stop""}",-0.035
+v5_carry_trend_weekly_10p,2023,"{""sizing"": ""risk_stop""}",0.051
+v5_carry_trend_weekly_10p,2024,"{""sizing"": ""risk_stop""}",0.068
+v5_carry_trend_weekly_10p,2025,"{""sizing"": ""risk_stop""}",0.147
+v5_carry_trend_weekly_10p,2026,"{""sizing"": ""risk_stop""}",0.07
+v5_carry_trend_daily_10p,2014,"{""threshold"": 0.5}",0.091
+v5_carry_trend_daily_10p,2015,"{""threshold"": 0.5}",0.325
+v5_carry_trend_daily_10p,2016,"{""threshold"": 0.5}",0.245
+v5_carry_trend_daily_10p,2017,"{""threshold"": 0.5}",0.306
+v5_carry_trend_daily_10p,2018,"{""threshold"": 0.5}",0.218
+v5_carry_trend_daily_10p,2019,"{""threshold"": 0.5}",0.094
+v5_carry_trend_daily_10p,2020,"{""threshold"": 0.5}",0.016
+v5_carry_trend_daily_10p,2021,"{""threshold"": 0.5}",0.03
+v5_carry_trend_daily_10p,2022,"{""threshold"": 0.5}",0.025
+v5_carry_trend_daily_10p,2023,"{""threshold"": 0.5}",0.143
+v5_carry_trend_daily_10p,2024,"{""threshold"": 0.5}",0.172
+v5_carry_trend_daily_10p,2025,"{""threshold"": 0.5}",0.266
+v5_carry_trend_daily_10p,2026,"{""threshold"": 0.5}",0.203
