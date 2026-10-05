@@ -1,14 +1,14 @@
 {
   "spec_id": "v11_intraday_region",
   "spec_hash": "7b2cf2c1c2e0a5788bebd5f02e5b6a5695cc4a03f6f682ab1e400a072b8e2467",
-  "last_bar": "2026-10-05 13:00:00+00:00",
+  "last_bar": "2026-10-05 21:00:00+00:00",
   "started_at": "2026-09-26T10:06:37.774297+00:00",
   "start": "2026-09-26 08:51:14.579398+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 137,
+  "bars_processed": 145,
   "risk_state": {
-    "equity": 1004015.311349766,
+    "equity": 1004609.3996372658,
     "hwm": 1008553.0863308784,
     "day_key": "2026-10-05",
     "week_key": "2026-W41",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 1004015.311349766,
+    "cash": 1004609.3996372658,
     "positions": {},
     "pending": [],
     "client_ids": [
@@ -29,9 +29,11 @@
       "082a8643b81e56dd67105217",
       "0a2a9990ea95b5ef36196654",
       "0af3d255a5c7fda65f2b6a97",
+      "0d66ac2d60e1f7f13765def5",
       "0db954fbf7e156a67f033fef",
       "0f90beed73579930314003d1",
       "130c48ea5888b075b764e956",
+      "13dc5e721df4898cbd297b8e",
       "142d378ac190e6cdeb7752c1",
       "15f0eeedbc1792869a5b539d",
       "1617f4d9a0eae8e75e3cd32d",
@@ -39,6 +41,8 @@
       "173e1fcfbc6f1f203b1fbff3",
       "176b7df82d1a8f0966aa6503",
       "17b3cb2b3abd5739261a9619",
+      "18076a44b4026a533c43cdbf",
+      "18664782ebd8e8015acc51a7",
       "18df4253b0dadbfca23eb552",
       "1c9d21907f0545b6fa2bd9ab",
       "1e3c5e34357b5dd97bd0dcd5",
@@ -50,13 +54,16 @@
       "2e17959886f1263c3e58cc83",
       "2e2c39e497485a24e9fa1c12",
       "2ecb088cb5209afb34b046d6",
+      "30872097ec5adb93e6384333",
       "30d01f09cd483c8f9a83a820",
       "329c77b64e052cc4a3e5ac9e",
       "34cff2b9c8cb6f227c218a2f",
       "35f7edac31de449e42ee3f8a",
       "373ad0ec667764ab69b52ec3",
+      "393c322b51afea04c0205823",
       "3a682526809957e459756789",
       "3b206b73032e927b1d0a5134",
+      "3b413af3116413b8b6836992",
       "3b4f9ade49f3cbaabd199daf",
       "3ceb3191faf2a86e07a9ef9b",
       "3f822c8042a095412a17b725",
@@ -99,6 +106,7 @@
       "6a49c42c0dcc71551ea9dc53",
       "6b320ff6a8b7e73c92ad2a72",
       "6be6d1f8e4b96c769a31a70c",
+      "6c34f845fd58ac76f5b8842e",
       "6c94bb3668088706f5856874",
       "6cbbf875d566eaf83b4b376c",
       "70af7ef6839174f34bfd4971",
@@ -151,6 +159,7 @@
       "c204d295a6df8c27a05b9049",
       "c248088420838201292aeed4",
       "c279fa12ac82f5bab065ea99",
+      "c2a200c179e1796cff3c5eb2",
       "c653b9bd29dbc1b4fd7420dd",
       "c72a9ae50f76ed13d637f1cb",
       "c81b25347a62704e2f0172f1",
@@ -167,6 +176,7 @@
       "d66a898fdaa4eb36d4a8ef98",
       "d6bdb9fb9abcd2b30a922ebf",
       "d7aa87ad370b4fc138bce809",
+      "d7d0ac6fd8125b5615254a2c",
       "da1c8f7cacd4a9bfbc8980f7",
       "db92afe8c4ac51fb6b82b3f9",
       "dbd982cb4d59fd7d0622935f",
@@ -193,34 +203,34 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "NZDUSD": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "USDCAD": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     },
     "USDCHF": {
-      "last_bar": "2026-10-05 13:00:00+00:00"
+      "last_bar": "2026-10-05 21:00:00+00:00"
     }
   }
 }
