@@ -1,18 +1,18 @@
 {
   "spec_id": "ml_lgbm_v1",
   "spec_hash": "c5cce5bbf1cc1f343b4f8a07f3fec6afd8289698460d6224ea419a6407f8ff74",
-  "last_bar": "2026-10-02 20:00:00+00:00",
+  "last_bar": "2026-10-04 23:00:00+00:00",
   "started_at": "2026-09-25T12:20:54.169591+00:00",
   "start": "2026-09-25 12:17:20.635308+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 128,
+  "bars_processed": 131,
   "risk_state": {
-    "equity": 1004877.3685252551,
+    "equity": 1005901.5132252545,
     "hwm": 1016284.3010006186,
-    "day_key": "2026-10-02",
+    "day_key": "2026-10-04",
     "week_key": "2026-W40",
-    "day_start_equity": 1009783.3757548826,
+    "day_start_equity": 1004020.1665602555,
     "week_start_equity": 1010281.8672384307,
     "kill_switch": false,
     "kill_reason": "",
@@ -31,7 +31,7 @@
         "tp": 0.6945381210460713,
         "trail": null,
         "max_bars": 12.0,
-        "bars": 7,
+        "bars": 10,
         "best_close": 0.69489,
         "cost_spread": 91.94415750014866,
         "cost_slip": 40.86407,
@@ -55,8 +55,8 @@
         "tp": 1.1290987327418724,
         "trail": null,
         "max_bars": 12.0,
-        "bars": 3,
-        "best_close": 1.12583,
+        "bars": 6,
+        "best_close": 1.1259700000000001,
         "cost_spread": 21.305295000139576,
         "cost_slip": 28.407060000000005,
         "commission": 0.0,
@@ -109,19 +109,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-02 20:00:00+00:00"
+      "last_bar": "2026-10-04 23:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-02 20:00:00+00:00"
+      "last_bar": "2026-10-04 23:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-02 20:00:00+00:00"
+      "last_bar": "2026-10-04 23:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-02 20:00:00+00:00"
+      "last_bar": "2026-10-04 23:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-02 20:00:00+00:00"
+      "last_bar": "2026-10-04 23:00:00+00:00"
     }
   }
 }

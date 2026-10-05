@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-03T02:07:59.538943+00:00",
+  "generated_at": "2026-10-05T00:24:15.675911+00:00",
   "mode": "PAPER",
   "live": false,
   "champion": null,
@@ -8,10 +8,10 @@
     {
       "spec_id": "ml_lgbm_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1004877.37,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1005901.51,
       "cash": 1003038.3053502555,
-      "available": 883977.8437968,
+      "available": 885001.9837968,
       "open_positions": 2,
       "positions": {
         "AUDUSD": {
@@ -24,7 +24,7 @@
           "tp": 0.6945381210460713,
           "trail": null,
           "max_bars": 12.0,
-          "bars": 7,
+          "bars": 10,
           "best_close": 0.69489,
           "cost_spread": 91.94415750014866,
           "cost_slip": 40.86407,
@@ -48,8 +48,8 @@
           "tp": 1.1290987327418724,
           "trail": null,
           "max_bars": 12.0,
-          "bars": 3,
-          "best_close": 1.12583,
+          "bars": 6,
+          "best_close": 1.1259700000000001,
           "cost_spread": 21.305295000139576,
           "cost_slip": 28.407060000000005,
           "commission": 0.0,
@@ -64,14 +64,14 @@
         }
       },
       "exposure_jpy": 3022488.15508,
-      "leverage": 3.007817914219722,
-      "drawdown": 0.011224153506442569,
-      "pnl_today": -32.47999999998137,
-      "pnl_7d": 2418.0,
-      "pnl_30d": 4877.369999999995,
-      "pnl_total": 4877.369999999995,
+      "leverage": 3.004755560094546,
+      "drawdown": 0.010216423682227416,
+      "pnl_today": 1024.140000000014,
+      "pnl_7d": 3129.4100000000326,
+      "pnl_30d": 5901.510000000009,
+      "pnl_total": 5901.510000000009,
       "realized": 3038.3053502553967,
-      "daily_loss_used": 0.2429236741600671,
+      "daily_loss_used": 0.0,
       "trades": 22,
       "win_rate": 0.5,
       "profit_factor": 1.08534,
@@ -89,7 +89,7 @@
     {
       "spec_id": "ml_logit_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -121,10 +121,10 @@
     {
       "spec_id": "mr_rsi_bb_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 999885.62,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1000539.36,
       "cash": 996171.1891959343,
-      "available": 942763.3594046,
+      "available": 943417.0994046,
       "open_positions": 1,
       "positions": {
         "AUDUSD": {
@@ -137,7 +137,7 @@
           "tp": null,
           "trail": null,
           "max_bars": 24.0,
-          "bars": 6,
+          "bars": 9,
           "best_close": 0.69489,
           "cost_spread": 102.36817499998872,
           "cost_slip": 40.947269999999996,
@@ -153,12 +153,12 @@
         }
       },
       "exposure_jpy": 1428056.5148850002,
-      "leverage": 1.4282198746742654,
-      "drawdown": 0.003328691136897821,
-      "pnl_today": 4807.380000000005,
-      "pnl_7d": -114.38000000000466,
-      "pnl_30d": -114.38000000000466,
-      "pnl_total": -114.38000000000466,
+      "leverage": 1.4272866935339756,
+      "drawdown": 0.0026770527010373524,
+      "pnl_today": 653.7399999999907,
+      "pnl_7d": 539.359999999986,
+      "pnl_30d": 539.359999999986,
+      "pnl_total": 539.359999999986,
       "realized": -3828.8108040658285,
       "daily_loss_used": 0.0,
       "trades": 11,
@@ -178,10 +178,10 @@
     {
       "spec_id": "mr_zscore_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1009509.2,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1009214.2,
       "cash": 1006824.199558849,
-      "available": 974099.6,
+      "available": 973804.6,
       "open_positions": 1,
       "positions": {
         "EURJPY": {
@@ -194,7 +194,7 @@
           "tp": null,
           "trail": null,
           "max_bars": 72.0,
-          "bars": 28,
+          "bars": 31,
           "best_close": 177.8305,
           "cost_spread": 22.50000000003638,
           "cost_slip": 10.0,
@@ -210,14 +210,14 @@
         }
       },
       "exposure_jpy": 885240.0,
-      "leverage": 0.8769013694971775,
-      "drawdown": 0.0011576369231300898,
-      "pnl_today": 11757.5,
-      "pnl_7d": 9509.199999999953,
-      "pnl_30d": 9509.199999999953,
-      "pnl_total": 9509.199999999953,
+      "leverage": 0.8771576935798169,
+      "drawdown": 0.0014495198471368154,
+      "pnl_today": -295.0,
+      "pnl_7d": 9214.199999999953,
+      "pnl_30d": 9214.199999999953,
+      "pnl_total": 9214.199999999953,
       "realized": 6812.023908163803,
-      "daily_loss_used": 0.0,
+      "daily_loss_used": 0.0002476943983586999,
       "trades": 8,
       "win_rate": 0.5,
       "profit_factor": 1.371934,
@@ -235,10 +235,10 @@
     {
       "spec_id": "mtf_pullback_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 993022.46,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 993263.57,
       "cash": 994979.9167423131,
-      "available": 926214.2168192,
+      "available": 926455.3268192,
       "open_positions": 1,
       "positions": {
         "GBPUSD": {
@@ -251,7 +251,7 @@
           "tp": 1.3192268374249234,
           "trail": null,
           "max_bars": 72.0,
-          "bars": 5,
+          "bars": 8,
           "best_close": 1.32301,
           "cost_spread": 63.122400000133204,
           "cost_slip": 25.248959999999997,
@@ -267,14 +267,14 @@
         }
       },
       "exposure_jpy": 1670206.07952,
-      "leverage": 1.6819418963796648,
-      "drawdown": 0.010576439514364488,
-      "pnl_today": -1957.4600000000792,
-      "pnl_7d": -5086.619999999995,
-      "pnl_30d": -6977.540000000037,
-      "pnl_total": -6977.540000000037,
+      "leverage": 1.6815336129965988,
+      "drawdown": 0.010336203342194983,
+      "pnl_today": 241.10999999998603,
+      "pnl_7d": -9959.820000000065,
+      "pnl_30d": -6736.430000000051,
+      "pnl_total": -6736.430000000051,
       "realized": -5020.083257686901,
-      "daily_loss_used": 0.09836664586769239,
+      "daily_loss_used": 0.0,
       "trades": 1,
       "win_rate": 0.0,
       "profit_factor": 0.0,
@@ -292,10 +292,10 @@
     {
       "spec_id": "regime_switch_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 995724.78,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 997223.28,
       "cash": 989457.1988329416,
-      "available": 895725.12,
+      "available": 897223.62,
       "open_positions": 2,
       "positions": {
         "EURUSD": {
@@ -308,7 +308,7 @@
           "tp": null,
           "trail": 0.004422975266072724,
           "max_bars": 240.0,
-          "bars": 36,
+          "bars": 39,
           "best_close": 1.12188,
           "cost_spread": 42.765569999963645,
           "cost_slip": 28.51038000000001,
@@ -332,7 +332,7 @@
           "tp": null,
           "trail": 1.2785392356157477,
           "max_bars": 240.0,
-          "bars": 29,
+          "bars": 32,
           "best_close": 176.981,
           "cost_spread": 27.500000000060254,
           "cost_slip": 10.0,
@@ -348,14 +348,14 @@
         }
       },
       "exposure_jpy": 2499991.5,
-      "leverage": 2.5107254034593773,
-      "drawdown": 0.01569115800117682,
-      "pnl_today": -5458.039999999921,
-      "pnl_7d": -2763.219999999972,
-      "pnl_30d": -4275.219999999972,
-      "pnl_total": -4275.219999999972,
+      "leverage": 2.506952605438573,
+      "drawdown": 0.014209838233544603,
+      "pnl_today": 1498.5,
+      "pnl_7d": -454.71999999997206,
+      "pnl_30d": -2776.719999999972,
+      "pnl_total": -2776.719999999972,
       "realized": -10509.318127674995,
-      "daily_loss_used": 0.4830502322812624,
+      "daily_loss_used": 0.0,
       "trades": 5,
       "win_rate": 0.4,
       "profit_factor": 0.288732,
@@ -373,10 +373,10 @@
     {
       "spec_id": "trend_donchian_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1005337.55,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1006703.11,
       "cash": 995174.5535262072,
-      "available": 888542.8988294001,
+      "available": 889908.4588294,
       "open_positions": 3,
       "positions": {
         "AUDUSD": {
@@ -389,7 +389,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 86,
+          "bars": 89,
           "best_close": 0.691015,
           "cost_spread": 62.94140000006295,
           "cost_slip": 31.4707,
@@ -413,7 +413,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 36,
+          "bars": 39,
           "best_close": 1.12188,
           "cost_spread": 42.765569999963645,
           "cost_slip": 28.51038000000001,
@@ -437,7 +437,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 35,
+          "bars": 38,
           "best_close": 1.3184,
           "cost_spread": 7.917800000016709,
           "cost_slip": 3.16712,
@@ -453,14 +453,14 @@
         }
       },
       "exposure_jpy": 2919866.279265,
-      "leverage": 2.9043640907126167,
-      "drawdown": 0.01366984732050458,
-      "pnl_today": -6650.389999999898,
-      "pnl_7d": 5345.550000000047,
-      "pnl_30d": 5337.550000000047,
-      "pnl_total": 5337.550000000047,
+      "leverage": 2.900424415362142,
+      "drawdown": 0.012330105257460255,
+      "pnl_today": 1365.5599999999395,
+      "pnl_7d": 6519.109999999986,
+      "pnl_30d": 6703.109999999986,
+      "pnl_total": 6703.109999999986,
       "realized": -4698.7287992797155,
-      "daily_loss_used": 0.5273294272057694,
+      "daily_loss_used": 0.0,
       "trades": 2,
       "win_rate": 0.0,
       "profit_factor": 0.0,
@@ -478,7 +478,7 @@
     {
       "spec_id": "trend_ema_adx_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 980835.17,
       "cash": 980835.1728316151,
       "available": 980835.17,
@@ -488,7 +488,7 @@
       "leverage": 0.0,
       "drawdown": 0.01916482999999991,
       "pnl_today": 0.0,
-      "pnl_7d": -18170.829999999958,
+      "pnl_7d": -17036.829999999958,
       "pnl_30d": -19164.829999999958,
       "pnl_total": -19164.829999999958,
       "realized": -19164.827168384858,
@@ -510,10 +510,10 @@
     {
       "spec_id": "trend_tsmom_v1",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1007994.95,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1009252.2,
       "cash": 999551.3309914384,
-      "available": 932052.0499999999,
+      "available": 933309.2999999999,
       "open_positions": 3,
       "positions": {
         "USDJPY": {
@@ -526,7 +526,7 @@
           "tp": null,
           "trail": null,
           "max_bars": 240.0,
-          "bars": 107,
+          "bars": 110,
           "best_close": 156.66750000000002,
           "cost_spread": 4.500000000064119,
           "cost_slip": 6.0,
@@ -550,7 +550,7 @@
           "tp": null,
           "trail": null,
           "max_bars": 240.0,
-          "bars": 107,
+          "bars": 110,
           "best_close": 1.12188,
           "cost_spread": 11.767912500077095,
           "cost_slip": 15.690550000000002,
@@ -574,7 +574,7 @@
           "tp": null,
           "trail": null,
           "max_bars": 240.0,
-          "bars": 107,
+          "bars": 110,
           "best_close": 176.981,
           "cost_spread": 16.499999999950887,
           "cost_slip": 6.0,
@@ -590,14 +590,14 @@
         }
       },
       "exposure_jpy": 1898572.5,
-      "leverage": 1.8835139005408708,
-      "drawdown": 0.005303053066008534,
-      "pnl_today": -272.7300000000978,
-      "pnl_7d": 7994.949999999953,
-      "pnl_30d": 7994.949999999953,
-      "pnl_total": 7994.949999999953,
+      "leverage": 1.8811675614876044,
+      "drawdown": 0.004062389373662878,
+      "pnl_today": 1257.25,
+      "pnl_7d": 9252.199999999953,
+      "pnl_30d": 9252.199999999953,
+      "pnl_total": 9252.199999999953,
       "realized": 0.0,
-      "daily_loss_used": 0.06760588656342104,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -615,10 +615,10 @@
     {
       "spec_id": "v10_carry_vix",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1002372.31,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1002927.32,
       "cash": 1000176.3388783876,
-      "available": 932748.7239388,
+      "available": 933303.7339387999,
       "open_positions": 4,
       "positions": {
         "NZDUSD": {
@@ -631,7 +631,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.559135,
           "cost_spread": 66.10275000001369,
           "cost_slip": 12.591,
@@ -655,7 +655,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 1.4259400000000002,
           "cost_spread": 39.97340256668168,
           "cost_slip": 8.882978348137122,
@@ -679,7 +679,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.83697,
           "cost_spread": 68.09831435356115,
           "cost_slip": 7.566479372615005,
@@ -703,7 +703,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.6990100000000001,
           "cost_spread": 62.91539999999307,
           "cost_slip": 12.58308,
@@ -719,14 +719,14 @@
         }
       },
       "exposure_jpy": 1740589.6515300001,
-      "leverage": 1.7364702058958512,
-      "drawdown": 0.0037951569967444865,
-      "pnl_today": 617.5,
-      "pnl_7d": 2372.310000000056,
-      "pnl_30d": 2372.310000000056,
-      "pnl_total": 2372.310000000056,
+      "leverage": 1.7355092605613738,
+      "drawdown": 0.0032435619013899686,
+      "pnl_today": 555.0099999998929,
+      "pnl_7d": 2927.319999999949,
+      "pnl_30d": 2927.319999999949,
+      "pnl_total": 2927.319999999949,
       "realized": 0.0,
-      "daily_loss_used": 0.007800619180686752,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -749,7 +749,7 @@
     {
       "spec_id": "v11_intraday_region",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1007251.1,
       "cash": 1007251.1024908783,
       "available": 1007251.1,
@@ -758,12 +758,12 @@
       "exposure_jpy": 0,
       "leverage": 0.0,
       "drawdown": 0.0011165026455437488,
-      "pnl_today": 1345.1600000000326,
+      "pnl_today": 0.0,
       "pnl_7d": 7251.099999999977,
       "pnl_30d": 7251.099999999977,
       "pnl_total": 7251.099999999977,
       "realized": 7251.102490877995,
-      "daily_loss_used": 0.0009298292244774853,
+      "daily_loss_used": 1.2364733681380358e-07,
       "trades": 73,
       "win_rate": 0.506849,
       "profit_factor": 1.48968,
@@ -786,7 +786,7 @@
     {
       "spec_id": "v12_carry_timed",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -823,7 +823,7 @@
     {
       "spec_id": "v13_carry_ratemom",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -860,7 +860,7 @@
     {
       "spec_id": "v13_ratemom",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -897,7 +897,7 @@
     {
       "spec_id": "v14_term",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -934,7 +934,7 @@
     {
       "spec_id": "v14_term_ratemom",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -971,7 +971,7 @@
     {
       "spec_id": "v16_equity_rebal",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1008,7 +1008,7 @@
     {
       "spec_id": "v16_equity_rebal_carry",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1045,7 +1045,7 @@
     {
       "spec_id": "v2_d1_donchian",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1077,10 +1077,10 @@
     {
       "spec_id": "v2_d1_tsmom",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 994775.24,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 995097.26,
       "cash": 999735.1838343575,
-      "available": 930710.690219,
+      "available": 931032.710219,
       "open_positions": 2,
       "positions": {
         "GBPUSD": {
@@ -1093,7 +1093,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 72,
+          "bars": 75,
           "best_close": 1.3184,
           "cost_spread": 106.95618000000219,
           "cost_slip": 12.58308,
@@ -1117,7 +1117,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.6990100000000001,
           "cost_spread": 110.10194999998788,
           "cost_slip": 22.020390000000003,
@@ -1133,14 +1133,14 @@
         }
       },
       "exposure_jpy": 1601613.7445250002,
-      "leverage": 1.6100257426240325,
-      "drawdown": 0.0054307136976188275,
-      "pnl_today": -630.5899999999674,
-      "pnl_7d": -5224.760000000009,
-      "pnl_30d": -5224.760000000009,
-      "pnl_total": -5224.760000000009,
+      "leverage": 1.6095047277338501,
+      "drawdown": 0.005108760367160792,
+      "pnl_today": 322.0200000000186,
+      "pnl_7d": -4902.739999999991,
+      "pnl_30d": -4902.739999999991,
+      "pnl_total": -4902.739999999991,
       "realized": 0.0,
-      "daily_loss_used": 0.0063162299266672495,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -1158,7 +1158,7 @@
     {
       "spec_id": "v2_h4_ema",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1190,7 +1190,7 @@
     {
       "spec_id": "v2_ml_d1_logit",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1222,10 +1222,10 @@
     {
       "spec_id": "v2_session_breakout",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 994845.56,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 995709.17,
       "cash": 988901.3643516642,
-      "available": 922003.8941624,
+      "available": 922867.5041624,
       "open_positions": 2,
       "positions": {
         "EURUSD": {
@@ -1238,7 +1238,7 @@
           "tp": null,
           "trail": 0.006417588211027498,
           "max_bars": 72.0,
-          "bars": 36,
+          "bars": 39,
           "best_close": 1.12188,
           "cost_spread": 42.765569999963645,
           "cost_slip": 28.51038000000001,
@@ -1258,11 +1258,11 @@
           "units": 1000.0,
           "entry_time": "2026-10-01 08:00:00+00:00",
           "entry_price": 1.3232650000000001,
-          "sl": 1.3269595005311758,
+          "sl": 1.326736600886894,
           "tp": null,
           "trail": 0.008277043670786723,
           "max_bars": 72.0,
-          "bars": 37,
+          "bars": 40,
           "best_close": 1.3184,
           "cost_spread": 7.919550000016714,
           "cost_slip": 3.1678200000000003,
@@ -1278,14 +1278,14 @@
         }
       },
       "exposure_jpy": 1821041.64594,
-      "leverage": 1.830476728407975,
-      "drawdown": 0.007690335567918316,
-      "pnl_today": -3439.319999999949,
-      "pnl_7d": -5154.439999999944,
-      "pnl_30d": -5154.439999999944,
-      "pnl_total": -5154.439999999944,
+      "leverage": 1.8288890981490107,
+      "drawdown": 0.006828926939527635,
+      "pnl_today": 863.609999999986,
+      "pnl_7d": -4290.829999999958,
+      "pnl_30d": -4290.829999999958,
+      "pnl_total": -4290.829999999958,
       "realized": -11118.17228993869,
-      "daily_loss_used": 0.272469320927643,
+      "daily_loss_used": 0.0,
       "trades": 4,
       "win_rate": 0.0,
       "profit_factor": 0.0,
@@ -1303,7 +1303,7 @@
     {
       "spec_id": "v2_trend_carry",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1335,7 +1335,7 @@
     {
       "spec_id": "v2_xpair_strength",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1367,7 +1367,7 @@
     {
       "spec_id": "v3_carry_only",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1401,7 +1401,7 @@
     {
       "spec_id": "v3_carry_trend_7p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1435,10 +1435,10 @@
     {
       "spec_id": "v3_carry_trend_mh",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 999413.17,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 999441.96,
       "cash": 999984.6245462544,
-      "available": 995018.0889022,
+      "available": 995046.8789021999,
       "open_positions": 1,
       "positions": {
         "AUDUSD": {
@@ -1451,7 +1451,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.6990100000000001,
           "cost_spread": 15.728849999998268,
           "cost_slip": 3.14577,
@@ -1467,14 +1467,14 @@
         }
       },
       "exposure_jpy": 109877.02744500003,
-      "leverage": 0.10994154444152464,
-      "drawdown": 0.0006190769990011002,
-      "pnl_today": 323.4300000000512,
-      "pnl_7d": -586.8299999999581,
-      "pnl_30d": -586.8299999999581,
-      "pnl_total": -586.8299999999581,
+      "leverage": 0.10993837745715622,
+      "drawdown": 0.0005902879279373607,
+      "pnl_today": 28.789999999920838,
+      "pnl_7d": -558.0400000000373,
+      "pnl_30d": -558.0400000000373,
+      "pnl_total": -558.0400000000373,
       "realized": 0.0,
-      "daily_loss_used": 0.0,
+      "daily_loss_used": 0.0003769275634613045,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -1494,7 +1494,7 @@
     {
       "spec_id": "v3_carry_trend_xs",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1528,7 +1528,7 @@
     {
       "spec_id": "v4_carry_trend_daily",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1562,7 +1562,7 @@
     {
       "spec_id": "v4_carry_trend_daily_fast",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -1596,10 +1596,10 @@
     {
       "spec_id": "v4_carry_trend_h4",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1003027.85,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1003118.49,
       "cash": 1000054.5780134917,
-      "available": 976771.8677108,
+      "available": 976862.5077108,
       "open_positions": 4,
       "positions": {
         "GBPUSD": {
@@ -1612,7 +1612,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 116,
+          "bars": 119,
           "best_close": 1.3184,
           "cost_spread": 7.871525000016611,
           "cost_slip": 3.14861,
@@ -1636,7 +1636,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 111,
+          "bars": 114,
           "best_close": 1.12188,
           "cost_spread": 2.3668350000155054,
           "cost_slip": 3.15578,
@@ -1660,7 +1660,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 111,
+          "bars": 114,
           "best_close": 0.691015,
           "cost_spread": 6.3115600000063115,
           "cost_slip": 3.15578,
@@ -1684,7 +1684,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 28,
+          "bars": 31,
           "best_close": 158.1375,
           "cost_spread": 1.4999999999929514,
           "cost_slip": 2.0,
@@ -1700,14 +1700,14 @@
         }
       },
       "exposure_jpy": 656399.55723,
-      "leverage": 0.6544180774541805,
-      "drawdown": 0.00236727618911714,
-      "pnl_today": -1584.780000000028,
-      "pnl_7d": 3027.8499999999767,
-      "pnl_30d": 3027.8499999999767,
-      "pnl_total": 3027.8499999999767,
+      "leverage": 0.6543589454023523,
+      "drawdown": 0.002277123727162822,
+      "pnl_today": 90.64000000001397,
+      "pnl_7d": 3118.4899999999907,
+      "pnl_30d": 3118.4899999999907,
+      "pnl_total": 3118.4899999999907,
       "realized": 91.7811301369145,
-      "daily_loss_used": 0.11341272390019141,
+      "daily_loss_used": 0.0,
       "trades": 2,
       "win_rate": 0.5,
       "profit_factor": 1.221694,
@@ -1727,10 +1727,10 @@
     {
       "spec_id": "v5_carry_trend_daily_10p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1001652.88,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1001793.61,
       "cash": 1000089.2051741397,
-      "available": 979198.8145825,
+      "available": 979339.5445825,
       "open_positions": 3,
       "positions": {
         "NZDUSD": {
@@ -1743,7 +1743,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.559135,
           "cost_spread": 16.52568750000342,
           "cost_slip": 3.14775,
@@ -1767,7 +1767,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 1.4259400000000002,
           "cost_spread": 19.98670128334084,
           "cost_slip": 4.441489174068561,
@@ -1791,7 +1791,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.83697,
           "cost_spread": 34.049157176780575,
           "cost_slip": 3.7832396863075024,
@@ -1807,14 +1807,14 @@
         }
       },
       "exposure_jpy": 561351.6354375,
-      "leverage": 0.5604253196351814,
-      "drawdown": 0.002113741118747292,
-      "pnl_today": -86.68999999994412,
-      "pnl_7d": 1652.8800000000047,
-      "pnl_30d": 1652.8800000000047,
-      "pnl_total": 1652.8800000000047,
+      "leverage": 0.5603465921862887,
+      "drawdown": 0.0019735403206301294,
+      "pnl_today": 140.72999999998137,
+      "pnl_7d": 1793.609999999986,
+      "pnl_30d": 1793.609999999986,
+      "pnl_total": 1793.609999999986,
       "realized": 0.0,
-      "daily_loss_used": 0.03222306213325754,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -1837,10 +1837,10 @@
     {
       "spec_id": "v5_carry_trend_weekly_10p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1000209.46,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1000271.3,
       "cash": 1000072.8282928083,
-      "available": 981334.84,
+      "available": 981396.68,
       "open_positions": 2,
       "positions": {
         "USDCAD": {
@@ -1853,7 +1853,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 1.4259400000000002,
           "cost_spread": 89.7819186982678,
           "cost_slip": 4.433674997445447,
@@ -1877,7 +1877,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.83697,
           "cost_spread": 19.803696264768174,
           "cost_slip": 3.7721326218598232,
@@ -1893,14 +1893,14 @@
         }
       },
       "exposure_jpy": 471865.5,
-      "leverage": 0.47176668375042163,
-      "drawdown": 0.0017968060812544318,
-      "pnl_today": 171.1699999999255,
-      "pnl_7d": 209.45999999996275,
-      "pnl_30d": 209.45999999996275,
-      "pnl_total": 209.45999999996275,
+      "leverage": 0.471737517611472,
+      "drawdown": 0.001735090122767069,
+      "pnl_today": 61.84000000008382,
+      "pnl_7d": 271.30000000004657,
+      "pnl_30d": 271.30000000004657,
+      "pnl_total": 271.30000000004657,
       "realized": 0.0,
-      "daily_loss_used": 0.007880572322249702,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -1923,7 +1923,7 @@
     {
       "spec_id": "v6_carry_trend_daily_mkt_7p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 999331.63,
       "cash": 999331.6293178492,
       "available": 999331.63,
@@ -1957,10 +1957,10 @@
     {
       "spec_id": "v6_carry_trend_mkt_7p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 999423.9,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 999452.68,
       "cash": 999995.3498627697,
-      "available": 995028.8189022,
+      "available": 995057.5989022,
       "open_positions": 1,
       "positions": {
         "AUDUSD": {
@@ -1973,7 +1973,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.6990100000000001,
           "cost_spread": 15.728849999998268,
           "cost_slip": 3.14577,
@@ -1989,14 +1989,14 @@
         }
       },
       "exposure_jpy": 109877.02744500003,
-      "leverage": 0.10994036408875156,
-      "drawdown": 0.0006104983473865788,
-      "pnl_today": 325.5800000000745,
-      "pnl_7d": -576.0999999999767,
-      "pnl_30d": -576.0999999999767,
-      "pnl_total": -576.0999999999767,
+      "leverage": 0.10993719827235846,
+      "drawdown": 0.0005817193379415997,
+      "pnl_today": 28.78000000002794,
+      "pnl_7d": -547.3199999999488,
+      "pnl_30d": -547.3199999999488,
+      "pnl_total": -547.3199999999488,
       "realized": 0.0,
-      "daily_loss_used": 0.0,
+      "daily_loss_used": 0.00037718948793230567,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -2016,10 +2016,10 @@
     {
       "spec_id": "v6_trend_carry_mkt_5p",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 999423.9,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 999452.68,
       "cash": 999995.3498627697,
-      "available": 995028.8189022,
+      "available": 995057.5989022,
       "open_positions": 1,
       "positions": {
         "AUDUSD": {
@@ -2032,7 +2032,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 0.6990100000000001,
           "cost_spread": 15.728849999998268,
           "cost_slip": 3.14577,
@@ -2048,14 +2048,14 @@
         }
       },
       "exposure_jpy": 109877.02744500003,
-      "leverage": 0.10994036408875156,
-      "drawdown": 0.0006104983473865788,
-      "pnl_today": 325.5800000000745,
-      "pnl_7d": -576.0999999999767,
-      "pnl_30d": -576.0999999999767,
-      "pnl_total": -576.0999999999767,
+      "leverage": 0.10993719827235846,
+      "drawdown": 0.0005817193379415997,
+      "pnl_today": 28.78000000002794,
+      "pnl_7d": -547.3199999999488,
+      "pnl_30d": -547.3199999999488,
+      "pnl_total": -547.3199999999488,
       "realized": 0.0,
-      "daily_loss_used": 0.0,
+      "daily_loss_used": 0.00037718948793230567,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -2073,7 +2073,7 @@
     {
       "spec_id": "v7_carry_monthly",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -2110,7 +2110,7 @@
     {
       "spec_id": "v7_ccv_monthly",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -2147,7 +2147,7 @@
     {
       "spec_id": "v7_cm_monthly",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -2184,7 +2184,7 @@
     {
       "spec_id": "v8_dollar_carry",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -2218,7 +2218,7 @@
     {
       "spec_id": "v8_dollar_carry_trend",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
+      "last_bar": "2026-10-04 23:00:00+00:00",
       "equity": 1000000.0,
       "cash": 1000000.0,
       "available": 1000000.0,
@@ -2252,10 +2252,10 @@
     {
       "spec_id": "v9_tsmom_multi",
       "started": true,
-      "last_bar": "2026-10-02 20:00:00+00:00",
-      "equity": 1004077.93,
+      "last_bar": "2026-10-04 23:00:00+00:00",
+      "equity": 1004578.16,
       "cash": 1000124.5804372474,
-      "available": 935361.64147,
+      "available": 935861.87147,
       "open_positions": 4,
       "positions": {
         "GBPUSD": {
@@ -2268,7 +2268,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 95,
+          "bars": 98,
           "best_close": 1.3184,
           "cost_spread": 18.88649999998394,
           "cost_slip": 6.2955,
@@ -2292,7 +2292,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.559135,
           "cost_spread": 66.10275000001369,
           "cost_slip": 12.591,
@@ -2316,7 +2316,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 94,
+          "bars": 97,
           "best_close": 0.83697,
           "cost_spread": 68.09831435356115,
           "cost_slip": 7.566479372615005,
@@ -2340,7 +2340,7 @@
           "tp": null,
           "trail": null,
           "max_bars": null,
-          "bars": 71,
+          "bars": 74,
           "best_close": 1.4259400000000002,
           "cost_spread": 179.5638373965356,
           "cost_slip": 8.867349994890894,
@@ -2356,14 +2356,14 @@
         }
       },
       "exposure_jpy": 1717907.21325,
-      "leverage": 1.7109301598233515,
-      "drawdown": 0.006216234607449023,
-      "pnl_today": -2124.7099999999627,
-      "pnl_7d": 4077.930000000051,
-      "pnl_30d": 4077.930000000051,
-      "pnl_total": 4077.930000000051,
+      "leverage": 1.7100782016304237,
+      "drawdown": 0.005721133143599233,
+      "pnl_today": 500.2299999999814,
+      "pnl_7d": 4578.160000000033,
+      "pnl_30d": 4578.160000000033,
+      "pnl_total": 4578.160000000033,
       "realized": 0.0,
-      "daily_loss_used": 0.2070313706833693,
+      "daily_loss_used": 0.0,
       "trades": 0,
       "win_rate": null,
       "profit_factor": null,
@@ -2410,9 +2410,9 @@
       "fwd_return": -0.096858,
       "fwd_sharpe": -0.971619,
       "fwd_mdd": -0.150052,
-      "paper_days": 6,
-      "paper_return": 0.002412067832734177,
-      "paper_sharpe": 1.0588302390671767,
+      "paper_days": 7,
+      "paper_return": 0.0034336952728568626,
+      "paper_sharpe": 1.396639676968604,
       "paper_trades": 22
     },
     "ml_logit_v1": {
@@ -2440,7 +2440,7 @@
       "fwd_return": -0.032366,
       "fwd_sharpe": -0.605136,
       "fwd_mdd": -0.080473,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2459,7 +2459,7 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_backtest_divergence"
       ],
       "test_trades": 387,
       "test_pf": 0.841556,
@@ -2471,9 +2471,9 @@
       "fwd_return": -0.076969,
       "fwd_sharpe": -0.906735,
       "fwd_mdd": -0.111731,
-      "paper_days": 6,
-      "paper_return": -0.00011438000000008053,
-      "paper_sharpe": -0.06991854988608169,
+      "paper_days": 7,
+      "paper_return": 0.0005393599999998777,
+      "paper_sharpe": 0.4281874877997874,
       "paper_trades": 11
     },
     "mr_zscore_v1": {
@@ -2502,9 +2502,9 @@
       "fwd_return": -0.088246,
       "fwd_sharpe": -0.75947,
       "fwd_mdd": -0.151165,
-      "paper_days": 6,
-      "paper_return": 0.009509200000000106,
-      "paper_sharpe": 5.069415437745571,
+      "paper_days": 7,
+      "paper_return": 0.009214200000000172,
+      "paper_sharpe": 4.560234712033307,
       "paper_trades": 8
     },
     "mtf_pullback_v1": {
@@ -2534,9 +2534,9 @@
       "fwd_return": -0.081988,
       "fwd_sharpe": -1.238979,
       "fwd_mdd": -0.099903,
-      "paper_days": 6,
-      "paper_return": -0.005096256613555616,
-      "paper_sharpe": -3.146871365926831,
+      "paper_days": 7,
+      "paper_return": -0.004854689830093517,
+      "paper_sharpe": -2.797879096793011,
       "paper_trades": 1
     },
     "regime_switch_v1": {
@@ -2554,8 +2554,7 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive",
-        "paper_backtest_divergence"
+        "paper_not_positive"
       ],
       "test_trades": 410,
       "test_pf": 0.94068,
@@ -2567,9 +2566,9 @@
       "fwd_return": -0.137887,
       "fwd_sharpe": -1.257756,
       "fwd_mdd": -0.150667,
-      "paper_days": 6,
-      "paper_return": -0.0027674043153248506,
-      "paper_sharpe": -1.4202814348454853,
+      "paper_days": 7,
+      "paper_return": -0.0012666351523504815,
+      "paper_sharpe": -0.5844207853573653,
       "paper_trades": 5
     },
     "trend_donchian_v1": {
@@ -2596,9 +2595,9 @@
       "fwd_return": -0.136032,
       "fwd_sharpe": -1.685505,
       "fwd_mdd": -0.150224,
-      "paper_days": 6,
-      "paper_return": 0.005345592764742113,
-      "paper_sharpe": 3.1028589277527523,
+      "paper_days": 7,
+      "paper_return": 0.006711163689309574,
+      "paper_sharpe": 3.6448545775138323,
       "paper_trades": 2
     },
     "trend_ema_adx_v1": {
@@ -2628,9 +2627,9 @@
       "fwd_return": -0.034601,
       "fwd_sharpe": -0.177402,
       "fwd_mdd": -0.150124,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": -0.018188909776317708,
-      "paper_sharpe": -11.817650223579347,
+      "paper_sharpe": -10.618115646260831,
       "paper_trades": 4
     },
     "trend_tsmom_v1": {
@@ -2656,9 +2655,9 @@
       "fwd_return": -0.083217,
       "fwd_sharpe": -1.162465,
       "fwd_mdd": -0.104471,
-      "paper_days": 6,
-      "paper_return": 0.007994949999999834,
-      "paper_sharpe": 5.99655202276347,
+      "paper_days": 7,
+      "paper_return": 0.009252199999999933,
+      "paper_sharpe": 6.507951690890349,
       "paper_trades": 0
     },
     "v10_carry_vix": {
@@ -2679,12 +2678,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": -0.171799,
-      "paper_days": 5,
-      "paper_return": 0.002372309999999711,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": 0.0029273199999997335,
+      "paper_sharpe": 5.195195109358125,
       "paper_trades": 0
     },
     "v11_intraday_region": {
@@ -2705,12 +2705,13 @@
         "top1_trade_dependence"
       ],
       "paper_gate_fail": [
-        "paper_months<3"
+        "paper_months<3",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": -1.167387,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.007251100000000177,
-      "paper_sharpe": null,
+      "paper_sharpe": 4.3428941311534315,
       "paper_trades": 73
     },
     "v12_carry_timed": {
@@ -2731,7 +2732,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.122585,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2757,7 +2758,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.172087,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2785,7 +2786,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.177125,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2813,7 +2814,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.268266,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2841,7 +2842,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.265515,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2869,7 +2870,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.299149,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2897,7 +2898,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.56587,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2922,7 +2923,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.258484,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2948,9 +2949,9 @@
         "paper_backtest_divergence"
       ],
       "test_sharpe": -0.05857,
-      "paper_days": 6,
-      "paper_return": -0.005224759999999828,
-      "paper_sharpe": -4.376011621248413,
+      "paper_days": 7,
+      "paper_return": -0.0049027399999999055,
+      "paper_sharpe": -3.8085545422345435,
       "paper_trades": 0
     },
     "v2_h4_ema": {
@@ -2973,7 +2974,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.103005,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -2999,7 +3000,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.646369,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3025,9 +3026,9 @@
         "paper_backtest_divergence"
       ],
       "test_sharpe": -0.236601,
-      "paper_days": 6,
-      "paper_return": -0.005154439999999982,
-      "paper_sharpe": -3.385315531124311,
+      "paper_days": 7,
+      "paper_return": -0.004290830000000079,
+      "paper_sharpe": -2.6005071291919415,
       "paper_trades": 4
     },
     "v2_trend_carry": {
@@ -3040,7 +3041,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.441711,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3065,7 +3066,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.173698,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3087,7 +3088,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.391782,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3104,7 +3105,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.524903,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3124,9 +3125,9 @@
         "paper_backtest_divergence"
       ],
       "test_sharpe": 0.366952,
-      "paper_days": 6,
-      "paper_return": -0.0005868299999999271,
-      "paper_sharpe": -4.467982980723732,
+      "paper_days": 7,
+      "paper_return": -0.0005580400000000374,
+      "paper_sharpe": -3.945940050832587,
       "paper_trades": 0
     },
     "v3_carry_trend_xs": {
@@ -3142,7 +3143,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.499494,
-      "paper_days": 6,
+      "paper_days": 7,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3160,7 +3161,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.505282,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3186,7 +3187,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.083373,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3208,12 +3209,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": -0.045796,
-      "paper_days": 5,
-      "paper_return": 0.003027849999999832,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": 0.0031184899999998628,
+      "paper_sharpe": 5.435086105413781,
       "paper_trades": 2
     },
     "v5_carry_trend_daily_10p": {
@@ -3230,12 +3232,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.191054,
-      "paper_days": 5,
-      "paper_return": 0.0016528799999999677,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": 0.001793609999999779,
+      "paper_sharpe": 5.942340283722395,
       "paper_trades": 0
     },
     "v5_carry_trend_weekly_10p": {
@@ -3254,9 +3257,9 @@
         "paper_trades"
       ],
       "test_sharpe": 0.051877,
-      "paper_days": 5,
-      "paper_return": 0.00020945999999999465,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": 0.0002712999999998633,
+      "paper_sharpe": 0.8933131805560182,
       "paper_trades": 0
     },
     "v6_carry_trend_daily_mkt_7p": {
@@ -3269,12 +3272,13 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_not_positive",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.522722,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": -0.0006683699999999737,
-      "paper_sharpe": null,
+      "paper_sharpe": -6.269551850983647,
       "paper_trades": 1
     },
     "v6_carry_trend_mkt_7p": {
@@ -3287,12 +3291,13 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_not_positive",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.434233,
-      "paper_days": 5,
-      "paper_return": -0.0005760999999999683,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": -0.0005473199999999068,
+      "paper_sharpe": -4.172336927818305,
       "paper_trades": 0
     },
     "v6_trend_carry_mkt_5p": {
@@ -3307,12 +3312,13 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_not_positive",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.395869,
-      "paper_days": 5,
-      "paper_return": -0.0005760999999999683,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": -0.0005473199999999068,
+      "paper_sharpe": -4.172336927818305,
       "paper_trades": 0
     },
     "v7_carry_monthly": {
@@ -3334,7 +3340,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.008347,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3360,7 +3366,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.181258,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3381,7 +3387,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.223979,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3405,7 +3411,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": 0.017552,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3432,7 +3438,7 @@
         "paper_not_positive"
       ],
       "test_sharpe": -0.136052,
-      "paper_days": 5,
+      "paper_days": 6,
       "paper_return": 0.0,
       "paper_sharpe": null,
       "paper_trades": 0
@@ -3456,12 +3462,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": -0.162284,
-      "paper_days": 5,
-      "paper_return": 0.004077930000000007,
-      "paper_sharpe": null,
+      "paper_days": 6,
+      "paper_return": 0.004578159999999887,
+      "paper_sharpe": 6.624345784953923,
       "paper_trades": 0
     }
   },
