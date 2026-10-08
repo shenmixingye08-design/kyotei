@@ -1,25 +1,25 @@
 {
   "spec_id": "v2_session_breakout",
   "spec_hash": "427b10450f14c87dd4350d59745f8a0de2b4b0bd4788d893f1e26b09e95571d9",
-  "last_bar": "2026-10-07 20:00:00+00:00",
+  "last_bar": "2026-10-08 00:00:00+00:00",
   "started_at": "2026-09-25T13:18:54.382633+00:00",
   "start": "2026-09-25 13:17:49.283538+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 199,
+  "bars_processed": 203,
   "risk_state": {
-    "equity": 996527.8582337318,
+    "equity": 996947.3065417456,
     "hwm": 1009037.8454666644,
-    "day_key": "2026-10-07",
+    "day_key": "2026-10-08",
     "week_key": "2026-W41",
-    "day_start_equity": 997426.0399937319,
+    "day_start_equity": 996947.3065417456,
     "week_start_equity": 997286.2379916647,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 997426.0399937319,
+    "cash": 997344.2117317456,
     "positions": {
       "EURUSD": {
         "client_order_id": "9e62ed8645abcdb7c5c62054",
@@ -31,12 +31,12 @@
         "tp": null,
         "trail": 0.008905941631227654,
         "max_bars": 72.0,
-        "bars": 12,
+        "bars": 16,
         "best_close": 1.11735,
         "cost_spread": 16.601182500108756,
         "cost_slip": 22.13491,
         "commission": 0.0,
-        "swap": 0.0,
+        "swap": 63.64420376712327,
         "equity_at_entry": 997426.0399937319,
         "risk_jpy": 4928.305411811933,
         "notional_jpy": 1238454.0000000002,
@@ -55,12 +55,12 @@
         "tp": null,
         "trail": 1.6706755315703958,
         "max_bars": 72.0,
-        "bars": 12,
-        "best_close": 176.7715,
+        "bars": 16,
+        "best_close": 176.764,
         "cost_spread": 11.999999999943611,
         "cost_slip": 8.0,
         "commission": 0.0,
-        "swap": 0.0,
+        "swap": -145.4724657534247,
         "equity_at_entry": 997426.0399937319,
         "risk_jpy": 3341.3510631407917,
         "notional_jpy": 707688.0000000001,
@@ -86,19 +86,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-10-07 19:00:00+00:00"
+      "last_bar": "2026-10-08 00:00:00+00:00"
     },
     "USDJPY": {
-      "last_bar": "2026-10-07 19:00:00+00:00"
+      "last_bar": "2026-10-08 00:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-07 19:00:00+00:00"
+      "last_bar": "2026-10-08 00:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-07 19:00:00+00:00"
+      "last_bar": "2026-10-08 00:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-07 20:00:00+00:00"
+      "last_bar": "2026-10-08 00:00:00+00:00"
     }
   }
 }
