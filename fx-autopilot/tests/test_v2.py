@@ -52,7 +52,8 @@ class TestV2(unittest.TestCase):
         data7 = synthetic.make_all(pairs=pairs7, n=20000, seed=6)
         for name in ("v3_carry_trend_xs", "v3_carry_trend_mh", "v3_carry_trend_7p", "v3_carry_only",
                      "v4_carry_trend_daily", "v4_carry_trend_daily_fast", "v4_carry_trend_h4",
-                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi", "v11_intraday_region"):
+                     "v5_carry_trend_weekly_10p", "v5_carry_trend_daily_10p", "v9_tsmom_multi", "v11_intraday_region",
+                     "v18_carry_trend_daily_hold", "v18_carry_trend_weekly_hold"):
             params = REGISTRY[name].param_grid()[-1]
             s = {"strategy": name, "pairs": {p: params for p in pairs7}}
             for cut in (17000, 17009):
@@ -476,3 +477,18 @@ class TestV16(unittest.TestCase):
         v16._cache.clear()
         b = v16.equity_momentum(idx)
         self.assertTrue(np.allclose(a.to_numpy(), b.to_numpy(), equal_nan=True))
+
+
+class TestV18(unittest.TestCase):
+    def test_hold_entries(self):
+        from fxap.strategies.v18 import hold_entries
+        from fxap.strategies.base import Strategy
+        idx = pd.date_range("2024-07-01", periods=12, freq="1h", tz="UTC")
+        o = Strategy.empty(idx)
+        o["sl_dist"], o["vol"] = 1.0, 0.1
+        o.loc[idx[2], "entry"] = 1
+        h = hold_entries(o, 4)
+        self.assertEqual(list(h["entry"]), [0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0])
+        o.loc[idx[4], "exit_long"] = True        # 保持中に決済判断 → そこで保持をやめる
+        h = hold_entries(o, 4)
+        self.assertEqual(list(h["entry"])[:8], [0, 0, 1, 1, 0, 0, 0, 0])
