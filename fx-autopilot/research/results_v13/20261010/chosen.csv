@@ -1,0 +1,27 @@
+candidate,year,params,train_sharpe
+v13_ratemom,2014,"{""threshold"": 1.0}",0.008
+v13_ratemom,2015,"{""threshold"": 1.0}",-0.006
+v13_ratemom,2016,"{""threshold"": 1.0}",0.164
+v13_ratemom,2017,"{""threshold"": 0.5}",0.077
+v13_ratemom,2018,"{""threshold"": 0.5}",-0.146
+v13_ratemom,2019,"{""threshold"": 0.5}",0.035
+v13_ratemom,2020,"{""threshold"": 0.5}",0.077
+v13_ratemom,2021,"{""threshold"": 0.5}",0.063
+v13_ratemom,2022,"{""threshold"": 0.5}",0.022
+v13_ratemom,2023,"{""threshold"": 0.5}",0.013
+v13_ratemom,2024,"{""threshold"": 0.5}",0.037
+v13_ratemom,2025,"{""threshold"": 0.5}",0.024
+v13_ratemom,2026,"{""threshold"": 0.5}",-0.066
+v13_carry_ratemom,2014,"{""threshold"": 1.0}",0.576
+v13_carry_ratemom,2015,"{""threshold"": 1.0}",0.379
+v13_carry_ratemom,2016,"{""threshold"": 0.5}",0.308
+v13_carry_ratemom,2017,"{""threshold"": 0.5}",0.16
+v13_carry_ratemom,2018,"{""threshold"": 0.5}",-0.108
+v13_carry_ratemom,2019,"{""threshold"": 0.5}",-0.036
+v13_carry_ratemom,2020,"{""threshold"": 1.0}",-0.038
+v13_carry_ratemom,2021,"{""threshold"": 1.0}",0.054
+v13_carry_ratemom,2022,"{""threshold"": 1.0}",0.039
+v13_carry_ratemom,2023,"{""threshold"": 1.0}",-0.036
+v13_carry_ratemom,2024,"{""threshold"": 1.0}",0.018
+v13_carry_ratemom,2025,"{""threshold"": 1.0}",0.105
+v13_carry_ratemom,2026,"{""threshold"": 1.0}",0.076

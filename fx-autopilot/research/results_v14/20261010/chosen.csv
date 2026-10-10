@@ -1,0 +1,27 @@
+candidate,year,params,train_sharpe
+v14_term,2014,"{""threshold"": 0.5}",0.025
+v14_term,2015,"{""threshold"": 0.5}",-0.422
+v14_term,2016,"{""threshold"": 0.5}",-0.422
+v14_term,2017,"{""threshold"": 0.5}",-0.412
+v14_term,2018,"{""threshold"": 0.5}",-0.386
+v14_term,2019,"{""threshold"": 0.5}",-0.212
+v14_term,2020,"{""threshold"": 0.5}",-0.237
+v14_term,2021,"{""threshold"": 0.5}",-0.257
+v14_term,2022,"{""threshold"": 0.5}",-0.375
+v14_term,2023,"{""threshold"": 0.5}",-0.417
+v14_term,2024,"{""threshold"": 0.5}",-0.387
+v14_term,2025,"{""threshold"": 0.5}",-0.237
+v14_term,2026,"{""threshold"": 0.5}",-0.228
+v14_term_ratemom,2014,"{""threshold"": 0.5}",-0.122
+v14_term_ratemom,2015,"{""threshold"": 0.5}",-0.505
+v14_term_ratemom,2016,"{""threshold"": 1.0}",-0.409
+v14_term_ratemom,2017,"{""threshold"": 0.5}",-0.312
+v14_term_ratemom,2018,"{""threshold"": 1.0}",-0.401
+v14_term_ratemom,2019,"{""threshold"": 1.0}",-0.097
+v14_term_ratemom,2020,"{""threshold"": 1.0}",-0.073
+v14_term_ratemom,2021,"{""threshold"": 1.0}",-0.043
+v14_term_ratemom,2022,"{""threshold"": 1.0}",-0.2
+v14_term_ratemom,2023,"{""threshold"": 1.0}",-0.25
+v14_term_ratemom,2024,"{""threshold"": 1.0}",-0.174
+v14_term_ratemom,2025,"{""threshold"": 1.0}",-0.085
+v14_term_ratemom,2026,"{""threshold"": 1.0}",-0.091

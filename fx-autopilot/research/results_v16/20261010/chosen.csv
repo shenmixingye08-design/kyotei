@@ -1,0 +1,27 @@
+candidate,year,params,train_sharpe
+v16_equity_rebal,2014,"{""threshold"": 1.0}",-0.114
+v16_equity_rebal,2015,"{""threshold"": 1.0}",-0.133
+v16_equity_rebal,2016,"{""threshold"": 1.0}",-0.268
+v16_equity_rebal,2017,"{""threshold"": 1.0}",-0.1
+v16_equity_rebal,2018,"{""threshold"": 1.0}",-0.148
+v16_equity_rebal,2019,"{""threshold"": 1.0}",-0.34
+v16_equity_rebal,2020,"{""threshold"": 1.0}",-0.284
+v16_equity_rebal,2021,"{""threshold"": 1.0}",-0.314
+v16_equity_rebal,2022,"{""threshold"": 1.0}",-0.288
+v16_equity_rebal,2023,"{""threshold"": 1.0}",-0.289
+v16_equity_rebal,2024,"{""threshold"": 1.0}",-0.322
+v16_equity_rebal,2025,"{""threshold"": 1.0}",-0.35
+v16_equity_rebal,2026,"{""threshold"": 1.0}",-0.371
+v16_equity_rebal_carry,2014,"{""threshold"": 1.0}",0.461
+v16_equity_rebal_carry,2015,"{""threshold"": 1.0}",0.263
+v16_equity_rebal_carry,2016,"{""threshold"": 1.0}",0.134
+v16_equity_rebal_carry,2017,"{""threshold"": 1.0}",0.222
+v16_equity_rebal_carry,2018,"{""threshold"": 1.0}",0.046
+v16_equity_rebal_carry,2019,"{""threshold"": 1.0}",-0.061
+v16_equity_rebal_carry,2020,"{""threshold"": 1.0}",-0.088
+v16_equity_rebal_carry,2021,"{""threshold"": 1.0}",-0.172
+v16_equity_rebal_carry,2022,"{""threshold"": 1.0}",-0.17
+v16_equity_rebal_carry,2023,"{""threshold"": 1.0}",-0.185
+v16_equity_rebal_carry,2024,"{""threshold"": 1.0}",-0.189
+v16_equity_rebal_carry,2025,"{""threshold"": 1.0}",-0.154
+v16_equity_rebal_carry,2026,"{""threshold"": 1.0}",-0.167
