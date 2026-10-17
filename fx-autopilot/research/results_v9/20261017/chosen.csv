@@ -1,0 +1,14 @@
+candidate,year,params,train_sharpe
+v9_tsmom_multi,2014,"{""agree"": ""all""}",0.211
+v9_tsmom_multi,2015,"{""agree"": ""all""}",0.251
+v9_tsmom_multi,2016,"{""agree"": ""all""}",0.383
+v9_tsmom_multi,2017,"{""agree"": ""all""}",0.214
+v9_tsmom_multi,2018,"{""agree"": ""all""}",0.037
+v9_tsmom_multi,2019,"{""agree"": ""all""}",-0.018
+v9_tsmom_multi,2020,"{""agree"": ""all""}",-0.032
+v9_tsmom_multi,2021,"{""agree"": ""all""}",0.044
+v9_tsmom_multi,2022,"{""agree"": ""all""}",-0.022
+v9_tsmom_multi,2023,"{""agree"": ""all""}",-0.014
+v9_tsmom_multi,2024,"{""agree"": ""all""}",-0.021
+v9_tsmom_multi,2025,"{""agree"": ""all""}",-0.03
+v9_tsmom_multi,2026,"{""agree"": ""all""}",-0.059

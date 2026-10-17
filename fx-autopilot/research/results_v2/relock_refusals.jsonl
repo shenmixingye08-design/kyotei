@@ -1,0 +1,1 @@
+{"at": "2026-10-17T01:32:10.222680+00:00", "spec_id": "v2_d1_tsmom", "diff_keys": ["pairs", "risk"], "new_params": {"lookback": 252, "sizing": "risk_stop"}}

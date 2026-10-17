@@ -1,4 +1,4 @@
-# FX AUTOPILOT V8 研究結果（2026-10-10 02:48 UTC、データ〜2026-10-09 20:00:00+00:00）
+# FX AUTOPILOT V8 研究結果（2026-10-17 01:34 UTC、データ〜2026-10-16 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v8.yaml`
 
@@ -11,8 +11,8 @@
 
 | candidate | status | n_trades | net_return | cagr | profit_factor | sharpe | sortino | max_drawdown | expectancy_jpy | cost_per_trade_jpy | cost_ratio | max_consecutive_losses | positive_year_ratio | max_single_year_share | ret_A | ret_B | stress_pf | positive_pairs | max_regime_share | dsr | param_changes | gate_fail |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v8_dollar_carry | REJECTED | 44 | -0.7% | -0.1% | 1.82 | 0.03 | 0.04 | -17.3% | 2,272 | 28 | 0.01 | 11 | 46% | 28% | -11.2% | +11.8% | 1.11 | 4 | 67% | 0.10 | 1 | trades, sharpe, positive_years, subperiod_not_positive, few_positive_pairs, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
-| v8_dollar_carry_trend | REJECTED | 122 | -7.9% | -0.6% | 0.74 | -0.12 | -0.17 | -21.2% | -542 | 53 | — | 20 | 38% | 50% | -5.4% | -2.7% | 0.60 | 1 | 100% | 0.03 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
+| v8_dollar_carry | REJECTED | 44 | -1.1% | -0.1% | 1.79 | 0.02 | 0.03 | -17.3% | 2,179 | 28 | 0.01 | 11 | 46% | 28% | -11.2% | +11.4% | 1.08 | 4 | 67% | 0.09 | 1 | trades, sharpe, positive_years, subperiod_not_positive, few_positive_pairs, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
+| v8_dollar_carry_trend | REJECTED | 122 | -8.2% | -0.7% | 0.73 | -0.13 | -0.18 | -21.2% | -571 | 53 | — | 20 | 38% | 50% | -5.4% | -3.0% | 0.58 | 1 | 100% | 0.03 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
 
 ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。
 
@@ -20,8 +20,8 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | candidate | status | n_trades | diag_top1_share | diag_top5_share | diag_pnl_ex_top5 | diag_pf_ex_top5 | diag_swap_share | diag_ret_2024_2026 |
 |---|---|---|---|---|---|---|---|---|
-| v8_dollar_carry | REJECTED | 44 | 75% | 161% | -61,440 | 0.50 | 11% | +4.3% |
-| v8_dollar_carry_trend | REJECTED | 122 | — | — | -150,566 | 0.41 | — | -7.9% |
+| v8_dollar_carry | REJECTED | 44 | 77% | 167% | -63,957 | 0.48 | 11% | +3.9% |
+| v8_dollar_carry_trend | REJECTED | 122 | — | — | -154,141 | 0.39 | — | -8.2% |
 
 上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。
 
@@ -41,7 +41,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | -0.6% | -2.1% |
 | 2024.0 | +10.0% | +1.7% |
 | 2025.0 | -7.1% | -7.7% |
-| 2026.0 | +2.1% | -1.8% |
+| 2026.0 | +1.7% | -2.2% |
 
 ## 年別 Profit Factor（WF OOS）
 
@@ -49,58 +49,58 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 |---|---|---|
 | 2014.0 | 0.00 | 0.32 |
 | 2015.0 | 1.47 | — |
-| 2016.0 | 5.69 | 2.31 |
+| 2016.0 | 5.64 | 2.31 |
 | 2017.0 | 0.00 | — |
-| 2018.0 | 18.97 | 1.09 |
+| 2018.0 | 18.65 | 1.09 |
 | 2019.0 | — | 1.05 |
 | 2020.0 | 0.00 | 0.03 |
 | 2021.0 | — | 12.30 |
 | 2023.0 | 0.00 | 0.38 |
 | 2024.0 | 0.00 | 0.13 |
 | 2025.0 | 0.00 | 0.05 |
-| 2026.0 | 3.73 | 0.64 |
+| 2026.0 | 3.42 | 0.50 |
 
 ## 通貨ペア別（WF OOS）
 
 | candidate | pair | trades | pnl_jpy | profit_factor | win_rate | avg_cost_jpy | swap_jpy |
 |---|---|---|---|---|---|---|---|
-| v8_dollar_carry | AUDUSD | 6 | +8,649 | 1.48 | 33% | 30 | -8,312 |
-| v8_dollar_carry | EURUSD | 7 | +13,603 | 1.73 | 29% | 15 | +7,017 |
-| v8_dollar_carry | GBPUSD | 4 | -8,188 | 0.42 | 25% | 23 | -8,223 |
-| v8_dollar_carry | NZDUSD | 2 | +29,791 | — | 100% | 41 | -6,319 |
-| v8_dollar_carry | USDCAD | 10 | -11,029 | 0.69 | 20% | 32 | -5,428 |
-| v8_dollar_carry | USDCHF | 9 | -4,493 | 0.74 | 22% | 40 | +16,968 |
-| v8_dollar_carry | USDJPY | 6 | +71,641 | 5.05 | 33% | 17 | +15,218 |
+| v8_dollar_carry | AUDUSD | 6 | +9,767 | 1.54 | 33% | 29 | -8,374 |
+| v8_dollar_carry | EURUSD | 7 | +12,992 | 1.69 | 29% | 16 | +7,040 |
+| v8_dollar_carry | GBPUSD | 4 | -9,662 | 0.31 | 25% | 23 | -8,253 |
+| v8_dollar_carry | NZDUSD | 2 | +29,065 | — | 100% | 41 | -6,321 |
+| v8_dollar_carry | USDCAD | 10 | -12,156 | 0.66 | 20% | 32 | -5,414 |
+| v8_dollar_carry | USDCHF | 9 | -5,535 | 0.68 | 22% | 40 | +17,042 |
+| v8_dollar_carry | USDJPY | 6 | +71,423 | 5.04 | 33% | 17 | +15,253 |
 | v8_dollar_carry_trend | AUDUSD | 18 | -11,354 | 0.64 | 44% | 60 | -3,099 |
-| v8_dollar_carry_trend | EURUSD | 17 | -11,313 | 0.67 | 35% | 23 | +3,862 |
+| v8_dollar_carry_trend | EURUSD | 17 | -11,897 | 0.66 | 35% | 23 | +3,885 |
 | v8_dollar_carry_trend | GBPUSD | 14 | -9,942 | 0.72 | 36% | 33 | -3,483 |
-| v8_dollar_carry_trend | NZDUSD | 18 | -2,144 | 0.92 | 44% | 85 | -4,256 |
-| v8_dollar_carry_trend | USDCAD | 18 | -11,277 | 0.66 | 50% | 51 | -3,482 |
-| v8_dollar_carry_trend | USDCHF | 20 | -33,040 | 0.31 | 20% | 85 | +9,844 |
+| v8_dollar_carry_trend | NZDUSD | 18 | -2,830 | 0.89 | 44% | 85 | -4,258 |
+| v8_dollar_carry_trend | USDCAD | 18 | -12,505 | 0.62 | 50% | 51 | -3,468 |
+| v8_dollar_carry_trend | USDCHF | 20 | -34,116 | 0.28 | 20% | 85 | +9,918 |
 | v8_dollar_carry_trend | USDJPY | 17 | +12,939 | 1.29 | 41% | 25 | +4,750 |
 
 ## レジーム別（WF OOS、エントリー時点の 4H レジーム / 月次の方向・ボラ）
 
 | candidate | dimension | state | trades | pnl_jpy | win_rate | profit_factor |
 |---|---|---|---|---|---|---|
-| v8_dollar_carry | regime4h | HIGH_VOL | 10 | +38,827 | 40% | 2.57 |
+| v8_dollar_carry | regime4h | HIGH_VOL | 10 | +37,860 | 40% | 2.53 |
 | v8_dollar_carry | regime4h | NEUTRAL | 9 | -14,868 | 11% | 0.50 |
-| v8_dollar_carry | regime4h | RANGE | 10 | -3,164 | 30% | 0.89 |
-| v8_dollar_carry | regime4h | TREND | 15 | +79,180 | 33% | 3.08 |
-| v8_dollar_carry | month_dir | DOWN | 10 | +12,830 | 30% | 1.57 |
-| v8_dollar_carry | month_dir | FLAT | 23 | +40,905 | 35% | 1.61 |
-| v8_dollar_carry | month_dir | UP | 11 | +46,241 | 18% | 2.43 |
-| v8_dollar_carry | month_vol | HIGH_VOL | 20 | -14,401 | 25% | 0.76 |
-| v8_dollar_carry | month_vol | LOW_VOL | 24 | +114,376 | 33% | 2.84 |
+| v8_dollar_carry | regime4h | RANGE | 10 | -4,291 | 30% | 0.85 |
+| v8_dollar_carry | regime4h | TREND | 15 | +77,193 | 33% | 3.03 |
+| v8_dollar_carry | month_dir | DOWN | 10 | +12,474 | 30% | 1.55 |
+| v8_dollar_carry | month_dir | FLAT | 23 | +37,398 | 35% | 1.56 |
+| v8_dollar_carry | month_dir | UP | 11 | +46,022 | 18% | 2.42 |
+| v8_dollar_carry | month_vol | HIGH_VOL | 20 | -17,003 | 25% | 0.72 |
+| v8_dollar_carry | month_vol | LOW_VOL | 24 | +112,896 | 33% | 2.82 |
 | v8_dollar_carry_trend | regime4h | HIGH_VOL | 4 | -2,655 | 25% | 0.78 |
-| v8_dollar_carry_trend | regime4h | NEUTRAL | 39 | -51,192 | 38% | 0.43 |
+| v8_dollar_carry_trend | regime4h | NEUTRAL | 39 | -53,004 | 38% | 0.41 |
 | v8_dollar_carry_trend | regime4h | RANGE | 34 | +37,553 | 44% | 1.63 |
-| v8_dollar_carry_trend | regime4h | TREND | 45 | -49,837 | 36% | 0.46 |
+| v8_dollar_carry_trend | regime4h | TREND | 45 | -51,599 | 36% | 0.44 |
 | v8_dollar_carry_trend | month_dir | DOWN | 24 | -8,666 | 38% | 0.83 |
-| v8_dollar_carry_trend | month_dir | FLAT | 77 | -64,568 | 35% | 0.61 |
-| v8_dollar_carry_trend | month_dir | UP | 21 | +7,102 | 52% | 1.19 |
+| v8_dollar_carry_trend | month_dir | FLAT | 77 | -65,838 | 35% | 0.60 |
+| v8_dollar_carry_trend | month_dir | UP | 21 | +4,798 | 52% | 1.13 |
 | v8_dollar_carry_trend | month_vol | HIGH_VOL | 24 | -18,411 | 42% | 0.63 |
-| v8_dollar_carry_trend | month_vol | LOW_VOL | 98 | -47,720 | 38% | 0.77 |
+| v8_dollar_carry_trend | month_vol | LOW_VOL | 98 | -51,295 | 38% | 0.75 |
 
 ## LOCK（V2・PAPER Forward 用）
 
@@ -128,10 +128,10 @@ CHF     200     2026-08         0.034             0.066            0.353
 ## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
 
   pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
-USDJPY  4191               0.0219            0.2991             1.156               9             1 2013-06-06
-EURUSD  4191               0.0254            0.3177             0.884               9             0 2011-10-07
-GBPUSD  4191               0.0257            0.3183             1.817              11             1 2020-03-18
-AUDUSD  4191               0.0303            0.3768             1.172              20             3 2020-03-12
-NZDUSD  4191               0.0362            0.4022             1.450              23             2 2011-08-05
-USDCAD  4191               0.0250            0.2946             0.895               9             0 2020-03-12
-USDCHF  4191               0.0277            0.3102             1.041               8             1 2011-10-07
+USDJPY  4196               0.0219            0.2988             1.156               9             1 2013-06-06
+EURUSD  4196               0.0255            0.3175             0.884               9             0 2011-10-07
+GBPUSD  4196               0.0257            0.3182             1.817              11             1 2020-03-18
+AUDUSD  4196               0.0303            0.3768             1.172              20             3 2020-03-12
+NZDUSD  4196               0.0364            0.4022             1.450              23             2 2011-08-05
+USDCAD  4196               0.0250            0.2946             0.895               9             0 2020-03-12
+USDCHF  4196               0.0278            0.3102             1.041               8             1 2011-10-07
