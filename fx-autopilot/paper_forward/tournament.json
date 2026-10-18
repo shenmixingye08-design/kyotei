@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-17T01:36:49.053042+00:00",
+  "updated_at": "2026-10-18T23:59:36.809785+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -37,7 +37,7 @@
       "paper_days": 15,
       "paper_return": -0.051562628418546086,
       "paper_sharpe": -7.121134291666415,
-      "paper_trades": 82
+      "paper_trades": 85
     },
     {
       "spec_id": "ml_logit_v1",
@@ -128,7 +128,7 @@
       "paper_days": 15,
       "paper_return": 0.03189247000000006,
       "paper_sharpe": 6.859945173737258,
-      "paper_trades": 16
+      "paper_trades": 17
     },
     {
       "spec_id": "mtf_pullback_v1",
@@ -220,7 +220,7 @@
       "paper_days": 15,
       "paper_return": -0.015251502012016416,
       "paper_sharpe": -2.5033621961228243,
-      "paper_trades": 9
+      "paper_trades": 10
     },
     {
       "spec_id": "trend_ema_adx_v1",
@@ -252,7 +252,7 @@
       "paper_days": 15,
       "paper_return": -0.03982695799624836,
       "paper_sharpe": -7.255784202396863,
-      "paper_trades": 18
+      "paper_trades": 19
     },
     {
       "spec_id": "trend_tsmom_v1",
@@ -912,7 +912,7 @@
       "paper_days": 14,
       "paper_return": -0.003773989999999894,
       "paper_sharpe": -4.394105651395859,
-      "paper_trades": 1
+      "paper_trades": 2
     },
     {
       "spec_id": "v6_carry_trend_mkt_7p",
@@ -1103,7 +1103,7 @@
       "paper_days": 14,
       "paper_return": -0.007630364710018767,
       "paper_sharpe": -1.811742765891036,
-      "paper_trades": 0
+      "paper_trades": 2
     }
   ],
   "history": []
