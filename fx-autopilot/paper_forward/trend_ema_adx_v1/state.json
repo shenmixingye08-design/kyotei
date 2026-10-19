@@ -1,19 +1,19 @@
 {
   "spec_id": "trend_ema_adx_v1",
   "spec_hash": "8fcf2bce96b78a30ed6b090780b7b408ec3fbfba864e546df4248966bf2d1a9e",
-  "last_bar": "2026-10-18 22:00:00+00:00",
+  "last_bar": "2026-10-19 03:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.805194+00:00",
   "start": "2026-09-25 12:17:20.618233+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 370,
+  "bars_processed": 375,
   "risk_state": {
-    "equity": 954755.3269686827,
+    "equity": 955449.2506886824,
     "hwm": 1000000.0,
-    "day_key": "2026-10-18",
-    "week_key": "2026-W42",
-    "day_start_equity": 953155.8743936825,
-    "week_start_equity": 961841.4616282058,
+    "day_key": "2026-10-19",
+    "week_key": "2026-W43",
+    "day_start_equity": 955407.5153236828,
+    "week_start_equity": 955407.5153236828,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
@@ -27,11 +27,11 @@
         "units": 7000.0,
         "entry_time": "2026-10-15 09:00:00+00:00",
         "entry_price": 1.3259,
-        "sl": 1.3298903827649666,
+        "sl": 1.3301385312030232,
         "tp": null,
         "trail": 0.00666386896893611,
         "max_bars": null,
-        "bars": 38,
+        "bars": 43,
         "best_close": 1.3359,
         "cost_spread": 55.247150000116584,
         "cost_slip": 22.098860000000002,
@@ -73,19 +73,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-18 22:00:00+00:00"
+      "last_bar": "2026-10-19 03:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-18 22:00:00+00:00"
+      "last_bar": "2026-10-19 03:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-18 22:00:00+00:00"
+      "last_bar": "2026-10-19 03:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-18 22:00:00+00:00"
+      "last_bar": "2026-10-19 03:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-18 22:00:00+00:00"
+      "last_bar": "2026-10-19 03:00:00+00:00"
     }
   }
 }
