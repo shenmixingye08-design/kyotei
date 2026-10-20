@@ -1,18 +1,18 @@
 {
   "spec_id": "v4_carry_trend_h4",
   "spec_hash": "21f421b1286c826099184823d3cb43da7be4e28df1753b8b8a571f74f293a671",
-  "last_bar": "2026-10-19 23:00:00+00:00",
+  "last_bar": "2026-10-20 07:00:00+00:00",
   "started_at": "2026-09-26T04:20:31.477194+00:00",
   "start": "2026-09-25 20:26:43.694219+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 387,
+  "bars_processed": 395,
   "risk_state": {
-    "equity": 1002746.7031937748,
+    "equity": 1001738.1554187748,
     "hwm": 1006169.1197586423,
-    "day_key": "2026-10-19",
+    "day_key": "2026-10-20",
     "week_key": "2026-W43",
-    "day_start_equity": 1002197.3090983658,
+    "day_start_equity": 1002797.8331637748,
     "week_start_equity": 1002197.3090983658,
     "kill_switch": false,
     "kill_reason": "",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 375,
+        "bars": 383,
         "best_close": 1.11156,
         "cost_spread": 2.3668350000155054,
         "cost_slip": 3.15578,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 376,
+        "bars": 384,
         "best_close": 0.690345,
         "cost_spread": 6.3115600000063115,
         "cost_slip": 3.15578,
@@ -79,7 +79,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 292,
+        "bars": 300,
         "best_close": 158.9445,
         "cost_spread": 1.4999999999929514,
         "cost_slip": 2.0,
@@ -92,37 +92,33 @@
         "sl_initial": 152.62493433912942,
         "entry_spread_pips": 0.2999999999985903,
         "slippage_pips": 0.2
-      }
-    },
-    "pending": [
-      {
+      },
+      "AUDJPY": {
         "client_order_id": "4faaaa7adf2c482d7ba624bd",
-        "pair": "AUDJPY",
         "side": 1,
         "units": 1000.0,
-        "kind": "MARKET",
-        "sl": 3.5463956742600717,
+        "entry_time": "2026-10-20 00:00:00+00:00",
+        "entry_price": 110.69399999999999,
+        "sl": 107.14760432573992,
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "reason": "entry",
-        "decided_at": "2026-10-19 23:00:00+00:00",
-        "meta": {
-          "risk_jpy": 3546.3956742600717,
-          "checks": {
-            "ok": true,
-            "value": {
-              "units": 1000,
-              "risk_jpy": 3546.4,
-              "notional_jpy": 110689.7,
-              "lev_after": 0.557,
-              "cap_leverage_units": 41247,
-              "cap_currency_units": 19120
-            }
-          }
-        }
+        "bars": 8,
+        "best_close": 110.712,
+        "cost_spread": 3.0000000000001137,
+        "cost_slip": 2.0,
+        "commission": 0.0,
+        "swap": 0.0,
+        "equity_at_entry": 1002746.7031937748,
+        "risk_jpy": 3546.3956742600717,
+        "notional_jpy": 110689.70367000002,
+        "signal_time": "2026-10-19 23:00:00+00:00",
+        "sl_initial": 107.14760432573992,
+        "entry_spread_pips": 0.6000000000000227,
+        "slippage_pips": 0.2
       }
-    ],
+    },
+    "pending": [],
     "client_ids": [
       "0af52b9283d80343ee02ec0d",
       "0b5a186e77a52f76874ad334",
@@ -146,25 +142,25 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-10-19 23:00:00+00:00"
+      "last_bar": "2026-10-20 07:00:00+00:00"
     }
   }
 }
