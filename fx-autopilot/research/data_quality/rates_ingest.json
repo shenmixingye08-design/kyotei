@@ -1,26 +1,26 @@
 {
- "at": "2026-10-21 12:02:09.950088+00:00",
- "ok": 40,
+ "at": "2026-10-21 17:24:10.407050+00:00",
+ "ok": 33,
  "series": {
   "IR3TIB01USM156N": {
    "cached": true,
    "rows": 747
   },
   "IR3TIB01EZM156N": {
-   "source": "fred",
-   "rows": 385,
+   "source": "dbnomics_oecd_mei",
+   "rows": 361,
    "first": "1994-01-01",
-   "last": "2026-01-01"
+   "last": "2024-01-01"
   },
   "IR3TIB01JPM156N": {
    "cached": true,
    "rows": 293
   },
   "IR3TIB01GBM156N": {
-   "source": "fred",
-   "rows": 829,
-   "first": "1957-01-01",
-   "last": "2026-01-01"
+   "source": "dbnomics_oecd_mei",
+   "rows": 457,
+   "first": "1986-01-01",
+   "last": "2024-01-01"
   },
   "IR3TIB01AUM156N": {
    "cached": true,
@@ -79,50 +79,36 @@
    "rows": 358
   },
   "CPI_JPY": {
-   "source": "JPNCPIALLMINMEI(stale)",
-   "rows": 798,
-   "first": "1955-01-01",
-   "last": "2021-06-01"
+   "error": "CPI JPY: FRED CPALTT01JPM661N: https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=CPALTT01JPM661N: curl(default UA) failed |  | FRED JPNCPIALLMINMEI: https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=JPNCPIALLMINMEI: curl(default UA) failed | ",
+   "stale_cache": true
   },
   "CPI_GBP": {
-   "source": "GBRCPIALLMINMEI(stale)",
-   "rows": 843,
-   "first": "1955-01-01",
-   "last": "2025-03-01"
+   "error": "CPI GBP: FRED CPALTT01GBM661N: https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=CPALTT01GBM661N: curl(default UA) failed |  | FRED GBRCPIALLMINMEI: https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=GBRCPIALLMINMEI: curl(default UA) failed | ",
+   "stale_cache": true
   },
   "CPI_AUD": {
-   "source": "AUSCPIALLQINMEI(stale)",
-   "rows": 307,
-   "first": "1948-07-01",
-   "last": "2025-01-01"
+   "skipped": "source unreachable this run",
+   "stale_cache": true
   },
   "CPI_NZD": {
-   "source": "NZLCPIALLQINMEI(stale)",
-   "rows": 444,
-   "first": "1914-04-01",
-   "last": "2025-01-01"
+   "skipped": "source unreachable this run",
+   "stale_cache": true
   },
   "CPI_CAD": {
-   "source": "CANCPIALLMINMEI(stale)",
-   "rows": 1335,
-   "first": "1914-01-01",
-   "last": "2025-03-01"
+   "skipped": "source unreachable this run",
+   "stale_cache": true
   },
   "CPI_CHF": {
-   "source": "CHECPIALLMINMEI(stale)",
-   "rows": 844,
-   "first": "1955-01-01",
-   "last": "2025-04-01"
+   "skipped": "source unreachable this run",
+   "stale_cache": true
   },
   "IRLTLT01USM156N": {
    "cached": true,
    "rows": 882
   },
   "IRLTLT01EZM156N": {
-   "source": "fred",
-   "rows": 673,
-   "first": "1970-01-01",
-   "last": "2026-01-01"
+   "error": "FRED IRLTLT01EZM156N: https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=IRLTLT01EZM156N: curl(default UA) failed | https://alfred.stlouisfed.org/graph/alfredgraph.csv?id=IRLTLT01EZM156N: HTTP 200 | https://fred.stlouisfed.org/series/IRLTLT01EZM156N/downloaddata/IRLTLT01EZM156N.csv: curl(default UA) failed | https://fred.stlouisfed.org/series/IRLTLT01EZM156N/downloaddata/IRLTLT01EZM156N.csv: HTTP 200",
+   "stale_cache": true
   },
   "IRLTLT01JPM156N": {
    "cached": true,
