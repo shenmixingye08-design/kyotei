@@ -1,14 +1,14 @@
 {
   "spec_id": "ml_lgbm_v1",
   "spec_hash": "c5cce5bbf1cc1f343b4f8a07f3fec6afd8289698460d6224ea419a6407f8ff74",
-  "last_bar": "2026-10-23 16:00:00+00:00",
+  "last_bar": "2026-10-23 20:00:00+00:00",
   "started_at": "2026-09-25T12:20:54.169591+00:00",
   "start": "2026-09-25 12:17:20.635308+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 484,
+  "bars_processed": 488,
   "risk_state": {
-    "equity": 905574.5552959524,
+    "equity": 905065.8470134526,
     "hwm": 1016284.3010006186,
     "day_key": "2026-10-23",
     "week_key": "2026-W43",
@@ -19,32 +19,8 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 906186.6095959528,
+    "cash": 905845.479333453,
     "positions": {
-      "EURUSD": {
-        "client_order_id": "3076a2833163a559c201ce46",
-        "side": 1,
-        "units": 5000.0,
-        "entry_time": "2026-10-23 08:00:00+00:00",
-        "entry_price": 1.11987,
-        "sl": 1.1178986971418055,
-        "tp": 1.1218413028581944,
-        "trail": null,
-        "max_bars": 12.0,
-        "bars": 9,
-        "best_close": 1.12066,
-        "cost_spread": 19.621062499954274,
-        "cost_slip": 15.696850000000001,
-        "commission": 0.0,
-        "swap": 0.0,
-        "equity_at_entry": 909465.043902309,
-        "risk_jpy": 1547.16226348253,
-        "notional_jpy": 878895.0,
-        "signal_time": "2026-10-23 07:00:00+00:00",
-        "sl_initial": 1.1178986971418055,
-        "entry_spread_pips": 0.4999999999988347,
-        "slippage_pips": 0.2
-      },
       "GBPUSD": {
         "client_order_id": "74299b0bfdda13e1338e5fce",
         "side": 1,
@@ -55,7 +31,7 @@
         "tp": 1.3391816507747827,
         "trail": null,
         "max_bars": 12.0,
-        "bars": 5,
+        "bars": 9,
         "best_close": 1.3385500000000001,
         "cost_spread": 62.75080000013243,
         "cost_slip": 25.100320000000004,
@@ -67,6 +43,30 @@
         "signal_time": "2026-10-23 11:00:00+00:00",
         "sl_initial": 1.334928349225218,
         "entry_spread_pips": 1.0000000000021103,
+        "slippage_pips": 0.2
+      },
+      "USDJPY": {
+        "client_order_id": "f9476dc5892f7b2fa07cf517",
+        "side": 1,
+        "units": 9000.0,
+        "entry_time": "2026-10-23 20:00:00+00:00",
+        "entry_price": 156.846,
+        "sl": 156.36435209613367,
+        "tp": 157.32764790386634,
+        "trail": null,
+        "max_bars": 12.0,
+        "bars": 1,
+        "best_close": 156.864,
+        "cost_spread": 18.000000000085947,
+        "cost_slip": 18.0,
+        "commission": 0.0,
+        "swap": 0.0,
+        "equity_at_entry": 906059.5679809523,
+        "risk_jpy": 4334.831134797072,
+        "notional_jpy": 1411573.5,
+        "signal_time": "2026-10-23 19:00:00+00:00",
+        "sl_initial": 156.36435209613367,
+        "entry_spread_pips": 0.40000000000190994,
         "slippage_pips": 0.2
       }
     },
@@ -200,6 +200,7 @@
       "d4ee2e21c5aade91bb944ab4",
       "d757132469d610fcd37f4b1a",
       "d873f49b0570a1a1a8f7a10e",
+      "da1eaaee9f2e41b84c522bd8",
       "dd6559b61a6ad1b7784123d8",
       "deea09a5f0ee36404ad1e3ae",
       "df0c0267ebdfaa6b95075534",
@@ -214,25 +215,26 @@
       "f2c926e3789d5cedb2557653",
       "f40068a9810b214484e28868",
       "f400880b93f19549684c0b45",
+      "f9476dc5892f7b2fa07cf517",
       "ffa23f264652baaf8f43fee3",
       "ffefb261b9d445bcd2748800"
     ]
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-23 16:00:00+00:00"
+      "last_bar": "2026-10-23 20:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-23 16:00:00+00:00"
+      "last_bar": "2026-10-23 20:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-23 16:00:00+00:00"
+      "last_bar": "2026-10-23 20:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-23 16:00:00+00:00"
+      "last_bar": "2026-10-23 20:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-23 16:00:00+00:00"
+      "last_bar": "2026-10-23 20:00:00+00:00"
     }
   }
 }
