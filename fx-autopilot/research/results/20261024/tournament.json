@@ -1,0 +1,1104 @@
+{
+  "updated_at": "2026-10-24T01:39:05.836938+00:00",
+  "champion": null,
+  "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
+  "challengers": [
+    "v2_trend_carry"
+  ],
+  "live_candidates": [],
+  "live_requires_user_approval": true,
+  "specs": [
+    {
+      "spec_id": "ml_lgbm_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "1165",
+      "test_pf": 0.939408,
+      "test_sharpe": -0.492809,
+      "test_mdd": -0.150822,
+      "test_halted": "2022-09-06 13:00:00+00:00",
+      "stress_pf": 0.876762,
+      "fwd_trades": "453",
+      "fwd_return": -0.096858,
+      "fwd_sharpe": -0.950124,
+      "fwd_mdd": -0.150052,
+      "paper_days": 20,
+      "paper_return": -0.09715458093827756,
+      "paper_sharpe": -10.402917028403742,
+      "paper_trades": 114
+    },
+    {
+      "spec_id": "ml_logit_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "514",
+      "test_pf": 1.015606,
+      "test_sharpe": 0.110977,
+      "test_mdd": -0.127108,
+      "test_halted": null,
+      "stress_pf": 0.909698,
+      "fwd_trades": "104",
+      "fwd_return": -0.032252,
+      "fwd_sharpe": -0.589584,
+      "fwd_mdd": -0.080473,
+      "paper_days": 20,
+      "paper_return": 0.00012804000000010696,
+      "paper_sharpe": 3.6055512754639887,
+      "paper_trades": 1
+    },
+    {
+      "spec_id": "mr_rsi_bb_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "387",
+      "test_pf": 0.841556,
+      "test_sharpe": -0.745043,
+      "test_mdd": -0.153523,
+      "test_halted": "2023-06-27 14:00:00+00:00",
+      "stress_pf": 0.793019,
+      "fwd_trades": "300",
+      "fwd_return": -0.055604,
+      "fwd_sharpe": -0.599494,
+      "fwd_mdd": -0.111731,
+      "paper_days": 20,
+      "paper_return": 0.023877909999999725,
+      "paper_sharpe": 3.596784770948827,
+      "paper_trades": 24
+    },
+    {
+      "spec_id": "mr_zscore_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "250",
+      "test_pf": 0.830637,
+      "test_sharpe": -0.612615,
+      "test_mdd": -0.154237,
+      "test_halted": "2022-10-26 07:00:00+00:00",
+      "stress_pf": 0.784962,
+      "fwd_trades": "291",
+      "fwd_return": -0.088246,
+      "fwd_sharpe": -0.742691,
+      "fwd_mdd": -0.151165,
+      "paper_days": 20,
+      "paper_return": 0.01970970999999988,
+      "paper_sharpe": 2.764624122591597,
+      "paper_trades": 22
+    },
+    {
+      "spec_id": "mtf_pullback_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "134",
+      "test_pf": 0.740853,
+      "test_sharpe": -0.924527,
+      "test_mdd": -0.150267,
+      "test_halted": "2023-05-29 11:00:00+00:00",
+      "stress_pf": 0.706499,
+      "fwd_trades": "107",
+      "fwd_return": -0.08468,
+      "fwd_sharpe": -1.23946,
+      "fwd_mdd": -0.099903,
+      "paper_days": 20,
+      "paper_return": -0.007821479792569308,
+      "paper_sharpe": -2.7409298420176134,
+      "paper_trades": 4
+    },
+    {
+      "spec_id": "regime_switch_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_not_positive"
+      ],
+      "test_trades": "410",
+      "test_pf": 0.94068,
+      "test_sharpe": -0.186434,
+      "test_mdd": -0.15132,
+      "test_halted": "2023-03-29 12:00:00+00:00",
+      "stress_pf": 0.916687,
+      "fwd_trades": "195",
+      "fwd_return": -0.137887,
+      "fwd_sharpe": -1.229864,
+      "fwd_mdd": -0.150667,
+      "paper_days": 20,
+      "paper_return": -0.0004608468003622912,
+      "paper_sharpe": 0.007567726563839135,
+      "paper_trades": 29
+    },
+    {
+      "spec_id": "trend_donchian_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_kill_switch",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "112",
+      "test_pf": 1.483656,
+      "test_sharpe": 0.559378,
+      "test_mdd": -0.150853,
+      "test_halted": "2023-02-02 10:00:00+00:00",
+      "stress_pf": 1.407662,
+      "fwd_trades": "52",
+      "fwd_return": -0.136032,
+      "fwd_sharpe": -1.647953,
+      "fwd_mdd": -0.150224,
+      "paper_days": 20,
+      "paper_return": -0.019693987551900882,
+      "paper_sharpe": -2.6853672549389684,
+      "paper_trades": 11
+    },
+    {
+      "spec_id": "trend_ema_adx_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "test_profit_factor",
+        "test_sharpe",
+        "test_kill_switch",
+        "stress_2x_cost",
+        "forward_not_positive"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "279",
+      "test_pf": 0.914237,
+      "test_sharpe": -0.210582,
+      "test_mdd": -0.152241,
+      "test_halted": "2022-12-19 16:00:00+00:00",
+      "stress_pf": 0.868416,
+      "fwd_trades": "303",
+      "fwd_return": -0.034601,
+      "fwd_sharpe": -0.173491,
+      "fwd_mdd": -0.150124,
+      "paper_days": 20,
+      "paper_return": -0.02966788988254332,
+      "paper_sharpe": -3.16157149662052,
+      "paper_trades": 25
+    },
+    {
+      "spec_id": "trend_tsmom_v1",
+      "status": "RESEARCH_ONLY",
+      "gate_b_fail": [
+        "gate_A_failed_all_pairs",
+        "forward_not_positive",
+        "test_forward_divergence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_backtest_divergence"
+      ],
+      "test_trades": "255",
+      "test_pf": 1.154903,
+      "test_sharpe": 0.50818,
+      "test_mdd": -0.07017,
+      "test_halted": null,
+      "stress_pf": 1.087354,
+      "fwd_trades": "88",
+      "fwd_return": -0.071612,
+      "fwd_sharpe": -0.956557,
+      "fwd_mdd": -0.104471,
+      "paper_days": 20,
+      "paper_return": 0.0218336800000003,
+      "paper_sharpe": 5.394016785526026,
+      "paper_trades": 4
+    },
+    {
+      "spec_id": "v10_carry_vix",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": -0.171799,
+      "paper_days": 19,
+      "paper_return": -0.006992720159132548,
+      "paper_sharpe": -2.2540971761483823,
+      "paper_trades": 7
+    },
+    {
+      "spec_id": "v11_intraday_region",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": -1.167387,
+      "paper_days": 19,
+      "paper_return": 0.01695833101717037,
+      "paper_sharpe": 2.9833166970135787,
+      "paper_trades": 291
+    },
+    {
+      "spec_id": "v12_carry_timed",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.122585,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v13_carry_ratemom",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.172087,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v13_ratemom",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.177125,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v14_term",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.268266,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v14_term_ratemom",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.265515,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v16_equity_rebal",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.299149,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v16_equity_rebal_carry",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.56587,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v2_d1_donchian",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.258484,
+      "paper_days": 20,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v2_d1_tsmom",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.05857,
+      "paper_days": 20,
+      "paper_return": -0.004557799999999612,
+      "paper_sharpe": -0.8422649645172132,
+      "paper_trades": 2
+    },
+    {
+      "spec_id": "v2_h4_ema",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.103005,
+      "paper_days": 20,
+      "paper_return": 0.0004181700000001065,
+      "paper_sharpe": 1.5315632940841732,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v2_ml_d1_logit",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "ml_not_better_than_simple"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.646369,
+      "paper_days": 20,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v2_session_breakout",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": -0.236601,
+      "paper_days": 20,
+      "paper_return": -0.024439140000000137,
+      "paper_sharpe": -4.819818431532738,
+      "paper_trades": 11
+    },
+    {
+      "spec_id": "v2_trend_carry",
+      "status": "CHALLENGER",
+      "gate_b_fail": [],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.441711,
+      "paper_days": 20,
+      "paper_return": -0.00062614999999977,
+      "paper_sharpe": -1.8819045130573504,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v2_xpair_strength",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": -0.173698,
+      "paper_days": 20,
+      "paper_return": 0.0013603300000002427,
+      "paper_sharpe": 1.7567029458470678,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_only",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "subperiod_not_positive",
+        "single_regime_dependence",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.391782,
+      "paper_days": 20,
+      "paper_return": -0.00882511000000008,
+      "paper_sharpe": -3.1945274390417735,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_trend_7p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.524903,
+      "paper_days": 20,
+      "paper_return": -0.00062614999999977,
+      "paper_sharpe": -1.8819045130573504,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v3_carry_trend_mh",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.366952,
+      "paper_days": 20,
+      "paper_return": -0.00018050000000036093,
+      "paper_sharpe": -0.45475286011692334,
+      "paper_trades": 1
+    },
+    {
+      "spec_id": "v3_carry_trend_xs",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.499494,
+      "paper_days": 20,
+      "paper_return": -4.819999999983171e-05,
+      "paper_sharpe": -0.15659030229459048,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v4_carry_trend_daily",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "single_regime_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.505282,
+      "paper_days": 19,
+      "paper_return": -0.0014791800000000244,
+      "paper_sharpe": -3.236614512006902,
+      "paper_trades": 2
+    },
+    {
+      "spec_id": "v4_carry_trend_daily_fast",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.083373,
+      "paper_days": 19,
+      "paper_return": -4.819999999983171e-05,
+      "paper_sharpe": -0.16043600675499775,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v4_carry_trend_h4",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.045796,
+      "paper_days": 19,
+      "paper_return": -0.0002023458451569926,
+      "paper_sharpe": -0.11291017878977692,
+      "paper_trades": 13
+    },
+    {
+      "spec_id": "v5_carry_trend_daily_10p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.191054,
+      "paper_days": 19,
+      "paper_return": -0.005851257851987368,
+      "paper_sharpe": -3.4166361306447866,
+      "paper_trades": 1
+    },
+    {
+      "spec_id": "v5_carry_trend_weekly_10p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.051877,
+      "paper_days": 19,
+      "paper_return": -0.007587480000000424,
+      "paper_sharpe": -4.6828944319503645,
+      "paper_trades": 1
+    },
+    {
+      "spec_id": "v6_carry_trend_daily_mkt_7p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "single_regime_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.522722,
+      "paper_days": 19,
+      "paper_return": -0.0011561099999997104,
+      "paper_sharpe": -0.9502021865612901,
+      "paper_trades": 2
+    },
+    {
+      "spec_id": "v6_carry_trend_mkt_7p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.434233,
+      "paper_days": 19,
+      "paper_return": -0.0007374499999999173,
+      "paper_sharpe": -0.6211728814371947,
+      "paper_trades": 2
+    },
+    {
+      "spec_id": "v6_trend_carry_mkt_5p",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": 0.395869,
+      "paper_days": 19,
+      "paper_return": -0.0007374499999999173,
+      "paper_sharpe": -0.6211728814371947,
+      "paper_trades": 2
+    },
+    {
+      "spec_id": "v7_carry_monthly",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.008347,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v7_ccv_monthly",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.181258,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v7_cm_monthly",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "sharpe",
+        "subperiod_not_positive",
+        "few_positive_pairs",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.223979,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v8_dollar_carry",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "trades",
+        "sharpe",
+        "positive_years",
+        "subperiod_not_positive",
+        "few_positive_pairs",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": 0.017552,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v8_dollar_carry_trend",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive"
+      ],
+      "test_sharpe": -0.136052,
+      "paper_days": 19,
+      "paper_return": 0.0,
+      "paper_sharpe": null,
+      "paper_trades": 0
+    },
+    {
+      "spec_id": "v9_tsmom_multi",
+      "status": "REJECTED",
+      "gate_b_fail": [
+        "profit_factor",
+        "sharpe",
+        "positive_years",
+        "single_year_dependence",
+        "max_drawdown",
+        "subperiod_not_positive",
+        "fragile_to_cost_2x",
+        "few_positive_pairs",
+        "single_regime_dependence",
+        "deflated_sharpe",
+        "top5_trade_dependence",
+        "top1_trade_dependence"
+      ],
+      "paper_gate_fail": [
+        "paper_months<3",
+        "paper_trades",
+        "paper_not_positive",
+        "paper_backtest_divergence"
+      ],
+      "test_sharpe": -0.162284,
+      "paper_days": 19,
+      "paper_return": -0.014038941837851149,
+      "paper_sharpe": -2.8784474342157367,
+      "paper_trades": 5
+    }
+  ],
+  "history": []
+}
