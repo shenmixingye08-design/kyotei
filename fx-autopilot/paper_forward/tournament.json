@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-24T01:58:00.739499+00:00",
+  "updated_at": "2026-10-25T23:50:32.341858+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -251,7 +251,7 @@
       "paper_days": 20,
       "paper_return": -0.02966788988254332,
       "paper_sharpe": -3.16157149662052,
-      "paper_trades": 25
+      "paper_trades": 26
     },
     {
       "spec_id": "trend_tsmom_v1",
