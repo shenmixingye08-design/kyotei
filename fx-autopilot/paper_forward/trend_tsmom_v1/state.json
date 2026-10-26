@@ -1,19 +1,19 @@
 {
   "spec_id": "trend_tsmom_v1",
   "spec_hash": "12e018ee5dcdf9aa51cc80cfba7f73a00db6784b0db219a74d64837f692a2899",
-  "last_bar": "2026-10-25 22:00:00+00:00",
+  "last_bar": "2026-10-26 03:00:00+00:00",
   "started_at": "2026-09-25T12:21:56.325930+00:00",
   "start": "2026-09-25 12:17:20.622616+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 490,
+  "bars_processed": 495,
   "risk_state": {
-    "equity": 1021181.0547652744,
+    "equity": 1020039.9374452742,
     "hwm": 1023260.8537702743,
-    "day_key": "2026-10-25",
-    "week_key": "2026-W43",
-    "day_start_equity": 1019710.1379352744,
-    "week_start_equity": 1015804.7298702059,
+    "day_key": "2026-10-26",
+    "week_key": "2026-W44",
+    "day_start_equity": 1019658.1868452743,
+    "week_start_equity": 1019658.1868452743,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 240.0,
-        "bars": 108,
+        "bars": 113,
         "best_close": 1.1189900000000002,
         "cost_spread": 7.117897500046631,
         "cost_slip": 9.490530000000001,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 240.0,
-        "bars": 109,
+        "bars": 114,
         "best_close": 175.26,
         "cost_spread": 10.500000000007503,
         "cost_slip": 6.0,
@@ -86,19 +86,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-25 22:00:00+00:00"
+      "last_bar": "2026-10-26 03:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-25 22:00:00+00:00"
+      "last_bar": "2026-10-26 03:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-25 22:00:00+00:00"
+      "last_bar": "2026-10-26 03:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-25 22:00:00+00:00"
+      "last_bar": "2026-10-26 03:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-25 22:00:00+00:00"
+      "last_bar": "2026-10-26 03:00:00+00:00"
     }
   }
 }
