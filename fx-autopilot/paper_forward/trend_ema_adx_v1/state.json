@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_ema_adx_v1",
   "spec_hash": "8fcf2bce96b78a30ed6b090780b7b408ec3fbfba864e546df4248966bf2d1a9e",
-  "last_bar": "2026-10-26 19:00:00+00:00",
+  "last_bar": "2026-10-26 23:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.805194+00:00",
   "start": "2026-09-25 12:17:20.618233+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 511,
+  "bars_processed": 515,
   "risk_state": {
-    "equity": 959050.0384658112,
+    "equity": 959175.6699644851,
     "hwm": 1000000.0,
     "day_key": "2026-10-26",
     "week_key": "2026-W44",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 959026.4093408113,
+    "cash": 958947.2434894854,
     "positions": {
       "GBPUSD": {
         "client_order_id": "4166a535c2f55d48ebdbab0d",
@@ -27,16 +27,16 @@
         "units": 10000.0,
         "entry_time": "2026-10-26 12:00:00+00:00",
         "entry_price": 1.33464,
-        "sl": 1.3374151807601748,
+        "sl": 1.3370841977422767,
         "tp": null,
         "trail": 0.004440289216279639,
         "max_bars": null,
-        "bars": 8,
+        "bars": 12,
         "best_close": 1.3329900000000001,
         "cost_spread": 78.72100000016613,
         "cost_slip": 31.488400000000002,
         "commission": 0.0,
-        "swap": 0.0,
+        "swap": -79.1658513259418,
         "equity_at_entry": 959026.4093408113,
         "risk_jpy": 4369.300092434369,
         "notional_jpy": 2101409.8624,
@@ -82,19 +82,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-26 19:00:00+00:00"
+      "last_bar": "2026-10-26 23:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-26 19:00:00+00:00"
+      "last_bar": "2026-10-26 23:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-26 19:00:00+00:00"
+      "last_bar": "2026-10-26 23:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-26 19:00:00+00:00"
+      "last_bar": "2026-10-26 23:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-26 19:00:00+00:00"
+      "last_bar": "2026-10-26 23:00:00+00:00"
     }
   }
 }
