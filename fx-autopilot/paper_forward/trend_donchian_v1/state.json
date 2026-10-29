@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-10-29 09:00:00+00:00",
+  "last_bar": "2026-10-29 17:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 573,
+  "bars_processed": 581,
   "risk_state": {
-    "equity": 971132.9939480552,
+    "equity": 966543.3298578954,
     "hwm": 1022635.6193662074,
     "day_key": "2026-10-29",
     "week_key": "2026-W44",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 973499.989788055,
+    "cash": 968747.3298578954,
     "positions": {
       "EURJPY": {
         "client_order_id": "23681e065f87453dc3c0961e",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 118,
+        "bars": 126,
         "best_close": 175.26,
         "cost_spread": 18.000000000029104,
         "cost_slip": 8.0,
@@ -43,30 +43,6 @@
         "signal_time": "2026-10-22 11:00:00+00:00",
         "sl_initial": 176.96040075042492,
         "entry_spread_pips": 0.9000000000014552,
-        "slippage_pips": 0.2
-      },
-      "AUDUSD": {
-        "client_order_id": "b9e6135e594e4913d4095a22",
-        "side": 1,
-        "units": 12000.0,
-        "entry_time": "2026-10-28 01:00:00+00:00",
-        "entry_price": 0.7043499999999999,
-        "sl": 0.7018943219211329,
-        "tp": null,
-        "trail": null,
-        "max_bars": null,
-        "bars": 33,
-        "best_close": 0.70604,
-        "cost_spread": 104.18099999984133,
-        "cost_slip": 37.88400000000001,
-        "commission": 0.0,
-        "swap": -112.55597117371227,
-        "equity_at_entry": 974565.2419236122,
-        "risk_jpy": 4651.545416989907,
-        "notional_jpy": 1333999.8210000002,
-        "signal_time": "2026-10-28 00:00:00+00:00",
-        "sl_initial": 0.7018943219211329,
-        "entry_spread_pips": 1.0999999999983245,
         "slippage_pips": 0.2
       }
     },
@@ -95,19 +71,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-29 09:00:00+00:00"
+      "last_bar": "2026-10-29 17:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-29 09:00:00+00:00"
+      "last_bar": "2026-10-29 17:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-29 09:00:00+00:00"
+      "last_bar": "2026-10-29 17:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-29 09:00:00+00:00"
+      "last_bar": "2026-10-29 17:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-29 09:00:00+00:00"
+      "last_bar": "2026-10-29 17:00:00+00:00"
     }
   }
 }
