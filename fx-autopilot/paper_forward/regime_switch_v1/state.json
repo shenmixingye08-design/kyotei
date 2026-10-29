@@ -1,18 +1,18 @@
 {
   "spec_id": "regime_switch_v1",
   "spec_hash": "acd1486f9282074212882f00f1a7fe7a0a9b84f761970c30da8cf03868f2dac2",
-  "last_bar": "2026-10-28 19:00:00+00:00",
+  "last_bar": "2026-10-29 00:00:00+00:00",
   "started_at": "2026-09-25T12:21:54.593686+00:00",
   "start": "2026-09-25 12:17:20.628812+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 559,
+  "bars_processed": 564,
   "risk_state": {
     "equity": 975426.8365624897,
     "hwm": 1018332.8186687755,
-    "day_key": "2026-10-28",
+    "day_key": "2026-10-29",
     "week_key": "2026-W44",
-    "day_start_equity": 982167.5310498851,
+    "day_start_equity": 975426.8365624897,
     "week_start_equity": 994985.8530597023,
     "kill_switch": false,
     "kill_reason": "",
@@ -73,19 +73,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-28 19:00:00+00:00"
+      "last_bar": "2026-10-29 00:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-28 19:00:00+00:00"
+      "last_bar": "2026-10-29 00:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-28 19:00:00+00:00"
+      "last_bar": "2026-10-29 00:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-28 19:00:00+00:00"
+      "last_bar": "2026-10-29 00:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-28 19:00:00+00:00"
+      "last_bar": "2026-10-29 00:00:00+00:00"
     }
   }
 }
