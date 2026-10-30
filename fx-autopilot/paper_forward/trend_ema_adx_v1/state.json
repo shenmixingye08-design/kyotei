@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_ema_adx_v1",
   "spec_hash": "8fcf2bce96b78a30ed6b090780b7b408ec3fbfba864e546df4248966bf2d1a9e",
-  "last_bar": "2026-10-30 17:00:00+00:00",
+  "last_bar": "2026-10-30 20:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.805194+00:00",
   "start": "2026-09-25 12:17:20.618233+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 605,
+  "bars_processed": 608,
   "risk_state": {
-    "equity": 953406.6386585481,
+    "equity": 949591.1061785478,
     "hwm": 1000000.0,
     "day_key": "2026-10-30",
     "week_key": "2026-W44",
@@ -27,11 +27,11 @@
         "units": 8000.0,
         "entry_time": "2026-10-30 04:00:00+00:00",
         "entry_price": 157.41499999999996,
-        "sl": 157.94584199213764,
+        "sl": 157.92468760179895,
         "tp": null,
         "trail": 0.9266342171070188,
         "max_bars": null,
-        "bars": 14,
+        "bars": 17,
         "best_close": 156.9785,
         "cost_spread": 12.000000000170985,
         "cost_slip": 16.0,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": 0.005985394183963989,
         "max_bars": null,
-        "bars": 4,
+        "bars": 7,
         "best_close": 1.114935,
         "cost_spread": 18.87576000012366,
         "cost_slip": 25.16768,
@@ -79,7 +79,7 @@
         "tp": null,
         "trail": 1.1220179660766414,
         "max_bars": null,
-        "bars": 4,
+        "bars": 7,
         "best_close": 175.385,
         "cost_spread": 24.000000000114596,
         "cost_slip": 12.0,
@@ -136,19 +136,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-10-30 17:00:00+00:00"
+      "last_bar": "2026-10-30 20:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-10-30 17:00:00+00:00"
+      "last_bar": "2026-10-30 20:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-10-30 17:00:00+00:00"
+      "last_bar": "2026-10-30 20:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-10-30 17:00:00+00:00"
+      "last_bar": "2026-10-30 20:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-10-30 17:00:00+00:00"
+      "last_bar": "2026-10-30 20:00:00+00:00"
     }
   }
 }
