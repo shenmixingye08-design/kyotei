@@ -1,3 +1,3 @@
 candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
-v12_carry_timed,True,"{""lookback"": 63}",139,0.151862,0.188404,1.267358,-0.193703,0.157471,58,-0.058426,-0.174025,0.753494,-0.124158,,43,0.138604,0.47378,1.790564,-0.109685,0.042963
-v12_carry_timed,True,"{""lookback"": 126}",126,0.172892,0.210145,1.367951,-0.160657,0.136989,58,0.050889,0.177858,1.287818,-0.120097,0.128157,36,0.088699,0.303091,1.58889,-0.148592,0.095282
+v12_carry_timed,True,"{""lookback"": 63}",139,0.16266,0.19891,1.286369,-0.193703,0.138715,58,-0.058426,-0.174025,0.753494,-0.124158,,43,0.149278,0.503826,1.851445,-0.109685,0.038869
+v12_carry_timed,True,"{""lookback"": 126}",126,0.18339,0.220191,1.390294,-0.160657,0.123482,58,0.050889,0.177858,1.287818,-0.120097,0.128157,36,0.098443,0.330332,1.653588,-0.148592,0.076766

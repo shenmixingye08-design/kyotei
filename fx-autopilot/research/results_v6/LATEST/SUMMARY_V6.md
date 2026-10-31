@@ -1,4 +1,4 @@
-# FX AUTOPILOT V6 研究結果（2026-10-24 01:52 UTC、データ〜2026-10-23 20:00:00+00:00）
+# FX AUTOPILOT V6 研究結果（2026-10-31 02:48 UTC、データ〜2026-10-30 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v6.yaml`
 
@@ -11,9 +11,9 @@
 
 | candidate | status | n_trades | net_return | cagr | profit_factor | sharpe | sortino | max_drawdown | expectancy_jpy | cost_per_trade_jpy | cost_ratio | max_consecutive_losses | positive_year_ratio | max_single_year_share | ret_A | ret_B | stress_pf | positive_pairs | max_regime_share | dsr | param_changes | gate_fail |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v6_carry_trend_daily_mkt_7p | REJECTED | 233 | +25.6% | +1.8% | 2.26 | 0.49 | 0.68 | -8.1% | 1,189 | 39 | 0.04 | 10 | 62% | 24% | +5.4% | +19.2% | 1.66 | 5 | 77% | 0.94 | 1 | single_regime_dependence, top1_trade_dependence |
-| v6_carry_trend_mkt_7p | REJECTED | 141 | +21.9% | +1.6% | 2.34 | 0.44 | 0.61 | -8.6% | 1,778 | 34 | 0.02 | 9 | 77% | 19% | +6.1% | +14.9% | 1.89 | 5 | 46% | 0.92 | 1 | top5_trade_dependence, top1_trade_dependence |
-| v6_trend_carry_mkt_5p | REJECTED | 165 | +16.1% | +1.2% | 1.81 | 0.37 | 0.51 | -8.2% | 1,124 | 32 | 0.03 | 8 | 69% | 28% | +7.3% | +8.2% | 1.59 | 3 | 56% | 0.88 | 1 | sharpe, few_positive_pairs, top5_trade_dependence, top1_trade_dependence |
+| v6_carry_trend_daily_mkt_7p | REJECTED | 233 | +26.0% | +1.8% | 2.28 | 0.50 | 0.69 | -8.1% | 1,206 | 39 | 0.04 | 10 | 62% | 24% | +5.4% | +19.6% | 1.68 | 5 | 77% | 0.95 | 1 | single_regime_dependence, top1_trade_dependence |
+| v6_carry_trend_mkt_7p | REJECTED | 141 | +22.3% | +1.6% | 2.36 | 0.45 | 0.61 | -8.6% | 1,806 | 34 | 0.02 | 9 | 77% | 19% | +6.1% | +15.2% | 1.91 | 5 | 46% | 0.92 | 1 | top5_trade_dependence, top1_trade_dependence |
+| v6_trend_carry_mkt_5p | REJECTED | 165 | +16.3% | +1.2% | 1.82 | 0.37 | 0.52 | -8.2% | 1,136 | 32 | 0.03 | 8 | 69% | 28% | +7.3% | +8.3% | 1.60 | 3 | 56% | 0.88 | 1 | sharpe, few_positive_pairs, top5_trade_dependence, top1_trade_dependence |
 
 ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。
 
@@ -21,9 +21,9 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | candidate | status | n_trades | diag_top1_share | diag_top5_share | diag_pnl_ex_top5 | diag_pf_ex_top5 | diag_swap_share | diag_ret_2024_2026 |
 |---|---|---|---|---|---|---|---|---|
-| v6_trend_carry_mkt_5p | REJECTED | 165 | 64% | 137% | -68,767 | 0.70 | 13% | +0.2% |
-| v6_carry_trend_mkt_7p | REJECTED | 141 | 47% | 101% | -3,720 | 0.98 | 17% | +6.3% |
-| v6_carry_trend_daily_mkt_7p | REJECTED | 233 | 43% | 97% | +7,986 | 1.04 | 20% | +7.1% |
+| v6_trend_carry_mkt_5p | REJECTED | 165 | 64% | 136% | -68,218 | 0.70 | 13% | +0.4% |
+| v6_carry_trend_mkt_7p | REJECTED | 141 | 47% | 101% | -1,758 | 0.99 | 17% | +6.7% |
+| v6_carry_trend_daily_mkt_7p | REJECTED | 233 | 43% | 97% | +8,671 | 1.04 | 20% | +7.4% |
 
 上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。
 
@@ -43,7 +43,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | +2.2% | +4.3% | +4.6% |
 | 2024.0 | +2.4% | +4.4% | +6.6% |
 | 2025.0 | -2.4% | +0.3% | +0.9% |
-| 2026.0 | +0.2% | +1.5% | -0.4% |
+| 2026.0 | +0.4% | +1.9% | -0.1% |
 
 ## 年別 Profit Factor（WF OOS）
 
@@ -56,68 +56,68 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2018.0 | 0.57 | 0.71 | 0.78 |
 | 2019.0 | 0.38 | 0.22 | 0.56 |
 | 2020.0 | 1.26 | 1.67 | 1.06 |
-| 2021.0 | 163.97 | 282.99 | 41.42 |
+| 2021.0 | 165.73 | 285.92 | 41.84 |
 | 2022.0 | 2.44 | 0.63 | 4.18 |
-| 2023.0 | 1.54 | 91.35 | 7.54 |
+| 2023.0 | 1.54 | 91.35 | 7.66 |
 | 2024.0 | 0.16 | 0.00 | 0.00 |
-| 2025.0 | 0.33 | 2.63 | 1.97 |
-| 2026.0 | 1.09 | — | 0.07 |
+| 2025.0 | 0.33 | 2.73 | 2.01 |
+| 2026.0 | 1.12 | — | 0.11 |
 
 ## 通貨ペア別（WF OOS）
 
 | candidate | pair | trades | pnl_jpy | profit_factor | win_rate | avg_cost_jpy | swap_jpy |
 |---|---|---|---|---|---|---|---|
 | v6_trend_carry_mkt_5p | AUDUSD | 46 | -26,028 | 0.53 | 30% | 46 | -2,908 |
-| v6_trend_carry_mkt_5p | EURJPY | 26 | +14,945 | 1.40 | 38% | 26 | +2,264 |
-| v6_trend_carry_mkt_5p | EURUSD | 32 | +61,467 | 2.25 | 38% | 23 | +1,317 |
+| v6_trend_carry_mkt_5p | EURJPY | 26 | +14,778 | 1.40 | 38% | 26 | +2,221 |
+| v6_trend_carry_mkt_5p | EURUSD | 32 | +62,183 | 2.26 | 38% | 23 | +1,343 |
 | v6_trend_carry_mkt_5p | GBPUSD | 35 | -1,171 | 0.98 | 37% | 36 | -6,630 |
-| v6_trend_carry_mkt_5p | USDJPY | 26 | +136,215 | 4.88 | 38% | 22 | +30,827 |
-| v6_carry_trend_mkt_7p | AUDJPY | 17 | +9,368 | 1.40 | 53% | 49 | +9,925 |
+| v6_trend_carry_mkt_5p | USDJPY | 26 | +137,732 | 4.92 | 38% | 22 | +30,898 |
+| v6_carry_trend_mkt_7p | AUDJPY | 17 | +9,837 | 1.43 | 53% | 49 | +9,960 |
 | v6_carry_trend_mkt_7p | AUDUSD | 30 | -19,632 | 0.48 | 37% | 41 | -1,682 |
 | v6_carry_trend_mkt_7p | EURJPY | 16 | +32,616 | 2.99 | 50% | 31 | +3,511 |
-| v6_carry_trend_mkt_7p | EURUSD | 22 | +81,224 | 4.02 | 45% | 23 | +508 |
-| v6_carry_trend_mkt_7p | GBPJPY | 15 | -14,789 | 0.60 | 20% | 43 | +4,795 |
+| v6_carry_trend_mkt_7p | EURUSD | 22 | +81,940 | 4.05 | 45% | 23 | +535 |
+| v6_carry_trend_mkt_7p | GBPJPY | 15 | -13,542 | 0.64 | 20% | 43 | +4,835 |
 | v6_carry_trend_mkt_7p | GBPUSD | 17 | +25,313 | 2.62 | 59% | 34 | -4,617 |
-| v6_carry_trend_mkt_7p | USDJPY | 24 | +136,534 | 5.66 | 33% | 23 | +31,383 |
-| v6_carry_trend_daily_mkt_7p | AUDJPY | 33 | -907 | 0.98 | 24% | 44 | +10,079 |
+| v6_carry_trend_mkt_7p | USDJPY | 24 | +138,051 | 5.71 | 33% | 23 | +31,455 |
+| v6_carry_trend_daily_mkt_7p | AUDJPY | 33 | -437 | 0.99 | 24% | 44 | +10,115 |
 | v6_carry_trend_daily_mkt_7p | AUDUSD | 55 | -8,727 | 0.81 | 40% | 49 | -1,297 |
 | v6_carry_trend_daily_mkt_7p | EURJPY | 35 | +21,997 | 1.76 | 43% | 32 | +2,072 |
-| v6_carry_trend_daily_mkt_7p | EURUSD | 29 | +78,595 | 3.46 | 62% | 25 | +1,173 |
-| v6_carry_trend_daily_mkt_7p | GBPJPY | 17 | +40,827 | 3.05 | 24% | 50 | +15,795 |
+| v6_carry_trend_daily_mkt_7p | EURUSD | 29 | +79,280 | 3.48 | 62% | 25 | +1,199 |
+| v6_carry_trend_daily_mkt_7p | GBPJPY | 17 | +42,073 | 3.11 | 24% | 50 | +15,835 |
 | v6_carry_trend_daily_mkt_7p | GBPUSD | 27 | +32,434 | 2.87 | 56% | 45 | -4,844 |
-| v6_carry_trend_daily_mkt_7p | USDJPY | 37 | +112,913 | 4.06 | 38% | 30 | +32,328 |
+| v6_carry_trend_daily_mkt_7p | USDJPY | 37 | +114,431 | 4.11 | 38% | 30 | +32,399 |
 
 ## レジーム別（WF OOS、エントリー時点の 4H レジーム / 月次の方向・ボラ）
 
 | candidate | dimension | state | trades | pnl_jpy | win_rate | profit_factor |
 |---|---|---|---|---|---|---|
 | v6_trend_carry_mkt_5p | regime4h | HIGH_VOL | 11 | +10,257 | 36% | 1.65 |
-| v6_trend_carry_mkt_5p | regime4h | NEUTRAL | 40 | +16,475 | 40% | 1.39 |
-| v6_trend_carry_mkt_5p | regime4h | RANGE | 42 | +103,690 | 40% | 2.74 |
-| v6_trend_carry_mkt_5p | regime4h | TREND | 72 | +55,005 | 31% | 1.50 |
+| v6_trend_carry_mkt_5p | regime4h | NEUTRAL | 40 | +16,309 | 40% | 1.38 |
+| v6_trend_carry_mkt_5p | regime4h | RANGE | 42 | +105,207 | 40% | 2.77 |
+| v6_trend_carry_mkt_5p | regime4h | TREND | 72 | +55,721 | 31% | 1.50 |
 | v6_trend_carry_mkt_5p | month_dir | DOWN | 38 | -18,508 | 29% | 0.70 |
-| v6_trend_carry_mkt_5p | month_dir | FLAT | 98 | +180,038 | 36% | 2.36 |
+| v6_trend_carry_mkt_5p | month_dir | FLAT | 98 | +182,104 | 36% | 2.38 |
 | v6_trend_carry_mkt_5p | month_dir | UP | 29 | +23,898 | 45% | 1.72 |
 | v6_trend_carry_mkt_5p | month_vol | HIGH_VOL | 35 | +4,050 | 40% | 1.10 |
-| v6_trend_carry_mkt_5p | month_vol | LOW_VOL | 130 | +181,377 | 35% | 1.97 |
+| v6_trend_carry_mkt_5p | month_vol | LOW_VOL | 130 | +183,444 | 35% | 1.99 |
 | v6_carry_trend_mkt_7p | regime4h | HIGH_VOL | 11 | +4,900 | 45% | 1.31 |
-| v6_carry_trend_mkt_7p | regime4h | NEUTRAL | 31 | +114,505 | 48% | 4.84 |
-| v6_carry_trend_mkt_7p | regime4h | RANGE | 36 | +115,607 | 44% | 3.22 |
-| v6_carry_trend_mkt_7p | regime4h | TREND | 63 | +15,621 | 37% | 1.18 |
+| v6_carry_trend_mkt_7p | regime4h | NEUTRAL | 31 | +116,221 | 48% | 4.90 |
+| v6_carry_trend_mkt_7p | regime4h | RANGE | 36 | +117,125 | 44% | 3.25 |
+| v6_carry_trend_mkt_7p | regime4h | TREND | 63 | +16,337 | 37% | 1.18 |
 | v6_carry_trend_mkt_7p | month_dir | DOWN | 34 | +5,199 | 41% | 1.11 |
-| v6_carry_trend_mkt_7p | month_dir | FLAT | 81 | +237,538 | 40% | 3.40 |
+| v6_carry_trend_mkt_7p | month_dir | FLAT | 81 | +241,488 | 40% | 3.44 |
 | v6_carry_trend_mkt_7p | month_dir | UP | 26 | +7,896 | 50% | 1.20 |
-| v6_carry_trend_mkt_7p | month_vol | HIGH_VOL | 40 | -149 | 42% | 1.00 |
-| v6_carry_trend_mkt_7p | month_vol | LOW_VOL | 101 | +250,783 | 42% | 3.08 |
+| v6_carry_trend_mkt_7p | month_vol | HIGH_VOL | 40 | +320 | 42% | 1.00 |
+| v6_carry_trend_mkt_7p | month_vol | LOW_VOL | 101 | +254,263 | 42% | 3.11 |
 | v6_carry_trend_daily_mkt_7p | regime4h | HIGH_VOL | 15 | -15,249 | 27% | 0.41 |
-| v6_carry_trend_daily_mkt_7p | regime4h | NEUTRAL | 67 | +226,059 | 45% | 5.25 |
-| v6_carry_trend_daily_mkt_7p | regime4h | RANGE | 62 | +16,470 | 48% | 1.31 |
-| v6_carry_trend_daily_mkt_7p | regime4h | TREND | 89 | +49,851 | 36% | 1.57 |
+| v6_carry_trend_daily_mkt_7p | regime4h | NEUTRAL | 67 | +228,046 | 45% | 5.29 |
+| v6_carry_trend_daily_mkt_7p | regime4h | RANGE | 62 | +17,155 | 48% | 1.32 |
+| v6_carry_trend_daily_mkt_7p | regime4h | TREND | 89 | +51,098 | 36% | 1.58 |
 | v6_carry_trend_daily_mkt_7p | month_dir | DOWN | 51 | +11,825 | 51% | 1.21 |
-| v6_carry_trend_daily_mkt_7p | month_dir | FLAT | 124 | +54,751 | 34% | 1.46 |
-| v6_carry_trend_daily_mkt_7p | month_dir | UP | 58 | +210,555 | 48% | 5.79 |
-| v6_carry_trend_daily_mkt_7p | month_vol | HIGH_VOL | 62 | +32,197 | 34% | 1.53 |
-| v6_carry_trend_daily_mkt_7p | month_vol | LOW_VOL | 171 | +244,934 | 44% | 2.53 |
+| v6_carry_trend_daily_mkt_7p | month_dir | FLAT | 124 | +55,906 | 34% | 1.47 |
+| v6_carry_trend_daily_mkt_7p | month_dir | UP | 58 | +213,319 | 48% | 5.85 |
+| v6_carry_trend_daily_mkt_7p | month_vol | HIGH_VOL | 62 | +32,666 | 34% | 1.54 |
+| v6_carry_trend_daily_mkt_7p | month_vol | LOW_VOL | 171 | +248,384 | 44% | 2.56 |
 
 ## LOCK（V2・PAPER Forward 用）
 
@@ -146,10 +146,10 @@ CHF     201     2026-09         0.034             0.066            0.353
 ## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
 
   pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
-USDJPY  4200               0.0220            0.2987             1.156               9             1 2013-06-06
-EURUSD  4200               0.0256            0.3174             0.884               9             0 2011-10-07
-GBPUSD  4200               0.0257            0.3181             1.817              11             1 2020-03-18
-AUDUSD  4200               0.0304            0.3768             1.172              20             3 2020-03-12
-NZDUSD  4200               0.0365            0.4021             1.450              23             2 2011-08-05
-USDCAD  4200               0.0250            0.2945             0.895               9             0 2020-03-12
-USDCHF  4200               0.0278            0.3102             1.041               8             1 2011-10-07
+USDJPY  4205               0.0220            0.2986             1.156               9             1 2013-06-06
+EURUSD  4205               0.0256            0.3173             0.884               9             0 2011-10-07
+GBPUSD  4205               0.0258            0.3179             1.817              11             1 2020-03-18
+AUDUSD  4205               0.0304            0.3767             1.172              20             3 2020-03-12
+NZDUSD  4205               0.0365            0.4016             1.450              23             2 2011-08-05
+USDCAD  4205               0.0250            0.2945             0.895               9             0 2020-03-12
+USDCHF  4205               0.0279            0.3101             1.041               8             1 2011-10-07

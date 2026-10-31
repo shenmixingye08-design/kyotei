@@ -1,4 +1,4 @@
-# FX AUTOPILOT V12 研究結果（2026-10-24 01:54 UTC、データ〜2026-10-23 20:00:00+00:00）
+# FX AUTOPILOT V12 研究結果（2026-10-31 02:51 UTC、データ〜2026-10-30 20:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v12.yaml`
 
@@ -11,7 +11,7 @@
 
 | candidate | status | n_trades | net_return | cagr | profit_factor | sharpe | sortino | max_drawdown | expectancy_jpy | cost_per_trade_jpy | cost_ratio | max_consecutive_losses | positive_year_ratio | max_single_year_share | ret_A | ret_B | stress_pf | positive_pairs | max_regime_share | dsr | param_changes | gate_fail |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v12_carry_timed | REJECTED | 97 | +4.4% | +0.3% | 1.12 | 0.10 | 0.13 | -14.5% | 524 | 92 | — | 13 | 54% | 28% | -4.0% | +8.7% | 0.85 | 5 | 57% | 0.57 | 2 | trades, sharpe, positive_years, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, top5_trade_dependence, top1_trade_dependence |
+| v12_carry_timed | REJECTED | 97 | +5.3% | +0.4% | 1.15 | 0.11 | 0.15 | -14.5% | 632 | 92 | 7.84 | 13 | 54% | 27% | -4.0% | +9.7% | 0.87 | 5 | 60% | 0.59 | 2 | trades, sharpe, positive_years, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, top5_trade_dependence, top1_trade_dependence |
 
 ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。
 
@@ -19,7 +19,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | candidate | status | n_trades | diag_top1_share | diag_top5_share | diag_pnl_ex_top5 | diag_pf_ex_top5 | diag_swap_share | diag_ret_2024_2026 |
 |---|---|---|---|---|---|---|---|---|
-| v12_carry_timed | REJECTED | 97 | 114% | 385% | -144,753 | 0.65 | 135% | +7.5% |
+| v12_carry_timed | REJECTED | 97 | 94% | 325% | -137,834 | 0.67 | 113% | +8.5% |
 
 上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。
 
@@ -39,7 +39,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | -3.9% |
 | 2024.0 | +1.4% |
 | 2025.0 | +1.1% |
-| 2026.0 | +4.9% |
+| 2026.0 | +5.9% |
 
 ## 年別 Profit Factor（WF OOS）
 
@@ -56,37 +56,37 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2022.0 | 1.96 |
 | 2023.0 | 0.07 |
 | 2024.0 | 3.28 |
-| 2025.0 | 1.43 |
-| 2026.0 | 4.95 |
+| 2025.0 | 1.54 |
+| 2026.0 | 5.38 |
 
 ## 通貨ペア別（WF OOS）
 
 | candidate | pair | trades | pnl_jpy | profit_factor | win_rate | avg_cost_jpy | swap_jpy |
 |---|---|---|---|---|---|---|---|
-| v12_carry_timed | AUDJPY | 10 | +3,499 | 1.07 | 30% | 99 | +13,293 |
+| v12_carry_timed | AUDJPY | 10 | +4,907 | 1.09 | 30% | 99 | +13,400 |
 | v12_carry_timed | AUDUSD | 10 | -29,781 | 0.44 | 20% | 119 | +2,445 |
 | v12_carry_timed | EURJPY | 9 | -58,145 | 0.18 | 22% | 107 | +2,592 |
-| v12_carry_timed | EURUSD | 15 | +98,540 | 3.22 | 60% | 48 | +8,987 |
-| v12_carry_timed | GBPJPY | 9 | -5,259 | 0.83 | 33% | 80 | +13,463 |
+| v12_carry_timed | EURUSD | 15 | +100,711 | 3.27 | 60% | 48 | +9,066 |
+| v12_carry_timed | GBPJPY | 9 | -2,765 | 0.91 | 33% | 80 | +13,542 |
 | v12_carry_timed | GBPUSD | 7 | -10,635 | 0.54 | 71% | 54 | +7 |
-| v12_carry_timed | NZDUSD | 9 | -59,339 | 0.24 | 11% | 126 | +4,668 |
-| v12_carry_timed | USDCAD | 8 | +8,253 | 1.40 | 50% | 73 | -103 |
+| v12_carry_timed | NZDUSD | 9 | -54,933 | 0.30 | 11% | 126 | +4,657 |
+| v12_carry_timed | USDCAD | 8 | +6,754 | 1.32 | 50% | 73 | -24 |
 | v12_carry_timed | USDCHF | 10 | +70,102 | 7.25 | 70% | 158 | +8,139 |
-| v12_carry_timed | USDJPY | 10 | +33,576 | 2.02 | 70% | 63 | +15,168 |
+| v12_carry_timed | USDJPY | 10 | +35,094 | 2.06 | 70% | 63 | +15,240 |
 
 ## レジーム別（WF OOS、エントリー時点の 4H レジーム / 月次の方向・ボラ）
 
 | candidate | dimension | state | trades | pnl_jpy | win_rate | profit_factor |
 |---|---|---|---|---|---|---|
 | v12_carry_timed | regime4h | HIGH_VOL | 10 | +27,829 | 30% | 1.37 |
-| v12_carry_timed | regime4h | NEUTRAL | 22 | +19,501 | 59% | 1.29 |
-| v12_carry_timed | regime4h | RANGE | 36 | -100,118 | 36% | 0.48 |
-| v12_carry_timed | regime4h | TREND | 47 | +63,555 | 45% | 1.33 |
+| v12_carry_timed | regime4h | NEUTRAL | 22 | +19,411 | 59% | 1.29 |
+| v12_carry_timed | regime4h | RANGE | 36 | -96,107 | 36% | 0.50 |
+| v12_carry_timed | regime4h | TREND | 47 | +70,133 | 45% | 1.36 |
 | v12_carry_timed | month_dir | DOWN | 20 | -112,848 | 20% | 0.27 |
-| v12_carry_timed | month_dir | FLAT | 70 | +136,723 | 49% | 1.53 |
-| v12_carry_timed | month_dir | UP | 25 | -13,109 | 48% | 0.89 |
+| v12_carry_timed | month_dir | FLAT | 70 | +148,720 | 49% | 1.58 |
+| v12_carry_timed | month_dir | UP | 25 | -14,607 | 48% | 0.88 |
 | v12_carry_timed | month_vol | HIGH_VOL | 34 | -20,664 | 32% | 0.88 |
-| v12_carry_timed | month_vol | LOW_VOL | 81 | +31,431 | 48% | 1.09 |
+| v12_carry_timed | month_vol | LOW_VOL | 81 | +41,929 | 48% | 1.12 |
 
 ## LOCK（V2・PAPER Forward 用）
 
@@ -113,10 +113,10 @@ CHF     201     2026-09         0.034             0.066            0.353
 ## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
 
   pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
-USDJPY  4200               0.0220            0.2987             1.156               9             1 2013-06-06
-EURUSD  4200               0.0256            0.3174             0.884               9             0 2011-10-07
-GBPUSD  4200               0.0257            0.3181             1.817              11             1 2020-03-18
-AUDUSD  4200               0.0304            0.3768             1.172              20             3 2020-03-12
-NZDUSD  4200               0.0365            0.4021             1.450              23             2 2011-08-05
-USDCAD  4200               0.0250            0.2945             0.895               9             0 2020-03-12
-USDCHF  4200               0.0278            0.3102             1.041               8             1 2011-10-07
+USDJPY  4205               0.0220            0.2986             1.156               9             1 2013-06-06
+EURUSD  4205               0.0256            0.3173             0.884               9             0 2011-10-07
+GBPUSD  4205               0.0258            0.3179             1.817              11             1 2020-03-18
+AUDUSD  4205               0.0304            0.3767             1.172              20             3 2020-03-12
+NZDUSD  4205               0.0365            0.4016             1.450              23             2 2011-08-05
+USDCAD  4205               0.0250            0.2945             0.895               9             0 2020-03-12
+USDCHF  4205               0.0279            0.3101             1.041               8             1 2011-10-07
