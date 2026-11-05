@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T01:41:01.489283+00:00",
+  "updated_at": "2026-11-05T11:13:22.667845+00:00",
   "champion": null,
   "champion_note": "LOCK 後 PAPER Forward 合格の候補なし → Champion = CASH（取引しない）",
   "challengers": [
@@ -35,9 +35,9 @@
       "fwd_sharpe": -0.94327,
       "fwd_mdd": -0.150052,
       "paper_days": 29,
-      "paper_return": -0.127798825402769,
-      "paper_sharpe": -9.627602571826483,
-      "paper_trades": 156
+      "paper_return": -0.13177869742491388,
+      "paper_sharpe": -10.017749739164223,
+      "paper_trades": 157
     },
     {
       "spec_id": "ml_logit_v1",
@@ -125,8 +125,8 @@
       "fwd_sharpe": -0.737341,
       "fwd_mdd": -0.151165,
       "paper_days": 29,
-      "paper_return": 0.027030290000000123,
-      "paper_sharpe": 2.7655473470270433,
+      "paper_return": 0.03221894000000014,
+      "paper_sharpe": 3.2890731722962334,
       "paper_trades": 29
     },
     {
@@ -218,8 +218,8 @@
       "fwd_sharpe": -1.635983,
       "fwd_mdd": -0.150224,
       "paper_days": 29,
-      "paper_return": -0.03440731525852281,
-      "paper_sharpe": -3.560503756027916,
+      "paper_return": -0.03599674797398433,
+      "paper_sharpe": -3.7355481554179226,
       "paper_trades": 17
     },
     {
@@ -249,8 +249,8 @@
       "fwd_sharpe": -0.172244,
       "fwd_mdd": -0.150124,
       "paper_days": 29,
-      "paper_return": -0.04748397907520052,
-      "paper_sharpe": -3.405254077269139,
+      "paper_return": -0.04839212176903818,
+      "paper_sharpe": -3.474670614803082,
       "paper_trades": 36
     },
     {
@@ -332,9 +332,9 @@
       ],
       "test_sharpe": -1.167387,
       "paper_days": 28,
-      "paper_return": 0.0009247498811126853,
-      "paper_sharpe": 0.14841124651729987,
-      "paper_trades": 411
+      "paper_return": 0.00391457631341896,
+      "paper_sharpe": 0.5094507211575006,
+      "paper_trades": 416
     },
     {
       "spec_id": "v12_carry_timed",
@@ -350,13 +350,12 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades",
-        "paper_not_positive"
+        "paper_trades"
       ],
       "test_sharpe": 0.122585,
       "paper_days": 28,
-      "paper_return": -0.0003373999999999322,
-      "paper_sharpe": -0.15809154393967387,
+      "paper_return": 0.0014331499999999942,
+      "paper_sharpe": 0.7857851737185575,
       "paper_trades": 0
     },
     {
@@ -377,13 +376,12 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive",
-        "paper_backtest_divergence"
+        "paper_not_positive"
       ],
       "test_sharpe": -0.172087,
       "paper_days": 28,
-      "paper_return": -0.0019875799999997668,
-      "paper_sharpe": -4.242757077345578,
+      "paper_return": -3.102999999982092e-05,
+      "paper_sharpe": -0.055511992325591654,
       "paper_trades": 0
     },
     {
@@ -411,8 +409,8 @@
       ],
       "test_sharpe": -0.177125,
       "paper_days": 28,
-      "paper_return": -0.010944339999999997,
-      "paper_sharpe": -4.6127868170750554,
+      "paper_return": -0.009366999999999903,
+      "paper_sharpe": -3.83703992701491,
       "paper_trades": 0
     },
     {
@@ -439,8 +437,8 @@
       ],
       "test_sharpe": -0.268266,
       "paper_days": 28,
-      "paper_return": 0.00103680000000006,
-      "paper_sharpe": 1.7392389291450838,
+      "paper_return": 0.001170909999999914,
+      "paper_sharpe": 2.017762666957041,
       "paper_trades": 0
     },
     {
@@ -468,8 +466,8 @@
       ],
       "test_sharpe": -0.265515,
       "paper_days": 28,
-      "paper_return": -0.004934240000000201,
-      "paper_sharpe": -4.863274164259408,
+      "paper_return": -0.00328852000000035,
+      "paper_sharpe": -3.1644681713266647,
       "paper_trades": 0
     },
     {
@@ -496,8 +494,8 @@
       ],
       "test_sharpe": -0.299149,
       "paper_days": 28,
-      "paper_return": 0.0031103599999999787,
-      "paper_sharpe": 1.8047907185459877,
+      "paper_return": 0.002732770000000162,
+      "paper_sharpe": 1.6063261777724414,
       "paper_trades": 0
     },
     {
@@ -524,8 +522,8 @@
       ],
       "test_sharpe": -0.56587,
       "paper_days": 28,
-      "paper_return": 0.004883339999999903,
-      "paper_sharpe": 3.809821012837732,
+      "paper_return": 0.005710339999999814,
+      "paper_sharpe": 4.577180532277155,
       "paper_trades": 0
     },
     {
@@ -575,8 +573,8 @@
       ],
       "test_sharpe": -0.05857,
       "paper_days": 29,
-      "paper_return": -0.013391639999999927,
-      "paper_sharpe": -1.821537411892228,
+      "paper_return": -0.011108380000000029,
+      "paper_sharpe": -1.4944119747456344,
       "paper_trades": 2
     },
     {
@@ -601,8 +599,8 @@
       ],
       "test_sharpe": 0.103005,
       "paper_days": 29,
-      "paper_return": -0.004696459999999902,
-      "paper_sharpe": -2.247177782741626,
+      "paper_return": -0.005682399999999865,
+      "paper_sharpe": -2.7210490762002477,
       "paper_trades": 3
     },
     {
@@ -669,8 +667,8 @@
       ],
       "test_sharpe": 0.441711,
       "paper_days": 29,
-      "paper_return": -0.0025294199999997824,
-      "paper_sharpe": -3.4518021537004717,
+      "paper_return": -0.0019413899999997097,
+      "paper_sharpe": -2.7233939947046517,
       "paper_trades": 1
     },
     {
@@ -695,8 +693,8 @@
       ],
       "test_sharpe": -0.173698,
       "paper_days": 29,
-      "paper_return": -0.0023653399999995495,
-      "paper_sharpe": -1.7536234195802456,
+      "paper_return": -0.002008309999999569,
+      "paper_sharpe": -1.4894183320418604,
       "paper_trades": 0
     },
     {
@@ -712,13 +710,12 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades",
-        "paper_not_positive"
+        "paper_trades"
       ],
       "test_sharpe": 0.391782,
       "paper_days": 29,
-      "paper_return": -0.0003508600000000639,
-      "paper_sharpe": -0.0676888684967019,
+      "paper_return": 0.001998789999999806,
+      "paper_sharpe": 0.5135331080460229,
       "paper_trades": 0
     },
     {
@@ -735,8 +732,8 @@
       ],
       "test_sharpe": 0.524903,
       "paper_days": 29,
-      "paper_return": -0.002124889999999824,
-      "paper_sharpe": -3.127452079075784,
+      "paper_return": -0.001401859999999866,
+      "paper_sharpe": -2.1177085567936924,
       "paper_trades": 1
     },
     {
@@ -750,13 +747,12 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive",
-        "paper_backtest_divergence"
+        "paper_not_positive"
       ],
       "test_sharpe": 0.366952,
       "paper_days": 29,
-      "paper_return": -0.0009898800000004426,
-      "paper_sharpe": -1.4693365189695122,
+      "paper_return": -0.00030675000000035535,
+      "paper_sharpe": -0.4553878032848868,
       "paper_trades": 1
     },
     {
@@ -774,8 +770,8 @@
       ],
       "test_sharpe": 0.499494,
       "paper_days": 29,
-      "paper_return": -0.0020867699999997935,
-      "paper_sharpe": -2.949166951100568,
+      "paper_return": -0.0014987399999997209,
+      "paper_sharpe": -2.186477547323619,
       "paper_trades": 0
     },
     {
@@ -793,8 +789,8 @@
       ],
       "test_sharpe": 0.505282,
       "paper_days": 28,
-      "paper_return": -0.0019538800000002965,
-      "paper_sharpe": -2.594190245658375,
+      "paper_return": -0.0012300600000003659,
+      "paper_sharpe": -1.6671643050623948,
       "paper_trades": 3
     },
     {
@@ -814,12 +810,13 @@
       ],
       "paper_gate_fail": [
         "paper_months<3",
-        "paper_trades"
+        "paper_trades",
+        "paper_backtest_divergence"
       ],
       "test_sharpe": -0.083373,
       "paper_days": 28,
-      "paper_return": 3.146000000020521e-05,
-      "paper_sharpe": 0.05910318996002247,
+      "paper_return": 0.0007145900000002925,
+      "paper_sharpe": 1.3085327748072786,
       "paper_trades": 0
     },
     {
@@ -843,9 +840,9 @@
       ],
       "test_sharpe": -0.045796,
       "paper_days": 28,
-      "paper_return": 0.0019764361785241658,
-      "paper_sharpe": 0.9336756880981395,
-      "paper_trades": 17
+      "paper_return": 0.001972954529371407,
+      "paper_sharpe": 0.9320341355885068,
+      "paper_trades": 18
     },
     {
       "spec_id": "v5_carry_trend_daily_10p",
@@ -867,8 +864,8 @@
       ],
       "test_sharpe": 0.191054,
       "paper_days": 28,
-      "paper_return": -0.007889287553008884,
-      "paper_sharpe": -3.2425040235772453,
+      "paper_return": -0.006978593218103679,
+      "paper_sharpe": -2.868461525934595,
       "paper_trades": 2
     },
     {
@@ -890,8 +887,8 @@
       ],
       "test_sharpe": 0.051877,
       "paper_days": 28,
-      "paper_return": -0.010268550000000598,
-      "paper_sharpe": -4.532119458913586,
+      "paper_return": -0.009959060000000575,
+      "paper_sharpe": -4.394782933316764,
       "paper_trades": 2
     },
     {
@@ -909,8 +906,8 @@
       ],
       "test_sharpe": 0.522722,
       "paper_days": 28,
-      "paper_return": -0.004860269999999778,
-      "paper_sharpe": -2.8150490352329873,
+      "paper_return": -0.004158139999999921,
+      "paper_sharpe": -2.394884824381352,
       "paper_trades": 3
     },
     {
@@ -928,8 +925,8 @@
       ],
       "test_sharpe": 0.434233,
       "paper_days": 28,
-      "paper_return": -0.005315320000000012,
-      "paper_sharpe": -3.0382288599704723,
+      "paper_return": -0.004372270000000067,
+      "paper_sharpe": -2.4833190163507433,
       "paper_trades": 2
     },
     {
@@ -949,8 +946,8 @@
       ],
       "test_sharpe": 0.395869,
       "paper_days": 28,
-      "paper_return": -0.005315320000000012,
-      "paper_sharpe": -3.0382288599704723,
+      "paper_return": -0.004372270000000067,
+      "paper_sharpe": -2.4833190163507433,
       "paper_trades": 2
     },
     {
@@ -969,12 +966,12 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.008347,
       "paper_days": 28,
-      "paper_return": -5.1800000000046253e-05,
-      "paper_sharpe": -0.02833174556155799,
+      "paper_return": 0.002251470000000033,
+      "paper_sharpe": 1.7711669275306952,
       "paper_trades": 0
     },
     {
@@ -999,8 +996,8 @@
       ],
       "test_sharpe": -0.181258,
       "paper_days": 28,
-      "paper_return": 0.001244760000000289,
-      "paper_sharpe": 1.1766876801953086,
+      "paper_return": 0.0028408399999999556,
+      "paper_sharpe": 2.5673535428385477,
       "paper_trades": 0
     },
     {
@@ -1016,12 +1013,12 @@
       "paper_gate_fail": [
         "paper_months<3",
         "paper_trades",
-        "paper_not_positive"
+        "paper_backtest_divergence"
       ],
       "test_sharpe": 0.223979,
       "paper_days": 28,
-      "paper_return": -0.00022754000000013708,
-      "paper_sharpe": -0.161262011150874,
+      "paper_return": 0.0017758299999997007,
+      "paper_sharpe": 1.4890151949170005,
       "paper_trades": 0
     },
     {
@@ -1045,8 +1042,8 @@
       ],
       "test_sharpe": 0.017552,
       "paper_days": 28,
-      "paper_return": -0.0043166300000000435,
-      "paper_sharpe": -2.366193548029934,
+      "paper_return": -0.00295787000000014,
+      "paper_sharpe": -1.693190246182899,
       "paper_trades": 0
     },
     {
@@ -1073,8 +1070,8 @@
       ],
       "test_sharpe": -0.136052,
       "paper_days": 28,
-      "paper_return": -0.0043166300000000435,
-      "paper_sharpe": -2.366193548029934,
+      "paper_return": -0.00295787000000014,
+      "paper_sharpe": -1.693190246182899,
       "paper_trades": 0
     },
     {
@@ -1102,8 +1099,8 @@
       ],
       "test_sharpe": -0.162284,
       "paper_days": 28,
-      "paper_return": -0.02043836868422122,
-      "paper_sharpe": -3.344319774785011,
+      "paper_return": -0.0196412141637482,
+      "paper_sharpe": -3.208096002881312,
       "paper_trades": 11
     }
   ],
