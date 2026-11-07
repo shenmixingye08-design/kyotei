@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-11-06 18:00:00+00:00",
+  "last_bar": "2026-11-06 21:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 725,
+  "bars_processed": 728,
   "risk_state": {
-    "equity": 961730.1565489578,
+    "equity": 961748.8038086658,
     "hwm": 1022635.6193662074,
     "day_key": "2026-11-06",
     "week_key": "2026-W45",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 952697.1307289578,
+    "cash": 952683.5603286659,
     "positions": {
       "EURJPY": {
         "client_order_id": "6816434f4ef4323a24115f18",
@@ -31,12 +31,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 107,
+        "bars": 110,
         "best_close": 178.35250000000002,
         "cost_spread": 21.999999999934516,
         "cost_slip": 8.0,
         "commission": 0.0,
-        "swap": 58.372356164383554,
+        "swap": 68.04821917808218,
         "equity_at_entry": 961115.795077337,
         "risk_jpy": 4715.025970379392,
         "notional_jpy": 706572.0,
@@ -55,12 +55,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 24,
+        "bars": 27,
         "best_close": 0.68622,
         "cost_spread": 50.47664000005048,
         "cost_slip": 25.238319999999998,
         "commission": 0.0,
-        "swap": -23.381195327794536,
+        "swap": -46.62745863349319,
         "equity_at_entry": 961035.1730483023,
         "risk_jpy": 4354.8906972131135,
         "notional_jpy": 876400.6620000001,
@@ -102,19 +102,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-06 18:00:00+00:00"
+      "last_bar": "2026-11-06 21:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-06 18:00:00+00:00"
+      "last_bar": "2026-11-06 21:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-06 18:00:00+00:00"
+      "last_bar": "2026-11-06 21:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-06 18:00:00+00:00"
+      "last_bar": "2026-11-06 21:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-06 18:00:00+00:00"
+      "last_bar": "2026-11-06 21:00:00+00:00"
     }
   }
 }
