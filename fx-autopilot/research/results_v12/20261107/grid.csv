@@ -1,0 +1,3 @@
+candidate,is_v2,params,full_n_trades,full_net_return,full_sharpe,full_profit_factor,full_max_drawdown,full_cost_ratio,A_n_trades,A_net_return,A_sharpe,A_profit_factor,A_max_drawdown,A_cost_ratio,B_n_trades,B_net_return,B_sharpe,B_profit_factor,B_max_drawdown,B_cost_ratio
+v12_carry_timed,True,"{""lookback"": 63}",139,0.173581,0.209235,1.305595,-0.193703,0.123871,58,-0.058426,-0.174025,0.753494,-0.124158,,43,0.160073,0.532408,1.913018,-0.109685,0.035462
+v12_carry_timed,True,"{""lookback"": 126}",126,0.196082,0.232011,1.417304,-0.160657,0.110307,58,0.050889,0.177858,1.287818,-0.120097,0.128157,36,0.110224,0.362123,1.7318,-0.148592,0.062131
