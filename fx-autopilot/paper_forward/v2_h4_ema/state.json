@@ -1,14 +1,14 @@
 {
   "spec_id": "v2_h4_ema",
   "spec_hash": "5c35b7e9b450459fe8cb3f2afaa0e82e650e30974a6c67df3dc3a295dcdb8354",
-  "last_bar": "2026-11-09 00:00:00+00:00",
+  "last_bar": "2026-11-09 05:00:00+00:00",
   "started_at": "2026-09-25T13:18:53.291810+00:00",
   "start": "2026-09-25 13:17:49.280213+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 730,
+  "bars_processed": 735,
   "risk_state": {
-    "equity": 989203.8389082695,
+    "equity": 988420.1548182694,
     "hwm": 1001965.1419083739,
     "day_key": "2026-11-09",
     "week_key": "2026-W46",
@@ -27,11 +27,11 @@
         "units": 3000.0,
         "entry_time": "2026-11-06 16:00:00+00:00",
         "entry_price": 1.1144399999999999,
-        "sl": 1.1219237301422282,
+        "sl": 1.1216006065606405,
         "tp": null,
         "trail": 0.00884725558046135,
         "max_bars": null,
-        "bars": 9,
+        "bars": 14,
         "best_close": 1.1139800000000002,
         "cost_spread": 9.494760000062202,
         "cost_slip": 9.494760000000001,
@@ -44,6 +44,30 @@
         "sl_initial": 1.1232872555804612,
         "entry_spread_pips": 0.4000000000026205,
         "slippage_pips": 0.2
+      },
+      "EURJPY": {
+        "client_order_id": "6c98face31d94886b7ce1c09",
+        "side": -1,
+        "units": 3000.0,
+        "entry_time": "2026-11-09 04:00:00+00:00",
+        "entry_price": 176.515,
+        "sl": 177.8221062720759,
+        "tp": null,
+        "trail": 1.3071062720759106,
+        "max_bars": null,
+        "bars": 2,
+        "best_close": 176.523,
+        "cost_spread": 18.000000000000682,
+        "cost_slip": 6.0,
+        "commission": 0.0,
+        "swap": 0.0,
+        "equity_at_entry": 988956.9341082695,
+        "risk_jpy": 3921.3188162277315,
+        "notional_jpy": 529578.0,
+        "signal_time": "2026-11-09 03:00:00+00:00",
+        "sl_initial": 177.8221062720759,
+        "entry_spread_pips": 1.2000000000000455,
+        "slippage_pips": 0.2
       }
     },
     "pending": [],
@@ -51,6 +75,7 @@
       "033243fd765344c19912af0a",
       "46d304b8535abab64f16407a",
       "5b3617e1320e1868560ddcca",
+      "6c98face31d94886b7ce1c09",
       "9643e33f99aef8a3335c85e0",
       "aa130f8a34745e36c39b2dee",
       "cc1004aa2b39585b2b69cdad"
@@ -58,19 +83,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-11-09 00:00:00+00:00"
+      "last_bar": "2026-11-09 05:00:00+00:00"
     },
     "USDJPY": {
-      "last_bar": "2026-11-09 00:00:00+00:00"
+      "last_bar": "2026-11-09 05:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-09 00:00:00+00:00"
+      "last_bar": "2026-11-09 05:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-09 00:00:00+00:00"
+      "last_bar": "2026-11-09 05:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-09 00:00:00+00:00"
+      "last_bar": "2026-11-09 05:00:00+00:00"
     }
   }
 }
