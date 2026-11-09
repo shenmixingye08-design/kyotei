@@ -1,19 +1,19 @@
 {
   "spec_id": "mr_zscore_v1",
   "spec_hash": "633e1d3008489935b0269e1bc141c98b7d2c85e4297990262a4257d4b9844433",
-  "last_bar": "2026-11-06 21:00:00+00:00",
+  "last_bar": "2026-11-09 00:00:00+00:00",
   "started_at": "2026-09-25T12:21:53.499058+00:00",
   "start": "2026-09-25 12:17:20.626747+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 728,
+  "bars_processed": 731,
   "risk_state": {
-    "equity": 1031197.1500746269,
+    "equity": 1034103.7495646266,
     "hwm": 1040414.5706036203,
-    "day_key": "2026-11-06",
-    "week_key": "2026-W45",
-    "day_start_equity": 1033739.2266102878,
-    "week_start_equity": 1025026.3778434703,
+    "day_key": "2026-11-09",
+    "week_key": "2026-W46",
+    "day_start_equity": 1034103.7495646266,
+    "week_start_equity": 1034103.7495646266,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 72.0,
-        "bars": 8,
+        "bars": 11,
         "best_close": 1.115355,
         "cost_spread": 21.387847500140115,
         "cost_slip": 28.51713,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 72.0,
-        "bars": 8,
+        "bars": 11,
         "best_close": 1.3370000000000002,
         "cost_spread": 55.449975000117014,
         "cost_slip": 22.17999,
@@ -130,19 +130,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-06 21:00:00+00:00"
+      "last_bar": "2026-11-09 00:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-06 21:00:00+00:00"
+      "last_bar": "2026-11-09 00:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-06 21:00:00+00:00"
+      "last_bar": "2026-11-09 00:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-06 21:00:00+00:00"
+      "last_bar": "2026-11-09 00:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-06 21:00:00+00:00"
+      "last_bar": "2026-11-09 00:00:00+00:00"
     }
   }
 }
