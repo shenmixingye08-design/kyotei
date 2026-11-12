@@ -1,14 +1,14 @@
 {
   "spec_id": "mr_zscore_v1",
   "spec_hash": "633e1d3008489935b0269e1bc141c98b7d2c85e4297990262a4257d4b9844433",
-  "last_bar": "2026-11-12 10:00:00+00:00",
+  "last_bar": "2026-11-12 18:00:00+00:00",
   "started_at": "2026-09-25T12:21:53.499058+00:00",
   "start": "2026-09-25 12:17:20.626747+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 813,
+  "bars_processed": 821,
   "risk_state": {
-    "equity": 1033044.1781954131,
+    "equity": 1028766.5623304134,
     "hwm": 1052211.0677498959,
     "day_key": "2026-11-12",
     "week_key": "2026-W46",
@@ -31,8 +31,8 @@
         "tp": null,
         "trail": null,
         "max_bars": 72.0,
-        "bars": 8,
-        "best_close": 159.615,
+        "bars": 16,
+        "best_close": 159.6005,
         "cost_spread": 17.999999999915417,
         "cost_slip": 24.0,
         "commission": 0.0,
@@ -43,6 +43,30 @@
         "signal_time": "2026-11-12 02:00:00+00:00",
         "sl_initial": 160.2062664900083,
         "entry_spread_pips": 0.2999999999985903,
+        "slippage_pips": 0.2
+      },
+      "EURUSD": {
+        "client_order_id": "ca64f03107fcbbef1bcb1b9e",
+        "side": 1,
+        "units": 6000.0,
+        "entry_time": "2026-11-12 16:00:00+00:00",
+        "entry_price": 1.1067300000000002,
+        "sl": 1.1034294378156708,
+        "tp": null,
+        "trail": null,
+        "max_bars": 72.0,
+        "bars": 3,
+        "best_close": 1.1066950000000002,
+        "cost_spread": 14.391270000094282,
+        "cost_slip": 19.188360000000003,
+        "commission": 0.0,
+        "swap": 0.0,
+        "equity_at_entry": 1029612.1781954127,
+        "risk_jpy": 3166.6187697648584,
+        "notional_jpy": 1061784.0,
+        "signal_time": "2026-11-12 15:00:00+00:00",
+        "sl_initial": 1.1034294378156708,
+        "entry_spread_pips": 0.30000000000196536,
         "slippage_pips": 0.2
       }
     },
@@ -92,6 +116,7 @@
       "c290dd9fb275320c0233eaf1",
       "c436c681ca20090a1fc93c04",
       "c72ffba60804a2a26239d043",
+      "ca64f03107fcbbef1bcb1b9e",
       "cad3a45a7ad7a4a355b4cdfe",
       "cd38644676bfc4e2f5a07157",
       "ce92ae846574812880dfa13c",
@@ -112,19 +137,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-12 10:00:00+00:00"
+      "last_bar": "2026-11-12 18:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-12 10:00:00+00:00"
+      "last_bar": "2026-11-12 18:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-12 10:00:00+00:00"
+      "last_bar": "2026-11-12 18:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-12 10:00:00+00:00"
+      "last_bar": "2026-11-12 18:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-12 10:00:00+00:00"
+      "last_bar": "2026-11-12 18:00:00+00:00"
     }
   }
 }
