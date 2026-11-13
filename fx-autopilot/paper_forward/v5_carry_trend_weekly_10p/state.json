@@ -1,25 +1,25 @@
 {
   "spec_id": "v5_carry_trend_weekly_10p",
   "spec_hash": "0a4be932bd570d48d993f64d80019f40267026455a88a623c98ae19f8d7a6692",
-  "last_bar": "2026-11-12 18:00:00+00:00",
+  "last_bar": "2026-11-13 01:00:00+00:00",
   "started_at": "2026-09-26T05:37:30.995359+00:00",
   "start": "2026-09-26 03:39:59.100294+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 813,
+  "bars_processed": 820,
   "risk_state": {
-    "equity": 998780.551746615,
+    "equity": 998734.062057134,
     "hwm": 1005413.5732968807,
-    "day_key": "2026-11-12",
+    "day_key": "2026-11-13",
     "week_key": "2026-W46",
-    "day_start_equity": 997585.9576944064,
+    "day_start_equity": 998868.3465571341,
     "week_start_equity": 994160.3393704445,
     "kill_switch": false,
     "kill_reason": "",
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 991870.8166617407,
+    "cash": 991885.0991760279,
     "positions": {
       "NZDUSD": {
         "client_order_id": "775534c9dfa230a370fe81a4",
@@ -31,12 +31,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 635,
+        "bars": 641,
         "best_close": 0.553485,
         "cost_spread": 20.552024999994227,
         "cost_slip": 3.1618500000000003,
         "commission": 0.0,
-        "swap": 10.666223391600992,
+        "swap": 10.969953432354416,
         "equity_at_entry": 999889.4514304379,
         "risk_jpy": 2863.841532420841,
         "notional_jpy": 88896.20321250001,
@@ -55,12 +55,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 517,
+        "bars": 524,
         "best_close": 1.104735,
         "cost_spread": 5.541795000001147,
         "cost_slip": 3.16674,
         "commission": 0.0,
-        "swap": 87.89329623287668,
+        "swap": 90.9205393835616,
         "equity_at_entry": 1000458.678122222,
         "risk_jpy": 3709.0917259696034,
         "notional_jpy": 177297.5,
@@ -79,12 +79,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 283,
+        "bars": 289,
         "best_close": 1.42653,
         "cost_spread": 8.430534601047183,
         "cost_slip": 2.2481425602778327,
         "commission": 0.0,
-        "swap": 27.67520547945204,
+        "swap": 29.3179366438356,
         "equity_at_entry": 994759.1975222257,
         "risk_jpy": 2706.67518657235,
         "notional_jpy": 157950.0,
@@ -103,12 +103,12 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 45,
+        "bars": 51,
         "best_close": 159.90300000000002,
         "cost_spread": 2.0000000000095497,
         "cost_slip": 2.0,
         "commission": 0.0,
-        "swap": 37.1654058219178,
+        "swap": 46.474215753424645,
         "equity_at_entry": 994156.1210137914,
         "risk_jpy": 3923.6228818779314,
         "notional_jpy": 158802.5,
@@ -130,34 +130,34 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 01:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "NZDUSD": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "USDCAD": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     },
     "USDCHF": {
-      "last_bar": "2026-11-12 18:00:00+00:00"
+      "last_bar": "2026-11-13 00:00:00+00:00"
     }
   }
 }
