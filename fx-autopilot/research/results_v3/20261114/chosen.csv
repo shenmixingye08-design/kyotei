@@ -1,0 +1,53 @@
+candidate,year,params,train_sharpe
+v3_carry_trend_xs,2014,"{""sizing"": ""vol_target"", ""top_k"": 3}",0.769
+v3_carry_trend_xs,2015,"{""sizing"": ""vol_target"", ""top_k"": 3}",0.85
+v3_carry_trend_xs,2016,"{""sizing"": ""vol_target"", ""top_k"": 3}",0.817
+v3_carry_trend_xs,2017,"{""sizing"": ""risk_stop"", ""top_k"": 3}",0.819
+v3_carry_trend_xs,2018,"{""sizing"": ""risk_stop"", ""top_k"": 3}",0.696
+v3_carry_trend_xs,2019,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.574
+v3_carry_trend_xs,2020,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.49
+v3_carry_trend_xs,2021,"{""sizing"": ""vol_target"", ""top_k"": 3}",0.436
+v3_carry_trend_xs,2022,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.447
+v3_carry_trend_xs,2023,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.502
+v3_carry_trend_xs,2024,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.557
+v3_carry_trend_xs,2025,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.615
+v3_carry_trend_xs,2026,"{""sizing"": ""risk_stop"", ""top_k"": 4}",0.612
+v3_carry_trend_mh,2014,"{""threshold"": 1.0, ""trail"": ""atr3""}",0.496
+v3_carry_trend_mh,2015,"{""threshold"": 0.5, ""trail"": ""atr3""}",0.596
+v3_carry_trend_mh,2016,"{""threshold"": 0.5, ""trail"": ""atr3""}",0.588
+v3_carry_trend_mh,2017,"{""threshold"": 0.5, ""trail"": ""none""}",0.492
+v3_carry_trend_mh,2018,"{""threshold"": 0.5, ""trail"": ""atr3""}",0.388
+v3_carry_trend_mh,2019,"{""threshold"": 0.5, ""trail"": ""none""}",0.333
+v3_carry_trend_mh,2020,"{""threshold"": 0.5, ""trail"": ""none""}",0.327
+v3_carry_trend_mh,2021,"{""threshold"": 0.5, ""trail"": ""none""}",0.353
+v3_carry_trend_mh,2022,"{""threshold"": 0.5, ""trail"": ""none""}",0.322
+v3_carry_trend_mh,2023,"{""threshold"": 0.5, ""trail"": ""none""}",0.357
+v3_carry_trend_mh,2024,"{""threshold"": 0.5, ""trail"": ""none""}",0.42
+v3_carry_trend_mh,2025,"{""threshold"": 0.5, ""trail"": ""none""}",0.46
+v3_carry_trend_mh,2026,"{""threshold"": 0.5, ""trail"": ""none""}",0.475
+v3_carry_trend_7p,2014,"{""sizing"": ""risk_stop""}",0.176
+v3_carry_trend_7p,2015,"{""sizing"": ""risk_stop""}",0.406
+v3_carry_trend_7p,2016,"{""sizing"": ""risk_stop""}",0.369
+v3_carry_trend_7p,2017,"{""sizing"": ""risk_stop""}",0.389
+v3_carry_trend_7p,2018,"{""sizing"": ""risk_stop""}",0.356
+v3_carry_trend_7p,2019,"{""sizing"": ""risk_stop""}",0.281
+v3_carry_trend_7p,2020,"{""sizing"": ""risk_stop""}",0.277
+v3_carry_trend_7p,2021,"{""sizing"": ""risk_stop""}",0.278
+v3_carry_trend_7p,2022,"{""sizing"": ""risk_stop""}",0.294
+v3_carry_trend_7p,2023,"{""sizing"": ""risk_stop""}",0.327
+v3_carry_trend_7p,2024,"{""sizing"": ""risk_stop""}",0.402
+v3_carry_trend_7p,2025,"{""sizing"": ""risk_stop""}",0.476
+v3_carry_trend_7p,2026,"{""sizing"": ""risk_stop""}",0.46
+v3_carry_only,2014,"{""sizing"": ""risk_stop""}",-1000000000.0
+v3_carry_only,2015,"{""sizing"": ""risk_stop""}",-1000000000.0
+v3_carry_only,2016,"{""sizing"": ""risk_stop""}",-1000000000.0
+v3_carry_only,2017,"{""sizing"": ""risk_stop""}",-1000000000.0
+v3_carry_only,2018,"{""sizing"": ""vol_target""}",-0.236
+v3_carry_only,2019,"{""sizing"": ""vol_target""}",-0.133
+v3_carry_only,2020,"{""sizing"": ""vol_target""}",-0.112
+v3_carry_only,2021,"{""sizing"": ""vol_target""}",-0.172
+v3_carry_only,2022,"{""sizing"": ""vol_target""}",-0.112
+v3_carry_only,2023,"{""sizing"": ""vol_target""}",-0.019
+v3_carry_only,2024,"{""sizing"": ""vol_target""}",0.1
+v3_carry_only,2025,"{""sizing"": ""vol_target""}",0.236
+v3_carry_only,2026,"{""sizing"": ""vol_target""}",0.252

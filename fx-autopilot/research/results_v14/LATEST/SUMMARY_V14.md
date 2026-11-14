@@ -1,4 +1,4 @@
-# FX AUTOPILOT V14 研究結果（2026-11-07 03:10 UTC、データ〜2026-11-06 21:00:00+00:00）
+# FX AUTOPILOT V14 研究結果（2026-11-14 03:16 UTC、データ〜2026-11-13 21:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v14.yaml`
 
@@ -11,8 +11,8 @@
 
 | candidate | status | n_trades | net_return | cagr | profit_factor | sharpe | sortino | max_drawdown | expectancy_jpy | cost_per_trade_jpy | cost_ratio | max_consecutive_losses | positive_year_ratio | max_single_year_share | ret_A | ret_B | stress_pf | positive_pairs | max_regime_share | dsr | param_changes | gate_fail |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v14_term_ratemom | REJECTED | 115 | -8.0% | -0.6% | 0.88 | -0.08 | -0.12 | -20.7% | -590 | 70 | — | 15 | 54% | 43% | -13.6% | +6.4% | 0.77 | 5 | 98% | 0.09 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
-| v14_term | REJECTED | 103 | -28.1% | -2.5% | 0.67 | -0.27 | -0.39 | -40.7% | -1,537 | 59 | — | 14 | 23% | 58% | -32.4% | +6.4% | 0.43 | 1 | 100% | 0.03 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
+| v14_term_ratemom | REJECTED | 115 | -7.0% | -0.6% | 0.90 | -0.06 | -0.09 | -20.7% | -500 | 70 | — | 15 | 62% | 43% | -13.6% | +7.6% | 0.78 | 5 | 90% | 0.10 | 1 | profit_factor, sharpe, single_year_dependence, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
+| v14_term | REJECTED | 103 | -27.7% | -2.5% | 0.68 | -0.26 | -0.38 | -40.7% | -1,500 | 59 | — | 14 | 23% | 57% | -32.4% | +6.9% | 0.44 | 1 | 100% | 0.02 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
 
 ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。
 
@@ -20,8 +20,8 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | candidate | status | n_trades | diag_top1_share | diag_top5_share | diag_pnl_ex_top5 | diag_pf_ex_top5 | diag_swap_share | diag_ret_2024_2026 |
 |---|---|---|---|---|---|---|---|---|
-| v14_term | REJECTED | 103 | — | — | -319,964 | 0.34 | — | +14.2% |
-| v14_term_ratemom | REJECTED | 115 | — | — | -240,422 | 0.58 | — | +5.7% |
+| v14_term | REJECTED | 103 | — | — | -317,458 | 0.35 | — | +14.8% |
+| v14_term_ratemom | REJECTED | 115 | — | — | -230,051 | 0.60 | — | +6.9% |
 
 上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。
 
@@ -41,7 +41,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | -0.7% | +4.9% |
 | 2024.0 | +14.1% | +7.2% |
 | 2025.0 | -0.9% | -0.9% |
-| 2026.0 | +0.9% | -0.6% |
+| 2026.0 | +1.4% | +0.6% |
 
 ## 年別 Profit Factor（WF OOS）
 
@@ -56,31 +56,31 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2020.0 | 0.18 | 0.51 |
 | 2021.0 | 0.00 | 0.00 |
 | 2022.0 | 1.91 | 1.10 |
-| 2023.0 | 4.49 | 4.05 |
+| 2023.0 | 4.56 | 4.05 |
 | 2024.0 | 2.00 | 13.22 |
-| 2025.0 | 1.49 | 0.79 |
-| 2026.0 | 0.17 | 0.49 |
+| 2025.0 | 1.67 | 0.79 |
+| 2026.0 | 0.15 | 1.21 |
 
 ## 通貨ペア別（WF OOS）
 
 | candidate | pair | trades | pnl_jpy | profit_factor | win_rate | avg_cost_jpy | swap_jpy |
 |---|---|---|---|---|---|---|---|
-| v14_term | AUDJPY | 12 | -66,758 | 0.09 | 8% | 36 | -19,929 |
-| v14_term | AUDUSD | 12 | -1,673 | 0.97 | 33% | 73 | -1,115 |
+| v14_term | AUDJPY | 12 | -67,935 | 0.09 | 8% | 36 | -19,847 |
+| v14_term | AUDUSD | 12 | -3,617 | 0.94 | 33% | 74 | -1,128 |
 | v14_term | EURJPY | 6 | -26,805 | 0.16 | 17% | 18 | -6,422 |
-| v14_term | EURUSD | 13 | -5,778 | 0.91 | 31% | 22 | +6,746 |
+| v14_term | EURUSD | 13 | -3,711 | 0.94 | 31% | 22 | +6,777 |
 | v14_term | GBPJPY | 7 | +49,798 | 3.71 | 43% | 112 | +10,661 |
 | v14_term | GBPUSD | 15 | -19,701 | 0.61 | 33% | 57 | -7,304 |
-| v14_term | NZDUSD | 10 | -16,624 | 0.59 | 40% | 75 | -948 |
-| v14_term | USDCAD | 10 | -10,213 | 0.70 | 50% | 97 | -325 |
+| v14_term | NZDUSD | 10 | -16,182 | 0.60 | 40% | 75 | -952 |
+| v14_term | USDCAD | 10 | -7,095 | 0.79 | 50% | 98 | -288 |
 | v14_term | USDCHF | 8 | -19,043 | 0.44 | 25% | 80 | +1,646 |
-| v14_term | USDJPY | 10 | -41,483 | 0.46 | 20% | 33 | -8,589 |
+| v14_term | USDJPY | 10 | -40,192 | 0.48 | 20% | 33 | -8,547 |
 | v14_term_ratemom | AUDJPY | 11 | +4,194 | 1.07 | 36% | 69 | -9,531 |
 | v14_term_ratemom | AUDUSD | 12 | -28,480 | 0.51 | 33% | 80 | +1,208 |
 | v14_term_ratemom | EURJPY | 10 | +16,101 | 1.27 | 40% | 55 | -5,725 |
-| v14_term_ratemom | EURUSD | 13 | +10,979 | 1.23 | 38% | 32 | +6,749 |
+| v14_term_ratemom | EURUSD | 13 | +16,940 | 1.35 | 38% | 32 | +6,842 |
 | v14_term_ratemom | GBPJPY | 9 | +15,960 | 1.33 | 22% | 69 | +3,147 |
-| v14_term_ratemom | GBPUSD | 8 | +4,320 | 1.15 | 50% | 51 | -2,842 |
+| v14_term_ratemom | GBPUSD | 8 | +8,730 | 1.30 | 50% | 51 | -2,905 |
 | v14_term_ratemom | NZDUSD | 13 | -3,812 | 0.94 | 38% | 103 | +2,960 |
 | v14_term_ratemom | USDCAD | 9 | -9,776 | 0.73 | 44% | 88 | -1,111 |
 | v14_term_ratemom | USDCHF | 16 | -13,107 | 0.85 | 44% | 109 | +1,877 |
@@ -92,22 +92,22 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 |---|---|---|---|---|---|---|
 | v14_term | regime4h | HIGH_VOL | 13 | -50,186 | 23% | 0.39 |
 | v14_term | regime4h | NEUTRAL | 20 | -42,112 | 30% | 0.51 |
-| v14_term | regime4h | RANGE | 37 | -62,377 | 30% | 0.61 |
-| v14_term | regime4h | TREND | 33 | -3,607 | 33% | 0.98 |
-| v14_term | month_dir | DOWN | 21 | +43,643 | 43% | 1.59 |
-| v14_term | month_dir | FLAT | 53 | -192,399 | 25% | 0.29 |
-| v14_term | month_dir | UP | 29 | -9,526 | 31% | 0.93 |
-| v14_term | month_vol | HIGH_VOL | 36 | -27,554 | 33% | 0.82 |
-| v14_term | month_vol | LOW_VOL | 67 | -130,727 | 28% | 0.61 |
+| v14_term | regime4h | RANGE | 37 | -63,879 | 30% | 0.61 |
+| v14_term | regime4h | TREND | 33 | +1,691 | 33% | 1.01 |
+| v14_term | month_dir | DOWN | 22 | +41,235 | 41% | 1.53 |
+| v14_term | month_dir | FLAT | 52 | -185,982 | 25% | 0.30 |
+| v14_term | month_dir | UP | 29 | -9,738 | 31% | 0.93 |
+| v14_term | month_vol | HIGH_VOL | 35 | -24,256 | 34% | 0.84 |
+| v14_term | month_vol | LOW_VOL | 68 | -130,229 | 28% | 0.62 |
 | v14_term_ratemom | regime4h | HIGH_VOL | 14 | -17,494 | 29% | 0.82 |
-| v14_term_ratemom | regime4h | NEUTRAL | 22 | +1,028 | 50% | 1.01 |
-| v14_term_ratemom | regime4h | RANGE | 31 | +45,800 | 45% | 1.35 |
+| v14_term_ratemom | regime4h | NEUTRAL | 22 | +5,438 | 50% | 1.06 |
+| v14_term_ratemom | regime4h | RANGE | 31 | +51,760 | 45% | 1.40 |
 | v14_term_ratemom | regime4h | TREND | 48 | -97,206 | 29% | 0.64 |
 | v14_term_ratemom | month_dir | DOWN | 19 | +125,423 | 68% | 3.73 |
-| v14_term_ratemom | month_dir | FLAT | 63 | -173,897 | 33% | 0.49 |
+| v14_term_ratemom | month_dir | FLAT | 63 | -163,527 | 33% | 0.52 |
 | v14_term_ratemom | month_dir | UP | 33 | -19,398 | 27% | 0.90 |
 | v14_term_ratemom | month_vol | HIGH_VOL | 35 | -94,177 | 31% | 0.43 |
-| v14_term_ratemom | month_vol | LOW_VOL | 80 | +26,304 | 40% | 1.06 |
+| v14_term_ratemom | month_vol | LOW_VOL | 80 | +36,675 | 40% | 1.09 |
 
 ## LOCK（V2・PAPER Forward 用）
 
@@ -135,10 +135,10 @@ CHF     201     2026-09         0.034             0.066            0.353
 ## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
 
   pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
-USDJPY  4210               0.0220            0.2986             1.156               9             1 2013-06-06
-EURUSD  4210               0.0257            0.3173             0.884               9             0 2011-10-07
-GBPUSD  4210               0.0258            0.3177             1.817              11             1 2020-03-18
-AUDUSD  4210               0.0304            0.3767             1.172              20             3 2020-03-12
-NZDUSD  4210               0.0365            0.4009             1.450              23             2 2011-08-05
-USDCAD  4210               0.0251            0.2945             0.895               9             0 2020-03-12
-USDCHF  4210               0.0279            0.3100             1.041               8             1 2011-10-07
+USDJPY  4215               0.0220            0.2986             1.156               9             1 2013-06-06
+EURUSD  4215               0.0256            0.3172             0.884               9             0 2011-10-07
+GBPUSD  4215               0.0257            0.3175             1.817              11             1 2020-03-18
+AUDUSD  4215               0.0304            0.3766             1.172              20             3 2020-03-12
+NZDUSD  4215               0.0365            0.4003             1.450              23             2 2011-08-05
+USDCAD  4215               0.0250            0.2944             0.895               9             0 2020-03-12
+USDCHF  4215               0.0278            0.3100             1.041               8             1 2011-10-07
