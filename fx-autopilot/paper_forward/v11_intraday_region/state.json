@@ -1,14 +1,14 @@
 {
   "spec_id": "v11_intraday_region",
   "spec_hash": "7b2cf2c1c2e0a5788bebd5f02e5b6a5695cc4a03f6f682ab1e400a072b8e2467",
-  "last_bar": "2026-11-16 00:00:00+00:00",
+  "last_bar": "2026-11-16 05:00:00+00:00",
   "started_at": "2026-09-26T10:06:37.774297+00:00",
   "start": "2026-09-26 08:51:14.579398+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 843,
+  "bars_processed": 848,
   "risk_state": {
-    "equity": 1009532.929532351,
+    "equity": 1008347.2552123509,
     "hwm": 1027818.520948374,
     "day_key": "2026-11-16",
     "week_key": "2026-W47",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 8.0,
-        "bars": 1,
+        "bars": 6,
         "best_close": 159.791,
         "cost_spread": 4.000000000019099,
         "cost_slip": 4.0,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 8.0,
-        "bars": 1,
+        "bars": 6,
         "best_close": 176.1635,
         "cost_spread": 9.000000000014552,
         "cost_slip": 4.0,
@@ -79,8 +79,8 @@
         "tp": null,
         "trail": null,
         "max_bars": 8.0,
-        "bars": 1,
-        "best_close": 0.677435,
+        "bars": 6,
+        "best_close": 0.67539,
         "cost_spread": 19.175100000019178,
         "cost_slip": 9.587550000000002,
         "commission": 0.0,
@@ -103,7 +103,7 @@
         "tp": null,
         "trail": null,
         "max_bars": 8.0,
-        "bars": 1,
+        "bars": 6,
         "best_close": 211.1845,
         "cost_spread": 19.000000000005457,
         "cost_slip": 4.0,
@@ -127,8 +127,8 @@
         "tp": null,
         "trail": null,
         "max_bars": 8.0,
-        "bars": 1,
-        "best_close": 0.55244,
+        "bars": 6,
+        "best_close": 0.552025,
         "cost_spread": 38.350199999967394,
         "cost_slip": 12.783400000000002,
         "commission": 0.0,
@@ -142,7 +142,78 @@
         "slippage_pips": 0.2
       }
     },
-    "pending": [],
+    "pending": [
+      {
+        "client_order_id": "7e6c9ddb736e9106185aa530",
+        "pair": "USDJPY",
+        "side": -1,
+        "units": 2000.0,
+        "kind": "MARKET",
+        "sl": null,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "exit:signal",
+        "decided_at": "",
+        "meta": {}
+      },
+      {
+        "client_order_id": "2696d0b9df0a60059e3d2cf2",
+        "pair": "EURJPY",
+        "side": -1,
+        "units": 2000.0,
+        "kind": "MARKET",
+        "sl": null,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "exit:signal",
+        "decided_at": "",
+        "meta": {}
+      },
+      {
+        "client_order_id": "b6d192dd533be242ae93093f",
+        "pair": "AUDUSD",
+        "side": 1,
+        "units": 3000.0,
+        "kind": "MARKET",
+        "sl": null,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "exit:signal",
+        "decided_at": "",
+        "meta": {}
+      },
+      {
+        "client_order_id": "e6d7074b21b62cb8ea2e005d",
+        "pair": "GBPJPY",
+        "side": -1,
+        "units": 2000.0,
+        "kind": "MARKET",
+        "sl": null,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "exit:signal",
+        "decided_at": "",
+        "meta": {}
+      },
+      {
+        "client_order_id": "10fb8c25e2bf98bfd5833a8f",
+        "pair": "NZDUSD",
+        "side": 1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": null,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "exit:signal",
+        "decided_at": "",
+        "meta": {}
+      }
+    ],
     "client_ids": [
       "0015f39725f9d66f4aa6ba57",
       "00b30937facaa119cc682d80",
@@ -221,6 +292,7 @@
       "1030b2441770b65c6687a541",
       "10a878209f044663d998a8a7",
       "10f13b3f8c38548b81035f61",
+      "10fb8c25e2bf98bfd5833a8f",
       "11464c83161c8635a0c20ce3",
       "118b6fffba8dcdab429476cd",
       "1198fa2c6a210d8ee41f1ae7",
@@ -329,6 +401,7 @@
       "26504de65c60da9e4db6f58d",
       "26525385fc7fb92658f1c62b",
       "267b47a63f67470ba0c0db3a",
+      "2696d0b9df0a60059e3d2cf2",
       "27299d2ba2352dabb08c5cbd",
       "272d26ecb533e4d8b2837a85",
       "276d9ca55789f5d264b928eb",
@@ -672,6 +745,7 @@
       "7d79535037e028b400dbea02",
       "7d992b7f7ee2bdc5618e0051",
       "7e0d4441de744c0a4af3038a",
+      "7e6c9ddb736e9106185aa530",
       "7fd8fe3d086f1c062584d9b0",
       "7fdd37a08f68f8bb66903866",
       "7ff8539fd7fc3b49e82800f8",
@@ -882,6 +956,7 @@
       "b5d0a9bf9cc65205500c3f93",
       "b5e01a84979281cc527ffaba",
       "b673d6195c5104603554dbf5",
+      "b6d192dd533be242ae93093f",
       "b70164a66b5780ff197ab499",
       "b73dd45317e30b8538a8e3e0",
       "b79e1c38c851ee1f0666a212",
@@ -1079,6 +1154,7 @@
       "e66b66cec458cff2e6d5d98f",
       "e679d9d30d070ecbc83b2d75",
       "e6c2903798b632b9a4ac4d93",
+      "e6d7074b21b62cb8ea2e005d",
       "e72ab3199d971e65e5b77174",
       "e7aa0fd372e01436f8d4178e",
       "e7e7c046c50403af38f69e46",
@@ -1185,34 +1261,34 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "AUDJPY": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "GBPJPY": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "NZDUSD": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "USDCAD": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     },
     "USDCHF": {
-      "last_bar": "2026-11-16 00:00:00+00:00"
+      "last_bar": "2026-11-16 05:00:00+00:00"
     }
   }
 }
