@@ -1,15 +1,15 @@
 {
   "spec_id": "v2_d1_donchian",
   "spec_hash": "ac202f04df06cccd1002ed8131d3abc760b219d63256f40e9a4c632545e1871a",
-  "last_bar": "2026-11-18 00:00:00+00:00",
+  "last_bar": "2026-11-18 11:00:00+00:00",
   "started_at": "2026-09-25T13:18:52.303005+00:00",
   "start": "2026-09-25 13:17:49.277587+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 898,
+  "bars_processed": 909,
   "risk_state": {
-    "equity": 1005558.7562507885,
-    "hwm": 1005788.0898460421,
+    "equity": 1006102.3508907885,
+    "hwm": 1006456.7018307884,
     "day_key": "2026-11-18",
     "week_key": "2026-W47",
     "day_start_equity": 1005558.7562507885,
@@ -31,8 +31,8 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 169,
-        "best_close": 0.6732100000000001,
+        "bars": 180,
+        "best_close": 0.6719650000000001,
         "cost_spread": 12.678760000012682,
         "cost_slip": 6.339380000000001,
         "commission": 0.0,
@@ -55,8 +55,8 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 98,
-        "best_close": 1.09822,
+        "bars": 108,
+        "best_close": 1.096365,
         "cost_spread": 3.996399999990686,
         "cost_slip": 3.19712,
         "commission": 0.0,
@@ -78,19 +78,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-11-18 00:00:00+00:00"
+      "last_bar": "2026-11-18 11:00:00+00:00"
     },
     "USDJPY": {
-      "last_bar": "2026-11-17 23:00:00+00:00"
+      "last_bar": "2026-11-18 10:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-17 23:00:00+00:00"
+      "last_bar": "2026-11-18 10:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-17 23:00:00+00:00"
+      "last_bar": "2026-11-18 10:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-18 00:00:00+00:00"
+      "last_bar": "2026-11-18 10:00:00+00:00"
     }
   }
 }
