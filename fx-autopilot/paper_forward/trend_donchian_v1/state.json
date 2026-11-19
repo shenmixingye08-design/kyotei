@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-11-19 10:00:00+00:00",
+  "last_bar": "2026-11-19 19:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 933,
+  "bars_processed": 942,
   "risk_state": {
-    "equity": 994066.2711314729,
+    "equity": 999588.0695564728,
     "hwm": 1022635.6193662074,
     "day_key": "2026-11-19",
     "week_key": "2026-W47",
@@ -31,8 +31,8 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 229,
-        "best_close": 0.6669700000000001,
+        "bars": 238,
+        "best_close": 0.6663250000000001,
         "cost_spread": 50.47664000005048,
         "cost_slip": 25.238319999999998,
         "commission": 0.0,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 149,
+        "bars": 158,
         "best_close": 160.0195,
         "cost_spread": 10.000000000047748,
         "cost_slip": 20.0,
@@ -79,7 +79,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 111,
+        "bars": 120,
         "best_close": 1.095755,
         "cost_spread": 4.793205000031402,
         "cost_slip": 6.3909400000000005,
@@ -129,19 +129,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-19 10:00:00+00:00"
+      "last_bar": "2026-11-19 19:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-19 10:00:00+00:00"
+      "last_bar": "2026-11-19 19:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-19 10:00:00+00:00"
+      "last_bar": "2026-11-19 19:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-19 10:00:00+00:00"
+      "last_bar": "2026-11-19 19:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-19 10:00:00+00:00"
+      "last_bar": "2026-11-19 19:00:00+00:00"
     }
   }
 }
