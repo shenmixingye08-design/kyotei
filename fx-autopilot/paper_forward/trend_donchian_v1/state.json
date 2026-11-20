@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_donchian_v1",
   "spec_hash": "f0784445d3657e74d0647a828e8b1fd1d71f20570a842cb3f4e895c4d0b80b76",
-  "last_bar": "2026-11-20 10:00:00+00:00",
+  "last_bar": "2026-11-20 19:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.347645+00:00",
   "start": "2026-09-25 12:17:20.620481+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 957,
+  "bars_processed": 966,
   "risk_state": {
-    "equity": 989954.2427508926,
+    "equity": 994750.0736308927,
     "hwm": 1022635.6193662074,
     "day_key": "2026-11-20",
     "week_key": "2026-W47",
@@ -31,8 +31,8 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 253,
-        "best_close": 0.665205,
+        "bars": 262,
+        "best_close": 0.6619900000000001,
         "cost_spread": 50.47664000005048,
         "cost_slip": 25.238319999999998,
         "commission": 0.0,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 135,
+        "bars": 144,
         "best_close": 1.095755,
         "cost_spread": 4.793205000031402,
         "cost_slip": 6.3909400000000005,
@@ -70,10 +70,39 @@
         "slippage_pips": 0.2
       }
     },
-    "pending": [],
+    "pending": [
+      {
+        "client_order_id": "2919a2c48157d4a39416d7bb",
+        "pair": "EURJPY",
+        "side": -1,
+        "units": 4000.0,
+        "kind": "MARKET",
+        "sl": 1.1999757025179283,
+        "tp": null,
+        "trail": null,
+        "max_bars": null,
+        "reason": "entry",
+        "decided_at": "2026-11-20 19:00:00+00:00",
+        "meta": {
+          "risk_jpy": 4799.902810071713,
+          "checks": {
+            "ok": true,
+            "value": {
+              "units": 4000,
+              "risk_jpy": 4799.9,
+              "notional_jpy": 695430.0,
+              "lev_after": 1.935,
+              "cap_leverage_units": 21537,
+              "cap_currency_units": 15134
+            }
+          }
+        }
+      }
+    ],
     "client_ids": [
       "1150381e08610fbf7fb7a706",
       "23681e065f87453dc3c0961e",
+      "2919a2c48157d4a39416d7bb",
       "3417a3c1553800c382b5e60d",
       "5727f7892ad63cb6027fff27",
       "57bf75678fdace144b87101e",
@@ -106,19 +135,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-20 10:00:00+00:00"
+      "last_bar": "2026-11-20 19:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-20 10:00:00+00:00"
+      "last_bar": "2026-11-20 19:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-20 10:00:00+00:00"
+      "last_bar": "2026-11-20 19:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-20 10:00:00+00:00"
+      "last_bar": "2026-11-20 19:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-20 10:00:00+00:00"
+      "last_bar": "2026-11-20 19:00:00+00:00"
     }
   }
 }
