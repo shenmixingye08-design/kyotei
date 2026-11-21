@@ -1,14 +1,14 @@
 {
   "spec_id": "trend_ema_adx_v1",
   "spec_hash": "8fcf2bce96b78a30ed6b090780b7b408ec3fbfba864e546df4248966bf2d1a9e",
-  "last_bar": "2026-11-20 19:00:00+00:00",
+  "last_bar": "2026-11-20 21:00:00+00:00",
   "started_at": "2026-09-25T12:21:55.805194+00:00",
   "start": "2026-09-25 12:17:20.618233+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 966,
+  "bars_processed": 968,
   "risk_state": {
-    "equity": 960022.1111846098,
+    "equity": 958384.0674500208,
     "hwm": 1000000.0,
     "day_key": "2026-11-20",
     "week_key": "2026-W47",
@@ -19,7 +19,7 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 952135.1111846099,
+    "cash": 951938.0674500209,
     "positions": {
       "USDJPY": {
         "client_order_id": "536548c4a9337b13c110d3ae",
@@ -27,16 +27,16 @@
         "units": 11000.0,
         "entry_time": "2026-11-20 08:00:00+00:00",
         "entry_price": 159.19299999999998,
-        "sl": 159.35201536570935,
+        "sl": 159.31405406533102,
         "tp": null,
         "trail": 0.6687171137936339,
         "max_bars": null,
-        "bars": 12,
+        "bars": 14,
         "best_close": 158.474,
         "cost_spread": 38.50000000002751,
         "cost_slip": 22.0,
         "commission": 0.0,
-        "swap": 0.0,
+        "swap": -197.04373458904107,
         "equity_at_entry": 952135.1111846099,
         "risk_jpy": 4597.430157331233,
         "notional_jpy": 1751178.0,
@@ -104,19 +104,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-20 19:00:00+00:00"
+      "last_bar": "2026-11-20 21:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-20 19:00:00+00:00"
+      "last_bar": "2026-11-20 21:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-20 19:00:00+00:00"
+      "last_bar": "2026-11-20 21:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-20 19:00:00+00:00"
+      "last_bar": "2026-11-20 21:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-20 19:00:00+00:00"
+      "last_bar": "2026-11-20 21:00:00+00:00"
     }
   }
 }
