@@ -1,10 +1,12 @@
 {
- "at": "2026-11-25 19:39:56.761623+00:00",
+ "at": "2026-11-26 03:54:56.882288+00:00",
  "ok": 40,
  "series": {
   "IR3TIB01USM156N": {
-   "cached": true,
-   "rows": 748
+   "source": "fred",
+   "rows": 748,
+   "first": "1964-06-01",
+   "last": "2026-10-01"
   },
   "IR3TIB01EZM156N": {
    "source": "fred",
@@ -13,8 +15,10 @@
    "last": "2026-01-01"
   },
   "IR3TIB01JPM156N": {
-   "cached": true,
-   "rows": 294
+   "source": "fred",
+   "rows": 294,
+   "first": "2002-04-01",
+   "last": "2026-09-01"
   },
   "IR3TIB01GBM156N": {
    "source": "fred",
@@ -23,60 +27,88 @@
    "last": "2026-01-01"
   },
   "IR3TIB01AUM156N": {
-   "cached": true,
-   "rows": 706
+   "source": "fred",
+   "rows": 706,
+   "first": "1968-01-01",
+   "last": "2026-10-01"
   },
   "IR3TIB01NZM156N": {
-   "cached": true,
-   "rows": 635
+   "source": "fred",
+   "rows": 635,
+   "first": "1973-12-01",
+   "last": "2026-10-01"
   },
   "IR3TIB01CAM156N": {
-   "cached": true,
-   "rows": 850
+   "source": "fred",
+   "rows": 850,
+   "first": "1956-01-01",
+   "last": "2026-10-01"
   },
   "IR3TIB01CHM156N": {
-   "cached": true,
-   "rows": 328
+   "source": "fred",
+   "rows": 328,
+   "first": "1999-07-01",
+   "last": "2026-10-01"
   },
   "DEXJPUS": {
-   "cached": true,
-   "rows": 14003
+   "source": "fred",
+   "rows": 14008,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "DEXUSEU": {
-   "cached": true,
-   "rows": 6988
+   "source": "fred",
+   "rows": 6993,
+   "first": "1999-01-04",
+   "last": "2026-11-20"
   },
   "DEXUSUK": {
-   "cached": true,
-   "rows": 14009
+   "source": "fred",
+   "rows": 14014,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "DEXUSAL": {
-   "cached": true,
-   "rows": 14002
+   "source": "fred",
+   "rows": 14007,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "DEXUSNZ": {
-   "cached": true,
-   "rows": 13993
+   "source": "fred",
+   "rows": 13998,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "DEXCAUS": {
-   "cached": true,
-   "rows": 14015
+   "source": "fred",
+   "rows": 14020,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "DEXSZUS": {
-   "cached": true,
-   "rows": 14009
+   "source": "fred",
+   "rows": 14014,
+   "first": "1971-01-04",
+   "last": "2026-11-20"
   },
   "VIXCLS": {
-   "cached": true,
-   "rows": 9321
+   "source": "fred",
+   "rows": 9324,
+   "first": "1990-01-02",
+   "last": "2026-11-24"
   },
   "CPI_USD": {
-   "cached": true,
-   "rows": 957
+   "source": "CPIAUCSL",
+   "rows": 957,
+   "first": "1947-01-01",
+   "last": "2026-10-01"
   },
   "CPI_EUR": {
-   "cached": true,
-   "rows": 359
+   "source": "CP0000EZ19M086NEST",
+   "rows": 359,
+   "first": "1996-12-01",
+   "last": "2026-10-01"
   },
   "CPI_JPY": {
    "source": "JPNCPIALLMINMEI(stale)",
@@ -115,8 +147,10 @@
    "last": "2025-04-01"
   },
   "IRLTLT01USM156N": {
-   "cached": true,
-   "rows": 883
+   "source": "fred",
+   "rows": 883,
+   "first": "1953-04-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01EZM156N": {
    "source": "fred",
@@ -125,60 +159,88 @@
    "last": "2026-01-01"
   },
   "IRLTLT01JPM156N": {
-   "cached": true,
-   "rows": 454
+   "source": "fred",
+   "rows": 454,
+   "first": "1989-01-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01GBM156N": {
-   "cached": true,
-   "rows": 802
+   "source": "fred",
+   "rows": 802,
+   "first": "1960-01-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01AUM156N": {
-   "cached": true,
-   "rows": 688
+   "source": "fred",
+   "rows": 688,
+   "first": "1969-07-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01NZM156N": {
-   "cached": true,
-   "rows": 681
+   "source": "fred",
+   "rows": 681,
+   "first": "1970-01-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01CAM156N": {
-   "cached": true,
-   "rows": 862
+   "source": "fred",
+   "rows": 862,
+   "first": "1955-01-01",
+   "last": "2026-10-01"
   },
   "IRLTLT01CHM156N": {
-   "cached": true,
-   "rows": 862
+   "source": "fred",
+   "rows": 862,
+   "first": "1955-01-01",
+   "last": "2026-10-01"
   },
   "EQ_USD": {
-   "cached": true,
-   "rows": 838
+   "source": "SPASTT01USM661N",
+   "rows": 838,
+   "first": "1957-01-01",
+   "last": "2026-10-01"
   },
   "EQ_EUR": {
-   "cached": true,
-   "rows": 802
+   "source": "SPASTT01DEM661N",
+   "rows": 802,
+   "first": "1960-01-01",
+   "last": "2026-10-01"
   },
   "EQ_JPY": {
-   "cached": true,
-   "rows": 814
+   "source": "SPASTT01JPM661N",
+   "rows": 814,
+   "first": "1959-01-01",
+   "last": "2026-10-01"
   },
   "EQ_GBP": {
-   "cached": true,
-   "rows": 827
+   "source": "SPASTT01GBM661N",
+   "rows": 827,
+   "first": "1957-12-01",
+   "last": "2026-10-01"
   },
   "EQ_AUD": {
-   "cached": true,
-   "rows": 826
+   "source": "SPASTT01AUM661N",
+   "rows": 826,
+   "first": "1958-01-01",
+   "last": "2026-10-01"
   },
   "EQ_NZD": {
-   "cached": true,
-   "rows": 718
+   "source": "SPASTT01NZM661N",
+   "rows": 718,
+   "first": "1967-01-01",
+   "last": "2026-10-01"
   },
   "EQ_CAD": {
-   "cached": true,
-   "rows": 850
+   "source": "SPASTT01CAM661N",
+   "rows": 850,
+   "first": "1956-01-01",
+   "last": "2026-10-01"
   },
   "EQ_CHF": {
-   "cached": true,
-   "rows": 862
+   "source": "SPASTT01CHM661N",
+   "rows": 862,
+   "first": "1955-01-01",
+   "last": "2026-10-01"
   }
  }
 }
