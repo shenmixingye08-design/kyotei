@@ -1,14 +1,14 @@
 {
   "spec_id": "v2_xpair_strength",
   "spec_hash": "c6eeaa6cc6e67848c3807425c1b8de31f85551c486d35ddcb808a7cfef7e9c1c",
-  "last_bar": "2026-11-27 00:00:00+00:00",
+  "last_bar": "2026-11-27 11:00:00+00:00",
   "started_at": "2026-09-25T13:18:55.116305+00:00",
   "start": "2026-09-25 13:17:49.282427+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 1066,
+  "bars_processed": 1077,
   "risk_state": {
-    "equity": 1011169.5471904424,
+    "equity": 1010370.7442704424,
     "hwm": 1013978.8148397387,
     "day_key": "2026-11-27",
     "week_key": "2026-W48",
@@ -31,7 +31,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 764,
+        "bars": 775,
         "best_close": 1.08847,
         "cost_spread": 5.541795000001147,
         "cost_slip": 3.16674,
@@ -55,7 +55,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 765,
+        "bars": 776,
         "best_close": 173.276,
         "cost_spread": 11.500000000012278,
         "cost_slip": 2.0,
@@ -79,7 +79,7 @@
         "tp": null,
         "trail": null,
         "max_bars": null,
-        "bars": 409,
+        "bars": 420,
         "best_close": 0.65638,
         "cost_spread": 7.142377499993926,
         "cost_slip": 3.17439,
@@ -103,19 +103,19 @@
   },
   "mgmt": {
     "AUDUSD": {
-      "last_bar": "2026-11-27 00:00:00+00:00"
+      "last_bar": "2026-11-27 11:00:00+00:00"
     },
     "USDJPY": {
-      "last_bar": "2026-11-27 00:00:00+00:00"
+      "last_bar": "2026-11-27 11:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-27 00:00:00+00:00"
+      "last_bar": "2026-11-27 11:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-27 00:00:00+00:00"
+      "last_bar": "2026-11-27 11:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-27 00:00:00+00:00"
+      "last_bar": "2026-11-27 11:00:00+00:00"
     }
   }
 }
