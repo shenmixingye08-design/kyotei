@@ -1,15 +1,15 @@
 {
   "spec_id": "mtf_pullback_v1",
   "spec_hash": "14a8d8273c9e77caa2977a65edc4b3559924142d6347458495d7b709fb5c6f3d",
-  "last_bar": "2026-11-27 11:00:00+00:00",
+  "last_bar": "2026-11-27 21:00:00+00:00",
   "started_at": "2026-09-25T12:21:53.931622+00:00",
   "start": "2026-09-25 12:17:20.630871+00:00",
   "halted": false,
   "consecutive_order_errors": 0,
-  "bars_processed": 1078,
+  "bars_processed": 1088,
   "risk_state": {
-    "equity": 1013881.0135173469,
-    "hwm": 1016318.9483623469,
+    "equity": 1018926.2490279528,
+    "hwm": 1019504.574383771,
     "day_key": "2026-11-27",
     "week_key": "2026-W48",
     "day_start_equity": 1016318.9483623469,
@@ -19,32 +19,8 @@
     "broker_connected": true
   },
   "broker_state": {
-    "cash": 1009616.1942223475,
+    "cash": 1016858.4162279528,
     "positions": {
-      "USDJPY": {
-        "client_order_id": "3f5fde8b3d5e0f0f923b8d44",
-        "side": 1,
-        "units": 11000.0,
-        "entry_time": "2026-11-25 18:00:00+00:00",
-        "entry_price": 158.91900000000004,
-        "sl": 158.4772152044592,
-        "tp": 159.5816771933113,
-        "trail": null,
-        "max_bars": 72.0,
-        "bars": 41,
-        "best_close": 159.514,
-        "cost_spread": 22.000000000105047,
-        "cost_slip": 22.0,
-        "commission": 0.0,
-        "swap": 407.9232089041095,
-        "equity_at_entry": 1009397.1080125896,
-        "risk_jpy": 4859.632750949172,
-        "notional_jpy": 1748059.5,
-        "signal_time": "2026-11-25 17:00:00+00:00",
-        "sl_initial": 158.4772152044592,
-        "entry_spread_pips": 0.40000000000190994,
-        "slippage_pips": 0.2
-      },
       "GBPUSD": {
         "client_order_id": "67a97bda9ec3424a5405af9f",
         "side": -1,
@@ -55,12 +31,12 @@
         "tp": 1.3086798060901617,
         "trail": null,
         "max_bars": 72.0,
-        "bars": 39,
-        "best_close": 1.309595,
+        "bars": 49,
+        "best_close": 1.3093350000000001,
         "cost_spread": 47.76090000010079,
         "cost_slip": 19.104360000000003,
         "commission": 0.0,
-        "swap": -188.83699914636992,
+        "swap": -236.0641199648631,
         "equity_at_entry": 1012499.1080125892,
         "risk_jpy": 3267.0307861680712,
         "notional_jpy": 1253413.1791500002,
@@ -90,19 +66,19 @@
   },
   "mgmt": {
     "USDJPY": {
-      "last_bar": "2026-11-27 11:00:00+00:00"
+      "last_bar": "2026-11-27 21:00:00+00:00"
     },
     "EURUSD": {
-      "last_bar": "2026-11-27 11:00:00+00:00"
+      "last_bar": "2026-11-27 21:00:00+00:00"
     },
     "EURJPY": {
-      "last_bar": "2026-11-27 11:00:00+00:00"
+      "last_bar": "2026-11-27 21:00:00+00:00"
     },
     "GBPUSD": {
-      "last_bar": "2026-11-27 11:00:00+00:00"
+      "last_bar": "2026-11-27 21:00:00+00:00"
     },
     "AUDUSD": {
-      "last_bar": "2026-11-27 11:00:00+00:00"
+      "last_bar": "2026-11-27 21:00:00+00:00"
     }
   }
 }
