@@ -1,0 +1,209 @@
+candidate,year,params,train_sharpe
+v2_d1_donchian,2014,"{""n"": 20, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.505
+v2_d1_donchian,2015,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.804
+v2_d1_donchian,2016,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.72
+v2_d1_donchian,2017,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.657
+v2_d1_donchian,2018,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.584
+v2_d1_donchian,2019,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.518
+v2_d1_donchian,2020,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.4
+v2_d1_donchian,2021,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.344
+v2_d1_donchian,2022,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.301
+v2_d1_donchian,2023,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.314
+v2_d1_donchian,2024,"{""n"": 55, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.247
+v2_d1_donchian,2025,"{""n"": 100, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.175
+v2_d1_donchian,2026,"{""n"": 100, ""regime"": ""no_high_vol"", ""sizing"": ""risk_stop""}",0.134
+v2_d1_tsmom,2014,"{""lookback"": 63, ""sizing"": ""fixed_notional""}",0.529
+v2_d1_tsmom,2015,"{""lookback"": 63, ""sizing"": ""vol_target""}",0.701
+v2_d1_tsmom,2016,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.552
+v2_d1_tsmom,2017,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.647
+v2_d1_tsmom,2018,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.6
+v2_d1_tsmom,2019,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.485
+v2_d1_tsmom,2020,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.397
+v2_d1_tsmom,2021,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.298
+v2_d1_tsmom,2022,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.293
+v2_d1_tsmom,2023,"{""lookback"": 126, ""sizing"": ""risk_stop""}",0.391
+v2_d1_tsmom,2024,"{""lookback"": 252, ""sizing"": ""vol_target""}",0.285
+v2_d1_tsmom,2025,"{""lookback"": 252, ""sizing"": ""vol_target""}",0.23
+v2_d1_tsmom,2026,"{""lookback"": 252, ""sizing"": ""vol_target""}",0.226
+v2_h4_ema,2014,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.42
+v2_h4_ema,2015,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.155
+v2_h4_ema,2016,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.508
+v2_h4_ema,2017,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.507
+v2_h4_ema,2018,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.429
+v2_h4_ema,2019,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.457
+v2_h4_ema,2020,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.464
+v2_h4_ema,2021,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.335
+v2_h4_ema,2022,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.29
+v2_h4_ema,2023,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.329
+v2_h4_ema,2024,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.233
+v2_h4_ema,2025,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.248
+v2_h4_ema,2026,"{""adx_min"": 0, ""fast_slow"": ""20_100"", ""regime"": ""trend_only""}",0.182
+v2_trend_carry,2014,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.18
+v2_trend_carry,2015,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.44
+v2_trend_carry,2016,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.468
+v2_trend_carry,2017,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.489
+v2_trend_carry,2018,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.401
+v2_trend_carry,2019,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.332
+v2_trend_carry,2020,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.316
+v2_trend_carry,2021,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.354
+v2_trend_carry,2022,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.352
+v2_trend_carry,2023,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.427
+v2_trend_carry,2024,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.45
+v2_trend_carry,2025,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.473
+v2_trend_carry,2026,"{""mode"": ""composite"", ""sizing"": ""risk_stop""}",0.407
+v2_xpair_strength,2014,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.741
+v2_xpair_strength,2015,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.986
+v2_xpair_strength,2016,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.941
+v2_xpair_strength,2017,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.757
+v2_xpair_strength,2018,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.573
+v2_xpair_strength,2019,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.531
+v2_xpair_strength,2020,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.407
+v2_xpair_strength,2021,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.446
+v2_xpair_strength,2022,"{""lookback"": 20, ""sizing"": ""risk_stop"", ""top_k"": 2}",0.326
+v2_xpair_strength,2023,"{""lookback"": 60, ""sizing"": ""risk_stop"", ""top_k"": 3}",0.323
+v2_xpair_strength,2024,"{""lookback"": 60, ""sizing"": ""risk_stop"", ""top_k"": 3}",0.272
+v2_xpair_strength,2025,"{""lookback"": 60, ""sizing"": ""risk_stop"", ""top_k"": 3}",0.244
+v2_xpair_strength,2026,"{""lookback"": 60, ""sizing"": ""risk_stop"", ""top_k"": 3}",0.261
+v2_session_breakout,2014,"{""session"": ""ny""}",0.279
+v2_session_breakout,2015,"{""session"": ""all""}",0.225
+v2_session_breakout,2016,"{""session"": ""tokyo_london""}",0.218
+v2_session_breakout,2017,"{""session"": ""ny""}",0.05
+v2_session_breakout,2018,"{""session"": ""tokyo_london""}",-0.08
+v2_session_breakout,2019,"{""session"": ""all""}",-0.09
+v2_session_breakout,2020,"{""session"": ""ny""}",0.06
+v2_session_breakout,2021,"{""session"": ""ny""}",0.128
+v2_session_breakout,2022,"{""session"": ""tokyo_london""}",0.09
+v2_session_breakout,2023,"{""session"": ""london""}",0.17
+v2_session_breakout,2024,"{""session"": ""london""}",0.172
+v2_session_breakout,2025,"{""session"": ""tokyo_london""}",0.163
+v2_session_breakout,2026,"{""session"": ""tokyo_london""}",0.206
+v2_ml_d1_logit,2014,"{""th"": 0.55}",-1000000000.0
+v2_ml_d1_logit,2015,"{""th"": 0.55}",-0.812
+v2_ml_d1_logit,2016,"{""th"": 0.55}",-0.788
+v2_ml_d1_logit,2017,"{""th"": 0.55}",-0.672
+v2_ml_d1_logit,2018,"{""th"": 0.55}",-0.629
+v2_ml_d1_logit,2019,"{""th"": 0.55}",-0.708
+v2_ml_d1_logit,2020,"{""th"": 0.55}",-0.672
+v2_ml_d1_logit,2021,"{""th"": 0.55}",-0.627
+v2_ml_d1_logit,2022,"{""th"": 0.55}",-0.539
+v2_ml_d1_logit,2023,"{""th"": 0.55}",-0.518
+v2_ml_d1_logit,2024,"{""th"": 0.55}",-0.517
+v2_ml_d1_logit,2025,"{""th"": 0.55}",-0.544
+v2_ml_d1_logit,2026,"{""th"": 0.55}",-0.573
+trend_ema_adx,2014,"{""adx_min"": 20, ""fast"": 20, ""slow"": 100}",0.117
+trend_ema_adx,2015,"{""adx_min"": 20, ""fast"": 20, ""slow"": 100}",0.053
+trend_ema_adx,2016,"{""adx_min"": 20, ""fast"": 20, ""slow"": 100}",-0.123
+trend_ema_adx,2017,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.147
+trend_ema_adx,2018,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.24
+trend_ema_adx,2019,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.187
+trend_ema_adx,2020,"{""adx_min"": 20, ""fast"": 50, ""slow"": 200}",-0.162
+trend_ema_adx,2021,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.12
+trend_ema_adx,2022,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.167
+trend_ema_adx,2023,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.138
+trend_ema_adx,2024,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.171
+trend_ema_adx,2025,"{""adx_min"": 0, ""fast"": 20, ""slow"": 100}",-0.246
+trend_ema_adx,2026,"{""adx_min"": 0, ""fast"": 50, ""slow"": 200}",-0.232
+trend_donchian,2014,"{""n"": 120, ""sl_atr"": 3.0}",0.249
+trend_donchian,2015,"{""n"": 240, ""sl_atr"": 3.0}",0.164
+trend_donchian,2016,"{""n"": 240, ""sl_atr"": 3.0}",0.265
+trend_donchian,2017,"{""n"": 240, ""sl_atr"": 3.0}",0.202
+trend_donchian,2018,"{""n"": 240, ""sl_atr"": 3.0}",0.183
+trend_donchian,2019,"{""n"": 240, ""sl_atr"": 3.0}",0.06
+trend_donchian,2020,"{""n"": 120, ""sl_atr"": 3.0}",-0.016
+trend_donchian,2021,"{""n"": 48, ""sl_atr"": 3.0}",-0.091
+trend_donchian,2022,"{""n"": 120, ""sl_atr"": 3.0}",-0.097
+trend_donchian,2023,"{""n"": 48, ""sl_atr"": 3.0}",-0.066
+trend_donchian,2024,"{""n"": 240, ""sl_atr"": 3.0}",-0.133
+trend_donchian,2025,"{""n"": 240, ""sl_atr"": 3.0}",-0.095
+trend_donchian,2026,"{""n"": 240, ""sl_atr"": 3.0}",-0.186
+trend_tsmom,2014,"{""lookback"": 480, ""z_min"": 0.5}",0.133
+trend_tsmom,2015,"{""lookback"": 480, ""z_min"": 1.0}",0.249
+trend_tsmom,2016,"{""lookback"": 120, ""z_min"": 1.0}",0.186
+trend_tsmom,2017,"{""lookback"": 120, ""z_min"": 1.0}",0.193
+trend_tsmom,2018,"{""lookback"": 120, ""z_min"": 1.0}",0.298
+trend_tsmom,2019,"{""lookback"": 120, ""z_min"": 1.0}",0.191
+trend_tsmom,2020,"{""lookback"": 480, ""z_min"": 0.5}",0.018
+trend_tsmom,2021,"{""lookback"": 480, ""z_min"": 0.5}",-0.043
+trend_tsmom,2022,"{""lookback"": 480, ""z_min"": 0.5}",-0.012
+trend_tsmom,2023,"{""lookback"": 480, ""z_min"": 0.5}",0.03
+trend_tsmom,2024,"{""lookback"": 480, ""z_min"": 0.5}",0.063
+trend_tsmom,2025,"{""lookback"": 480, ""z_min"": 0.5}",0.065
+trend_tsmom,2026,"{""lookback"": 480, ""z_min"": 0.5}",0.013
+mr_rsi_bb,2014,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.914
+mr_rsi_bb,2015,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.891
+mr_rsi_bb,2016,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.793
+mr_rsi_bb,2017,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.901
+mr_rsi_bb,2018,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.775
+mr_rsi_bb,2019,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.804
+mr_rsi_bb,2020,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.738
+mr_rsi_bb,2021,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.724
+mr_rsi_bb,2022,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.699
+mr_rsi_bb,2023,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.755
+mr_rsi_bb,2024,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.781
+mr_rsi_bb,2025,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.73
+mr_rsi_bb,2026,"{""bb_k"": 2.5, ""rsi_lo"": 30}",-0.797
+mr_zscore,2014,"{""n"": 72, ""z"": 2.5}",-0.988
+mr_zscore,2015,"{""n"": 72, ""z"": 2.0}",-0.724
+mr_zscore,2016,"{""n"": 72, ""z"": 2.0}",-0.751
+mr_zscore,2017,"{""n"": 72, ""z"": 2.0}",-0.876
+mr_zscore,2018,"{""n"": 72, ""z"": 2.0}",-0.838
+mr_zscore,2019,"{""n"": 72, ""z"": 2.0}",-0.824
+mr_zscore,2020,"{""n"": 72, ""z"": 2.0}",-0.761
+mr_zscore,2021,"{""n"": 72, ""z"": 2.0}",-0.84
+mr_zscore,2022,"{""n"": 72, ""z"": 2.0}",-0.805
+mr_zscore,2023,"{""n"": 72, ""z"": 2.0}",-0.798
+mr_zscore,2024,"{""n"": 72, ""z"": 2.0}",-0.597
+mr_zscore,2025,"{""n"": 72, ""z"": 2.0}",-0.512
+mr_zscore,2026,"{""n"": 72, ""z"": 2.0}",-0.433
+regime_switch,2014,"{""adx_trend"": 30, ""brk"": 48}",-0.652
+regime_switch,2015,"{""adx_trend"": 30, ""brk"": 24}",-0.676
+regime_switch,2016,"{""adx_trend"": 30, ""brk"": 24}",-0.486
+regime_switch,2017,"{""adx_trend"": 30, ""brk"": 24}",-0.384
+regime_switch,2018,"{""adx_trend"": 30, ""brk"": 24}",-0.57
+regime_switch,2019,"{""adx_trend"": 30, ""brk"": 48}",-0.638
+regime_switch,2020,"{""adx_trend"": 30, ""brk"": 48}",-0.68
+regime_switch,2021,"{""adx_trend"": 30, ""brk"": 48}",-0.817
+regime_switch,2022,"{""adx_trend"": 30, ""brk"": 48}",-0.831
+regime_switch,2023,"{""adx_trend"": 30, ""brk"": 48}",-0.749
+regime_switch,2024,"{""adx_trend"": 30, ""brk"": 48}",-0.718
+regime_switch,2025,"{""adx_trend"": 30, ""brk"": 48}",-0.709
+regime_switch,2026,"{""adx_trend"": 30, ""brk"": 48}",-0.815
+mtf_pullback,2014,"{""rsi_th"": 35, ""tp_atr"": 2.0}",0.444
+mtf_pullback,2015,"{""rsi_th"": 35, ""tp_atr"": 2.0}",0.286
+mtf_pullback,2016,"{""rsi_th"": 35, ""tp_atr"": 2.0}",0.03
+mtf_pullback,2017,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.07
+mtf_pullback,2018,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.287
+mtf_pullback,2019,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.279
+mtf_pullback,2020,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.357
+mtf_pullback,2021,"{""rsi_th"": 40, ""tp_atr"": 3.0}",-0.508
+mtf_pullback,2022,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.56
+mtf_pullback,2023,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.487
+mtf_pullback,2024,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.598
+mtf_pullback,2025,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.519
+mtf_pullback,2026,"{""rsi_th"": 35, ""tp_atr"": 2.0}",-0.529
+ml_logit,2014,"{""horizon"": 12, ""th"": 0.55}",-1000000000.0
+ml_logit,2015,"{""horizon"": 12, ""th"": 0.6}",0.788
+ml_logit,2016,"{""horizon"": 12, ""th"": 0.6}",0.182
+ml_logit,2017,"{""horizon"": 12, ""th"": 0.6}",0.069
+ml_logit,2018,"{""horizon"": 12, ""th"": 0.6}",0.047
+ml_logit,2019,"{""horizon"": 12, ""th"": 0.6}",0.094
+ml_logit,2020,"{""horizon"": 12, ""th"": 0.6}",0.049
+ml_logit,2021,"{""horizon"": 12, ""th"": 0.6}",0.025
+ml_logit,2022,"{""horizon"": 12, ""th"": 0.6}",0.044
+ml_logit,2023,"{""horizon"": 12, ""th"": 0.6}",0.134
+ml_logit,2024,"{""horizon"": 12, ""th"": 0.6}",0.203
+ml_logit,2025,"{""horizon"": 12, ""th"": 0.6}",0.075
+ml_logit,2026,"{""horizon"": 12, ""th"": 0.6}",0.041
+ml_lgbm,2014,"{""horizon"": 12, ""th"": 0.55}",-1000000000.0
+ml_lgbm,2015,"{""horizon"": 12, ""th"": 0.6}",-0.13
+ml_lgbm,2016,"{""horizon"": 12, ""th"": 0.6}",-0.352
+ml_lgbm,2017,"{""horizon"": 12, ""th"": 0.6}",0.08
+ml_lgbm,2018,"{""horizon"": 12, ""th"": 0.6}",-0.092
+ml_lgbm,2019,"{""horizon"": 12, ""th"": 0.6}",-0.206
+ml_lgbm,2020,"{""horizon"": 12, ""th"": 0.6}",-0.467
+ml_lgbm,2021,"{""horizon"": 12, ""th"": 0.6}",-0.489
+ml_lgbm,2022,"{""horizon"": 12, ""th"": 0.6}",-0.552
+ml_lgbm,2023,"{""horizon"": 12, ""th"": 0.6}",-0.48
+ml_lgbm,2024,"{""horizon"": 12, ""th"": 0.6}",-0.498
+ml_lgbm,2025,"{""horizon"": 12, ""th"": 0.6}",-0.502
+ml_lgbm,2026,"{""horizon"": 12, ""th"": 0.6}",-0.577

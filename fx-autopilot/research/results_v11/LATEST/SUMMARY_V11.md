@@ -1,4 +1,4 @@
-# FX AUTOPILOT V11 研究結果（2026-11-21 04:25 UTC、データ〜2026-11-20 21:00:00+00:00）
+# FX AUTOPILOT V11 研究結果（2026-11-28 05:10 UTC、データ〜2026-11-27 21:00:00+00:00）
 
 **PAPER / BACKTEST のみ。利益を保証しません。** 事前登録: `config/research_plan_v11.yaml`
 
@@ -11,7 +11,7 @@
 
 | candidate | status | n_trades | net_return | cagr | profit_factor | sharpe | sortino | max_drawdown | expectancy_jpy | cost_per_trade_jpy | cost_ratio | max_consecutive_losses | positive_year_ratio | max_single_year_share | ret_A | ret_B | stress_pf | positive_pairs | max_regime_share | dsr | param_changes | gate_fail |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| v11_intraday_region | REJECTED | 26381 | -53.2% | -5.7% | 0.90 | -1.16 | -1.57 | -54.1% | -11 | 16 | 3.04 | 32 | 8% | 100% | -49.7% | -6.8% | 0.71 | 2 | 100% | 0.00 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
+| v11_intraday_region | REJECTED | 26391 | -53.1% | -5.7% | 0.90 | -1.16 | -1.56 | -54.1% | -11 | 16 | 3.03 | 32 | 8% | 100% | -49.7% | -6.7% | 0.71 | 2 | 100% | 0.00 | 1 | profit_factor, sharpe, positive_years, single_year_dependence, max_drawdown, subperiod_not_positive, fragile_to_cost_2x, few_positive_pairs, single_regime_dependence, deflated_sharpe, top5_trade_dependence, top1_trade_dependence |
 
 ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share = プラス年の利益に占める最大年の割合（40% 超は単年依存）。
 
@@ -19,7 +19,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 
 | candidate | status | n_trades | diag_top1_share | diag_top5_share | diag_pnl_ex_top5 | diag_pf_ex_top5 | diag_swap_share | diag_ret_2024_2026 |
 |---|---|---|---|---|---|---|---|---|
-| v11_intraday_region | REJECTED | 26381 | — | — | -295,896 | 0.90 | — | -6.5% |
+| v11_intraday_region | REJECTED | 26391 | — | — | -295,418 | 0.90 | — | -6.3% |
 
 上位 5 トレードを除くと赤字になる候補は、少数の大相場（例: 2022 年の円安）に依存している可能性が高い。
 
@@ -39,7 +39,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | +0.2% |
 | 2024.0 | -0.9% |
 | 2025.0 | -1.7% |
-| 2026.0 | -4.0% |
+| 2026.0 | -3.9% |
 
 ## 年別 Profit Factor（WF OOS）
 
@@ -57,7 +57,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | 2023.0 | 1.20 |
 | 2024.0 | 0.93 |
 | 2025.0 | 0.90 |
-| 2026.0 | 0.71 |
+| 2026.0 | 0.72 |
 
 ## 通貨ペア別（WF OOS）
 
@@ -68,7 +68,7 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | v11_intraday_region | EURUSD | 3589 | +44,809 | 1.13 | 50% | 9 | +0 |
 | v11_intraday_region | GBPJPY | 802 | -7,981 | 0.94 | 49% | 19 | +0 |
 | v11_intraday_region | GBPUSD | 1818 | +7,993 | 1.03 | 48% | 17 | +0 |
-| v11_intraday_region | NZDUSD | 4713 | -124,538 | 0.75 | 44% | 24 | +0 |
+| v11_intraday_region | NZDUSD | 4723 | -124,060 | 0.75 | 44% | 24 | +0 |
 | v11_intraday_region | USDCHF | 3541 | -26,811 | 0.93 | 47% | 20 | +0 |
 | v11_intraday_region | USDJPY | 3954 | -65,456 | 0.83 | 46% | 9 | +0 |
 
@@ -77,14 +77,14 @@ ret_A = 2014〜2021、ret_B = 2022〜2026（部分年）。max_single_year_share
 | candidate | dimension | state | trades | pnl_jpy | win_rate | profit_factor |
 |---|---|---|---|---|---|---|
 | v11_intraday_region | regime4h | HIGH_VOL | 1298 | -10,875 | 47% | 0.95 |
-| v11_intraday_region | regime4h | NEUTRAL | 5724 | -61,045 | 46% | 0.90 |
-| v11_intraday_region | regime4h | RANGE | 7799 | -85,505 | 46% | 0.89 |
+| v11_intraday_region | regime4h | NEUTRAL | 5728 | -60,920 | 46% | 0.90 |
+| v11_intraday_region | regime4h | RANGE | 7805 | -85,153 | 46% | 0.89 |
 | v11_intraday_region | regime4h | TREND | 11560 | -123,237 | 47% | 0.90 |
-| v11_intraday_region | month_dir | DOWN | 5657 | -20,551 | 47% | 0.97 |
+| v11_intraday_region | month_dir | DOWN | 5667 | -20,073 | 47% | 0.97 |
 | v11_intraday_region | month_dir | FLAT | 15905 | -150,785 | 47% | 0.91 |
 | v11_intraday_region | month_dir | UP | 4819 | -109,327 | 47% | 0.81 |
 | v11_intraday_region | month_vol | HIGH_VOL | 4679 | -65,251 | 46% | 0.90 |
-| v11_intraday_region | month_vol | LOW_VOL | 21702 | -215,412 | 47% | 0.90 |
+| v11_intraday_region | month_vol | LOW_VOL | 21712 | -214,934 | 47% | 0.90 |
 
 ## LOCK（V2・PAPER Forward 用）
 
@@ -111,10 +111,10 @@ CHF     202     2026-10         0.034             0.066            0.353
 ## データ品質: Dukascopy と米連銀 H.10 正午レートの突き合わせ（日次）
 
   pair  days  median_abs_diff_pct  p99_abs_diff_pct  max_abs_diff_pct  days_gt_0_5pct  days_gt_1pct  worst_day
-USDJPY  4219               0.0219            0.2986             1.156               9             1 2013-06-06
-EURUSD  4219               0.0255            0.3172             0.884               9             0 2011-10-07
-GBPUSD  4219               0.0256            0.3173             1.817              11             1 2020-03-18
-AUDUSD  4219               0.0303            0.3765             1.172              20             3 2020-03-12
-NZDUSD  4219               0.0362            0.3998             1.450              23             2 2011-08-05
-USDCAD  4219               0.0249            0.2944             0.895               9             0 2020-03-12
-USDCHF  4219               0.0278            0.3099             1.041               8             1 2011-10-07
+USDJPY  4224               0.0219            0.2986             1.156               9             1 2013-06-06
+EURUSD  4224               0.0254            0.3172             0.884               9             0 2011-10-07
+GBPUSD  4224               0.0255            0.3171             1.817              11             1 2020-03-18
+AUDUSD  4224               0.0303            0.3765             1.172              20             3 2020-03-12
+NZDUSD  4224               0.0361            0.3991             1.450              23             2 2011-08-05
+USDCAD  4224               0.0248            0.2944             0.895               9             0 2020-03-12
+USDCHF  4224               0.0276            0.3098             1.041               8             1 2011-10-07
